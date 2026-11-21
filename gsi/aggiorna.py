@@ -274,6 +274,9 @@ def esegui(solo_prezzi: bool = False, tickers: list[str] | None = None, forza_bi
         scarica_cambi(con, yf)
         if not solo_prezzi:
             scarica_sec(con)
+            from . import movimenti
+            n = _prova(con, "GDELT", "notizie GDELT", lambda: movimenti.scarica_notizie_gdelt(con, UNIVERSO, _log))
+            _log(f"  GDELT: {n or 0} titoli di stampa salvati per i titoli che si sono mossi")
     controlla_qualita(con)
     con.execute("INSERT OR REPLACE INTO meta VALUES('aggiornamento_fine', ?)", (db.adesso(),))
     con.commit()

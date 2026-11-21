@@ -379,6 +379,8 @@ def campi_dati() -> list[tuple]:
          ("data_prezzo", "Data ultimo prezzo", F_DATA), ("prezzo", "Prezzo", F_NUM), ("azioni", "Azioni (capitalizzazione / prezzo)", F_INT),
          ("cambio_eur", "Cambio: unità di valuta per 1 euro", "0.0000"), ("controvalore_eur", "Scambi medi giornalieri a 20 sedute (euro)", F_INT),
          ("volatilita", "Volatilità annua (252 sedute)", F_PCT), ("beta_fonte", "Beta (fonte)", "0.00"),
+         ("vol_3a_eur", "Volatilità annua in euro (rendimenti settimanali, 3 anni)", F_PCT),
+         ("beta_mercato", "Beta sul mercato mondiale (settimanale, 3 anni, euro)", "0.00"),
          ("mm20", "Media mobile 20", F_NUM), ("mm50", "Media mobile 50", F_NUM), ("mm200", "Media mobile 200", F_NUM),
          ("mm200_20fa", "Media mobile 200 di 20 sedute fa", F_NUM), ("rsi", "RSI 14", "0.0"), ("macd", "MACD 12/26", "0.000"),
          ("macd_segnale", "MACD segnale 9", "0.000"), ("macd_isto", "MACD istogramma", "0.000"),
@@ -903,13 +905,15 @@ def giudizi_da_gialle(gialle: dict) -> dict:
 
 
 # ============================================================================ assemblaggio
-ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "BUFFETT", "VALUTAZIONE", "TRADING", "PERFORMANCE", "GIUDIZI",
-                "PARAMETRI", "UNIVERSO", "DATI", "QUALITA_DATI", "PREZZI_5A", "_MAPPA"]
+ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "BUFFETT", "VALUTAZIONE", "TRADING", "MOVIMENTI", "NOTIZIE",
+                "PORTAFOGLIO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
+                "QUALITA_DATI", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
+                "_MAPPA"]
 
 
 def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict | None = None,
                strumenti: list | None = None, scelto: str | None = None, universo: list | None = None,
-               demo: bool = False) -> Libro:
+               demo: bool = False, ctx: dict | None = None) -> Libro:
     universo = universo or UNIVERSO
     from .excel_viste import (foglio_cruscotto, foglio_performance, foglio_prezzi, foglio_qualita, foglio_scheda,
                               foglio_screener)
@@ -930,6 +934,18 @@ def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict
     if serie5a:
         n_sett = foglio_prezzi(lib, serie5a)
         foglio_scheda(lib, tickers, n_sett, scelto if scelto in ingressi else tickers[0])
+    if ctx is not None:
+        from . import excel_doc, excel_fase4 as f4
+        f4.foglio_movimenti(lib, ctx["movimenti"], ctx["valutazioni"])
+        f4.foglio_notizie(lib, ctx["notizie"])
+        f4.foglio_correlazioni(lib, ctx["stat"])
+        f4.foglio_portafoglio(lib, ctx["settori"], ctx["aree"], ctx["gialle"])
+        f4.foglio_simulatore(lib, ctx["gialle"], ctx["etf"], f4.foglio_etf(lib, ctx["etf"]))
+        f4.foglio_backtest(lib, ctx["backtest"])
+        excel_doc.foglio_metodologia(lib)
+        excel_doc.foglio_fonti(lib)
+        excel_doc.foglio_stato(lib, ctx)
+        excel_doc.foglio_leggimi(lib, demo)
     foglio_cruscotto(lib, demo)
     foglio_mappa(lib)
     for nome in list(lib.wb.sheetnames):          # fogli non costruiti: non si lasciano vuoti
@@ -981,6 +997,49 @@ def strumenti_di_confronto(con) -> list[tuple]:
     return out
 
 
+def etf_mensili(con) -> dict | None:
+    """Chiusure di fine mese dei due ETF di confronto, nelle date in cui esistono entrambe."""
+    k = list(ETF)
+    serie = []
+    for tk in k:
+        d = {}
+        for g, c in con.execute("SELECT data, chiusura FROM prezzi WHERE ticker=? ORDER BY data", (tk,)):
+            d[g[:7]] = (g, c)             # resta l'ultima seduta del mese
+        serie.append(d)
+    mesi = sorted(set(serie[0]) & set(serie[1]))
+    if len(mesi) < 13:
+        return None
+    return {"nomi": [f"{ETF[x][2]} ({x})" for x in k], "date": [date.fromisoformat(serie[0][m][0]) for m in mesi],
+            "a": [serie[0][m][1] for m in mesi], "b": [serie[1][m][1] for m in mesi]}
+
+
+def contesto(con, universo: list, ingressi: dict, gialle: dict, percorso, demo: bool) -> dict:
+    """Dati per i fogli MOVIMENTI, NOTIZIE, PORTAFOGLIO, SIMULATORE, BACKTEST, STATO."""
+    from . import backtest, movimenti, portafoglio
+    from .excel_fase4 import leggi_valutati
+    mercato = universo[0].indice if demo else "SWDA.MI"
+    stat = portafoglio.statistiche(con, universo, mercato)
+    for tk, i in ingressi.items():
+        i["vol_3a_eur"], i["beta_mercato"] = stat["vol"].get(tk), stat["beta"].get(tk)
+    mov = movimenti.calcola_movimenti(con, universo)
+    presenti = {f"{m['ticker']}|{m['data']}" for m in mov}
+    valutazioni = {k.split("|", 2)[2]: v for k, v in gialle.items() if k.startswith("MOVIMENTI|valutazione|")}
+    # i movimenti gia' valutati dall'utente restano nel foglio anche quando escono dalla finestra
+    for m in leggi_valutati(percorso):
+        valutazioni.setdefault(f"{m['ticker']}|{m['data']}", m["valutazione"])
+        if f"{m['ticker']}|{m['data']}" not in presenti:
+            mov.append(m)
+    tickers = [t.ticker for t in universo]
+    segni = ",".join("?" * len(tickers))
+    notizie = con.execute(f"SELECT ticker, pubblicato, testata, titolo, url, fonte, lingua FROM notizie WHERE ticker IN ({segni}) "
+                          "ORDER BY pubblicato DESC LIMIT 4000", tickers).fetchall()
+    return {"movimenti": mov, "valutazioni": valutazioni, "notizie": [tuple(r) for r in notizie], "stat": stat,
+            "settori": sorted({t.settore for t in universo}), "aree": sorted({t.area for t in universo}),
+            "gialle": gialle, "etf": None if demo else etf_mensili(con), "backtest": backtest.leggi(con),
+            "n_sec": con.execute("SELECT COUNT(DISTINCT ticker) FROM bilanci WHERE fonte='sec'").fetchone()[0],
+            "n_gdelt": con.execute("SELECT COUNT(*) FROM notizie WHERE fonte='GDELT'").fetchone()[0]}
+
+
 def genera(con, percorso, oggi: date | None = None, universo: list | None = None,
            demo: bool = False) -> tuple[Libro, dict, dict, dict]:
     """Rigenera il cruscotto dall'archivio conservando le celle gialle del file esistente.
@@ -993,7 +1052,8 @@ def genera(con, percorso, oggi: date | None = None, universo: list | None = None
     giudizi = giudizi_da_gialle(gialle)
     ingressi, _, _ = calcola.calcola_tutto(con, oggi, P, giudizi, universo)
     tickers = list(ingressi)
+    ctx = contesto(con, universo or UNIVERSO, ingressi, gialle, percorso, demo)
     lib = costruisci(ingressi, P, giudizi, oggi, serie_settimanali(con, tickers),
-                     [] if demo else strumenti_di_confronto(con), gialle.get("SCHEDA|ticker"), universo, demo)
+                     [] if demo else strumenti_di_confronto(con), gialle.get("SCHEDA|ticker"), universo, demo, ctx)
     lib.wb.save(percorso)
     return lib, ingressi, P, giudizi

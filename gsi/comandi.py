@@ -51,3 +51,18 @@ def demo() -> int:
     con = crea_archivio(percorso_db)
     print("VERSIONE DIMOSTRATIVA: società e dati sono INVENTATI, non riguardano alcuna società reale.")
     return genera_e_verifica(con, config.RADICE / "Global_Stock_Intelligence_DEMO.xlsx", universo=UNIVERSO_DEMO, demo=True)
+
+
+def backtest() -> int:
+    from . import backtest as bt
+    from .excel import leggi_gialle, parametri_da_gialle
+    from .parametri import predefiniti
+    from .universo import UNIVERSO
+    if not config.FILE_DB.exists():
+        print("Archivio assente: eseguire prima  python avvia.py aggiorna")
+        return 2
+    con = db.apri(config.FILE_DB)
+    P = parametri_da_gialle(predefiniti(), leggi_gialle(config.FILE_EXCEL))     # usa i parametri del cruscotto
+    print("Backtest della strategia B in corso (alcuni minuti)...")
+    bt.stampa(bt.esegui(con, UNIVERSO, P))
+    return genera_e_verifica(con, config.FILE_EXCEL, verifica=False)

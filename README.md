@@ -13,11 +13,10 @@ I dati Yahoo sono consentiti per il solo uso personale.
 | 1 | Universo e scaricamento dei dati | fatta |
 | 2 | Indicatori, metriche e punteggi in Python | fatta |
 | 3 | Cruscotto Excel con formule e controllo incrociato | fatta |
-| 4 | Movimenti, portafoglio, simulatore, backtest, manuale | da fare |
+| 4 | Movimenti, portafoglio, simulatore, backtest, manuale | fatta |
 
-Oggi `aggiorna` scarica i dati e crea il cruscotto `Global_Stock_Intelligence.xlsx` con questi fogli: CRUSCOTTO,
-SCREENER, SCHEDA, BUFFETT, VALUTAZIONE, TRADING, PERFORMANCE, GIUDIZI, PARAMETRI, UNIVERSO, DATI, QUALITA_DATI.
-Mancano ancora (fase 4): MOVIMENTI, NOTIZIE, PORTAFOGLIO, SIMULATORE, BACKTEST e i fogli di documentazione.
+`aggiorna` scarica i dati e crea il cruscotto `Global_Stock_Intelligence.xlsx`. Il manuale è nel foglio LEGGIMI del
+cruscotto; criteri e pesi nel foglio METODOLOGIA; che cosa funziona e che cosa no nel foglio STATO.
 
 ## Installazione (una volta sola)
 
@@ -33,6 +32,7 @@ Mancano ancora (fase 4): MOVIMENTI, NOTIZIE, PORTAFOGLIO, SIMULATORE, BACKTEST e
     python avvia.py aggiorna                 scarica tutto e rigenera il cruscotto (circa 20 minuti)
     python avvia.py aggiorna --solo-prezzi   scarica solo prezzi e cambi e rigenera il cruscotto (circa 5 minuti)
     python avvia.py excel                    rigenera il cruscotto dall'archivio, senza scaricare
+    python avvia.py backtest                 backtest della strategia B (meno di un minuto), poi rigenera il cruscotto
     python avvia.py demo                     versione dimostrativa con società inventate (non serve la rete)
     python avvia.py punteggi                 le due classifiche in dati/punteggi.csv
 
@@ -60,6 +60,14 @@ Per allungare a 10 anni la storia delle società americane, creare nella cartell
 
 Verificata in rete il 21/11/2026: dati 10-K per 36 società. Le serie SEC si usano solo se coincidono
 con Yahoo sugli esercizi in comune.
+
+### Limiti principali
+
+- Verificato con LibreOffice, non con Microsoft Excel.
+- Indicatori tecnici e metriche di bilancio grezze sono calcolati in Python e scritti nel foglio DATI.
+- GDELT rifiuta spesso le richieste: i titoli di stampa da questa fonte sono pochi.
+- Per banche e assicurazioni cost/income, combined ratio, CET1 e Solvency II vanno inseriti a mano.
+- Il backtest riguarda solo la strategia B e ha distorsione da sopravvivenza.
 
 ## Collaudi
 

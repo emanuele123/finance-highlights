@@ -35,6 +35,9 @@ def main() -> int:
     if arg.comando == "excel":
         from gsi import comandi
         return comandi.excel_da_archivio()
+    if arg.comando == "backtest":
+        from gsi import comandi
+        return comandi.backtest()
     if arg.comando == "demo":
         from gsi import comandi
         return comandi.demo()
