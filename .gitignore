@@ -1,0 +1,6 @@
+dati/*.sqlite*
+dati/*.log
+__pycache__/
+.pytest_cache/
+configurazione.ini
+~$*
