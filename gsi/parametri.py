@@ -2,6 +2,8 @@
 from __future__ import annotations
 import copy
 
+from .descrizioni import MERCATO as _MERCATO
+
 MODELLI = ["STD", "CIC", "UTL", "BAN", "ASS", "REIT"]
 FINANZIARI = ("BAN", "ASS")
 PILASTRI_A = ["Q", "F", "G", "V"]
@@ -98,6 +100,7 @@ PREDEFINITI = {
         "Telecomunicazioni": "Concorrenza sui prezzi, investimenti in reti e frequenze, debito elevato, regolazione, ricavi stagnanti.",
         "Immobiliare": "Livello dei tassi d'interesse, valore degli immobili, tasso di occupazione, rifinanziamento del debito.",
     },
+    "mercato_settore": _MERCATO,
     "soglia_segnale": 65, "capitale": 50000.0, "rischio_operazione": 0.01, "peso_massimo": 0.10,
 }
 

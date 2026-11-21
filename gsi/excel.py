@@ -366,6 +366,15 @@ def foglio_parametri(lib: Libro, P: dict, oggi: date):
         r += 1
     lib.prm["settori_nome"] = f"PARAMETRI!$B${primo}:$B${r - 1}"
     lib.prm["settori_testo"] = f"PARAMETRI!$C${primo}:$C${r - 1}"
+    stato["r"] = r
+    sezione("Come funziona il mercato di ogni settore (testo modificabile, mostrato nella SCHEDA e nel foglio SETTORI)")
+    r = stato["r"]
+    primo = r
+    for sett in P["rischi_settore"]:
+        ws.cell(r, 2, sett).font = car()
+        lib.gialla(ws, f"C{r}", P["mercato_settore"].get(sett, "-"), "P|" + json.dumps(["mercato_settore", sett]))
+        r += 1
+    lib.prm["settori_mercato"] = f"PARAMETRI!$C${primo}:$C${r - 1}"
     ws.freeze_panes = "C3"
 
 
@@ -375,6 +384,7 @@ def campi_dati() -> list[tuple]:
     c = [("ticker", "Ticker", None), ("nome", "Società", None), ("area", "Area", None), ("settore", "Settore", None),
          ("modello", "Modello", None), ("valuta", "Valuta di quotazione", None), ("valuta_bil", "Valuta di bilancio", None),
          ("indice", "Indice di riferimento", None), ("paese", "Paese del listino", None), ("adr", "ADR / note sul titolo", None),
+         ("descrizione", "Cosa fa in breve", None), ("industria", "Attività secondo la fonte (in inglese)", None),
          ("stato_dati", "Esito dei controlli", None), ("motivi_dati", "Motivo", None), ("note_calcolo", "Note di calcolo", None),
          ("data_prezzo", "Data ultimo prezzo", F_DATA), ("prezzo", "Prezzo", F_NUM), ("azioni", "Azioni (capitalizzazione / prezzo)", F_INT),
          ("cambio_eur", "Cambio: unità di valuta per 1 euro", "0.0000"), ("controvalore_eur", "Scambi medi giornalieri a 20 sedute (euro)", F_INT),
@@ -415,6 +425,9 @@ def valore_dato(i: dict, chiave: str, mediane: dict, titoli: dict):
         return titoli[i["ticker"]].paese_listino
     if chiave == "adr":
         return titoli[i["ticker"]].adr or "-"
+    if chiave == "descrizione":
+        from .descrizioni import COSA_FA
+        return COSA_FA.get(i["ticker"], "Società inventata a scopo dimostrativo" if i["ticker"].startswith("DEMO") else None)
     if chiave == "note_calcolo":
         return "; ".join(i.get("note") or []) or "-"
     if chiave == "motivi_dati":
@@ -443,7 +456,7 @@ def foglio_dati(lib: Libro, ingressi: dict, titoli: dict):
                                  "'n.d.' = dato mancante, che non vale mai punti.")
     for chiave, intest, fmt in campi_dati():
         t.col(chiave, intest, (lambda tk, k=chiave: valore_dato(ingressi[tk], k, mediane, titoli)), fmt, "dato",
-              28 if chiave in ("nome", "motivi_dati", "note_calcolo", "adr") else 12)
+              28 if chiave in ("nome", "motivi_dati", "note_calcolo", "adr", "descrizione") else 12)
     t.scrivi(list(ingressi))
     return t
 
@@ -883,7 +896,7 @@ def parametri_da_gialle(P: dict, gialle: dict) -> dict:
         if not chiave.startswith("P|"):
             continue
         percorso = json.loads(chiave[2:])
-        if not isinstance(v, (int, float)) and percorso[0] != "rischi_settore":
+        if not isinstance(v, (int, float)) and percorso[0] not in ("rischi_settore", "mercato_settore"):
             continue                      # un parametro numerico svuotato o reso testo: resta il predefinito
         x = P
         try:
@@ -905,7 +918,7 @@ def giudizi_da_gialle(gialle: dict) -> dict:
 
 
 # ============================================================================ assemblaggio
-ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "BUFFETT", "VALUTAZIONE", "TRADING", "MOVIMENTI", "NOTIZIE",
+ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "TRADING", "MOVIMENTI", "NOTIZIE",
                 "PORTAFOGLIO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
                 "QUALITA_DATI", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
                 "_MAPPA"]
@@ -946,6 +959,8 @@ def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict
         excel_doc.foglio_fonti(lib)
         excel_doc.foglio_stato(lib, ctx)
         excel_doc.foglio_leggimi(lib, demo)
+    from .excel_viste import foglio_settori
+    foglio_settori(lib, sorted({t.settore for t in universo}))
     foglio_cruscotto(lib, demo)
     foglio_mappa(lib)
     for nome in list(lib.wb.sheetnames):          # fogli non costruiti: non si lasciano vuoti

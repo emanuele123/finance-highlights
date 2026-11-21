@@ -144,6 +144,7 @@ def foglio_stato(lib: Libro, ctx: dict):
         ("Indicatori tecnici e metriche di bilancio grezze", "CALCOLATI IN PYTHON", "Medie mobili, RSI, MACD, ATR, rendimenti, ROIC, margini, CAGR sono calcolati sullo storico e scritti nel foglio DATI come dati: non si ricalcolano cambiando un parametro. In formula ci sono soglie, pesi, punteggi, valutazione, setup e verdetti."),
         ("Bilanci trimestrali e a 12 mesi", "SCARICATI, NON USATI NEI PUNTEGGI", "Sono nell'archivio; i punteggi usano gli esercizi annuali."),
         ("Promemoria dei rischi di settore", "OPERATIVA", "Testo generico modificabile in PARAMETRI; non è un'analisi del singolo titolo."),
+        ("Descrizioni: cosa fa ogni società e come funziona il mercato del settore", "OPERATIVA (testi scritti a mano)", "Non provengono dalle fonti dati: sono descrizioni generali dell'attività redatte per questo strumento, da verificare e correggere se un'azienda cambia mestiere. Quelle di settore si modificano in PARAMETRI."),
     ]
     _tabella(lib, "STATO", "STATO - che cosa funziona, che cosa è parziale, che cosa manca",
              "Aggiornato a ogni rigenerazione. Una funzione non eseguita davvero è dichiarata come non verificata.",
@@ -167,7 +168,8 @@ def foglio_leggimi(lib: Libro, demo: bool):
         ("Da dove cominciare", [
             "CRUSCOTTO: indicatori di sintesi e cinque liste (migliori di valore, migliori di trading, classe A senza margine, 'Aspetterei' vicini al prezzo d'acquisto, rischi e allerte).",
             "SCREENER: una riga per titolo. Usare le frecce dei filtri nella riga di intestazione (paese, area, settore, fascia di capitalizzazione, punteggi, verdetto, segnale, livello di rischio).",
-            "SCHEDA: scegliere il titolo dal menu nella cella gialla in alto: compaiono i due punteggi, il valore intrinseco, il setup, i rischi, la performance, le 19 metriche e il grafico a 5 anni.",
+            "SETTORI: come funziona il mercato di ogni settore, i rischi tipici e i punteggi medi dei suoi titoli. In CRUSCOTTO e SCREENER ogni titolo ha accanto il settore e una riga su che cosa fa.",
+            "SCHEDA: scegliere il titolo dal menu nella cella gialla in alto: compaiono che cosa fa l'azienda, i due punteggi, il valore intrinseco, il setup, i rischi, la performance, le 19 metriche e il grafico a 5 anni.",
         ]),
         ("Capire i numeri", [
             "BUFFETT, VALUTAZIONE, TRADING: il calcolo completo, colonna per colonna. METODOLOGIA spiega criteri e pesi.",

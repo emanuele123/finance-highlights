@@ -55,12 +55,13 @@ def test_struttura_e_convenzioni(ambiente):
         assert c.fill.fgColor.rgb.endswith("FFFF00"), chiave
         assert not (isinstance(c.value, str) and c.value.startswith("="))
     # nessuna funzione disponibile solo in Excel 365
-    vietate = ("XLOOKUP", "FILTER(", "SORT(", "UNIQUE(", "SEQUENCE(", "LET(", "TEXTJOIN", "IFS(", "XMATCH")
+    import re
+    vietate = re.compile(r"XLOOKUP|XMATCH|TEXTJOIN|(?<![A-Z])(FILTER|SORT|UNIQUE|SEQUENCE|LET|IFS|SWITCH|CONCAT)\(")
     for ws in wb.worksheets:
         for riga in ws.iter_rows():
             for c in riga:
                 if isinstance(c.value, str) and c.value.startswith("="):
-                    assert not any(v in c.value for v in vietate), (ws.title, c.coordinate)
+                    assert not vietate.search(c.value), (ws.title, c.coordinate)
     # i collegamenti tra fogli passano dal ticker
     f = wb["BUFFETT"]["F3"].value
     assert "MATCH($A3,DATI!$A$3:" in f and f.startswith("=INDEX(DATI!")
@@ -77,6 +78,10 @@ def test_zero_errori_e_coincidenza_con_python(ambiente):
     assert len(verdetti) >= 3                       # la demo esercita piu' rami del verdetto
     assert wb["CRUSCOTTO"]["D5"].value == len(UNIVERSO_DEMO)
     assert wb["SCHEDA"]["B5"].value == UNIVERSO_DEMO[0].nome
+    assert wb["SCHEDA"]["A3"].value.startswith("Cosa fa: ")
+    sett = {wb["SETTORI"].cell(r, 1).value: wb["SETTORI"].cell(r, 3).value for r in range(3, 20) if wb["SETTORI"].cell(r, 1).value}
+    assert len(sett) == len({t.settore for t in UNIVERSO_DEMO}) and all(len(v) > 100 for v in sett.values())
+    assert wb["CRUSCOTTO"]["J14"].value in sett and wb["CRUSCOTTO"]["K14"].value.startswith("Società inventata")                    # settore accanto al primo della lista di valore
     assert isinstance(wb["SCHEDA"]["M4"].value, (int, float))        # serie del grafico
 
 

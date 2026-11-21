@@ -100,6 +100,7 @@ def ingressi_titolo(con, t, oggi: date, indice: dict | None) -> dict:
     ing["capitalizzazione_eur"] = ing["capitalizzazione"] / fq if ing["capitalizzazione"] and fq else None
     ing["controvalore_eur"] = ing["controvalore_20"] / fq if ing.get("controvalore_20") and fq else None
     ing["beta_fonte"] = ana["beta"] if ana else None
+    ing["industria"] = ana["industria_fonte"] if ana else None
 
     # ---- bilanci
     anni, note = bilanci.carica_esercizi(con, t.ticker)

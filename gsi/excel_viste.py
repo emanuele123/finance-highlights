@@ -27,6 +27,7 @@ def foglio_screener(lib: Libro, tickers: list[str]):
     for k, h, w in (("paese", "Paese del listino", 13), ("area", "Area", 14), ("settore", "Settore", 24),
                     ("modello", "Modello", 8), ("valuta", "Valuta", 7)):
         t.col(k, h, "={D:" + k + "}", None, "link", w)
+    t.col("descrizione", "Cosa fa in breve", "={D:descrizione}", None, "link", 60)
     t.col("prezzo", "Prezzo", "={D:prezzo}", F_NUM, "link")
     t.col("cap_eur", "Capitalizzazione (milioni di euro)",
           '=IF(AND(ISNUMBER({D:azioni}),ISNUMBER({prezzo}),ISNUMBER({D:cambio_eur})),'
@@ -172,6 +173,12 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
         tab = lib.tab[Tab.SIGLE[sigla]]
         return f"INDEX({tab.rng(chiave)},MATCH($B$2,{tab.rng('ticker')},0))"
 
+    ws["A3"] = '="Cosa fa: "&' + look("D", "descrizione")
+    ws["A3"].font = car(VERDE, True)
+    ws["A3"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells("A3:I3")
+    ws.row_dimensions[3].height = 30
+
     def sezione(r, col, testo, larg=4):
         for j in range(col, col + larg):
             ws.cell(r, j).fill = FASCIA
@@ -279,6 +286,14 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
             c = ws.cell(r, j, "=" + look("B", pref + m))
             c.font, c.number_format = car(VERDE), fmt
             c.alignment = Alignment(horizontal="right")
+    r += 2
+    sezione(r, 1, "Come funziona il mercato di questo settore (descrizione generale, non un giudizio sul titolo)", 9)
+    r += 1
+    c = ws.cell(r, 1, f'=IFERROR(INDEX({lib.prm["settori_mercato"]},MATCH({look("D", "settore")},{lib.prm["settori_nome"]},0)),"-")')
+    c.font = car(VERDE)
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=9)
+    ws.row_dimensions[r].height = 78
     fine = r
 
     # serie per il grafico (colonne L:M) e grafico a 5 anni
@@ -315,7 +330,7 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
 # ============================================================================ CRUSCOTTO
 def foglio_cruscotto(lib: Libro, demo: bool = False):
     ws = lib.foglio("CRUSCOTTO")
-    for col, w in zip("ABCDEFGHIJKL", (4, 12, 30, 13, 13, 14, 14, 14, 30, 13, 13, 13)):
+    for col, w in zip("ABCDEFGHIJKL", (4, 12, 30, 13, 13, 14, 14, 26, 30, 26, 26, 26)):
         ws.column_dimensions[col].width = w
     ws["B1"] = "GLOBAL STOCK INTELLIGENCE" + (" - VERSIONE DIMOSTRATIVA: SOCIETÀ E DATI INVENTATI" if demo else "")
     ws["B1"].font = car("1F3864", True, 16)
@@ -328,9 +343,12 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
                 "non sono previsioni. Due strategie, due classifiche, mai fuse.")
     ws["D2"].font = car("595959", corsivo=True, dim=9)
     S, B, T = lib.tab["SCREENER"], lib.tab["BUFFETT"], lib.tab["TRADING"]
+    profilo = [("Settore", lib.tab["DATI"], "settore", None), ("Cosa fa in breve", lib.tab["DATI"], "descrizione", None)]
+    ws.column_dimensions["M"].width = 30
+    ws.column_dimensions["N"].width = 30
 
     def fascia(r, testo):
-        for j in range(2, 13):
+        for j in range(2, 15):
             ws.cell(r, j).fill = FASCIA
         ws.cell(r, 2, testo).font = car(NERO, True, 11)
 
@@ -358,6 +376,7 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
         fascia(r, titolo_)
         r += 1
         ws.cell(r, 1, "#").font = car(NERO, True, 9)
+        colonne = colonne + profilo
         for j, h in enumerate(["Ticker"] + [c[0] for c in colonne]):
             testata(ws, r, 2 + j, h)
         ws.row_dimensions[r].height = 30
@@ -395,3 +414,30 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
            ("Rischi e allerte", S, "allerte", None)])
     ws.freeze_panes = "A4"
     ws.sheet_view.showGridLines = False
+
+
+# ============================================================================ SETTORI
+def foglio_settori(lib: Libro, settori: list[str]):
+    ws = lib.foglio("SETTORI")
+    titolo_foglio(ws, "SETTORI - come funziona ogni mercato",
+                  "Descrizioni generali scritte a mano, non provenienti dalle fonti dati e non riferite a un singolo titolo. "
+                  "I testi si modificano nel foglio PARAMETRI.")
+    S = lib.tab["SCREENER"]
+    for j, (h, w) in enumerate((("Settore", 28), ("Titoli nell'universo", 10), ("Come funziona il mercato", 95),
+                                ("Rischi tipici", 60), ("Buffett Score medio", 11), ("Trading Score medio", 11)), 1):
+        testata(ws, 2, j, h, w)
+    for i, sett in enumerate(settori):
+        r = R0 + i
+        ws.cell(r, 1, sett).font = car(NERO, True)
+        ws.cell(r, 2, f"=COUNTIF({S.rng('settore')},$A{r})").font = car()
+        for j, k in ((3, "settori_mercato"), (4, "settori_testo")):
+            c = ws.cell(r, j, f'=IFERROR(INDEX({lib.prm[k]},MATCH($A{r},{lib.prm["settori_nome"]},0)),"-")')
+            c.font = car(VERDE)
+        for j, k in ((5, "buffett"), (6, "trading")):
+            c = ws.cell(r, j, f'=IF(COUNTIFS({S.rng("settore")},$A{r},{S.rng(k)},">=0")>0,'
+                              f'AVERAGEIF({S.rng("settore")},$A{r},{S.rng(k)}),"n.d.")')
+            c.font, c.number_format = car(), F_PUNTI
+        for j in range(1, 7):
+            ws.cell(r, j).alignment = Alignment(wrap_text=True, vertical="top", horizontal="right" if j in (2, 5, 6) else "left")
+        ws.row_dimensions[r].height = 92
+    ws.freeze_panes = "B3"
