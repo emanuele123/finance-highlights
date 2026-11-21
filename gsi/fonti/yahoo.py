@@ -170,6 +170,26 @@ def normalizza_revisioni(df: pd.DataFrame) -> list[tuple]:
             for p, r in df.iterrows()]
 
 
+def normalizza_stime(df: pd.DataFrame) -> list[tuple]:
+    """Stime di consenso sull'utile per azione -> (periodo, media, minimo, massimo, eps anno prima,
+    numero di analisti, valuta, metodo). Periodi: 0q, +1q, 0y (esercizio in corso), +1y (successivo)."""
+    if df is None or len(df) == 0:
+        return []
+    righe = []
+    for p, r in df.iterrows():
+        if _num(r.get("avg")) is None:
+            continue
+        righe.append((str(p), _num(r.get("avg")), _num(r.get("low")), _num(r.get("high")),
+                      _num(r.get("yearAgoEps")), _num(r.get("numberOfAnalysts")),
+                      r.get("currency") if isinstance(r.get("currency"), str) else None,
+                      r.get("methodology") if isinstance(r.get("methodology"), str) else None))
+    return righe
+
+
+def scarica_stime(tk):
+    return normalizza_stime(con_tentativi(tk.get_earnings_estimate))
+
+
 def normalizza_notizie(lista: list) -> list[tuple]:
     """Notizie yfinance -> (url, titolo, testata, pubblicato). Solo titolo e link: nessun riassunto."""
     righe = []

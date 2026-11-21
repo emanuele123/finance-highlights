@@ -3,6 +3,7 @@
 
   python avvia.py aggiorna                scarica prezzi, bilanci, cambi e rigenera il cruscotto
   python avvia.py aggiorna --solo-prezzi  scarica solo prezzi e cambi
+  python avvia.py punteggi                calcola i punteggi dall'archivio (tabella in dati/punteggi.csv)
   python avvia.py excel                   rigenera il cruscotto senza scaricare
   python avvia.py backtest                backtest della strategia B (Trading Score)
   python avvia.py demo                    versione dimostrativa con societa' inventate
@@ -18,6 +19,7 @@ def main() -> int:
     a.add_argument("--solo-prezzi", action="store_true", help="scarica solo prezzi e cambi")
     a.add_argument("--forza-bilanci", action="store_true", help="riscarica i bilanci anche se recenti")
     a.add_argument("--titoli", default="", help="elenco di ticker separati da virgola (per prove)")
+    s.add_parser("punteggi", help="calcola i due punteggi dall'archivio e li scrive in dati/punteggi.csv")
     for nome in ("excel", "backtest", "demo"):
         s.add_parser(nome)
     arg = p.parse_args()
@@ -25,6 +27,9 @@ def main() -> int:
         from gsi import aggiorna
         return aggiorna.esegui(solo_prezzi=arg.solo_prezzi, forza_bilanci=arg.forza_bilanci,
                                tickers=[x.strip() for x in arg.titoli.split(",") if x.strip()] or None)
+    if arg.comando == "punteggi":
+        from gsi import calcola
+        return calcola.esegui()
     print(f"Comando '{arg.comando}' non ancora implementato (fasi successive del progetto).")
     return 1
 

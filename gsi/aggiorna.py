@@ -100,6 +100,12 @@ def scarica_fondamentali(con, t, yf, meta: dict, forza: bool) -> None:
             con.execute("DELETE FROM revisioni WHERE ticker=?", (t.ticker,))
             con.executemany("INSERT INTO revisioni VALUES(?,?,?,?,?,?,?)", [(t.ticker, *x, db.adesso()) for x in r])
             db.segna_scarico(con, t.ticker, "revisioni", len(r))
+    r = _prova(con, t.ticker, "stime utili", lambda: yahoo.scarica_stime(tk))
+    if r:
+        with con:
+            con.execute("DELETE FROM stime_utili WHERE ticker=?", (t.ticker,))
+            con.executemany("INSERT INTO stime_utili VALUES(?,?,?,?,?,?,?,?,?,?)", [(t.ticker, *x, db.adesso()) for x in r])
+            db.segna_scarico(con, t.ticker, "stime utili", len(r))
     r = _prova(con, t.ticker, "notizie", lambda: yahoo.scarica_notizie(tk))
     if r:
         with con:
@@ -242,7 +248,7 @@ def esegui(solo_prezzi: bool = False, tickers: list[str] | None = None, forza_bi
     validi = [t.ticker for t in UNIVERSO] + list(INDICI) + list(ETF)
     segni = ",".join("?" * len(validi))
     with con:   # elimina i dati di titoli usciti dall'universo
-        for tab in ("prezzi", "bilanci", "anagrafica", "date_utili", "revisioni", "qualita", "scarichi"):
+        for tab in ("prezzi", "bilanci", "anagrafica", "date_utili", "revisioni", "stime_utili", "qualita", "scarichi"):
             filtro = " AND ticker NOT LIKE 'EUR%=X' AND ticker NOT IN ('BCE','SEC')" if tab == "scarichi" else ""
             con.execute(f"DELETE FROM {tab} WHERE ticker NOT IN ({segni}){filtro}", validi)
     titoli = [t for t in UNIVERSO if not tickers or t.ticker in tickers]

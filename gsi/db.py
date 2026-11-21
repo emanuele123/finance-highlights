@@ -26,6 +26,9 @@ CREATE TABLE IF NOT EXISTS date_utili(
 CREATE TABLE IF NOT EXISTS revisioni(
   ticker TEXT NOT NULL, periodo TEXT NOT NULL, su_7g REAL, su_30g REAL, giu_7g REAL, giu_30g REAL,
   rilevato TEXT, PRIMARY KEY(ticker, periodo)) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS stime_utili(
+  ticker TEXT NOT NULL, periodo TEXT NOT NULL, media REAL, minimo REAL, massimo REAL, eps_anno_prima REAL,
+  n_analisti REAL, valuta TEXT, metodo TEXT, rilevato TEXT, PRIMARY KEY(ticker, periodo)) WITHOUT ROWID;
 CREATE TABLE IF NOT EXISTS notizie(
   ticker TEXT NOT NULL, url TEXT NOT NULL, titolo TEXT, testata TEXT, pubblicato TEXT,
   fonte TEXT, lingua TEXT, raccolto TEXT, PRIMARY KEY(ticker, url)) WITHOUT ROWID;
