@@ -5,3 +5,4 @@ __pycache__/
 configurazione.ini
 ~$*
 dati/*.csv
+Global_Stock_Intelligence*.xlsx

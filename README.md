@@ -12,11 +12,12 @@ I dati Yahoo sono consentiti per il solo uso personale.
 |------|-----------|-------|
 | 1 | Universo e scaricamento dei dati | fatta |
 | 2 | Indicatori, metriche e punteggi in Python | fatta |
-| 3 | Cruscotto Excel con formule | da fare |
+| 3 | Cruscotto Excel con formule e controllo incrociato | fatta |
 | 4 | Movimenti, portafoglio, simulatore, backtest, manuale | da fare |
 
-Oggi funzionano `aggiorna` (scarica i dati) e `punteggi` (calcola le due classifiche e le scrive in un file CSV
-apribile con Excel). **Il cruscotto Excel con le formule non viene ancora creato.**
+Oggi `aggiorna` scarica i dati e crea il cruscotto `Global_Stock_Intelligence.xlsx` con questi fogli: CRUSCOTTO,
+SCREENER, SCHEDA, BUFFETT, VALUTAZIONE, TRADING, PERFORMANCE, GIUDIZI, PARAMETRI, UNIVERSO, DATI, QUALITA_DATI.
+Mancano ancora (fase 4): MOVIMENTI, NOTIZIE, PORTAFOGLIO, SIMULATORE, BACKTEST e i fogli di documentazione.
 
 ## Installazione (una volta sola)
 
@@ -29,18 +30,25 @@ apribile con Excel). **Il cruscotto Excel con le formule non viene ancora creato
 
 ## Uso
 
-    python avvia.py aggiorna                 scarica prezzi, bilanci, cambi, notizie (circa 20 minuti)
-    python avvia.py aggiorna --solo-prezzi   scarica solo prezzi e cambi (circa 5 minuti)
-    python avvia.py aggiorna --titoli AAPL,ENEL.MI   prova su pochi titoli
+    python avvia.py aggiorna                 scarica tutto e rigenera il cruscotto (circa 20 minuti)
+    python avvia.py aggiorna --solo-prezzi   scarica solo prezzi e cambi e rigenera il cruscotto (circa 5 minuti)
+    python avvia.py excel                    rigenera il cruscotto dall'archivio, senza scaricare
+    python avvia.py demo                     versione dimostrativa con società inventate (non serve la rete)
+    python avvia.py punteggi                 le due classifiche in dati/punteggi.csv
 
-    python avvia.py punteggi                 calcola Buffett Score e Trading Score; tabella in dati/punteggi.csv
+Su Mac scrivere `python3` al posto di `python`. Chiudere il file Excel prima di aggiornare.
 
-Su Mac scrivere `python3` al posto di `python`.
+### Come si usa il cruscotto
 
-Alla fine compare un riepilogo: quanti titoli hanno prezzi e bilanci e quali sono "DA VERIFICARE", con il motivo.
-I dati finiscono in `dati/archivio.sqlite`. I bilanci si riscaricano solo dopo 7 giorni; i prezzi ogni volta.
-
-I comandi `excel`, `backtest` e `demo` arriveranno con le fasi successive.
+- **Colori**: blu = dato importato o inserito, nero = formula, verde = collegamento ad altro foglio,
+  **fondo giallo = cella che si può modificare**.
+- **PARAMETRI**: tutte le soglie e i pesi. Cambiando un numero, punteggi e valori si ricalcolano.
+- **GIUDIZI**: dati manuali per banche e assicurazioni (cost/income, combined ratio, CET1, Solvency II),
+  correzione qualitativa (±10 punti, con motivazione) e tesi personale.
+- **SCHEDA**: scegliere il titolo dal menu nella cella gialla.
+- Le celle gialle modificate vengono **conservate** a ogni aggiornamento, anche se i fogli sono stati ordinati.
+- Se LibreOffice è installato, a ogni rigenerazione il programma ricalcola il file e confronta le formule
+  con il calcolo Python, titolo per titolo; altrimenti lo dichiara e il file resta utilizzabile.
 
 ### SEC EDGAR (facoltativo)
 

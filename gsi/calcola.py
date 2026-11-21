@@ -18,6 +18,35 @@ def cambio(con, valuta: str, giorno: str | None = None):
     return r[0] if r else None
 
 
+N_RESISTENZE = 12
+ORIZZONTI = (("1m", 21), ("3m", 63), ("6m", 126), ("1a", 252), ("5a", 1260), ("10a", 2520))
+
+
+def fq_serie(con, valuta: str):
+    if valuta == "EUR":
+        return None
+    r = con.execute("SELECT data, tasso FROM cambi WHERE valuta=? ORDER BY data", (valuta,)).fetchall()
+    return [x[0] for x in r], [x[1] for x in r]
+
+
+def performance(con, pr: dict, fx) -> dict:
+    """Rendimenti a 1, 3, 6 mesi, 1, 5, 10 anni (in sedute): prezzo, total return, total return in euro."""
+    o = {}
+    d, c, tr = pr["data"], pr["chius"], pr["rett"]
+    for nome, s in ORIZZONTI:
+        ok = len(c) > s
+        o[f"pp_{nome}"] = c[-1] / c[-1 - s] - 1 if ok and c[-1 - s] > 0 else None
+        o[f"pt_{nome}"] = tr[-1] / tr[-1 - s] - 1 if ok and tr[-1 - s] > 0 else None
+        if not ok or o[f"pt_{nome}"] is None:
+            o[f"pe_{nome}"] = None
+        elif fx is None:
+            o[f"pe_{nome}"] = o[f"pt_{nome}"]
+        else:
+            a, b = indicatori.valore_al(fx[0], fx[1], d[-1 - s]), indicatori.valore_al(fx[0], fx[1], d[-1])
+            o[f"pe_{nome}"] = (1 + o[f"pt_{nome}"]) * a / b - 1 if a and b else None
+    return o
+
+
 def serie_prezzi(con, ticker: str) -> dict:
     r = con.execute("SELECT data, massimo, minimo, chiusura, chiusura_rett, volume FROM prezzi "
                     "WHERE ticker=? ORDER BY data", (ticker,)).fetchall()
@@ -46,8 +75,11 @@ def ingressi_titolo(con, t, oggi: date, indice: dict | None) -> dict:
     pr = serie_prezzi(con, t.ticker)
     ing.update(indicatori.calcola_tecnici(pr, indice))
     prezzo = ing.get("prezzo")
-    ing["prezzo_vecchio"] = (not ing.get("data_prezzo")
-                             or (oggi - date.fromisoformat(ing["data_prezzo"])).days > config.GIORNI_PREZZO_VECCHIO)
+    ing["eta_prezzo"] = (oggi - date.fromisoformat(ing["data_prezzo"])).days if ing.get("data_prezzo") else None
+    # resistenze: al piu' 12 livelli sopra il prezzo, in ordine crescente (sono quelle scritte nel foglio DATI)
+    if prezzo is not None:
+        ing["resistenze"] = [x for x in ing.get("resistenze") or [] if x > prezzo][:N_RESISTENZE]
+    ing.update(performance(con, pr, fq_serie(con, t.valuta)))
     du = con.execute("SELECT data, eps_reale FROM date_utili WHERE ticker=? ORDER BY data", (t.ticker,)).fetchall()
     oggi_s = oggi.isoformat()
     ing["reazione_utili"], ing["data_utili"], ing["giorni_da_utili"] = indicatori.reazione_utili(
@@ -82,7 +114,7 @@ def ingressi_titolo(con, t, oggi: date, indice: dict | None) -> dict:
     ing["note"] += f.pop("note", [])
     ing.update(f)
     ue = ing.get("ultimo_esercizio")
-    ing["esercizio_vecchio"] = (not ue or (oggi - date.fromisoformat(ue)).days > config.GIORNI_BILANCIO_VECCHIO)
+    ing["eta_esercizio"] = (oggi - date.fromisoformat(ue)).days if ue else None
     if t.modello in ("STD", "CIC") and not ing.get("sbc_disponibile"):
         ing["note"].append("compensi in azioni non riportati dalla fonte: non dedotti dal flusso")
 
@@ -132,16 +164,26 @@ def eps_atteso(t, ing: dict, stime: dict, fraz: list, oggi: date):
     return fe
 
 
-def calcola_tutto(con, oggi: date | None = None, P: dict | None = None, giudizi: dict | None = None):
+def applica_eta(ingressi: dict, P: dict) -> None:
+    """Prezzo piu' vecchio di N giorni o ultimo esercizio piu' vecchio di M giorni: dati insufficienti."""
+    for i in ingressi.values():
+        i["prezzo_vecchio"] = i.get("eta_prezzo") is None or i["eta_prezzo"] > P["giorni_prezzo"]
+        i["esercizio_vecchio"] = i.get("eta_esercizio") is None or i["eta_esercizio"] > P["giorni_esercizio"]
+
+
+def calcola_tutto(con, oggi: date | None = None, P: dict | None = None, giudizi: dict | None = None,
+                  universo: list | None = None):
     """-> (ingressi per ticker, risultati Buffett per ticker, risultati Trading per ticker)"""
     oggi = oggi or date.today()
     P = P or predefiniti()
     giudizi = giudizi or {}
+    universo = universo or UNIVERSO
     indici = {}
-    for k in INDICI:
+    for k in {t.indice for t in universo} | (set(INDICI) if universo is UNIVERSO else set()):
         s = serie_prezzi(con, k)
         indici[k] = {"data": s["data"], "chius": s["chius"]}
-    ingressi = {t.ticker: ingressi_titolo(con, t, oggi, indici.get(t.indice)) for t in UNIVERSO}
+    ingressi = {t.ticker: ingressi_titolo(con, t, oggi, indici.get(t.indice)) for t in universo}
+    applica_eta(ingressi, P)
     A = {k: punteggi.buffett(i, P, giudizi.get(k)) for k, i in ingressi.items()}
     B = punteggi.trading_universo(ingressi, P)
     return ingressi, A, B

@@ -26,7 +26,7 @@ def test_pesi_delle_metriche():
         for L in "QFGV":
             assert sum(v[0] for k, v in sog.items() if k[0] == L) == 100, (mod, L)
         assert sum(P["pesi_pilastri"][mod].values()) == 100
-    assert P["metriche"]["STD"]["V3"] == (10, 22, 8) and P["metriche"]["REIT"]["V4"][0] == 0
+    assert P["metriche"]["STD"]["V3"] == [10, 22, 8] and P["metriche"]["REIT"]["V4"][0] == 0
     assert sum(P["pesi_b"].values()) == 100
 
 

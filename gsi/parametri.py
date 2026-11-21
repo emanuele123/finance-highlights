@@ -81,9 +81,36 @@ PREDEFINITI = {
     "cat_reazione": 0.05, "cat_giorni": 60, "cat_avviso": 7,
     "setup_rottura_atr": 1.0, "setup_ingresso_atr": 0.1, "setup_fascia_atr": 0.5,
     "setup_rsi": (40, 60), "setup_stop_atr": 2.0, "setup_obiettivo_r": 2.0, "setup_rr_min": 1.5,
+    # allerte, fasce di capitalizzazione (in euro) e livello di rischio dello SCREENER
+    "allerta_volatilita": 0.40, "allerta_ribasso": 0.35, "allerta_scambi": 1e6,
+    "fasce_cap": (200e9, 10e9, 2e9), "rischio_alto_segnali": 3, "rischio_medio_volatilita": 0.25,
+    "rischi_settore": {
+        "Tecnologia e semiconduttori": "Cicli di investimento e di scorte, obsolescenza rapida, concentrazione dei clienti, restrizioni all'export e regolazione antitrust.",
+        "Banche e servizi finanziari": "Qualità del credito nelle recessioni, margine d'interesse sensibile ai tassi, requisiti di capitale, rischio di liquidità e regolatorio.",
+        "Assicurazioni": "Catastrofi naturali, riserve insufficienti, rendimento degli investimenti, ciclo dei premi, requisiti di solvibilità.",
+        "Sanità e farmaceutica": "Scadenza dei brevetti, esiti degli studi clinici, pressione sui prezzi dei farmaci, contenziosi e regolazione.",
+        "Energia": "Prezzo di petrolio e gas, transizione energetica, rischio geopolitico, investimenti elevati, tassazione straordinaria.",
+        "Materie prime": "Prezzi delle materie prime, domanda cinese, costi energetici, rischio paese e ambientale, ciclicità marcata.",
+        "Consumi e grande distribuzione": "Pressione sui margini, potere d'acquisto dei consumatori, concorrenza delle marche private, costo delle materie prime, cambi.",
+        "Lusso": "Dipendenza dalla domanda cinese e dal turismo, ciclicità dei consumi discrezionali, forza del marchio, cambi.",
+        "Industria e difesa": "Ciclo degli investimenti, esecuzione delle grandi commesse, catena di fornitura, bilanci pubblici della difesa, costo delle materie prime.",
+        "Utilities e infrastrutture": "Revisione delle tariffe regolate, livello dei tassi d'interesse, debito elevato, rischio politico, investimenti nelle reti.",
+        "Telecomunicazioni": "Concorrenza sui prezzi, investimenti in reti e frequenze, debito elevato, regolazione, ricavi stagnanti.",
+        "Immobiliare": "Livello dei tassi d'interesse, valore degli immobili, tasso di occupazione, rifinanziamento del debito.",
+    },
     "soglia_segnale": 65, "capitale": 50000.0, "rischio_operazione": 0.01, "peso_massimo": 0.10,
 }
 
 
+def _liste(x):
+    if isinstance(x, dict):
+        return {k: _liste(v) for k, v in x.items()}
+    if isinstance(x, (tuple, list)):
+        return [_liste(v) for v in x]
+    return x
+
+
 def predefiniti() -> dict:
-    return copy.deepcopy(PREDEFINITI)
+    """Copia modificabile dei parametri (le tuple diventano liste, cosi' si possono sovrascrivere
+    con i valori letti dal foglio PARAMETRI)."""
+    return _liste(copy.deepcopy(PREDEFINITI))
