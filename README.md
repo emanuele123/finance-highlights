@@ -16,8 +16,7 @@ I dati Yahoo sono consentiti per il solo uso personale.
 | 4 | Movimenti, portafoglio, simulatore, backtest, manuale | fatta |
 
 `aggiorna` scarica i dati e crea il cruscotto `Global_Stock_Intelligence.xlsx`. Il manuale è nel foglio LEGGIMI del
-cruscotto; criteri e pesi nel foglio METODOLOGIA; il confronto tra singoli titoli e il fondo FTSE All-World
-nel foglio CONFRONTO (dopo aver inserito il proprio portafoglio nel foglio PORTAFOGLIO); che cosa funziona e che cosa no nel foglio STATO.
+cruscotto; criteri e pesi nel foglio METODOLOGIA; che cosa funziona e che cosa no nel foglio STATO.
 
 ## Installazione (una volta sola)
 

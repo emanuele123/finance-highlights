@@ -396,8 +396,6 @@ def campi_dati() -> list[tuple]:
          ("volatilita", "Volatilità annua (252 sedute)", F_PCT), ("beta_fonte", "Beta (fonte)", "0.00"),
          ("vol_3a_eur", "Volatilità annua in euro (rendimenti settimanali, 3 anni)", F_PCT),
          ("beta_mercato", "Beta sul mercato mondiale (settimanale, 3 anni, euro)", "0.00"),
-         ("corr_etf", "Correlazione con il fondo di riferimento (settimanale, 3 anni, euro)", "0.00"),
-         ("peso_etf", "Peso stimato nel fondo di riferimento", "0.0000%"),
          ("mm20", "Media mobile 20", F_NUM), ("mm50", "Media mobile 50", F_NUM), ("mm200", "Media mobile 200", F_NUM),
          ("mm200_20fa", "Media mobile 200 di 20 sedute fa", F_NUM), ("rsi", "RSI 14", "0.0"), ("macd", "MACD 12/26", "0.000"),
          ("macd_segnale", "MACD segnale 9", "0.000"), ("macd_isto", "MACD istogramma", "0.000"),
@@ -939,8 +937,8 @@ def giudizi_da_gialle(gialle: dict) -> dict:
 
 # ============================================================================ assemblaggio
 ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "TRADING", "MOVIMENTI", "NOTIZIE",
-                "PORTAFOGLIO", "CONFRONTO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
-                "QUALITA_DATI", "FONDO", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
+                "PORTAFOGLIO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
+                "QUALITA_DATI", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
                 "_MAPPA"]
 
 
@@ -971,11 +969,8 @@ def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict
         from . import excel_doc, excel_fase4 as f4
         f4.foglio_movimenti(lib, ctx["movimenti"], ctx["valutazioni"])
         f4.foglio_notizie(lib, ctx["notizie"])
-        lib.fondo, lib.stat = ctx["fondo"], ctx["stat"]
-        f4.foglio_fondo(lib, ctx["fondo"], ctx["nome_fondo"], demo)
-        f4.foglio_correlazioni(lib, ctx["stat"], ctx["fondo"])
+        f4.foglio_correlazioni(lib, ctx["stat"])
         f4.foglio_portafoglio(lib, ctx["settori"], ctx["aree"], ctx["gialle"])
-        f4.foglio_confronto(lib, tickers, ctx["gialle"], ctx["nome_fondo"])
         f4.foglio_simulatore(lib, ctx["gialle"], ctx["etf"], f4.foglio_etf(lib, ctx["etf"]))
         f4.foglio_backtest(lib, ctx["backtest"])
         excel_doc.foglio_metodologia(lib)
@@ -1055,13 +1050,10 @@ def contesto(con, universo: list, ingressi: dict, gialle: dict, percorso, demo: 
     """Dati per i fogli MOVIMENTI, NOTIZIE, PORTAFOGLIO, SIMULATORE, BACKTEST, STATO."""
     from . import backtest, movimenti, portafoglio
     from .excel_fase4 import leggi_valutati
-    from .universo import FONDO_RIF, FONDO_SIMBOLI
     mercato = universo[0].indice if demo else "SWDA.MI"
-    rif = universo[0].indice if demo else FONDO_RIF            # nella demo il "fondo" e' l'indice inventato
-    stat = portafoglio.statistiche(con, universo, mercato, extra=[(rif, "EUR")])
+    stat = portafoglio.statistiche(con, universo, mercato)
     for tk, i in ingressi.items():
         i["vol_3a_eur"], i["beta_mercato"] = stat["vol"].get(tk), stat["beta"].get(tk)
-    fondo = portafoglio.info_fondo(con, rif, ingressi, stat, FONDO_SIMBOLI)
     mov = movimenti.calcola_movimenti(con, universo)
     presenti = {f"{m['ticker']}|{m['data']}" for m in mov}
     valutazioni = {k.split("|", 2)[2]: v for k, v in gialle.items() if k.startswith("MOVIMENTI|valutazione|")}
@@ -1074,8 +1066,7 @@ def contesto(con, universo: list, ingressi: dict, gialle: dict, percorso, demo: 
     segni = ",".join("?" * len(tickers))
     notizie = con.execute(f"SELECT ticker, pubblicato, testata, titolo, url, fonte, lingua FROM notizie WHERE ticker IN ({segni}) "
                           "ORDER BY pubblicato DESC LIMIT 4000", tickers).fetchall()
-    return {"fondo": fondo, "nome_fondo": "indice dimostrativo (inventato)" if demo else "FTSE All-World (VWCE)",
-            "movimenti": mov, "valutazioni": valutazioni, "notizie": [tuple(r) for r in notizie], "stat": stat,
+    return {"movimenti": mov, "valutazioni": valutazioni, "notizie": [tuple(r) for r in notizie], "stat": stat,
             "settori": sorted({t.settore for t in universo}), "aree": sorted({t.area for t in universo}),
             "gialle": gialle, "etf": None if demo else etf_mensili(con), "backtest": backtest.leggi(con),
             "n_sec": con.execute("SELECT COUNT(DISTINCT ticker) FROM bilanci WHERE fonte='sec'").fetchone()[0],

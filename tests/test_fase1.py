@@ -160,7 +160,7 @@ def test_archivio_e_qualita():
     assert con.execute("SELECT COUNT(*), MAX(chiusura) FROM prezzi").fetchone()[:] == (1, 2.0)
     controlla_qualita(con, date(2026, 11, 21))
     q = {r["ticker"]: r for r in con.execute("SELECT * FROM qualita")}
-    assert len(q) == 120 + 10 + 3
+    assert len(q) == 120 + 10 + 2
     assert q["AAPL"]["stato"] == "DA VERIFICARE" and "nessun bilancio" in q["AAPL"]["motivi"]
     assert q["MSFT"]["stato"] == "ERRORE"
     db.registra_errore(con, "X", "prezzi", "prova")

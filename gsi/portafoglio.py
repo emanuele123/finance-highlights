@@ -42,12 +42,8 @@ def rendimenti(serie: dict[tuple, float], settimane: list[tuple]) -> np.ndarray:
     return liv[1:] / liv[:-1] - 1
 
 
-def statistiche(con, universo: list, mercato: str | None, valuta_mercato: str = "EUR", anni: int = ANNI,
-                 extra: list[tuple[str, str]] | None = None) -> dict:
-    """-> {"tickers", "vol": {tk: volatilita' annua}, "beta": {tk: beta}, "corr": matrice (None dove non stimabile)}
-    extra: strumenti aggiunti in coda alla matrice, come (ticker, valuta) (es. il fondo di riferimento)."""
-    from types import SimpleNamespace
-    universo = list(universo) + [SimpleNamespace(ticker=k, valuta=v) for k, v in (extra or [])]
+def statistiche(con, universo: list, mercato: str | None, valuta_mercato: str = "EUR", anni: int = ANNI) -> dict:
+    """-> {"tickers", "vol": {tk: volatilita' annua}, "beta": {tk: beta}, "corr": matrice (None dove non stimabile)}"""
     fine = con.execute("SELECT MAX(data) FROM prezzi").fetchone()[0]
     tickers = [t.ticker for t in universo]
     if not fine:
@@ -83,76 +79,3 @@ def volatilita_portafoglio(pesi: list[float], vol: list[float], corr: list[list[
     """Radice di somma_i somma_j w_i w_j s_i s_j rho_ij (la liquidita' ha peso senza volatilita')."""
     w, s, c = np.asarray(pesi, float), np.asarray(vol, float), np.asarray(corr, float)
     return float(math.sqrt(max(0.0, (w * s) @ c @ (w * s))))
-
-
-
-# ------------------------------------------------------------------ fondo di riferimento e confronto
-def info_fondo(con, ticker: str, ingressi: dict, stat: dict, simboli: dict) -> dict:
-    """Dati del fondo di riferimento e peso stimato nel fondo di ogni titolo dell'universo.
-
-    Peso stimato = capitalizzazione in euro / capitalizzazione totale stimata dell'indice. La capitalizzazione
-    totale e' calibrata sui primi titoli dichiarati dal fondo (mediana di capitalizzazione / peso): ignora il
-    flottante e le restrizioni per gli stranieri, quindi e' una stima, aggiornata ai prezzi di oggi."""
-    righe = con.execute("SELECT tipo, chiave, nome, valore FROM fondi WHERE ticker=?", (ticker,)).fetchall()
-    primi = [(r[1], r[2], r[3]) for r in righe if r[0] == "primi"]
-    settori = {r[1]: r[3] for r in righe if r[0] == "settore"}
-    pe = next((r[3] for r in righe if r[0] == "valutazione" and r[1] == "pe"), None)
-    p = con.execute("SELECT data, chiusura FROM prezzi WHERE ticker=? ORDER BY data DESC LIMIT 1", (ticker,)).fetchone()
-    per_tk: dict[str, float] = {}
-    for sim, _nome, w in primi:
-        tk = simboli.get(sim, sim)
-        if tk in ingressi:
-            per_tk[tk] = per_tk.get(tk, 0.0) + w
-    rapporti = sorted(ingressi[tk]["capitalizzazione_eur"] / w for tk, w in per_tk.items()
-                      if w > 0 and ingressi[tk].get("capitalizzazione_eur"))
-    totale = rapporti[len(rapporti) // 2] if len(rapporti) % 2 else (
-        (rapporti[len(rapporti) // 2 - 1] + rapporti[len(rapporti) // 2]) / 2 if rapporti else None)
-    idx = stat["tickers"].index(ticker) if ticker in stat["tickers"] else None
-    for tk, i in ingressi.items():
-        i["peso_etf"] = i["capitalizzazione_eur"] / totale if totale and i.get("capitalizzazione_eur") else None
-        j = stat["tickers"].index(tk) if tk in stat["tickers"] else None
-        c = stat["corr"][j][idx] if idx is not None and j is not None else None
-        i["corr_etf"] = round(c, 4) if c is not None else None
-    return {"ticker": ticker, "prezzo": p[1] if p else None, "data": p[0] if p else None, "pe": pe,
-            "vol": stat["vol"].get(ticker), "beta": stat["beta"].get(ticker), "settori": settori,
-            "primi": [(sim, nome, w, per_tk.get(simboli.get(sim, sim))) for sim, nome, w in primi],
-            "cap_totale": totale, "n_calibrazione": len(rapporti)}
-
-
-def confronto(ingressi: dict, fondo: dict, stat: dict, posizioni: list[tuple[str, float]], valore_fondo: float,
-              liquidita: float, importo, commissione, nuovi_soldi: bool) -> dict:
-    """Replica in Python dei fogli PORTAFOGLIO (rischio con il fondo) e CONFRONTO.
-
-    posizioni: (ticker, controvalore in euro). Varianza in euro^2: sum_ij x_i s_i x_j s_j rho_ij sui titoli e sul fondo,
-    con le correlazioni arrotondate a 4 decimali come nel foglio CORRELAZIONI e 0 dove non stimabili."""
-    tk = stat["tickers"]
-    corr = [[round(c, 4) if c is not None else 0.0 for c in riga] for riga in stat["corr"]]
-    sig = {t: (ingressi[t].get("vol_3a_eur") if t in ingressi else fondo.get("vol")) for t in tk}
-    x = {t: 0.0 for t in tk}
-    for t, e in posizioni:
-        x[t] = x.get(t, 0.0) + e
-    if fondo["ticker"] in x:
-        x[fondo["ticker"]] += valore_fondo
-    v = [x[t] * sig[t] if sig[t] is not None else 0.0 for t in tk]
-    cv = {t: sum(corr[i][j] * v[j] for j in range(len(tk))) for i, t in enumerate(tk)}
-    s2 = sum(v[i] * cv[t] for i, t in enumerate(tk))
-    tot = sum(e for _, e in posizioni) + liquidita + valore_fondo
-    out = {"totale": tot, "s2": s2, "vol": (max(0.0, s2) ** 0.5 / tot) if tot > 0 else None, "righe": {}}
-    ok = isinstance(importo, (int, float)) and importo > 0
-    tn = tot + (importo if (nuovi_soldi and ok) else 0.0)
-    sf = fondo.get("vol")
-
-    def vol_dopo(s, c):
-        return (max(0.0, s2 + 2 * importo * s * c + importo ** 2 * s ** 2) ** 0.5) / tn if ok and tn > 0 else None
-    out["vol_fondo_dopo"] = vol_dopo(sf, cv.get(fondo["ticker"], 0.0)) if sf is not None and fondo["ticker"] in cv else None
-    for t, i in ingressi.items():
-        diretto = sum(e for tt, e in posizioni if tt == t)
-        eff = diretto + valore_fondo * (i.get("peso_etf") or 0.0)
-        s = i.get("vol_3a_eur")
-        vd = vol_dopo(s, cv.get(t, 0.0)) if s is not None else None
-        r = {"diretto": diretto, "eff": eff, "eff_pct": eff / tot if tot > 0 else None,
-             "eff_dopo": (eff + importo) / tn if ok and tn > 0 else None, "vol_dopo": vd,
-             "diff": vd - out["vol_fondo_dopo"] if vd is not None and out["vol_fondo_dopo"] is not None else None,
-             "comm": commissione / importo if ok and isinstance(commissione, (int, float)) else None}
-        out["righe"][t] = r
-    return out

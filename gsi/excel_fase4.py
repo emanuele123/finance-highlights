@@ -7,7 +7,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
 from . import simulatore
-from .excel import BLU, F_DATA, F_INT, F_NUM, F_PCT, F_PUNTI, FASCIA, ND, NERO, R0, VERDE, Libro, Tab, car, testata, titolo_foglio
+from .excel import BLU, F_DATA, F_INT, F_NUM, F_PCT, FASCIA, ND, NERO, R0, VERDE, Libro, car, testata, titolo_foglio
 from .movimenti import LIVELLI, MAX_NOTIZIE
 
 GRIGIO = "595959"
@@ -153,122 +153,26 @@ def foglio_notizie(lib: Libro, notizie: list[tuple]):
 
 
 # ============================================================================ PORTAFOGLIO
-def foglio_correlazioni(lib: Libro, st: dict, fondo: dict):
-    """Matrice delle correlazioni (dati) piu' il calcolo della varianza del patrimonio (formule):
-    riga v = euro investiti x volatilita' per ogni strumento (titoli dal PORTAFOGLIO, fondo dalla cella del suo valore);
-    colonna Cv = somma_j correlazione_ij x v_j; varianza in euro^2 = somma_i v_i x Cv_i.
-    Le correlazioni non stimabili ('n.d.') valgono 0 nelle somme."""
+def foglio_correlazioni(lib: Libro, st: dict):
     ws = lib.foglio("CORRELAZIONI")
-    tk = st["tickers"]
-    n = len(tk)
-    ult = get_column_letter(n + 1)
     ws["A1"] = "Correlazioni dei rendimenti settimanali in euro (3 anni)"
     ws["A1"].font = car(NERO, True, 8)
-    for j, t in enumerate(tk, 2):
-        ws.cell(1, j, t).font = car(BLU, True, 8)
-        ws.cell(j, 1, t).font = car(BLU, True, 8)
+    for j, tk in enumerate(st["tickers"], 2):
+        ws.cell(1, j, tk).font = car(BLU, True, 8)
+        ws.cell(j, 1, tk).font = car(BLU, True, 8)
     for i, riga in enumerate(st["corr"]):
         for j, v in enumerate(riga):
             c = ws.cell(2 + i, 2 + j, ND if v is None else round(v, 4))
             c.font, c.number_format = car(BLU, dim=8), "0.00"
-    D = lib.tab["DATI"]
-    pz, jz = f"PORTAFOGLIO!$A${P0}:$A${P0 + N_POS - 1}", f"PORTAFOGLIO!$J${P0}:$J${P0 + N_POS - 1}"
-    rv = n + 2
-    ws.cell(rv, 1, "Euro x volatilità").font = car(NERO, True, 8)
-    for j, t in enumerate(tk, 2):
-        col = get_column_letter(j)
-        if t == fondo["ticker"]:
-            x, sg = "PORTAFOGLIO!$C$12", lib.prm["etf_vol"]
-        else:
-            x = f"SUMIF({pz},{col}$1,{jz})"
-            sg = f"INDEX({D.rng('vol_3a_eur')},MATCH({col}$1,{D.rng('ticker')},0))"
-        c = ws.cell(rv, j, f"=IFERROR(IF(AND(ISNUMBER({x}),ISNUMBER({sg})),{x}*{sg},0),0)")
-        c.font, c.number_format = car(dim=8), "0.00"
-    cc, cvv = n + 2, n + 3
-    ws.cell(1, cc, "Cv (euro)").font = car(NERO, True, 8)
-    ws.cell(1, cvv, "v (euro)").font = car(NERO, True, 8)
-    for i in range(n):
-        r = 2 + i
-        c = ws.cell(r, cc, f"=SUMPRODUCT($B{r}:${ult}{r},$B${rv}:${ult}${rv})")
-        c.font, c.number_format = car(dim=8), "0.00"
-        c = ws.cell(r, cvv, f"=INDEX($B${rv}:${ult}${rv},1,ROW()-1)")
-        c.font, c.number_format = car(dim=8), "0.00"
-    L_cv, L_v = get_column_letter(cc), get_column_letter(cvv)
-    ws.cell(rv + 1, 1, "Varianza del patrimonio (euro²)").font = car(NERO, True, 8)
-    ws.cell(rv + 1, 2, f"=SUMPRODUCT(${L_v}$2:${L_v}${n + 1},${L_cv}$2:${L_cv}${n + 1})").font = car(dim=8)
-    lib.prm["s2"] = f"CORRELAZIONI!$B${rv + 1}"
-    lib.prm["cv_col"] = f"CORRELAZIONI!${L_cv}$2:${L_cv}${n + 1}"
-    lib.prm["corr_tk"] = f"CORRELAZIONI!$A$2:$A${n + 1}"
-    if fondo["ticker"] in tk:
-        lib.prm["cv_fondo"] = f"CORRELAZIONI!${L_cv}${2 + tk.index(fondo['ticker'])}"
     ws.freeze_panes = "B2"
-
-
-def foglio_fondo(lib: Libro, fondo: dict, nome: str, demo: bool):
-    """Dati del fondo di riferimento (blu: importati o stimati dal programma)."""
-    ws = lib.foglio("FONDO")
-    titolo_foglio(ws, "FONDO DI RIFERIMENTO - " + nome,
-                  "Il fondo con cui il PORTAFOGLIO e il foglio CONFRONTO paragonano i singoli titoli. VWCE, VWRA e VWRL "
-                  "replicano lo stesso indice: cambia solo la valuta di quotazione o la distribuzione dei dividendi.")
-    for col, w in zip("ABCDE", (52, 18, 40, 16, 16)):
-        ws.column_dimensions[col].width = w
-    righe = [("etf_ticker", "Ticker usato per prezzi e rischio", fondo["ticker"], None),
-             ("etf_prezzo", "Ultimo prezzo (euro)", fondo["prezzo"], F_NUM),
-             ("etf_data", "Data dell'ultimo prezzo", date.fromisoformat(fondo["data"]) if fondo.get("data") else None, F_DATA),
-             ("etf_vol", "Volatilità annua (rendimenti settimanali in euro, 3 anni)", fondo["vol"], "0.0%"),
-             ("etf_beta", "Beta sul mercato mondiale (MSCI World)" if not demo else "Beta sul mercato", fondo["beta"], "0.00"),
-             ("etf_pe", "P/E medio dei titoli del fondo (dato Yahoo, riportato come rendimento degli utili e invertito)", fondo["pe"], "0.0"),
-             ("etf_cap", "Capitalizzazione totale stimata dell'indice (euro, per stimare i pesi dei titoli)", fondo["cap_totale"], F_INT)]
-    for i, (k, testo, v, fmt) in enumerate(righe):
-        r = 3 + i
-        ws.cell(r, 1, testo).font = car()
-        _dato(ws, r, 2, v, fmt)
-        lib.prm[k] = f"FONDO!$B${r}"
-    r = 3 + len(righe) + 1
-    ws.cell(r, 1, "Settori del fondo (classificazione Yahoo, in inglese)").font = car(NERO, True)
-    for k, v in sorted(fondo["settori"].items(), key=lambda x: -x[1]):
-        r += 1
-        _dato(ws, r, 1, k)
-        _dato(ws, r, 2, v, "0.0%")
-    if not fondo["settori"]:
-        r += 1
-        _dato(ws, r, 1, "non disponibile")
-    r += 2
-    ws.cell(r, 1, "Primi titoli del fondo").font = car(NERO, True)
-    r += 1
-    for j, h in enumerate(("Titolo", "Peso dichiarato dalla fonte", "Ticker nell'universo", "Peso stimato oggi"), 1):
-        testata(ws, r, j, h)
-    D = lib.tab["DATI"]
-    from .universo import FONDO_SIMBOLI
-    for sim, nome_t, w, _ in fondo["primi"]:
-        r += 1
-        _dato(ws, r, 1, f"{nome_t} ({sim})")
-        _dato(ws, r, 2, w, "0.00%")
-        tk = FONDO_SIMBOLI.get(sim, sim)
-        _dato(ws, r, 3, tk)
-        c = ws.cell(r, 4, f'=IFERROR(INDEX({D.rng("peso_etf")},MATCH(C{r},{D.rng("ticker")},0)),"fuori universo")')
-        c.font, c.number_format = car(VERDE), "0.00%"
-    r += 2
-    for t in ("Peso stimato di un titolo = capitalizzazione in euro / capitalizzazione totale stimata dell'indice. La capitalizzazione "
-              "totale è calibrata sui primi titoli dichiarati dal fondo (mediana di capitalizzazione / peso). È una stima: ignora il "
-              "flottante e i limiti per gli investitori esteri, e usa i prezzi di oggi mentre i pesi dichiarati dalla fonte possono "
-              "essere vecchi di alcune settimane.",
-              "Il P/E del fondo è la media fornita da Yahoo (sugli utili passati): va confrontato con il P/E sugli ultimi 12 mesi dei titoli."):
-        c = ws.cell(r, 1, t)
-        c.font = car("595959", corsivo=True, dim=9)
-        c.alignment = Alignment(wrap_text=True, vertical="top")
-        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
-        ws.row_dimensions[r].height = 40
-        r += 1
 
 
 def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: dict):
     ws = lib.foglio("PORTAFOGLIO")
     titolo_foglio(ws, "PORTAFOGLIO",
-                  "Inserire le posizioni nelle celle gialle: ticker dal menu e quantità (es. ENEL.MI | 500), oppure il controvalore "
-                  "in euro nella colonna V (utile per le frazioni di azione). Il fondo FTSE All-World va nella cella C12. "
-                  "La verifica dei limiti è separata dal giudizio sul titolo.")
-    for col, w in zip("ABCDEFGHIJKLMNOPQRSTUV", (13, 13, 13, 26, 24, 15, 8, 11, 10, 14, 9, 16, 11, 8, 10, 13, 10, 13, 26, 15, 11, 16)):
+                  "Inserire le posizioni nelle celle gialle (ticker dal menu, quantità, prezzo medio di carico nella valuta "
+                  "di quotazione). Esempio: ENEL.MI | 500 | 6,20. La verifica dei limiti è separata dal giudizio sul titolo.")
+    for col, w in zip("ABCDEFGHIJKLMNOPQRSTUVW", (13, 13, 13, 26, 24, 15, 8, 11, 10, 14, 9, 16, 11, 8, 10, 13, 10, 13, 26, 15, 9, 9, 3)):
         ws.column_dimensions[col].width = w
     D, n = lib.tab["DATI"], lib.r1 - R0 + 1
     g = lambda k, pred: gialle.get("PORT|" + k, pred)  # noqa: E731
@@ -294,47 +198,36 @@ def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: 
             ("lim_valuta", "Limite per valute diverse dall'euro", 0.40, "0%"),
             ("shock_mercato", "Stress: variazione del mercato", -0.30, "0%"),
             ("shock_valute", "Stress: variazione delle valute estere", -0.10, "0%"),
-            ("quota_volumi", "Liquidazione: quota degli scambi giornalieri utilizzabile", 0.20, "0%"),
-            ("fondo", "Valore attuale del fondo FTSE All-World (euro)", 0, F_INT),
-            ("fondo_non_eur", "Quota del fondo in valute diverse dall'euro (stima)", 0.92, "0%"),
-            ("origine", "Le nuove operazioni sono fatte con", "nuovi soldi", None)), 4):
+            ("quota_volumi", "Liquidazione: quota degli scambi giornalieri utilizzabile", 0.20, "0%")), 4):
         et(f"A{r}", testo)
         ws.merge_cells(f"A{r}:B{r}")
         lib.gialla(ws, f"C{r}", g(k, pred), "PORT|" + k, fmt, pred=pred)
-    LIQ, LT, LS, LA, LV, SM, SV, QV, ETF, QE, ORIG = (f"$C${r}" for r in range(4, 15))
-    dv_o = DataValidation(type="list", formula1='"nuovi soldi,liquidità"', allow_blank=False)
-    ws.add_data_validation(dv_o)
-    dv_o.add("C14")
-    ETFN = f"IF(ISNUMBER({ETF}),{ETF},0)"
-    NUOVI = f'{ORIG}<>"liquidità"'
-    lib.prm["port_tot"], lib.prm["port_etf"], lib.prm["port_nuovi"] = "PORTAFOGLIO!$F$4", f"PORTAFOGLIO!{ETF}", f"PORTAFOGLIO!{ORIG}"
+    LIQ, LT, LS, LA, LV, SM, SV, QV = (f"$C${r}" for r in range(4, 12))
 
     # --- sintesi
     et("D3", "Sintesi del portafoglio", True)
     et("D4", "Patrimonio totale (euro)")
-    form("F4", f"=SUM({JZ})+IF(ISNUMBER({LIQ}),{LIQ},0)+{ETFN}", F_INT, True)
+    form("F4", f"=SUM({JZ})+IF(ISNUMBER({LIQ}),{LIQ},0)", F_INT, True)
     et("D5", "Investito in titoli (euro)")
     form("F5", f"=SUM({JZ})", F_INT)
     et("D6", "Volatilità annua stimata del patrimonio")
-    form("F6", f'=IF({TOT}>0,SQRT(MAX(0,{lib.prm["s2"]}))/{TOT},"n.d.")', "0.0%", True)
+    form("F6", f'=IF({TOT}>0,SQRT(MAX(0,SUM($AB${P0}:${get_column_letter(27 + N_POS)}${P0 + N_POS - 1}))),"n.d.")', "0.0%", True)
     et("D7", "Perdita nello scenario di stress (euro)")
-    form("F7", f'=SUM($P${P0}:$P${P0 + N_POS - 1})+{ETFN}*(IF(ISNUMBER({lib.prm["etf_beta"]}),{lib.prm["etf_beta"]},1)*{SM}'
-                f'+IF(ISNUMBER({QE}),{QE},0)*{SV})', F_INT, True)
+    form("F7", f"=SUM($P${P0}:$P${P0 + N_POS - 1})", F_INT, True)
     et("D8", "Perdita nello scenario di stress (% del patrimonio)")
     form("F8", f'=IF({TOT}>0,F7/{TOT},"n.d.")', "0.0%")
     et("D9", "Giorni per liquidare la posizione più lenta")
     form("F9", f'=IF(COUNT($Q${P0}:$Q${P0 + N_POS - 1})>0,MAX($Q${P0}:$Q${P0 + N_POS - 1}),"n.d.")', "0.0")
     et("D10", "Peso delle valute diverse dall'euro")
-    form("F10", f'=IF({TOT}>0,(SUMIF($G${P0}:$G${P0 + N_POS - 1},"<>EUR",{JZ})+{ETFN}*IF(ISNUMBER({QE}),{QE},0))/{TOT},"n.d.")', "0.0%")
+    form("F10", f'=IF({TOT}>0,SUMIF($G${P0}:$G${P0 + N_POS - 1},"<>EUR",{JZ})/{TOT},"n.d.")', "0.0%")
     et("D11", "Esito dei limiti del portafoglio")
     form("F11", f'=IF({TOT}>0,IF(AND(COUNTIF($L${P0}:$L${P0 + N_POS - 1},"Oltre il limite")=0,'
                 f'COUNTIF($D${P0 + N_POS + 4}:$D${P0 + N_POS + 3 + len(settori)},"Oltre il limite")=0,'
                 f'COUNTIF($I${P0 + N_POS + 4}:$I${P0 + N_POS + 3 + len(aree)},"Oltre il limite")=0,F10<={LV}),'
                 f'"Entro i limiti","Oltre almeno un limite"),"n.d.")', None, True)
     ws["F11"].alignment = Alignment(horizontal="left")
-    _nota(ws, "D12", "Volatilità: correlazioni dei rendimenti settimanali in euro a 3 anni, fondo compreso; la liquidità non ha "
-                     "volatilità. Stress: beta x variazione del mercato, più la variazione delle valute per i titoli non in euro e per la "
-                     "quota non in euro del fondo (beta mancante = 1).")
+    _nota(ws, "D12", "Volatilità: correlazioni dei rendimenti settimanali in euro a 3 anni; la liquidità non ha volatilità. "
+                     "Stress: beta x variazione del mercato, più la variazione delle valute per i titoli non in euro (beta mancante = 1).")
 
     # --- verifica di una nuova operazione
     et("H3", "Verifica di una nuova operazione (esito separato dal giudizio sul titolo)", True)
@@ -347,26 +240,23 @@ def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: 
     dv.add("K4")
     dv.add(f"A{P0}:A{P0 + N_POS - 1}")
     look = lambda k, cella: f"INDEX({D.rng(k)},MATCH({cella},{D.rng('ticker')},0))"  # noqa: E731
-    TN = f"({TOT}+IF({NUOVI},$K$5,0))"
-    ok = 'AND($K$4<>"",ISNUMBER($K$5),' + TN + ">0)"
-    righe = [("H6", "Peso del titolo dopo l'operazione", f'=IF({ok},(SUMIF({PZ},$K$4,{JZ})+$K$5)/{TN},"n.d.")', "K6", LT),
+    ok = 'AND($K$4<>"",ISNUMBER($K$5),' + TOT + ">0)"
+    righe = [("H6", "Peso del titolo dopo l'operazione", f'=IF({ok},(SUMIF({PZ},$K$4,{JZ})+$K$5)/{TOT},"n.d.")', "K6", LT),
              ("H7", "Peso del settore dopo l'operazione",
-              f'=IF({ok},(SUMIF($E${P0}:$E${P0 + N_POS - 1},{look("settore", "$K$4")},{JZ})+$K$5)/{TN},"n.d.")', "K7", LS),
+              f'=IF({ok},(SUMIF($E${P0}:$E${P0 + N_POS - 1},{look("settore", "$K$4")},{JZ})+$K$5)/{TOT},"n.d.")', "K7", LS),
              ("H8", "Peso dell'area dopo l'operazione",
-              f'=IF({ok},(SUMIF($F${P0}:$F${P0 + N_POS - 1},{look("area", "$K$4")},{JZ})+$K$5)/{TN},"n.d.")', "K8", LA),
+              f'=IF({ok},(SUMIF($F${P0}:$F${P0 + N_POS - 1},{look("area", "$K$4")},{JZ})+$K$5)/{TOT},"n.d.")', "K8", LA),
              ("H9", "Peso delle valute non euro dopo l'operazione",
-              f'=IF({ok},(SUMIF($G${P0}:$G${P0 + N_POS - 1},"<>EUR",{JZ})+{ETFN}*IF(ISNUMBER({QE}),{QE},0)'
-              f'+IF({look("valuta", "$K$4")}<>"EUR",$K$5,0))/{TN},"n.d.")', "K9", LV)]
+              f'=IF({ok},(SUMIF($G${P0}:$G${P0 + N_POS - 1},"<>EUR",{JZ})+IF({look("valuta", "$K$4")}<>"EUR",$K$5,0))/{TOT},"n.d.")', "K9", LV)]
     for cella, testo, f, dest, _lim in righe:
         et(cella, testo)
         form(dest, f, "0.0%")
     et("H10", "ESITO DI COMPATIBILITÀ con i limiti", True)
     motivi = "&".join(f'IF({dest}>{lim},"{nome}; ","")' for (_, _, _, dest, lim), nome in zip(
         righe, ("limite per titolo", "limite per settore", "limite per area", "limite per valute non euro")))
-    manca_liq = f"AND(NOT({NUOVI}),$K$5>IF(ISNUMBER({LIQ}),{LIQ},0))"
-    form("K10", f'=IF({ok},IF(AND(K6<={LT},K7<={LS},K8<={LA},K9<={LV},NOT({manca_liq})),"Compatibile",'
-                f'"Non compatibile: "&{motivi}&IF({manca_liq},"liquidità insufficiente; ","")),'
-                f'"Inserire ticker e importo")', None, True)
+    form("K10", f'=IF({ok},IF(AND(K6<={LT},K7<={LS},K8<={LA},K9<={LV},$K$5<=IF(ISNUMBER({LIQ}),{LIQ},0)),"Compatibile",'
+                f'"Non compatibile: "&{motivi}&IF($K$5>IF(ISNUMBER({LIQ}),{LIQ},0),"liquidità insufficiente; ","")),'
+                f'"Inserire ticker e importo (serve un patrimonio maggiore di zero)")', None, True)
     ws["K10"].alignment = Alignment(horizontal="left")
     B, T = lib.tab["BUFFETT"], lib.tab["TRADING"]
     et("H11", "Giudizio sul titolo - strategia A (separato)")
@@ -375,31 +265,24 @@ def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: 
     form("K12", f'=IF($K$4<>"",IFERROR(INDEX({T.rng("segnale")},MATCH($K$4,{T.rng("ticker")},0)),"n.d."),"-")', None, False, VERDE)
     for c in ("K11", "K12"):
         ws[c].alignment = Alignment(horizontal="left")
-    C = "CONFRONTO"
-    et("H13", "Esposizione effettiva al titolo dopo (diretta + tramite il fondo)")
-    form("K13", f'=IF({ok},IFERROR((INDEX({C}!$O${R0}:$O${lib.r1},MATCH($K$4,{C}!$A${R0}:$A${lib.r1},0))+$K$5)/{TN},"n.d."),"n.d.")', "0.0%")
-    et("H14", "Volatilità del patrimonio dopo (confronto con il fondo: foglio CONFRONTO)")
-    sg = f"INDEX({D.rng('vol_3a_eur')},MATCH($K$4,{D.rng('ticker')},0))"
-    cvk = f"INDEX({lib.prm['cv_col']},MATCH($K$4,{lib.prm['corr_tk']},0))"
-    form("K14", f'=IF({ok},IFERROR(SQRT(MAX(0,{lib.prm["s2"]}+2*$K$5*{sg}*{cvk}+$K$5^2*{sg}^2))/{TN},"n.d."),"n.d.")', "0.0%")
 
     for r in range(4, 12):
         ws.merge_cells(f"D{r}:E{r}")
-    for r in range(4, 15):
+    for r in range(4, 13):
         ws.merge_cells(f"H{r}:J{r}")
     # --- posizioni
     r = P0 - 1
     intest = ("Ticker", "Quantità", "Prezzo medio di carico", "Società", "Settore", "Area", "Valuta", "Prezzo", "Cambio (per 1 euro)",
               "Controvalore (euro)", "Peso", "Limite per titolo", "Risultato sul carico", "Beta sul mercato mondiale",
               "Volatilità annua (3 anni, euro)", "Perdita nello stress (euro)", "Giorni per liquidare",
-              "Scambi medi giornalieri (euro)", "Verdetto strategia A", "Segnale strategia B",
-              "Correlazione con il fondo FTSE All-World", "Oppure: controvalore in euro (se non si indica la quantità)")
+              "Scambi medi giornalieri (euro)", "Verdetto strategia A", "Segnale strategia B", "Peso x volatilità",
+              "Posizione nella matrice")
     ws.row_dimensions[r].height = 42
     for j, h in enumerate(intest, 1):
         testata(ws, r, j, h)
     for i in range(N_POS):
         r = P0 + i
-        for col, k, fmt in (("A", "ticker", None), ("B", "quantita", "#,##0.####"), ("C", "carico", F_NUM), ("V", "euro", F_INT)):
+        for col, k, fmt in (("A", "ticker", None), ("B", "quantita", "#,##0.####"), ("C", "carico", F_NUM)):
             lib.gialla(ws, f"{col}{r}", g(f"pos|{i}|{k}", None), f"PORT|pos|{i}|{k}", fmt)
         vuoto = f'$A{r}=""'
         for col, k, fmt in (("D", "nome", None), ("E", "settore", None), ("F", "area", None), ("G", "valuta", None),
@@ -408,8 +291,7 @@ def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: 
             form(f"{col}{r}", f'=IF({vuoto},"",IFERROR({look(k, f"$A{r}")},"n.d."))', fmt, False, VERDE)
             if fmt is None:
                 ws[f"{col}{r}"].alignment = Alignment(horizontal="left")
-        form(f"J{r}", f'=IF({vuoto},"",IF(ISNUMBER($B{r}),IF(AND(ISNUMBER(H{r}),ISNUMBER(I{r})),$B{r}*H{r}/I{r},""),'
-                      f'IF(ISNUMBER($V{r}),$V{r},"")))', F_INT)
+        form(f"J{r}", f'=IF(OR({vuoto},NOT(ISNUMBER($B{r})),NOT(ISNUMBER(H{r})),NOT(ISNUMBER(I{r}))),"",$B{r}*H{r}/I{r})', F_INT)
         form(f"K{r}", f'=IF(AND(ISNUMBER(J{r}),{TOT}>0),J{r}/{TOT},"")', "0.0%")
         form(f"L{r}", f'=IF(ISNUMBER(K{r}),IF(SUMIF({PZ},$A{r},{JZ})/{TOT}>{LT},"Oltre il limite","Entro il limite"),"")')
         form(f"M{r}", f'=IF(AND(ISNUMBER(H{r}),ISNUMBER($C{r})),IF($C{r}>0,H{r}/$C{r}-1,""),"")', "0.0%")
@@ -417,9 +299,19 @@ def foglio_portafoglio(lib: Libro, settori: list[str], aree: list[str], gialle: 
         form(f"Q{r}", f'=IF(AND(ISNUMBER(J{r}),ISNUMBER(R{r})),IF(R{r}*{QV}>0,J{r}/(R{r}*{QV}),""),"")', "0.0")
         form(f"S{r}", f'=IF({vuoto},"",IFERROR(INDEX({B.rng("verdetto")},MATCH($A{r},{B.rng("ticker")},0)),"n.d."))', None, False, VERDE)
         form(f"T{r}", f'=IF({vuoto},"",IFERROR(INDEX({T.rng("segnale")},MATCH($A{r},{T.rng("ticker")},0)),"n.d."))', None, False, VERDE)
-        form(f"U{r}", f'=IF({vuoto},"",IFERROR({look("corr_etf", f"$A{r}")},"n.d."))', "0.00", False, VERDE)
+        form(f"U{r}", f"=IF(AND(ISNUMBER(K{r}),ISNUMBER(O{r})),K{r}*O{r},0)", "0.0000")
+        form(f"V{r}", f'=IF({vuoto},"",IFERROR(MATCH($A{r},CORRELAZIONI!$A$2:$A${n + 1},0),""))', "0")
         for c in ("L", "S", "T"):
             ws[f"{c}{r}"].alignment = Alignment(horizontal="left")
+        # blocco per la varianza: w_i s_i w_j s_j rho_ij
+        ult = get_column_letter(n + 1)
+        for j in range(N_POS):
+            rj = P0 + j
+            cella = f"{get_column_letter(28 + j)}{r}"
+            ws[cella] = (f'=IF(AND(ISNUMBER($V{r}),ISNUMBER($V${rj})),IF(ISNUMBER(INDEX(CORRELAZIONI!$B$2:${ult}${n + 1},$V{r},$V${rj})),'
+                         f'$U{r}*$U${rj}*INDEX(CORRELAZIONI!$B$2:${ult}${n + 1},$V{r},$V${rj}),0),0)')
+            ws[cella].font = car("A6A6A6", dim=7)
+    ws.cell(P0 - 1, 28, "Blocco di calcolo della varianza (pesi x volatilità x correlazione)").font = car(GRIGIO, corsivo=True, dim=8)
 
     # --- pesi per settore e per area
     r0 = P0 + N_POS + 2
@@ -657,72 +549,3 @@ def foglio_backtest(lib: Libro, b: dict | None):
                            "successiva; se nella stessa seduta sono toccati stop e obiettivo vale lo stop; uscita a tempo dopo 63 sedute. "
                            "Le frequenze storiche sono mostrate solo con almeno 100 osservazioni e non sono probabilità.")
     ws.freeze_panes = "A8"
-
-
-
-# ============================================================================ CONFRONTO
-CONFRONTO_PRED = {"importo": 500.0, "commissione": 2.0}
-
-
-def foglio_confronto(lib: Libro, tickers: list[str], gialle: dict, nome_fondo: str):
-    """Per ogni titolo: che cosa cambia nel proprio portafoglio mettendo un certo importo nel titolo invece che nel fondo.
-    Non e' un giudizio su quale rendera' di piu': mette in fila rischio, concentrazione, prezzo e giudizi delle due strategie."""
-    t = Tab(lib, "CONFRONTO", "CONFRONTO con il proprio portafoglio")
-    ws = t.ws
-    g = lambda k: gialle.get("CONF|" + k, CONFRONTO_PRED[k])  # noqa: E731
-    ws["E1"] = "Importo da confrontare (euro):"
-    ws["E1"].font = car(NERO, True)
-    lib.gialla(ws, "G1", g("importo"), "CONF|importo", F_INT, pred=CONFRONTO_PRED["importo"])
-    ws["H1"] = "Commissione per operazione (euro):"
-    ws["H1"].font = car(NERO, True)
-    lib.gialla(ws, "J1", g("commissione"), "CONF|commissione", F_NUM, pred=CONFRONTO_PRED["commissione"])
-    ws["L1"] = ("Ogni riga: che cosa cambia mettendo l'importo nel titolo invece che nel fondo " + nome_fondo + " (portafoglio dal "
-                "foglio PORTAFOGLIO). Non dice quale renderà di più: nessuno lo sa.")
-    ws["L1"].font = car("595959", corsivo=True, dim=9)
-    A, CM = "$G$1", "$J$1"
-    TOT, ETF = lib.prm["port_tot"], lib.prm["port_etf"]
-    ETFN = f"IF(ISNUMBER({ETF}),{ETF},0)"
-    OK = f"AND(ISNUMBER({A}),{A}>0)"
-    TN = f"({TOT}+IF({lib.prm['port_nuovi']}<>\"liquidità\",IF({OK},{A},0),0))"
-    sf, pef = lib.prm["etf_vol"], lib.prm["etf_pe"]
-    vol_fondo = (f'IF(AND({OK},{TN}>0,ISNUMBER({sf})),SQRT(MAX(0,{lib.prm["s2"]}+2*{A}*{sf}*IFERROR({lib.prm.get("cv_fondo", "0")},0)'
-                 f'+{A}^2*{sf}^2))/{TN},"n.d.")')
-    pz, jz = f"PORTAFOGLIO!$A${P0}:$A${P0 + N_POS - 1}", f"PORTAFOGLIO!$J${P0}:$J${P0 + N_POS - 1}"
-    t.col("ticker", "Ticker", lambda tk: tk, None, "dato", 11)
-    t.col("nome", "Società", "={D:nome}", None, "link", 24)
-    t.col("settore", "Settore", "={D:settore}", None, "link", 18)
-    t.col("buffett", "Buffett Score", "={B:punteggio}", F_PUNTI, "link", 9)
-    t.col("verdetto", "Strategia A: verdetto", "={B:verdetto}", None, "link", 18)
-    t.col("trading", "Trading Score", "={T:punteggio}", F_PUNTI, "link", 9)
-    t.col("segnale", "Strategia B: segnale", "={T:segnale}", None, "link", 14)
-    t.col("pe", "P/E sugli ultimi 12 mesi", "={S:pe_ttm}", "0.0", "link", 9)
-    t.col("pe_fondo", "P/E del fondo", f"={pef}", "0.0", "link", 9)
-    t.col("prezzo_rel", "Prezzo rispetto al mercato",
-          '=IF(AND(ISNUMBER({pe}),ISNUMBER({pe_fondo})),IF({pe}<{pe_fondo},"Costa meno del mercato","Costa più del mercato"),"n.d.")',
-          None, "formula", 16)
-    t.col("vol", "Volatilità annua del titolo (euro, 3 anni)", "={D:vol_3a_eur}", "0.0%", "link", 10)
-    t.col("vol_fondo", "Volatilità annua del fondo", f"={sf}", "0.0%", "link", 10)
-    t.col("corr", "Correlazione con il fondo (1 = si muove come il fondo)", "={D:corr_etf}", "0.00", "link", 11)
-    t.col("peso_etf", "Peso stimato nel fondo", "={D:peso_etf}", "0.00%", "link", 9)
-    t.col("eff", "Esposizione effettiva oggi (euro: diretta + tramite il fondo)",
-          f"=SUMIF({pz},{{ticker}},{jz})+{ETFN}*IF(ISNUMBER({{peso_etf}}),{{peso_etf}},0)", F_NUM, "formula", 12)
-    t.col("eff_pct", "Esposizione effettiva oggi (% del patrimonio)", f'=IF({TOT}>0,{{eff}}/{TOT},"n.d.")', "0.00%", "formula", 11)
-    t.col("eff_dopo", "Esposizione effettiva dopo l'acquisto (%)", f'=IF(AND({OK},{TN}>0),({{eff}}+{A})/{TN},"n.d.")', "0.0%", "formula", 11)
-    t.col("vol_oggi", "Volatilità del patrimonio oggi", "=PORTAFOGLIO!$F$6", "0.0%", "link", 10)
-    t.col("vol_titolo", "Volatilità del patrimonio se l'importo va nel titolo",
-          f'=IF(AND({OK},{TN}>0,ISNUMBER({{vol}})),SQRT(MAX(0,{lib.prm["s2"]}+2*{A}*{{vol}}*IFERROR(INDEX({lib.prm["cv_col"]},'
-          f'MATCH({{ticker}},{lib.prm["corr_tk"]},0)),0)+{A}^2*{{vol}}^2))/{TN},"n.d.")', "0.0%", "formula", 11)
-    t.col("vol_fondo_dopo", "Volatilità del patrimonio se l'importo va nel fondo", "=" + vol_fondo, "0.0%", "formula", 11)
-    t.col("diff", "Differenza di rischio (punti; positivo = il titolo aumenta il rischio più del fondo)",
-          '=IF(AND(ISNUMBER({vol_titolo}),ISNUMBER({vol_fondo_dopo})),{vol_titolo}-{vol_fondo_dopo},"n.d.")', "+0.0%;-0.0%;0.0%", "formula", 13)
-    t.col("comm", "Commissione (% dell'importo)", f'=IF(AND({OK},ISNUMBER({CM})),{CM}/{A},"n.d.")', "0.0%", "formula", 10)
-    t.col("sintesi", "IN SINTESI (fatti, non previsioni)",
-          f'=IF(AND(ISNUMBER({{vol_titolo}}),ISNUMBER({{vol_fondo_dopo}})),"Con "&ROUND({A},0)&" euro in "&{{ticker}}&" invece che nel fondo: '
-          f'rischio del patrimonio "&ROUND({{vol_titolo}}*100,1)&"% contro "&ROUND({{vol_fondo_dopo}}*100,1)&"% ("&IF({{diff}}>=0,"+","")'
-          f'&ROUND({{diff}}*100,1)&" punti); esposizione effettiva al titolo "&ROUND({{eff_dopo}}*100,1)&"% del patrimonio; "'
-          f'&IF(AND(ISNUMBER({{pe}}),ISNUMBER({{pe_fondo}})),"P/E "&ROUND({{pe}},1)&" contro "&ROUND({{pe_fondo}},1)&" del fondo","P/E non '
-          f'disponibile")&"; strategia A: "&{{verdetto}}&"; strategia B: "&{{segnale}}&IF(ISNUMBER({{comm}}),"; commissione "'
-          f'&ROUND({{comm}}*100,1)&"% dell\'importo","")&".","Dati insufficienti per il confronto (serve un importo positivo e la '
-          f'volatilità del titolo).")', None, "formula", 120)
-    t.scrivi(tickers)
-    return t
