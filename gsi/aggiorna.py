@@ -271,6 +271,13 @@ def esegui(solo_prezzi: bool = False, tickers: list[str] | None = None, forza_bi
                                 " VALUES(?,?,?,?,?,?)",
                                 (k, meta.get("instrumentType"), meta.get("longName") or meta.get("shortName"),
                                  meta.get("currency"), meta.get("fullExchangeName"), db.adesso()))
+        for k in ETF:
+            righe = _prova(con, k, "composizione del fondo", lambda k=k: yahoo.scarica_fondo(yf.Ticker(k)))
+            if righe:
+                with con:
+                    con.execute("DELETE FROM fondi WHERE ticker=?", (k,))
+                    con.executemany("INSERT INTO fondi VALUES(?,?,?,?,?,?)", [(k, *r, db.adesso()) for r in righe])
+                    db.segna_scarico(con, k, "composizione", len(righe))
         scarica_cambi(con, yf)
         if not solo_prezzi:
             scarica_sec(con)

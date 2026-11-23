@@ -73,7 +73,7 @@ def _py(x, vuoto="n.d."):
     return vuoto if x is None else x
 
 
-def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict) -> tuple[int, list[str]]:
+def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict, gialle: dict | None = None) -> tuple[int, list[str]]:
     """Confronta Python e formule per ogni titolo. -> (numero di confronti, elenco delle differenze)"""
     from .calcola import applica_eta
     applica_eta(ingressi, P)                      # le soglie di eta' dei dati sono parametri
@@ -172,6 +172,88 @@ def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict)
                 v = [py[tk][k] for tk, i in ingressi.items() if i["settore"] == sett and py[tk][k] is not None
                      and (lim is None or py[tk][k] < lim)]
                 chk(sett, f"mediana {k}", statistics.median(v) if v else "n.d.", ws.cell(r, COL_MEDIANE + j).value)
+    # --- portafoglio con il fondo e foglio CONFRONTO
+    if getattr(lib, "fondo", None) is not None and "CONFRONTO" in lib.tab:
+        n2, d2 = confronta_portafoglio(ingressi, lib, wb, A, B, py if "SCREENER" in lib.tab else {}, gialle or {})
+        n += n2
+        diff += d2
+    return n, diff
+
+
+def posizioni_da_gialle(ingressi: dict, gialle: dict) -> list[tuple[str, float]]:
+    """Posizioni del foglio PORTAFOGLIO come (ticker, controvalore in euro), con le stesse regole delle formule:
+    quantita' x prezzo / cambio, oppure il controvalore in euro se la quantita' non c'e'."""
+    out = []
+    for i in range(60):
+        tk = gialle.get(f"PORT|pos|{i}|ticker")
+        if not tk or tk not in ingressi:
+            continue
+        q, e = gialle.get(f"PORT|pos|{i}|quantita"), gialle.get(f"PORT|pos|{i}|euro")
+        x = ingressi[tk]
+        if isinstance(q, (int, float)):
+            if x.get("prezzo") and x.get("cambio_eur"):
+                out.append((tk, q * x["prezzo"] / x["cambio_eur"]))
+        elif isinstance(e, (int, float)):
+            out.append((tk, float(e)))
+    return out
+
+
+def confronta_portafoglio(ingressi, lib, wb, A, B, py, gialle) -> tuple[int, list[str]]:
+    from . import portafoglio as pf
+    from .excel_fase4 import CONFRONTO_PRED
+    from .motivazioni import t as fmt
+    diff, n = [], 0
+
+    def chk(tk, cosa, attesa, xl):
+        nonlocal n
+        n += 1
+        if isinstance(attesa, str) and isinstance(xl, str):
+            xl = re.sub(r"(?<=\d),(?=\d)", ".", xl)
+        if not _uguali(attesa, xl):
+            diff.append(f"{tk} {cosa}: Python={attesa!r} Excel={xl!r}")
+    num = lambda k, pred: gialle.get(k) if isinstance(gialle.get(k), (int, float)) else pred  # noqa: E731
+    pos = posizioni_da_gialle(ingressi, gialle)
+    liq, etf = num("PORT|liquidita", 0.0), num("PORT|fondo", 0.0)
+    nuovi = gialle.get("PORT|origine", "nuovi soldi") != "liquidità"
+    imp, comm = num("CONF|importo", CONFRONTO_PRED["importo"]), num("CONF|commissione", CONFRONTO_PRED["commissione"])
+    fo = lib.fondo
+    c = pf.confronto(ingressi, fo, lib.stat, pos, etf, liq, imp, comm, nuovi)
+    ws = wb["PORTAFOGLIO"]
+    chk("PORTAFOGLIO", "patrimonio totale", c["totale"], ws["F4"].value)
+    chk("PORTAFOGLIO", "volatilità del patrimonio", c["vol"] if c["vol"] is not None else "n.d.", ws["F6"].value)
+    sm, sv, qe = num("PORT|shock_mercato", -0.30), num("PORT|shock_valute", -0.10), num("PORT|fondo_non_eur", 0.92)
+    stress = sum(e * ((ingressi[tk].get("beta_mercato") if ingressi[tk].get("beta_mercato") is not None else 1) * sm
+                      + (sv if ingressi[tk]["valuta"] != "EUR" else 0)) for tk, e in pos)
+    stress += etf * ((fo["beta"] if fo["beta"] is not None else 1) * sm + qe * sv)
+    chk("PORTAFOGLIO", "perdita nello stress", stress, ws["F7"].value)
+    if c["totale"] > 0:
+        chk("PORTAFOGLIO", "peso non euro", (sum(e for tk, e in pos if ingressi[tk]["valuta"] != "EUR") + etf * qe) / c["totale"],
+            ws["F10"].value)
+    xc = leggi_foglio(wb, None, "CONFRONTO", lib.tab["CONFRONTO"].cols)
+    nd = lambda v: "n.d." if v is None else v  # noqa: E731
+    chk("CONFRONTO", "volatilità se nel fondo", nd(c["vol_fondo_dopo"]), next(iter(xc.values()))["vol_fondo_dopo"])
+    for tk, r in c["righe"].items():
+        x = xc[tk]
+        chk(tk, "esposizione effettiva", r["eff"], x["eff"])
+        chk(tk, "esposizione effettiva %", nd(r["eff_pct"]), x["eff_pct"])
+        chk(tk, "esposizione dopo", nd(r["eff_dopo"]), x["eff_dopo"])
+        chk(tk, "volatilità se nel titolo", nd(r["vol_dopo"]), x["vol_titolo"])
+        chk(tk, "differenza di rischio", nd(r["diff"]), x["diff"])
+        chk(tk, "commissione", nd(r["comm"]), x["comm"])
+        pe, pef = (py.get(tk) or {}).get("pe_ttm"), fo.get("pe")
+        chk(tk, "prezzo rispetto al mercato",
+            ("Costa meno del mercato" if pe < pef else "Costa più del mercato") if pe is not None and pef is not None else "n.d.",
+            x["prezzo_rel"])
+        if r["vol_dopo"] is not None and c["vol_fondo_dopo"] is not None:
+            testo = (f"Con {fmt(imp, 0)} euro in {tk} invece che nel fondo: rischio del patrimonio {fmt(r['vol_dopo'] * 100, 1)}% "
+                     f"contro {fmt(c['vol_fondo_dopo'] * 100, 1)}% ({'+' if r['diff'] >= 0 else ''}{fmt(r['diff'] * 100, 1)} punti); "
+                     f"esposizione effettiva al titolo {fmt(r['eff_dopo'] * 100, 1)}% del patrimonio; "
+                     + (f"P/E {fmt(pe, 1)} contro {fmt(pef, 1)} del fondo" if pe is not None and pef is not None else "P/E non disponibile")
+                     + f"; strategia A: {A[tk]['verdetto']}; strategia B: {B[tk]['segnale']}"
+                     + (f"; commissione {fmt(r['comm'] * 100, 1)}% dell'importo" if r["comm"] is not None else "") + ".")
+        else:
+            testo = "Dati insufficienti per il confronto (serve un importo positivo e la volatilità del titolo)."
+        chk(tk, "sintesi del confronto", testo, x["sintesi"])
     return n, diff
 
 
@@ -184,5 +266,5 @@ def verifica_file(percorso, ingressi: dict, lib, P: dict | None = None, giudizi:
     ric = ricalcola(percorso)
     wb = load_workbook(ric, data_only=True)
     err = errori_di_formula(wb)
-    n, diff = confronta(ingressi, lib, ric, P, giudizi)
+    n, diff = confronta(ingressi, lib, ric, P, giudizi, gialle)
     return {"formule": conta_formule(percorso), "errori": err, "confronti": n, "differenze": diff, "ricalcolato": ric}

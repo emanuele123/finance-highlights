@@ -126,6 +126,7 @@ def test_portafoglio_formule_contro_python(amb):
     for i, (tk, q, c) in enumerate(pos):
         ws[f"A{f4.P0 + i}"], ws[f"B{f4.P0 + i}"], ws[f"C{f4.P0 + i}"] = tk, q, c
     ws["C4"] = 20000                        # liquidita'
+    ws["C14"] = "liquidità"                 # l'operazione usa la liquidita' gia' nel patrimonio
     ws["K4"], ws["K5"] = "DEMO09", 15000    # nuova operazione
     wb.save(percorso)
     v = load_workbook(verifica.ricalcola(percorso), data_only=True)
@@ -148,6 +149,8 @@ def test_portafoglio_formule_contro_python(amb):
     w = [a / tot for a in val]
     atteso = pf.volatilita_portafoglio(w, [st["vol"][tk] for tk, _, _ in pos], [[st["corr"][a][b] for b in idx] for a in idx])
     assert x["F6"].value == ap(atteso, rel=2e-3)        # la matrice nel file e' arrotondata a 4 decimali
+    assert x["F6"].value == ap(pf.confronto(I, amb["lib"].fondo, amb["lib"].stat, [(tk, a) for (tk, _, _), a in zip(pos, val)],
+                                            0.0, 20000, 500, 2, False)["vol"])
     stress = sum(a * (I[tk]["beta_mercato"] * -0.30 + (-0.10 if I[tk]["valuta"] != "EUR" else 0)) for (tk, _, _), a in zip(pos, val))
     assert x["F7"].value == ap(stress) and x["F8"].value == ap(stress / tot)
     giorni = max(a / (I[tk]["controvalore_eur"] * 0.20) for (tk, _, _), a in zip(pos, val))
@@ -280,3 +283,36 @@ def test_foglio_backtest_senza_risultati_fittizi(amb):
     assert righe["BACKTEST della strategia B"] == "DA ESEGUIRE" and righe["MOVIMENTI: titoli di stampa da GDELT"] == "NON VERIFICATA"
     for nome, minimo in (("METODOLOGIA", 30), ("FONTI", 6), ("LEGGIMI", 20)):
         assert load_workbook(amb["percorso"])[nome].max_row > minimo
+
+
+
+@serve_lo
+def test_portafoglio_con_fondo_e_confronto(amb):
+    """Portafoglio come quello di un utente: fondo + una frazione di azione indicata in euro + nuovi soldi."""
+    percorso = amb["cart"] / "fondo.xlsx"
+    wb = load_workbook(amb["percorso"])
+    ws = wb["PORTAFOGLIO"]
+    ws["C12"] = 5700                                   # valore del fondo
+    ws[f"A{f4.P0}"], ws[f"V{f4.P0}"] = "DEMO13", 50    # 50 euro in un titolo, senza quantita'
+    ws[f"A{f4.P0 + 1}"], ws[f"B{f4.P0 + 1}"] = "DEMO02", 10
+    ws["K4"], ws["K5"] = "DEMO01", 500
+    wb["CONFRONTO"]["G1"] = 750
+    wb.save(percorso)
+    r = verifica.verifica_file(percorso, amb["ingressi"], amb["lib"])
+    assert r["errori"] == [] and r["differenze"] == [], r["differenze"][:5]
+    v = load_workbook(r["ricalcolato"], data_only=True)
+    I = amb["ingressi"]
+    tot = 5700 + 50 + 10 * I["DEMO02"]["prezzo"] / I["DEMO02"]["cambio_eur"]
+    assert v["PORTAFOGLIO"]["F4"].value == ap(tot) and v["PORTAFOGLIO"][f"J{f4.P0}"].value == 50
+    assert v["PORTAFOGLIO"]["K6"].value == ap(500 / (tot + 500))          # nuovi soldi: il patrimonio cresce
+    assert "limite per valute non euro" in v["PORTAFOGLIO"]["K10"].value     # il fondo e' quasi tutto in valute estere
+    c = v["CONFRONTO"]
+    cols = amb["lib"].tab["CONFRONTO"].cols
+    riga = {c[f"A{x}"].value: x for x in range(3, 3 + len(UNIVERSO_DEMO))}
+    s = c[f"{cols['sintesi']}{riga['DEMO05']}"].value
+    assert s.startswith("Con 750 euro in DEMO05 invece che nel fondo: rischio del patrimonio ") and "strategia A:" in s
+    # il fondo da solo: volatilita' del patrimonio = volatilita' del fondo
+    wb["PORTAFOGLIO"][f"A{f4.P0}"] = wb["PORTAFOGLIO"][f"A{f4.P0 + 1}"] = None
+    wb.save(percorso)
+    v = load_workbook(verifica.ricalcola(percorso), data_only=True)
+    assert v["PORTAFOGLIO"]["F6"].value == ap(amb["lib"].fondo["vol"])

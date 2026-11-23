@@ -165,7 +165,12 @@ SOSTITUZIONI = {
 ETF = {
     "CSSPX.MI": ("iShares Core S&P 500 UCITS ETF (Acc)", "EUR", "S&P 500"),
     "SWDA.MI": ("iShares Core MSCI World UCITS ETF (Acc)", "EUR", "MSCI World"),
+    "VWCE.DE": ("Vanguard FTSE All-World UCITS ETF USD Accumulation", "EUR", "FTSE All-World"),
 }
+# fondo con cui confrontare i singoli titoli nel PORTAFOGLIO e nel foglio CONFRONTO (stesso indice per VWCE, VWRA, VWRL)
+FONDO_RIF = "VWCE.DE"
+# simboli dei primi titoli del fondo -> ticker dell'universo (stessa societa', altra classe o altro listino)
+FONDO_SIMBOLI = {"GOOG": "GOOGL", "2330.TW": "TSM"}
 
 
 @dataclass(frozen=True)
