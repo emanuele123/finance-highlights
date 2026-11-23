@@ -192,6 +192,27 @@ def foglio_leggimi(lib: Libro, demo: bool):
             "BACKTEST: che cosa è successo in passato ai titoli nelle varie fasce di Trading Score. Leggere gli avvisi in testa al foglio.",
             "FONTI: da dove vengono i dati e con quali limiti. STATO: che cosa funziona, che cosa è parziale, che cosa manca.",
         ]),
+        ("Come funziona un aggiornamento", [
+            "1. Scarica i prezzi a 11 anni dei 120 titoli (sempre per intero, perché dividendi e frazionamenti cambiano i prezzi passati), i bilanci (solo se hanno più di 7 giorni), i cambi BCE, le stime degli analisti e le notizie. Se un titolo dà errore lo registra e passa al successivo.",
+            "2. Controlla ogni titolo: prezzi recenti, valuta e nome attesi, nessun salto anomalo, bilanci non troppo vecchi. Alla fine stampa chi è 'DA VERIFICARE' e perché.",
+            "3. Calcola indicatori tecnici e metriche di bilancio e li scrive nel foglio DATI.",
+            "4. Ricrea questo file: prima legge dal file vecchio tutte le celle gialle (parametri, giudizi, portafoglio, simulatore, valutazioni dei movimenti) e le rimette nel nuovo.",
+            "5. Se LibreOffice è installato, ricalcola le formule e le confronta con il calcolo del programma, titolo per titolo.",
+        ]),
+        ("Manutenzione", [
+            "A ogni aggiornamento: le ultime righe nel terminale devono dire 'errori di formula: 0' e 'differenze: 0' (altrimenti non fidarsi del file). Guardare i titoli 'DA VERIFICARE' e il motivo (anche nel foglio QUALITA_DATI). Chiudere Excel prima di lanciare il comando.",
+            "Una volta al trimestre: aggiornare in GIUDIZI i dati manuali di banche e assicurazioni (cost/income, combined ratio, CET1, Solvency II, dalle presentazioni dei risultati); rifare il backtest (python avvia.py backtest); aggiornare la libreria di Yahoo (pip install -U yfinance), che è la causa più probabile di guasti.",
+            "Una volta all'anno: rivedere in PARAMETRI i rendimenti richiesti per valuta (sono ipotesi, non dati di mercato) e rileggere le descrizioni delle società e dei settori.",
+            "Molti titoli senza prezzo o errori a catena: Yahoo ha cambiato qualcosa o blocca le richieste. Aggiornare yfinance e riprovare dopo qualche ora.",
+            "Un titolo 'nessun prezzo scaricato': delisting, offerta pubblica o cambio di simbolo (come Roche, da ROG.SW a ROP.SW). L'elenco dei titoli va corretto nel programma (file gsi/universo.py, una riga per titolo), poi vanno rilanciati i collaudi: python -m pytest -q tests.",
+            "'Ultimo esercizio vecchio': Yahoo non ha ancora caricato il bilancio nuovo; nel frattempo il titolo resta 'Dati insufficienti'.",
+            "Differenze nel controllo incrociato: errore nel programma. Non usare quel file e farlo correggere.",
+        ]),
+        ("Cosa conservare", [
+            "Questo file è l'unica copia delle proprie modifiche (parametri, giudizi, portafoglio, tesi): l'archivio dei dati e il programma si ricreano da zero, il file no. Farne una copia di sicurezza ogni tanto.",
+            "Non spostare, rinominare o inserire colonne nei fogli: il programma ritrova le celle gialle dalla loro posizione. Ordinare e filtrare invece va bene.",
+            "Il file configurazione.ini (nome ed e-mail per la SEC) non è su GitHub: se si cambia computer va ricreato.",
+        ]),
         ("Avvertenze", [
             "I dati vengono da fonti gratuite e possono contenere errori: verificare sempre i numeri importanti sui bilanci ufficiali prima di decidere.",
             "I punteggi ordinano i titoli secondo criteri dichiarati; non dicono che cosa farà il prezzo. Obiettivi e scenari sono convenzioni di calcolo.",

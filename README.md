@@ -61,6 +61,34 @@ Per allungare a 10 anni la storia delle società americane, creare nella cartell
 Verificata in rete il 21/11/2026: dati 10-K per 36 società. Le serie SEC si usano solo se coincidono
 con Yahoo sugli esercizi in comune.
 
+## Come funziona un aggiornamento
+
+1. Scarica prezzi a 11 anni (sempre per intero), bilanci (se hanno più di 7 giorni), cambi BCE, stime, notizie.
+   Ogni errore è registrato per titolo senza fermare gli altri.
+2. Controlla ogni titolo (prezzi recenti, valuta e nome attesi, salti anomali, età dei bilanci) e stampa chi è "DA VERIFICARE".
+3. Calcola indicatori e metriche e li scrive nel foglio DATI.
+4. Ricrea il cruscotto rimettendo le celle gialle lette dal file precedente.
+5. Se LibreOffice è installato, ricalcola le formule e le confronta con il calcolo Python.
+
+## Manutenzione
+
+- **A ogni aggiornamento**: le ultime righe devono dire "errori di formula: 0" e "differenze: 0".
+  Guardare i titoli "DA VERIFICARE" (anche nel foglio QUALITA_DATI). Chiudere Excel prima di lanciare il comando.
+- **Ogni trimestre**: dati manuali di banche e assicurazioni in GIUDIZI; `python avvia.py backtest`;
+  `pip install -U yfinance` (Yahoo cambia spesso e la libreria si adegua).
+- **Ogni anno**: rendimenti richiesti per valuta in PARAMETRI; descrizioni di società e settori.
+
+| Sintomo | Causa probabile | Cosa fare |
+|---|---|---|
+| Molti titoli senza prezzo | Yahoo ha cambiato qualcosa o blocca le richieste | aggiornare yfinance, riprovare dopo qualche ora |
+| Un titolo "nessun prezzo scaricato" | delisting, OPA, cambio di simbolo | correggere `gsi/universo.py` e rilanciare `python -m pytest -q tests` |
+| "Ultimo esercizio vecchio" | bilancio non ancora caricato da Yahoo | aspettare |
+| Differenze nel controllo incrociato | errore nel programma | non usare il file, far correggere |
+| Il file non si salva | Excel aperto | chiudere Excel |
+
+**Cosa conservare**: il file Excel è l'unica copia delle proprie modifiche (l'archivio si ricrea): farne copie di sicurezza.
+Non spostare, rinominare o inserire colonne nei fogli. `configurazione.ini` non è su GitHub: va ricreato su un nuovo computer.
+
 ### Limiti principali
 
 - Verificato con LibreOffice, non con Microsoft Excel.
