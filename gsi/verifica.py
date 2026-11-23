@@ -43,9 +43,10 @@ def errori_di_formula(wb) -> list[str]:
 
 
 def conta_formule(percorso) -> int:
+    from openpyxl.worksheet.formula import ArrayFormula
     wb = load_workbook(percorso)
     return sum(1 for ws in wb.worksheets for riga in ws.iter_rows() for c in riga
-               if isinstance(c.value, str) and c.value.startswith("="))
+               if (isinstance(c.value, str) and c.value.startswith("=")) or isinstance(c.value, ArrayFormula))
 
 
 def leggi_foglio(wb_val, wb_for, nome: str, chiavi: dict[str, str]) -> dict:
@@ -134,6 +135,37 @@ def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict)
             chk(tk, f"setup {kp}", _py(st[kp]), et[kx])
         chk(tk, "numero di azioni", _py(b["n_azioni"]), et["n_azioni"])
         chk(tk, "avviso trimestrale", 1 if b["avviso_trimestrale"] else 0, et["avviso"])
+    # --- indicatori principali (SCREENER) e mediane di settore (SETTORI)
+    from .excel_viste import COL_MEDIANE, CONFRONTABILI, INDICATORI
+    import statistics
+    if "SCREENER" in lib.tab and "SETTORI" in wb.sheetnames:
+        xs = leggi_foglio(wb, None, "SCREENER", lib.tab["SCREENER"].cols)
+        py = {}
+        for tk, i in ingressi.items():
+            a = A[tk]["valori"]
+            p_, e_, d_ = i.get("prezzo"), i.get("utile_ttm_ps"), i.get("div_12m")
+            py[tk] = {"pe_ttm": p_ / e_ if p_ and e_ and p_ > 0 and e_ > 0 else None,
+                      "div_yield": d_ / p_ if d_ is not None and p_ and p_ > 0 else None,
+                      "pe_fwd": a["V4"], "multiplo": a["V3"], "rend_cap": a["Q1"], "margine_op": a["Q3"],
+                      "leva": a["F1"], "crescita": a["G1"]}
+            for k, *_ in INDICATORI:
+                chk(tk, f"indicatore {k}", _py(py[tk][k]), xs[tk][k])
+        fin = {tk: i["modello"] in ("BAN", "ASS") for tk, i in ingressi.items()}
+        for tk, i in ingressi.items():
+            pari = [x for x, j in ingressi.items() if j["settore"] == i["settore"] and fin[x] == fin[tk]]
+            chk(tk, "titoli confrontabili", len(pari), xs[tk]["n_pari"])
+            for k, _h, _f, _fmt, lim in INDICATORI:
+                v = [py[x][k] for x in pari if py[x][k] is not None and (lim is None or py[x][k] < lim)]
+                chk(tk, f"mediana dei confrontabili {k}", statistics.median(v) if v else "n.d.", xs[tk]["med_" + k])
+        ws = wb["SETTORI"]
+        for r in range(R0, ws.max_row + 1):
+            sett = ws.cell(r, 1).value
+            if not sett:
+                continue
+            for j, (k, _h, _f, _fmt, lim) in enumerate(x for x in INDICATORI if x[0] in CONFRONTABILI):
+                v = [py[tk][k] for tk, i in ingressi.items() if i["settore"] == sett and py[tk][k] is not None
+                     and (lim is None or py[tk][k] < lim)]
+                chk(sett, f"mediana {k}", statistics.median(v) if v else "n.d.", ws.cell(r, COL_MEDIANE + j).value)
     return n, diff
 
 

@@ -84,7 +84,24 @@ def normalizza_storico(df: pd.DataFrame, in_centesimi: bool, meta: dict | None =
             (_num(r.get("Low")) or ch) * k, ch * k, (adj if adj is not None else ch) * k,
             _num(r.get("Volume")) or 0.0,
             (_num(r.get("Dividends")) or 0.0) * k, _num(r.get("Stock Splits")) or 0.0))
-    return righe
+    return ricalcola_total_return(righe)
+
+
+def ricalcola_total_return(righe: list[tuple]) -> list[tuple]:
+    """Chiusura rettificata (total return) ricostruita da chiusure e dividendi, con il metodo standard:
+    allo stacco di un dividendo d, tutti i prezzi precedenti si moltiplicano per (1 - d / chiusura del giorno prima).
+
+    Non si usa l'Adj Close di Yahoo perche' per alcuni listini e' sbagliato: per i titoli quotati in pence
+    (Londra) e per chi paga dividendi in un'altra valuta (es. Equinor) la rettifica e' 10-100 volte troppo piccola.
+    righe: (data, apertura, massimo, minimo, chiusura, rettificata, volume, dividendo, frazionamento)."""
+    out = [list(r) for r in righe]
+    fattore = 1.0
+    for i in range(len(out) - 1, -1, -1):
+        out[i][5] = out[i][4] * fattore
+        d = out[i][7]
+        if d and i > 0 and out[i - 1][4] and 0 < d < out[i - 1][4]:
+            fattore *= 1.0 - d / out[i - 1][4]
+    return [tuple(r) for r in out]
 
 
 def scarica_storico(tk, inizio: date | None = None):

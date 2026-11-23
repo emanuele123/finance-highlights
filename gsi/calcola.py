@@ -1,7 +1,7 @@
 """Dall'archivio agli ingressi dei punteggi (i dati che finiranno nel foglio DATI) e ai risultati."""
 from __future__ import annotations
 import csv
-from datetime import date
+from datetime import date, timedelta
 
 from . import bilanci, config, db, indicatori, punteggi
 from .controlli import valuta_unita
@@ -132,6 +132,26 @@ def ingressi_titolo(con, t, oggi: date, indice: dict | None) -> dict:
     ing["_cambi"] = {v: cambio(con, v) for v in {valuta_unita(r["valuta"])[0] for r in stime.values()} if v}
     ing["eps_atteso"] = eps_atteso(t, ing, stime, fraz, oggi)
     del ing["_cambi"]
+
+    # ---- indicatori principali: utile per azione degli ultimi 12 mesi e dividendi staccati in 12 mesi
+    ttm = con.execute("SELECT data_chiusura, valore FROM bilanci WHERE ticker=? AND frequenza='U' AND prospetto='CE' "
+                      "AND voce IN ('NetIncomeCommonStockholders','NetIncome') ORDER BY voce DESC, data_chiusura DESC",
+                      (t.ticker,)).fetchone()
+    if ttm and ue and ttm[0] >= ue:
+        ing["utile_ttm_ps"] = per_azione(ttm[1])
+        ing["utile_ttm_data"] = ttm[0]
+    else:
+        ing["utile_ttm_ps"] = per_azione(ing.get("utile_ultimo"))
+        ing["utile_ttm_data"] = ue
+        if ing["utile_ttm_ps"] is not None:
+            ing["note"].append("P/E sugli ultimi 12 mesi calcolato sull'ultimo esercizio annuale (dato a 12 mesi assente)")
+    if ing.get("data_prezzo"):
+        da = (date.fromisoformat(ing["data_prezzo"]) - timedelta(days=365)).isoformat()
+        d = con.execute("SELECT SUM(dividendo) FROM prezzi WHERE ticker=? AND data>? AND data<=?",
+                        (t.ticker, da, ing["data_prezzo"])).fetchone()[0]
+        ing["div_12m"] = d or 0.0
+    else:
+        ing["div_12m"] = None
     return ing
 
 

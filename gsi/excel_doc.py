@@ -81,13 +81,20 @@ def foglio_metodologia(lib: Libro):
             "Ogni passaggio è una colonna del foglio VALUTAZIONE.",
         ]),
         ("Strategia B - Trading Score", [
-            "Indicatori sui prezzi rettificati per i frazionamenti; rendimenti e momentum sul total return. Finestre in sedute: 21, 63, 126, 252. Gli indici di riferimento sono indici di prezzo.",
+            "Indicatori sui prezzi rettificati per i frazionamenti; rendimenti e momentum sul total return, ricostruito dal programma a partire da chiusure e dividendi (la chiusura rettificata di Yahoo è sbagliata per i titoli quotati in pence e per chi paga dividendi in un'altra valuta). Finestre in sedute: 21, 63, 126, 252. Gli indici di riferimento sono indici di prezzo.",
             "Pilastri e pesi: Trend 25, Momentum 25, Forza relativa 15, Oscillatori 10, Volumi 10, Assetto e rischio 10, Catalizzatori 5. Servono Trend e Momentum e almeno il 70% del peso.",
             "Motivazione dei pesi: tendenza e momentum sono gli effetti più documentati e pesano metà del punteggio; la forza relativa li conferma rispetto a mercato e settore; oscillatori, volumi e assetto servono al momento d'ingresso; i catalizzatori pesano poco perché i dati gratuiti sono incompleti.",
             "Setup solo se prezzo > media 200 e media 50 > media 200. Rottura: massimo a 20 sedute distante al più 1 ATR, ingresso sopra quel massimo. Ritracciamento: prezzo tra le medie con RSI 40-60, ingresso al prezzo corrente. Stop = ingresso - 2 ATR. Obiettivo = ingresso + 2 volte il rischio, ridotto alla prima resistenza. Sotto 1,5 di rendimento/rischio il setup non è valido.",
             "Numero di azioni = min(capitale x 1% / rischio per azione in euro, capitale x 10% / prezzo in euro).",
             "L'obiettivo è una proiezione convenzionale, non una previsione. Nessuna probabilità: la frequenza storica del BACKTEST è mostrata solo con almeno 100 osservazioni.",
             "Una trimestrale entro 7 giorni non dà punti: genera un avviso di rischio.",
+        ]),
+        ("Indicatori principali (SCREENER, SCHEDA, CRUSCOTTO)", [
+            "P/E sugli ultimi 12 mesi = prezzo / utile per azione degli ultimi quattro trimestri (se manca il dato a 12 mesi: ultimo esercizio annuale, con nota). P/E prospettico = prezzo / utile atteso dal consenso. 'n.d.' se l'utile è negativo o assente.",
+            "Rendimento da dividendo = dividendi per azione staccati negli ultimi 12 mesi (dallo storico prezzi) / prezzo. Non si usa il dato dichiarato da Yahoo, incoerente per diversi titoli.",
+            "EV/EBITDA, rendimento sul capitale, margine operativo, debito netto / EBITDA e crescita sono le metriche V3, Q1, Q3, F1 e G1 del Buffett Score: per banche e assicurazioni hanno un significato diverso (vedi le intestazioni).",
+            "Per questo ogni titolo è confrontato con la mediana dei titoli dello stesso settore e dello stesso tipo (banche e assicurazioni da una parte, il resto dall'altra); i segnaposto 99 e 999 (EBITDA negativo) sono esclusi dalle mediane. Nel foglio SETTORI ci sono solo le mediane dei tre indicatori confrontabili tra tutti: i due P/E e il dividendo.",
+            "Un indicatore da solo inganna: un P/E basso può voler dire 'a buon mercato' oppure 'il mercato si aspetta utili in calo'. Gli indicatori servono a capire i punteggi, non a sostituirli.",
         ]),
         ("Movimenti, portafoglio, simulatore", [
             "MOVIMENTI: parte attesa dal mercato = beta (252 sedute) x variazione dell'indice di riferimento; parte del settore = mediana, tra i titoli dello stesso settore, della variazione non spiegata dal mercato (almeno 3 titoli); parte specifica = il resto. Livello di evidenza: A evento societario documentato nella finestra; C mercato e settore spiegano almeno il 60% nello stesso verso; B notizie coincidenti; D nessuna causa individuata. Lo stacco del dividendo è elencato ma non vale come causa, perché la variazione è misurata sul total return.",
@@ -101,7 +108,7 @@ def foglio_fonti(lib: Libro):
     _tabella(lib, "FONTI", "FONTI - costi, limiti, licenze", "Tutte le fonti sono gratuite. Nessuna garantisce completezza o continuità del servizio.",
              [("Fonte", 22), ("Che cosa fornisce", 48), ("Costo", 12), ("Limiti noti", 60), ("Licenza e condizioni d'uso", 52)], [
         ("Yahoo Finance (libreria yfinance)", "Storico giornaliero a 11 anni, bilanci annuali, trimestrali e a 12 mesi, anagrafica, date degli utili, stime e revisioni, notizie.",
-         "Gratuito", "Fonte non ufficiale: può cambiare o interrompersi senza preavviso e blocca chi fa troppe richieste (il programma fa una pausa tra le chiamate e ritenta). Di norma solo 4 esercizi annuali. Voci di bilancio standardizzate, a volte incomplete o classificate male; frazionamenti recenti non sempre riportati su azioni, EPS e stime. L'ultima chiusura delle borse europee può mancare fino al consolidamento.",
+         "Gratuito", "Fonte non ufficiale: può cambiare o interrompersi senza preavviso e blocca chi fa troppe richieste (il programma fa una pausa tra le chiamate e ritenta). Di norma solo 4 esercizi annuali. Voci di bilancio standardizzate, a volte incomplete o classificate male; chiusura rettificata (total return) sbagliata per i titoli quotati in pence e per chi paga dividendi in un'altra valuta, quindi il programma la ricostruisce da chiusure e dividendi; rendimento da dividendo dichiarato incoerente, quindi non usato; frazionamenti recenti non sempre riportati su azioni, EPS e stime. L'ultima chiusura delle borse europee può mancare fino al consolidamento.",
          "Dati di Yahoo e dei suoi fornitori, consentiti per il solo uso personale: non ridistribuire. yfinance è software open source (licenza Apache 2.0) non affiliato a Yahoo."),
         ("Banca Centrale Europea", "Cambi di riferimento giornalieri: unità di valuta per 1 euro.", "Gratuito",
          "Un valore al giorno, solo giorni lavorativi TARGET. Alcune valute mancano (dollaro di Taiwan: preso da Yahoo, simbolo EURTWD=X).",
@@ -175,6 +182,7 @@ def foglio_leggimi(lib: Libro, demo: bool):
             "BUFFETT, VALUTAZIONE, TRADING: il calcolo completo, colonna per colonna. METODOLOGIA spiega criteri e pesi.",
             "PARAMETRI: tutte le soglie, i pesi e le ipotesi. Cambiando un numero giallo, punteggi e valori si ricalcolano.",
             "GIUDIZI: per banche e assicurazioni inserire a mano cost/income o combined ratio (Q3) e CET1 o Solvency II (F5), presi dai bilanci. Qui si mettono anche la correzione qualitativa (al massimo ±10 punti, sempre motivata) e la tesi personale.",
+            "Indicatori principali: P/E (sugli ultimi 12 mesi e prospettico), rendimento da dividendo, EV/EBITDA, rendimento sul capitale, margine operativo, debito netto / EBITDA, crescita dei ricavi. Sono nello SCREENER (filtrabili), nella SCHEDA accanto alla mediana dei titoli confrontabili, e i due più usati (P/E prospettico e dividendo) nelle liste del CRUSCOTTO.",
             "QUALITA_DATI: esito dei controlli su ogni titolo e note sulle scelte fatte sui dati della fonte. Un titolo 'DA VERIFICARE' va controllato prima di fidarsi dei suoi punteggi.",
         ]),
         ("Gli altri fogli", [

@@ -143,6 +143,9 @@ class Tab:
                 if callable(modello):
                     v = modello(tk)
                     c.value = ND if v is None else v
+                elif tipo == "matrice":
+                    from openpyxl.worksheet.formula import ArrayFormula
+                    c.value = ArrayFormula(c.coordinate, self.risolvi(modello, r))
                 else:
                     c.value = self.risolvi(modello, r)
                 c.font = car({"dato": BLU, "link": VERDE}.get(tipo, NERO))
@@ -411,7 +414,9 @@ def campi_dati() -> list[tuple]:
           ("flusso_ps", "Flusso normalizzato per azione (valuta di quotazione)", F_NUM),
           ("cassa_netta_ps", "Cassa netta per azione", F_NUM), ("tbv_ps", "Patrimonio tangibile per azione", F_NUM),
           ("debito_netto_q", "Debito netto (valuta di quotazione)", F_INT), ("ebitda_q", "EBITDA ordinario (valuta di quotazione)", F_INT),
-          ("eps_atteso", "Utile per azione atteso dal consenso", F_NUM), ("margine_ultimo", "Margine operativo ultimo esercizio", F_PCT),
+          ("eps_atteso", "Utile per azione atteso dal consenso", F_NUM),
+          ("utile_ttm_ps", "Utile per azione degli ultimi 12 mesi (valuta di quotazione)", F_NUM),
+          ("div_12m", "Dividendi per azione staccati negli ultimi 12 mesi", "0.0000"), ("margine_ultimo", "Margine operativo ultimo esercizio", F_PCT),
           ("margine_medio_prec", "Margine operativo medio precedente", F_PCT), ("var_ricavi_ultimo", "Variazione ricavi ultimo esercizio", F_PCT),
           ("fcf_ultimo", "Free cash flow ultimo esercizio (valuta di bilancio)", F_INT),
           ("avviamento_su_patr", "Avviamento e immateriali / patrimonio", F_PCT)]

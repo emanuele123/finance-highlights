@@ -4,6 +4,7 @@ from __future__ import annotations
 from datetime import date
 
 from openpyxl.styles import Alignment
+from openpyxl.worksheet.formula import ArrayFormula
 from openpyxl.utils import get_column_letter
 
 from .calcola import ORIZZONTI
@@ -14,6 +15,26 @@ from .parametri import METRICHE_A, NOMI_METRICHE
 ALLERTE = [("a_fond", "Fondamentali in deterioramento"), ("a_deb", "Debito eccessivo"),
            ("a_vol", "Volatilità o ribasso a un anno elevati"), ("a_dati", "Dati vecchi o da verificare"),
            ("a_liq", "Scambi sotto la soglia")]
+# indicatori confrontabili tra tutti i titoli di un settore, anche di modello diverso (mediane nel foglio SETTORI)
+CONFRONTABILI = ("pe_ttm", "pe_fwd", "div_yield")
+
+# indicatori principali: chiave, intestazione, formula (nello SCREENER), formato, limite oltre il quale il valore
+# e' un segnaposto convenzionale (99 = EBITDA negativo per la leva, 999 = EBITDA negativo per il multiplo)
+# escluso dalla mediana di settore
+INDICATORI = [
+    ("pe_ttm", "P/E sugli utili degli ultimi 12 mesi",
+     '=IF(COUNT({prezzo},{D:utile_ttm_ps})=2,IF(AND({D:utile_ttm_ps}>0,{prezzo}>0),{prezzo}/{D:utile_ttm_ps},"n.d."),"n.d.")', "0.0", None),
+    ("pe_fwd", "P/E prospettico (utili attesi dal consenso)", "={B:v_V4}", "0.0", None),
+    ("div_yield", "Rendimento da dividendo (dividendi degli ultimi 12 mesi / prezzo)",
+     '=IF(COUNT({prezzo},{D:div_12m})=2,IF({prezzo}>0,{D:div_12m}/{prezzo},"n.d."),"n.d.")', "0.0%", None),
+    ("multiplo", "EV/EBITDA (banche e assicurazioni: prezzo / patrimonio tangibile; 999 = EBITDA negativo)", "={B:v_V3}", "0.0", 999),
+    ("rend_cap", "Rendimento sul capitale medio (ROIC; banche e assicurazioni: ROE)", "={B:v_Q1}", "0.0%", None),
+    ("margine_op", "Margine operativo medio (banche: cost/income; assicurazioni: combined ratio, da GIUDIZI)", "={B:v_Q3}", "0.0%", None),
+    ("leva", "Debito netto / EBITDA (banche e assicurazioni: patrimonio / attivo; 99 = EBITDA negativo)", "={B:v_F1}", "0.00", 99),
+    ("crescita", "Crescita annua dei ricavi (banche e assicurazioni: patrimonio per azione più dividendi)", "={B:v_G1}", "0.0%", None),
+]
+COL_MEDIANE = 7                # prima colonna delle mediane nel foglio SETTORI (G)
+
 NOMI_ORIZZONTI = {"1m": "1 mese", "3m": "3 mesi", "6m": "6 mesi", "1a": "1 anno", "5a": "5 anni", "10a": "10 anni"}
 
 
@@ -41,6 +62,19 @@ def foglio_screener(lib: Libro, tickers: list[str]):
     t.col("margine", "Margine di sicurezza", "={B:margine}", F_PCT, "link")
     t.col("prezzo_acq", "Prezzo d'acquisto", "={B:prezzo_acq}", F_NUM, "link")
     t.col("valore", "Valore intrinseco base", "={B:valore_base}", F_NUM, "link")
+    for k, h, f, fmt, _ in INDICATORI:
+        t.col(k, h, f, fmt, "link" if f.startswith("={B:") else "formula", 11)
+    # mediana dei titoli confrontabili: stesso settore e stesso tipo (banche e assicurazioni da una parte, il resto dall'altra),
+    # perche' per i finanziari alcuni indicatori hanno un significato diverso
+    t.col("fin", "Banca o assicurazione (1 = sì)", '=IF(OR({modello}="BAN",{modello}="ASS"),1,0)', "0", "formula", 8)
+    t.col("n_pari", "Titoli confrontabili (stesso settore e stesso tipo)",
+          "=SUMPRODUCT(({R:settore}={settore})*({R:fin}={fin}))", "0", "formula", 9)
+    for k, h, _f, fmt, lim in INDICATORI:
+        x = "{R:" + k + "}"
+        t.col("med_" + k, "Mediana dei confrontabili: " + h.split(" (")[0],
+              f'=IF(SUMPRODUCT(({{R:settore}}={{settore}})*({{R:fin}}={{fin}})*ISNUMBER({x}))=0,"n.d.",'
+              f'IFERROR(MEDIAN(IF({{R:settore}}={{settore}},IF({{R:fin}}={{fin}},IF(ISNUMBER({x}),IF({x}<{lim or "1E+99"},{x}))))),"n.d."))',
+              fmt, "matrice", 11)
     t.col("trading", "TRADING SCORE", "={T:punteggio}", F_PUNTI, "link", 12)
     t.col("trend", "Trend", "={T:stato_trend}", None, "link", 10)
     t.col("segnale", "Segnale", "={T:segnale}", None, "link", 15)
@@ -205,6 +239,22 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
         r += 1
         riga(r, 1, et, f, fmt)
     r += 2
+    sezione(r, 1, "Indicatori principali (a confronto con i titoli dello stesso settore e dello stesso tipo)")
+    ws.cell(r, 3, "Mediana dei confrontabili").font = car(NERO, True, 9)
+    c = ws.cell(r, 4, '=' + look("S", "n_pari") + '&" titoli"')
+    c.font = car(VERDE, dim=9)
+    for k, h, _f, fmt, _lim in INDICATORI:
+        r += 1
+        riga(r, 1, h, look("S", k), fmt)
+        ws.cell(r, 2).alignment = Alignment(horizontal="right")
+        c = ws.cell(r, 3, "=" + look("S", "med_" + k))
+        c.font, c.number_format = car(VERDE), fmt
+        c.alignment = Alignment(horizontal="right")
+    r += 1
+    _n = ws.cell(r, 1, "Un indicatore da solo inganna: un P/E basso può voler dire 'a buon mercato' oppure 'il mercato si aspetta "
+                       "utili in calo'. I punteggi ne combinano diciannove.")
+    _n.font = car("595959", corsivo=True, dim=9)
+    r += 1
     sezione(r, 1, "Strategia A - Buffett Score (qualità e valore)")
     for et, f, fmt, g in (("BUFFETT SCORE", look("B", "punteggio"), F_PUNTI, True), ("Classe di qualità", look("B", "classe"), None, True),
                           ("Verdetto", look("B", "verdetto"), None, True), ("Qualità composita", look("B", "qc"), F_PUNTI, False),
@@ -343,12 +393,13 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
                 "non sono previsioni. Due strategie, due classifiche, mai fuse.")
     ws["D2"].font = car("595959", corsivo=True, dim=9)
     S, B, T = lib.tab["SCREENER"], lib.tab["BUFFETT"], lib.tab["TRADING"]
-    profilo = [("Settore", lib.tab["DATI"], "settore", None), ("Cosa fa in breve", lib.tab["DATI"], "descrizione", None)]
-    ws.column_dimensions["M"].width = 30
-    ws.column_dimensions["N"].width = 30
+    profilo = [("P/E prospettico", S, "pe_fwd", "0.0"), ("Rendimento da dividendo", S, "div_yield", "0.0%"),
+               ("Settore", lib.tab["DATI"], "settore", None), ("Cosa fa in breve", lib.tab["DATI"], "descrizione", None)]
+    for col, w in (("M", 26), ("N", 26), ("O", 28), ("P", 60)):
+        ws.column_dimensions[col].width = w
 
     def fascia(r, testo):
-        for j in range(2, 15):
+        for j in range(2, 17):
             ws.cell(r, j).fill = FASCIA
         ws.cell(r, 2, testo).font = car(NERO, True, 11)
 
@@ -421,11 +472,15 @@ def foglio_settori(lib: Libro, settori: list[str]):
     ws = lib.foglio("SETTORI")
     titolo_foglio(ws, "SETTORI - come funziona ogni mercato",
                   "Descrizioni generali scritte a mano, non provenienti dalle fonti dati e non riferite a un singolo titolo. "
-                  "I testi si modificano nel foglio PARAMETRI.")
+                  "I testi si modificano nel foglio PARAMETRI. Altri indicatori (multipli, rendimento sul capitale, leva) "
+                  "hanno un significato diverso per banche e assicurazioni: il confronto è nella SCHEDA, tra titoli dello stesso tipo.")
     S = lib.tab["SCREENER"]
     for j, (h, w) in enumerate((("Settore", 28), ("Titoli nell'universo", 10), ("Come funziona il mercato", 95),
                                 ("Rischi tipici", 60), ("Buffett Score medio", 11), ("Trading Score medio", 11)), 1):
         testata(ws, 2, j, h, w)
+    ws.row_dimensions[2].height = 66
+    for j, (k, h, _f, fmt, _lim) in enumerate(i for i in INDICATORI if i[0] in CONFRONTABILI):
+        testata(ws, 2, COL_MEDIANE + j, "Mediana di tutti i titoli del settore: " + h, 14)
     for i, sett in enumerate(settori):
         r = R0 + i
         ws.cell(r, 1, sett).font = car(NERO, True)
@@ -437,7 +492,15 @@ def foglio_settori(lib: Libro, settori: list[str]):
             c = ws.cell(r, j, f'=IF(COUNTIFS({S.rng("settore")},$A{r},{S.rng(k)},">=0")>0,'
                               f'AVERAGEIF({S.rng("settore")},$A{r},{S.rng(k)}),"n.d.")')
             c.font, c.number_format = car(), F_PUNTI
-        for j in range(1, 7):
-            ws.cell(r, j).alignment = Alignment(wrap_text=True, vertical="top", horizontal="right" if j in (2, 5, 6) else "left")
+        for j, (k, _h, _f, fmt, lim) in enumerate(i for i in INDICATORI if i[0] in CONFRONTABILI):
+            col = COL_MEDIANE + j
+            x = S.rng(k)
+            cond = f"IF({S.rng('settore')}=$A{r},IF(ISNUMBER({x}),IF({x}<{lim or '1E+99'},{x})))"
+            cella = f"{get_column_letter(col)}{r}"
+            ws[cella] = ArrayFormula(cella, f'=IF(SUMPRODUCT(({S.rng("settore")}=$A{r})*ISNUMBER({x}))=0,"n.d.",'
+                                            f'IFERROR(MEDIAN({cond}),"n.d."))')
+            ws[cella].font, ws[cella].number_format = car(), fmt
+        for j in range(1, COL_MEDIANE + len(CONFRONTABILI)):
+            ws.cell(r, j).alignment = Alignment(wrap_text=True, vertical="top", horizontal="left" if j in (1, 3, 4) else "right")
         ws.row_dimensions[r].height = 92
     ws.freeze_panes = "B3"

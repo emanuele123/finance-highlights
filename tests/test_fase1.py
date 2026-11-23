@@ -4,6 +4,7 @@ import zipfile
 from datetime import date
 
 import numpy as np
+import pytest
 import pandas as pd
 
 from gsi import db
@@ -35,7 +36,8 @@ def _storico():
 def test_storico_centesimi_e_ultima_seduta():
     r = yahoo.normalizza_storico(_storico(), True)
     assert len(r) == 2                                   # la seduta senza chiusura e' scartata
-    assert r[0][0] == "2026-11-18" and abs(r[0][4] - 12.92) < 1e-9 and abs(r[0][5] - 12.85) < 1e-9
+    assert r[0][0] == "2026-11-18" and abs(r[0][4] - 12.92) < 1e-9
+    assert abs(r[0][5] - 12.92 * (1 - 0.075 / 12.92)) < 1e-9          # total return ricostruito, non l'Adj Close di Yahoo
     assert abs(r[1][7] - 0.075) < 1e-12                  # dividendo in sterline, non in pence
     meta = {"regularMarketPrice": 1234.0, "regularMarketTime": pd.Timestamp("2026-11-20 18:03", tz="Europe/London")}
     r = yahoo.normalizza_storico(_storico(), True, meta)
@@ -44,6 +46,14 @@ def test_storico_centesimi_e_ultima_seduta():
     assert len(yahoo.normalizza_storico(_storico(), True, meta)) == 2
     assert yahoo.normalizza_storico(_storico(), False)[0][4] == 1292.0
     assert yahoo.normalizza_storico(pd.DataFrame(), False) == []
+
+
+def test_total_return_ricostruito():
+    righe = [("a", 0, 0, 0, 100.0, 0, 0, 0.0, 0), ("b", 0, 0, 0, 98.0, 0, 0, 2.0, 0), ("c", 0, 0, 0, 99.0, 0, 0, 0.0, 0)]
+    r = yahoo.ricalcola_total_return(righe)
+    assert [x[5] for x in r] == [100.0 * 0.98, 98.0, 99.0]
+    assert r[2][5] / r[0][5] - 1 == pytest.approx(99 / 98 - 1)       # rendimento totale: prezzo piu' dividendo
+    assert yahoo.ricalcola_total_return([]) == []
 
 
 def test_prospetto_scarta_i_vuoti():
