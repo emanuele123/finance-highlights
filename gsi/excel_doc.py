@@ -80,6 +80,11 @@ def foglio_metodologia(lib: Libro):
             "Banche e assicurazioni: patrimonio tangibile per azione + valore attuale di 10 anni di extra-rendimento (ROE - rendimento richiesto), con patrimonio che cresce di min(tetto, ROE x (1 - payout)). Mai sotto zero.",
             "Ogni passaggio è una colonna del foglio VALUTAZIONE.",
         ]),
+        ("Perché questo verdetto (testo automatico)", [
+            "Per ogni titolo un testo spiega il verdetto della strategia A usando solo i numeri del Buffett Score: classe e qualità composita; punti di forza (metriche con almeno 80 punti) e punti deboli (al massimo 30 punti), soglie modificabili in PARAMETRI; prezzo contro valore stimato nei tre scenari, margine di sicurezza e prezzo d'acquisto; correzione qualitativa e segnali di rischio.",
+            "È scritto da formule (colonna nel foglio BUFFETT), quindi cambia da solo se cambiano parametri o giudizi, ed è controllato contro il calcolo del programma come i punteggi.",
+            "Non è un'analisi: non conosce concorrenza, tecnologia, notizie o qualità del management. Un'azienda con bilanci eccellenti e prezzo sceso risulta un acquisto anche se il mercato teme che quei bilanci non si ripeteranno: è il proprio giudizio, nel foglio GIUDIZI, a dover tenere conto di queste cose.",
+        ]),
         ("Strategia B - Trading Score", [
             "Indicatori sui prezzi rettificati per i frazionamenti; rendimenti e momentum sul total return, ricostruito dal programma a partire da chiusure e dividendi (la chiusura rettificata di Yahoo è sbagliata per i titoli quotati in pence e per chi paga dividendi in un'altra valuta). Finestre in sedute: 21, 63, 126, 252. Gli indici di riferimento sono indici di prezzo.",
             "Pilastri e pesi: Trend 25, Momentum 25, Forza relativa 15, Oscillatori 10, Volumi 10, Assetto e rischio 10, Catalizzatori 5. Servono Trend e Momentum e almeno il 70% del peso.",
@@ -150,6 +155,7 @@ def foglio_stato(lib: Libro, ctx: dict):
         ("Versione dimostrativa", "OPERATIVA", "python avvia.py demo: società e dati inventati, etichettati come tali."),
         ("Indicatori tecnici e metriche di bilancio grezze", "CALCOLATI IN PYTHON", "Medie mobili, RSI, MACD, ATR, rendimenti, ROIC, margini, CAGR sono calcolati sullo storico e scritti nel foglio DATI come dati: non si ricalcolano cambiando un parametro. In formula ci sono soglie, pesi, punteggi, valutazione, setup e verdetti."),
         ("Bilanci trimestrali e a 12 mesi", "SCARICATI, NON USATI NEI PUNTEGGI", "Sono nell'archivio; i punteggi usano gli esercizi annuali."),
+        ("Perché questo verdetto (strategia A)", "OPERATIVA", "Testo costruito da formule a partire dai numeri del Buffett Score e controllato contro il calcolo del programma. Descrive i numeri: non considera concorrenza, tecnologia o notizie."),
         ("Promemoria dei rischi di settore", "OPERATIVA", "Testo generico modificabile in PARAMETRI; non è un'analisi del singolo titolo."),
         ("Descrizioni: cosa fa ogni società e come funziona il mercato del settore", "OPERATIVA (testi scritti a mano)", "Non provengono dalle fonti dati: sono descrizioni generali dell'attività redatte per questo strumento, da verificare e correggere se un'azienda cambia mestiere. Quelle di settore si modificano in PARAMETRI."),
     ]
@@ -176,7 +182,7 @@ def foglio_leggimi(lib: Libro, demo: bool):
             "CRUSCOTTO: indicatori di sintesi e cinque liste (migliori di valore, migliori di trading, classe A senza margine, 'Aspetterei' vicini al prezzo d'acquisto, rischi e allerte).",
             "SCREENER: una riga per titolo. Usare le frecce dei filtri nella riga di intestazione (paese, area, settore, fascia di capitalizzazione, punteggi, verdetto, segnale, livello di rischio).",
             "SETTORI: come funziona il mercato di ogni settore, i rischi tipici e i punteggi medi dei suoi titoli. In CRUSCOTTO e SCREENER ogni titolo ha accanto il settore e una riga su che cosa fa.",
-            "SCHEDA: scegliere il titolo dal menu nella cella gialla in alto: compaiono che cosa fa l'azienda, i due punteggi, il valore intrinseco, il setup, i rischi, la performance, le 19 metriche e il grafico a 5 anni.",
+            "SCHEDA: scegliere il titolo dal menu nella cella gialla in alto: compaiono che cosa fa l'azienda, il perché del verdetto secondo la strategia A, i due punteggi, il valore intrinseco, il setup, i rischi, la performance, le 19 metriche e il grafico a 5 anni.",
         ]),
         ("Capire i numeri", [
             "BUFFETT, VALUTAZIONE, TRADING: il calcolo completo, colonna per colonna. METODOLOGIA spiega criteri e pesi.",

@@ -59,6 +59,8 @@ def foglio_screener(lib: Libro, tickers: list[str]):
     t.col("buffett", "BUFFETT SCORE", "={B:punteggio}", F_PUNTI, "link", 12)
     t.col("classe", "Classe di qualità", "={B:classe}", None, "link", 8)
     t.col("verdetto", "Verdetto", "={B:verdetto}", None, "link", 30)
+    t.col("forti", "Punti di forza (strategia A)", "={B:forti}", None, "link", 45)
+    t.col("deboli", "Punti deboli (strategia A)", "={B:deboli}", None, "link", 45)
     t.col("margine", "Margine di sicurezza", "={B:margine}", F_PCT, "link")
     t.col("prezzo_acq", "Prezzo d'acquisto", "={B:prezzo_acq}", F_NUM, "link")
     t.col("valore", "Valore intrinseco base", "={B:valore_base}", F_NUM, "link")
@@ -268,6 +270,21 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
         r += 1
         riga(r, 1, et, f, fmt, g)
     r += 2
+    sezione(r, 1, "Perché questo verdetto, secondo la strategia A")
+    r += 1
+    c = ws.cell(r, 1, "=" + look("B", "motivazione"))
+    c.font = car(VERDE)
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
+    ws.row_dimensions[r].height = 190
+    r += 1
+    c = ws.cell(r, 1, "Il testo descrive solo i numeri (bilanci passati e prezzo di oggi): non vede concorrenza, tecnologia o "
+                      "notizie. Il proprio giudizio va nel foglio GIUDIZI (correzione qualitativa motivata e tesi).")
+    c.font = car("595959", corsivo=True, dim=9)
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
+    ws.row_dimensions[r].height = 26
+    r += 2
     sezione(r, 1, "Valore intrinseco per azione (ipotesi dichiarate)")
     for et, f, fmt in (("Scenario prudente", look("V", "valore_p"), F_NUM), ("Scenario base", look("V", "valore_b"), F_NUM),
                        ("Scenario ottimistico", look("V", "valore_o"), F_NUM),
@@ -448,7 +465,8 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
     r = lista(r, "1. I 10 migliori di valore (Buffett Score)", 10, B, "ordine",
               [("Società", B, "nome", None), ("Buffett Score", B, "punteggio", F_PUNTI), ("Classe", B, "classe", None),
                ("Margine di sicurezza", B, "margine", F_PCT), ("Prezzo", B, "prezzo", F_NUM),
-               ("Prezzo d'acquisto", B, "prezzo_acq", F_NUM), ("Verdetto", B, "verdetto", None)])
+               ("Prezzo d'acquisto", B, "prezzo_acq", F_NUM), ("Verdetto", B, "verdetto", None),
+               ("Punti di forza", B, "forti", None)])
     r = lista(r, "2. I 10 migliori di trading (Trading Score) - ingresso, stop e obiettivo solo se il setup è valido", 10, T, "ordine",
               [("Società", T, "nome", None), ("Trading Score", T, "punteggio", F_PUNTI), ("Segnale", T, "segnale", None),
                ("Ingresso", T, "op_in", F_NUM), ("Stop", T, "op_stop", F_NUM), ("Obiettivo", T, "op_ob", F_NUM),

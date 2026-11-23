@@ -71,6 +71,8 @@ PREDEFINITI = {
     # segnali di rischio
     "rischio_copertura": 3.0, "rischio_diluizione": 0.02, "rischio_avviamento": 0.6,
     "rischio_calo_margine": 0.02, "rischio_payout": 1.0,
+    # testo "perche' questo verdetto": metriche citate come punti di forza / deboli
+    "motivo_forte": 80.0, "motivo_debole": 30.0,
     # strategia B
     "pesi_b": dict(zip(PILASTRI_B, (25, 25, 15, 10, 10, 10, 5))), "copertura_b": 0.70,
     "trend_punti": (30, 25, 20, 15, 10), "trend_rialzista": 70, "trend_ribassista": 40,

@@ -289,7 +289,9 @@ def foglio_parametri(lib: Libro, P: dict, oggi: date):
             ("rischio_diluizione", "Segnale di rischio: crescita annua delle azioni oltre", "0.0%"),
             ("rischio_avviamento", "Segnale di rischio: avviamento e immateriali / patrimonio oltre", "0%"),
             ("rischio_calo_margine", "Segnale di rischio: margine dell'ultimo anno sotto la media di (punti)", "0.0%"),
-            ("rischio_payout", "Segnale di rischio: payout oltre", "0%")]:
+            ("rischio_payout", "Segnale di rischio: payout oltre", "0%"),
+            ("motivo_forte", "Testo 'perché': metrica citata come punto di forza da questi punti", "0"),
+            ("motivo_debole", "Testo 'perché': metrica citata come punto debole fino a questi punti", "0")]:
         scalare(nome, et, [nome], fmt)
 
     sezione("Strategia B - pesi dei pilastri del Trading Score")
@@ -709,6 +711,17 @@ def foglio_buffett(lib: Libro, tickers: list[str]):
     t.col("rischi_grezzo", "Segnali (concatenati)", "=" + "&".join(pezzi), None, "formula", 10)
     t.col("rischi", "Segnali di rischio ricavati dai dati",
           '=IF(LEN({rischi_grezzo})>2,LEFT({rischi_grezzo},LEN({rischi_grezzo})-2),"Nessun segnale")', None, "formula", 50)
+    from . import motivazioni as mz
+    for m in mz.METRICHE_MOTIVO:
+        t.col("fr_" + m, f"Frase {m}", mz.formula_frase(m), None, "formula", 8)
+    t.col("forti_g", "Punti di forza (concatenati)", mz.formula_lista(">=", "{P:motivo_forte}"), None, "formula", 8)
+    t.col("deboli_g", "Punti deboli (concatenati)", mz.formula_lista("<=", "{P:motivo_debole}"), None, "formula", 8)
+    t.col("forti", "Punti di forza", '=IF(LEN({forti_g})>2,LEFT({forti_g},LEN({forti_g})-2),"")', None, "formula", 40)
+    t.col("deboli", "Punti deboli", '=IF(LEN({deboli_g})>2,LEFT({deboli_g},LEN({deboli_g})-2),"")', None, "formula", 40)
+    t.col("mot_q", "Perché: qualità", mz.formula_qualita(), None, "formula", 10)
+    t.col("mot_v", "Perché: valutazione", mz.formula_valutazione(), None, "formula", 10)
+    t.col("motivazione", "PERCHÉ QUESTO VERDETTO (solo dai numeri: non considera concorrenza, tecnologia o notizie)",
+          mz.formula_testo(), None, "formula", 90)
     t.col("ordine", "Posizione in classifica",
           '=IF(ISNUMBER({punteggio}),RANK({punteggio},{R:punteggio})+COUNTIF(' + f"${{L}}${R0}:{{punteggio}}" + ',{punteggio})-1,"")',
           "0", "formula", 9)

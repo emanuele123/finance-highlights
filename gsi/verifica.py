@@ -2,6 +2,7 @@
 LibreOffice in modalita' headless) devono coincidere con quelli calcolati in Python, titolo per titolo.
 Verifica anche che nel file ricalcolato non ci sia alcun errore di formula."""
 from __future__ import annotations
+import re
 import shutil
 import subprocess
 import tempfile
@@ -11,7 +12,7 @@ from openpyxl import load_workbook
 
 from .excel import R0, SIGLE_SCENARI, giudizi_da_gialle, leggi_gialle, parametri_da_gialle
 from .parametri import predefiniti
-from . import punteggi
+from . import motivazioni, punteggi
 
 ERRORI = ("#VALUE!", "#DIV/0!", "#REF!", "#NAME?", "#N/A", "#NUM!", "#NULL!", "Err:")
 
@@ -121,6 +122,11 @@ def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict)
         chk(tk, "prezzo d'acquisto", _py(a["prezzo_acquisto"]), eb["prezzo_acq"])
         chk(tk, "verdetto", a["verdetto"], eb["verdetto"])
         chk(tk, "segnali di rischio", "; ".join(a["rischi"]) or "Nessun segnale", eb["rischi"])
+        mot = motivazioni.motivazione(i, a, P, giudizi.get(tk))
+        xl = lambda v: re.sub(r"(?<=\d),(?=\d)", ".", v) if isinstance(v, str) else v   # virgola decimale  # noqa: E731
+        chk(tk, "punti di forza", mot["forti"], xl(eb["forti"]) or "")
+        chk(tk, "punti deboli", mot["deboli"], xl(eb["deboli"]) or "")
+        chk(tk, "perché questo verdetto", mot["testo"], xl(eb["motivazione"]))
         # --- Trading Score
         for kx, nome in (("trend", "Trend"), ("mom", "Momentum"), ("forza", "Forza relativa"), ("osc", "Oscillatori"),
                          ("vol", "Volumi"), ("ass", "Assetto e rischio"), ("cat", "Catalizzatori")):

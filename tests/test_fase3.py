@@ -81,7 +81,7 @@ def test_zero_errori_e_coincidenza_con_python(ambiente):
     assert wb["SCHEDA"]["A3"].value.startswith("Cosa fa: ")
     sett = {wb["SETTORI"].cell(r, 1).value: wb["SETTORI"].cell(r, 3).value for r in range(3, 20) if wb["SETTORI"].cell(r, 1).value}
     assert len(sett) == len({t.settore for t in UNIVERSO_DEMO}) and all(len(v) > 100 for v in sett.values())
-    assert wb["CRUSCOTTO"]["L14"].value in sett and wb["CRUSCOTTO"]["M14"].value.startswith("Società inventata")                    # settore accanto al primo della lista di valore
+    assert wb["CRUSCOTTO"]["M14"].value in sett and wb["CRUSCOTTO"]["N14"].value.startswith("Società inventata")                    # settore accanto al primo della lista di valore
     assert isinstance(wb["SCHEDA"]["M4"].value, (int, float))        # serie del grafico
 
 

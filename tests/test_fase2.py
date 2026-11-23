@@ -358,3 +358,38 @@ def test_trading_setup_e_regole():
     assert r["A"]["copertura"] == ap(0.95) and r["A"]["punteggio"] is not None
     # prezzo vecchio -> dati insufficienti
     assert pt.trading_universo({"A": _tec(prezzo_vecchio=True)}, P)["A"]["segnale"] == pt.INSUFF
+
+
+# ------------------------------------------------------------------ perche' questo verdetto
+def test_motivazione():
+    from gsi import motivazioni as mz
+    assert [mz.t(x, d) for x, d in ((30.4, 0), (8.0, 1), (8.66, 1), (261.355, 2), (125.5, 2), (-0.04, 1), (2.5, 0))] == \
+           ["30", "8", "8.7", "261.36", "125.5", "0", "3"]
+    assert mz.frase("Q1", 0.30, "STD") == "rendimento sul capitale medio 30%"
+    assert mz.frase("Q1", 0.12, "BAN") == "ROE medio 12%"
+    assert mz.frase("Q3", 0.55, "BAN") == "cost/income 55%" and mz.frase("Q3", 0.95, "ASS") == "combined ratio 95%"
+    assert mz.frase("F1", 99.0, "STD") == "EBITDA negativo" and mz.frase("F1", -0.7, "STD") == "più cassa che debiti"
+    assert mz.frase("F1", 1.234, "STD") == "debito netto pari a 1.2 volte l'EBITDA"
+    assert mz.frase("F1", 0.013, "STD") == "debito netto quasi nullo"
+    assert mz.frase("F2", 99.0, "STD") == "interessi coperti dalla cassa netta"
+    assert mz.frase("F4", 9.99, "STD") == "dividendi non coperti" and mz.frase("F4", 0.6, "REIT") == "dividendi pari al 60% dell'FFO"
+    assert mz.frase("G1", -0.031, "STD") == "ricavi -3.1% l'anno" and mz.frase("G1", 0.1, "STD") == "ricavi +10% l'anno"
+    assert mz.frase("G3", -0.0002, "STD") == "numero di azioni stabile"
+    assert mz.frase("G3", -0.024, "STD") == "azioni in calo del 2.4% l'anno (riacquisti)"
+    b = pt.buffett(_ing(prezzo=10.0), P)
+    m = mz.motivazione(_ing(prezzo=10.0), b, P)
+    assert m["testo"].startswith("Qualità: classe A (") and "per questa strategia è un acquisto." in m["testo"]
+    assert "rendimento sul capitale medio 25%" in m["forti"] and m["deboli"] == ""
+    m = mz.motivazione(_ing(), pt.buffett(_ing(), P), P)
+    assert "per comprare il prezzo dovrebbe scendere a" in m["testo"]
+    q = _ing(Q1=0.06, Q2=0.0, Q3=0.05, Q4=0.06, Q5=0.5, Q6=0.2, F1=4.0, F2=2.0, F3=0.4, F4=1.0, G1=0.0, G2=0.0, G3=0.03, G4=0.05)
+    m = mz.motivazione(q, pt.buffett(q, P), P)
+    assert "non è abbastanza buona a nessun prezzo" in m["testo"] and "Punti di forza: nessuno in particolare." in m["testo"]
+    n = _ing(flusso_ps=-2.0)
+    assert "non è stimabile" in mz.motivazione(n, pt.buffett(n, P), P)["testo"]
+    s = _ing(G1=None, G2=None)
+    assert "pilastri: Crescita e allocazione del capitale." in mz.motivazione(s, pt.buffett(s, P), P)["testo"]
+    c = mz.motivazione(_ing(), pt.buffett(_ing(), P, {"correzione": -4}), P, {"correzione": -4, "motivazione": "concorrenza"})
+    assert "Correzione qualitativa: -4 punti (concorrenza)." in c["testo"]
+    r = _ing(F1=5.0)
+    assert mz.motivazione(r, pt.buffett(r, P), P)["testo"].endswith("Segnali di rischio: Leva finanziaria alta.")
