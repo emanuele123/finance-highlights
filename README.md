@@ -76,7 +76,8 @@ con Yahoo sugli esercizi in comune.
   Guardare i titoli "DA VERIFICARE" (anche nel foglio QUALITA_DATI). Chiudere Excel prima di lanciare il comando.
 - **Ogni trimestre**: dati manuali di banche e assicurazioni in GIUDIZI; `python avvia.py backtest`;
   `pip install -U yfinance` (Yahoo cambia spesso e la libreria si adegua).
-- **Ogni anno**: rendimenti richiesti per valuta in PARAMETRI; descrizioni di società e settori.
+- **Ogni anno** (o dopo fatti rilevanti): rendimenti richiesti per valuta in PARAMETRI; descrizioni di società e settori;
+  giudizi di prevedibilità a 10 anni (file `gsi/dati_prevedibilita.json`, redatti il 23/11/2026 con ricerca su internet).
 
 | Sintomo | Causa probabile | Cosa fare |
 |---|---|---|

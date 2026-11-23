@@ -59,6 +59,7 @@ def foglio_screener(lib: Libro, tickers: list[str]):
     t.col("buffett", "BUFFETT SCORE", "={B:punteggio}", F_PUNTI, "link", 12)
     t.col("classe", "Classe di qualità", "={B:classe}", None, "link", 8)
     t.col("verdetto", "Verdetto", "={B:verdetto}", None, "link", 30)
+    t.col("prev", "Prevedibilità a 10 anni", "={B:prev}", None, "link", 11)
     t.col("forti", "Punti di forza (strategia A)", "={B:forti}", None, "link", 45)
     t.col("deboli", "Punti deboli (strategia A)", "={B:deboli}", None, "link", 45)
     t.col("margine", "Margine di sicurezza", "={B:margine}", F_PCT, "link")
@@ -285,6 +286,29 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
     ws.row_dimensions[r].height = 26
     r += 2
+    sezione(r, 1, "Prevedibilità a 10 anni (opinione, non dato)")
+    righe_pv = [("Giudizio usato", f'{look("B", "prev")}&" ("&{look("B", "prev_fonte")}&")"', 16),
+                ("Giudizio di Claude", look("PV", "livello"), 16),
+                ("Vantaggio competitivo", look("PV", "fossato"), 44), ("Minaccia principale", look("PV", "minaccia"), 44),
+                ("Fatti recenti dalla ricerca", look("PV", "fatti"), 56), ("Che cosa farebbe cambiare il giudizio", look("PV", "cambio"), 44),
+                ("Fonti", look("PV", "fonti"), 70)]
+    for et, f, h in righe_pv:
+        r += 1
+        ws.cell(r, 1, et).font = car()
+        c = ws.cell(r, 2, "=" + f)
+        c.font = car(VERDE)
+        c.alignment = Alignment(wrap_text=True, vertical="top")
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=4)
+        ws.row_dimensions[r].height = h
+    r += 1
+    c = ws.cell(r, 1, "Il giudizio è un'opinione redatta da Claude dopo una ricerca su internet (data e fonti nel foglio PREVEDIBILITA). "
+                      "Conta nel verdetto: 'Media' chiede 15 punti di margine in più, 'Bassa' porta a 'troppo difficile da prevedere'. "
+                      "Per cambiarlo scrivere il proprio giudizio nel foglio GIUDIZI.")
+    c.font = car("595959", corsivo=True, dim=9)
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
+    ws.row_dimensions[r].height = 38
+    r += 2
     sezione(r, 1, "Valore intrinseco per azione (ipotesi dichiarate)")
     for et, f, fmt in (("Scenario prudente", look("V", "valore_p"), F_NUM), ("Scenario base", look("V", "valore_b"), F_NUM),
                        ("Scenario ottimistico", look("V", "valore_o"), F_NUM),
@@ -466,7 +490,7 @@ def foglio_cruscotto(lib: Libro, demo: bool = False):
               [("Società", B, "nome", None), ("Buffett Score", B, "punteggio", F_PUNTI), ("Classe", B, "classe", None),
                ("Margine di sicurezza", B, "margine", F_PCT), ("Prezzo", B, "prezzo", F_NUM),
                ("Prezzo d'acquisto", B, "prezzo_acq", F_NUM), ("Verdetto", B, "verdetto", None),
-               ("Punti di forza", B, "forti", None)])
+               ("Prevedibilità a 10 anni", B, "prev", None), ("Punti di forza", B, "forti", None)])
     r = lista(r, "2. I 10 migliori di trading (Trading Score) - ingresso, stop e obiettivo solo se il setup è valido", 10, T, "ordine",
               [("Società", T, "nome", None), ("Trading Score", T, "punteggio", F_PUNTI), ("Segnale", T, "segnale", None),
                ("Ingresso", T, "op_in", F_NUM), ("Stop", T, "op_stop", F_NUM), ("Obiettivo", T, "op_ob", F_NUM),

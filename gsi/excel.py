@@ -92,7 +92,8 @@ class Tab:
       {PM:nome}      parametro per modello: INDEX(riga dei modelli, indice del modello)
       {R:chiave}     intervallo assoluto dell'intera colonna in questo foglio
     """
-    SIGLE = {"D": "DATI", "V": "VALUTAZIONE", "B": "BUFFETT", "T": "TRADING", "G": "GIUDIZI", "S": "SCREENER"}
+    SIGLE = {"D": "DATI", "V": "VALUTAZIONE", "B": "BUFFETT", "T": "TRADING", "G": "GIUDIZI", "S": "SCREENER",
+             "PV": "PREVEDIBILITA"}
 
     def __init__(self, libro: Libro, nome: str, titolo: str, sotto: str = ""):
         self.libro, self.nome = libro, nome
@@ -291,7 +292,10 @@ def foglio_parametri(lib: Libro, P: dict, oggi: date):
             ("rischio_calo_margine", "Segnale di rischio: margine dell'ultimo anno sotto la media di (punti)", "0.0%"),
             ("rischio_payout", "Segnale di rischio: payout oltre", "0%"),
             ("motivo_forte", "Testo 'perché': metrica citata come punto di forza da questi punti", "0"),
-            ("motivo_debole", "Testo 'perché': metrica citata come punto debole fino a questi punti", "0")]:
+            ("motivo_debole", "Testo 'perché': metrica citata come punto debole fino a questi punti", "0"),
+            ("prev_margine_media", "Prevedibilità a 10 anni 'Media': margine di sicurezza richiesto in più", "0%"),
+            ("prev_crescita_media", "Prevedibilità 'Media': quota della crescita futura riconosciuta", "0%"),
+            ("prev_crescita_bassa", "Prevedibilità 'Bassa': quota della crescita futura riconosciuta (il verdetto è comunque 'troppo difficile da prevedere')", "0%")]:
         scalare(nome, et, [nome], fmt)
 
     sezione("Strategia B - pesi dei pilastri del Trading Score")
@@ -468,6 +472,33 @@ def foglio_dati(lib: Libro, ingressi: dict, titoli: dict):
     return t
 
 
+def foglio_prevedibilita(lib: Libro, tickers: list[str], scrivi: bool = True):
+    """Giudizi di prevedibilita' a 10 anni redatti da Claude dopo una ricerca su internet: opinioni, non dati."""
+    from .prevedibilita import DATA_GIUDIZIO, PREVEDIBILITA
+    t = Tab(lib, "PREVEDIBILITA", "PREVEDIBILITÀ A 10 ANNI - giudizi di Claude",
+            f"Opinioni redatte da Claude il {DATA_GIUDIZIO[8:10]}/{DATA_GIUDIZIO[5:7]}/{DATA_GIUDIZIO[:4]} dopo una ricerca su internet "
+            "(fonti a destra), non dati. Contano subito nel verdetto della strategia A; per cambiarli scrivere il proprio giudizio "
+            "nel foglio GIUDIZI.")
+    pv = lambda tk, k: (PREVEDIBILITA.get(tk) or {}).get(k)  # noqa: E731
+
+    def fonti(tk):
+        f = pv(tk, "fonti") or []
+        return "; ".join(f"{x.get('titolo', '')} ({x.get('data', 'senza data')}): {x.get('url', '')}" for x in f) or None
+    t.col("ticker", "Ticker", lambda tk: tk, None, "dato", 11)
+    t.col("nome", "Società", "={D:nome}", None, "link", 22)
+    t.col("livello", "Giudizio di Claude", lambda tk: pv(tk, "livello"), None, "dato", 10)
+    t.col("usato", "Giudizio usato (tuo se presente in GIUDIZI)", "={G:prev_usata}", None, "link", 10)
+    t.col("fossato", "Da cosa è fatto il vantaggio competitivo", lambda tk: pv(tk, "fossato"), None, "dato", 45)
+    t.col("minaccia", "Minaccia principale ai prossimi 10 anni", lambda tk: pv(tk, "minaccia"), None, "dato", 45)
+    t.col("fatti", "Fatti recenti trovati nella ricerca (con la data)", lambda tk: pv(tk, "fatti_recenti"), None, "dato", 55)
+    t.col("cambio", "Che cosa farebbe cambiare il giudizio", lambda tk: pv(tk, "cambierebbe_idea"), None, "dato", 45)
+    t.col("fonti", "Fonti (titolo, data, indirizzo)", fonti, None, "dato", 70)
+    t.col("revisione", "Note di revisione", lambda tk: pv(tk, "revisione") or "-", None, "dato", 40)
+    if scrivi:
+        t.scrivi(tickers)
+    return t
+
+
 def foglio_giudizi(lib: Libro, ingressi: dict, giudizi: dict):
     t = Tab(lib, "GIUDIZI", "GIUDIZI", "Dati manuali (celle gialle). Per banche e assicurazioni non esiste una fonte gratuita via API "
                                        "per cost/income, combined ratio, CET1 e Solvency II: vanno copiati dai bilanci.")
@@ -483,7 +514,23 @@ def foglio_giudizi(lib: Libro, ingressi: dict, giudizi: dict):
     t.col("avviso", "Controllo", '=IF(AND(ISNUMBER({correzione}),{correzione}<>0,{motivazione}=""),"Manca la motivazione",'
                                  'IF(AND(OR({modello}="BAN",{modello}="ASS"),NOT(ISNUMBER({Q3})),NOT(ISNUMBER({F5}))),'
                                  '"Dati manuali da inserire","-"))', None, "formula", 24)
+    t.col("prev_claude", "Prevedibilità a 10 anni: giudizio di Claude (vedi foglio PREVEDIBILITA)", "={PV:livello}", None, "link", 16)
+    t.col("prevedibilita", "Prevedibilità a 10 anni: tuo giudizio (Alta, Media o Bassa; vuoto = vale quello di Claude)",
+          lambda tk: g(tk, "prevedibilita"), None, "giallo", 22)
+    ok = '{s}="Alta",{s}="Media",{s}="Bassa"'
+    t.col("prev_usata", "Prevedibilità usata nei calcoli",
+          '=IF(UPPER({prevedibilita})="ALTA","Alta",IF(UPPER({prevedibilita})="MEDIA","Media",IF(UPPER({prevedibilita})="BASSA","Bassa",'
+          'IF(OR(' + ok.format(s="{prev_claude}") + '),{prev_claude},"n.d."))))', None, "formula", 12)
+    t.col("prev_fonte", "Da chi viene il giudizio usato",
+          '=IF(OR(UPPER({prevedibilita})="ALTA",UPPER({prevedibilita})="MEDIA",UPPER({prevedibilita})="BASSA"),"tuo giudizio",'
+          'IF(OR(' + ok.format(s="{prev_claude}") + '),"giudizio di Claude","nessun giudizio"))', None, "formula", 16)
     t.scrivi(list(ingressi))
+    from openpyxl.worksheet.datavalidation import DataValidation
+    dv = DataValidation(type="list", formula1='"Alta,Media,Bassa"', allow_blank=True)
+    dv.error, dv.errorTitle = "Scrivere Alta, Media o Bassa, oppure lasciare vuoto", "Valore non valido"
+    t.ws.add_data_validation(dv)
+    L = t.cols["prevedibilita"]
+    dv.add(f"{L}{R0}:{L}{lib.r1}")
     t.ws["J1"] = "Solo per i modelli BAN e ASS i campi Q3 e F5 sono usati nei punteggi."
     t.ws["J1"].font = car("595959", corsivo=True, dim=9)
     return t
@@ -564,6 +611,9 @@ def foglio_valutazione(lib: Libro, tickers: list[str]):
     t.col("roe_norm", "ROE normalizzato", "={D:roe_norm}", F_PCT, "link")
     t.col("f4", "Payout (dato)", "={D:F4}", "0.00", "link")
     t.col("payout", "Payout usato (finanziari)", "=IF(ISNUMBER({f4}),MAX(0,MIN(1,{f4})),{P:payout_predefinito})", "0.00")
+    t.col("prev", "Prevedibilità a 10 anni usata", "={G:prev_usata}", None, "link", 9)
+    t.col("fprev", "Quota della crescita riconosciuta per la prevedibilità",
+          '=IF({prev}="Media",{P:prev_crescita_media},IF({prev}="Bassa",{P:prev_crescita_bassa},1))', "0%", "formula", 9)
     t.col("attf", "Finanziario calcolabile", "=IF(AND({fin}=1,ISNUMBER({tbv}),ISNUMBER({roe_norm})),1,0)", "0", "formula", 9)
     n = "{P:anni_fase}"
     for scen, s in SIGLE_SCENARI.items():
@@ -573,7 +623,7 @@ def foglio_valutazione(lib: Libro, tickers: list[str]):
         t.col(f"r_{s}", e + "rendimento richiesto", f"={{r0}}+{{extra}}+{delta}", F_PCT)
         t.col(f"gT_{s}", e + "crescita terminale", f"=MIN({{g0}},{c('r')}-{{P:distanza_terminale}})", F_PCT)
         t.col(f"g1_{s}", e + "crescita fase 1",
-              f'=IF(ISNUMBER({{crescita}}),IF({{crescita}}>0,{{crescita}}*{q},{{crescita}}*(2-{q})),"n.d.")', F_PCT)
+              f'=IF(ISNUMBER({{crescita}}),IF({{crescita}}>0,{{crescita}}*{q}*{{fprev}},{{crescita}}*(2-{q})),"n.d.")', F_PCT)
         t.col(f"g2_{s}", e + "crescita fase 2", f'=IF(ISNUMBER({c("g1")}),({c("g1")}+{c("gT")})/2,"n.d.")', F_PCT)
         t.col(f"f0_{s}", e + "flusso di partenza per azione",
               f'=IF(AND({{fin}}=0,ISNUMBER({{flusso_ps}}),ISNUMBER({{crescita}})),{{flusso_ps}}*{{quota}}*{fatt},"n.d.")', F_NUM)
@@ -593,7 +643,8 @@ def foglio_valutazione(lib: Libro, tickers: list[str]):
               f'=IF({c("att")}=1,{{P:quota_cassa_netta}}*MAX(0,IF(ISNUMBER({{cassa_ps}}),{{cassa_ps}},0)),"n.d.")', F_NUM)
         t.col(f"roe_{s}", e + "ROE dello scenario (finanziari)", f'=IF({{attf}}=1,{{roe_norm}}*{fatt},"n.d.")', F_PCT)
         t.col(f"gB_{s}", e + "crescita del patrimonio (finanziari)",
-              f'=IF({{attf}}=1,MIN({{PM:tetto_crescita}},{c("roe")}*(1-{{payout}})),"n.d.")', F_PCT)
+              f'=IF({{attf}}=1,IF(MIN({{PM:tetto_crescita}},{c("roe")}*(1-{{payout}}))>0,'
+              f'MIN({{PM:tetto_crescita}},{c("roe")}*(1-{{payout}}))*{{fprev}},MIN({{PM:tetto_crescita}},{c("roe")}*(1-{{payout}}))),"n.d.")', F_PCT)
         t.col(f"qf_{s}", e + "fattore annuo (finanziari)", f'=IF({{attf}}=1,(1+{c("gB")})/(1+{c("r")}),"n.d.")', "0.0000")
         t.col(f"extra_{s}", e + "valore attuale dell'extra-rendimento (finanziari)",
               f'=IF({{attf}}=1,({c("roe")}-{c("r")})*{{tbv}}/(1+{c("r")})*IF(ABS({c("qf")}-1)<1E-12,2*{n},'
@@ -685,14 +736,20 @@ def foglio_buffett(lib: Libro, tickers: list[str]):
           "0.000", "formula", 10)
     t.col("punteggio", "BUFFETT SCORE", '=IF(ISNUMBER({grezzo}),ROUND({grezzo},1),"Dati insufficienti")', F_PUNTI, "formula", 12)
     t.col("margine", "Margine di sicurezza", "={v_V1}", F_PCT, "formula", 10)
-    t.col("richiesto", "Margine richiesto", '=IF({classe}="A",{P:margine_a},IF({classe}="B",{P:margine_b},"n.d."))', "0%", "formula", 9)
+    t.col("prev", "Prevedibilità a 10 anni", "={G:prev_usata}", None, "link", 10)
+    t.col("prev_fonte", "Da chi viene il giudizio di prevedibilità", "={G:prev_fonte}", None, "link", 14)
+    t.col("minaccia", "Minaccia principale (giudizio di Claude)", "={PV:minaccia}", None, "link", 30)
+    X = 'IF({prev}="Media",{P:prev_margine_media},0)'
+    t.col("richiesto", "Margine richiesto (classe e prevedibilità)",
+          '=IF({classe}="A",{P:margine_a}+' + X + ',IF({classe}="B",{P:margine_b}+' + X + ',"n.d."))', "0%", "formula", 9)
     t.col("prezzo_acq", "Prezzo d'acquisto",
-          '=IF(AND({vecchio}=0,ISNUMBER({qc}),ISNUMBER({richiesto}),ISNUMBER({valore_base}),ISNUMBER({prezzo})),'
+          '=IF(AND({vecchio}=0,ISNUMBER({qc}),ISNUMBER({richiesto}),ISNUMBER({valore_base}),ISNUMBER({prezzo}),{prev}<>"Bassa"),'
           'IF({prezzo}>0,{valore_base}*(1-{richiesto}),"n.d."),"n.d.")', F_NUM, "formula", 11)
     t.col("verdetto", "Verdetto",
           '=IF(OR({vecchio}=1,NOT(ISNUMBER({qc}))),"Dati insufficienti",IF({classe}="C","Non comprerei: qualità insufficiente",'
+          'IF({prev}="Bassa","Non comprerei: troppo difficile da prevedere",'
           'IF({valore_base}="n.s.","Non comprerei: valore non stimabile",IF(ISNUMBER({prezzo_acq}),'
-          'IF({prezzo}<{prezzo_acq},"Comprerei","Aspetterei"),"Dati insufficienti"))))', None, "formula", 32)
+          'IF({prezzo}<{prezzo_acq},"Comprerei","Aspetterei"),"Dati insufficienti")))))', None, "formula", 32)
     # --- segnali di rischio
     t.col("r_leva", "Rischio: leva alta / patrimonio sottile", "=IF(ISNUMBER({p_F1}),IF({p_F1}=0,1,0),0)", "0", "formula", 8)
     t.col("r_marg", "Rischio: margini in calo",
@@ -719,6 +776,7 @@ def foglio_buffett(lib: Libro, tickers: list[str]):
     t.col("forti", "Punti di forza", '=IF(LEN({forti_g})>2,LEFT({forti_g},LEN({forti_g})-2),"")', None, "formula", 40)
     t.col("deboli", "Punti deboli", '=IF(LEN({deboli_g})>2,LEFT({deboli_g},LEN({deboli_g})-2),"")', None, "formula", 40)
     t.col("mot_q", "Perché: qualità", mz.formula_qualita(), None, "formula", 10)
+    t.col("mot_p", "Perché: prevedibilità", mz.formula_prevedibilita(), None, "formula", 10)
     t.col("mot_v", "Perché: valutazione", mz.formula_valutazione(), None, "formula", 10)
     t.col("motivazione", "PERCHÉ QUESTO VERDETTO (solo dai numeri: non considera concorrenza, tecnologia o notizie)",
           mz.formula_testo(), None, "formula", 90)
@@ -936,7 +994,7 @@ def giudizi_da_gialle(gialle: dict) -> dict:
 
 
 # ============================================================================ assemblaggio
-ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "TRADING", "MOVIMENTI", "NOTIZIE",
+ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "PREVEDIBILITA", "TRADING", "MOVIMENTI", "NOTIZIE",
                 "PORTAFOGLIO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
                 "QUALITA_DATI", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
                 "_MAPPA"]
@@ -954,7 +1012,9 @@ def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict
     tickers = list(ingressi)
     foglio_parametri(lib, P, oggi)
     foglio_dati(lib, ingressi, {t.ticker: t for t in universo})
+    tp = foglio_prevedibilita(lib, tickers, scrivi=False)     # GIUDIZI e PREVEDIBILITA si richiamano a vicenda
     foglio_giudizi(lib, ingressi, giudizi)
+    tp.scrivi(tickers)
     foglio_universo(lib, universo, demo)
     foglio_valutazione(lib, tickers)
     foglio_buffett(lib, tickers)

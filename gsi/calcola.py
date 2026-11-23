@@ -101,6 +101,8 @@ def ingressi_titolo(con, t, oggi: date, indice: dict | None) -> dict:
     ing["controvalore_eur"] = ing["controvalore_20"] / fq if ing.get("controvalore_20") and fq else None
     ing["beta_fonte"] = ana["beta"] if ana else None
     ing["industria"] = ana["industria_fonte"] if ana else None
+    from .prevedibilita import PREVEDIBILITA
+    ing["prev_claude"] = (PREVEDIBILITA.get(t.ticker) or {}).get("livello")
 
     # ---- bilanci
     anni, note = bilanci.carica_esercizi(con, t.ticker)

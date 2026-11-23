@@ -80,6 +80,12 @@ def foglio_metodologia(lib: Libro):
             "Banche e assicurazioni: patrimonio tangibile per azione + valore attuale di 10 anni di extra-rendimento (ROE - rendimento richiesto), con patrimonio che cresce di min(tetto, ROE x (1 - payout)). Mai sotto zero.",
             "Ogni passaggio è una colonna del foglio VALUTAZIONE.",
         ]),
+        ("Prevedibilità a 10 anni (giudizio, non dato)", [
+            "La domanda è: si può stimare con ragionevole fiducia quanto guadagnerà l'azienda tra 10 anni? I numeri passati dicono se un vantaggio competitivo c'è stato; la prevedibilità giudica se ci sarà ancora. Non dice se il titolo è caro.",
+            "Alta: vantaggio durevole e comprovato, nessuna minaccia credibile in 10 anni. Media: vantaggio reale ma almeno una minaccia credibile (tecnologia, concorrenza, regolazione, brevetti, forte ciclicità). Bassa: futuro difficile da stimare (ciclo eccezionale o prezzi delle materie prime, tecnologia che cambia in fretta, rischi legali o geopolitici gravi, ristrutturazioni, scandali).",
+            "Effetti (modificabili in PARAMETRI): Media = 15 punti di margine di sicurezza in più e metà della crescita futura riconosciuta; Bassa = nessuna crescita futura riconosciuta e verdetto 'Non comprerei: troppo difficile da prevedere', qualunque sia il prezzo. Il Buffett Score cambia solo attraverso la valutazione.",
+            "I giudizi sono redatti da Claude dopo una ricerca su internet sui fatti recenti di ogni azienda e del suo mercato, con un criterio unico; fonti e date sono nel foglio PREVEDIBILITA. Sono opinioni: il proprio giudizio, scritto nel foglio GIUDIZI, prevale sempre.",
+        ]),
         ("Perché questo verdetto (testo automatico)", [
             "Per ogni titolo un testo spiega il verdetto della strategia A usando solo i numeri del Buffett Score: classe e qualità composita; punti di forza (metriche con almeno 80 punti) e punti deboli (al massimo 30 punti), soglie modificabili in PARAMETRI; prezzo contro valore stimato nei tre scenari, margine di sicurezza e prezzo d'acquisto; correzione qualitativa e segnali di rischio.",
             "È scritto da formule (colonna nel foglio BUFFETT), quindi cambia da solo se cambiano parametri o giudizi, ed è controllato contro il calcolo del programma come i punteggi.",
@@ -155,6 +161,8 @@ def foglio_stato(lib: Libro, ctx: dict):
         ("Versione dimostrativa", "OPERATIVA", "python avvia.py demo: società e dati inventati, etichettati come tali."),
         ("Indicatori tecnici e metriche di bilancio grezze", "CALCOLATI IN PYTHON", "Medie mobili, RSI, MACD, ATR, rendimenti, ROIC, margini, CAGR sono calcolati sullo storico e scritti nel foglio DATI come dati: non si ricalcolano cambiando un parametro. In formula ci sono soglie, pesi, punteggi, valutazione, setup e verdetti."),
         ("Bilanci trimestrali e a 12 mesi", "SCARICATI, NON USATI NEI PUNTEGGI", "Sono nell'archivio; i punteggi usano gli esercizi annuali."),
+        ("Prevedibilità a 10 anni (giudizi di Claude con ricerca su internet)", "OPERATIVA (opinioni, da aggiornare)",
+         "Giudizi redatti il 23/11/2026 con fonti; non si aggiornano da soli con i dati: vanno rivisti periodicamente o dopo fatti rilevanti. Il giudizio dell'utente in GIUDIZI prevale."),
         ("Perché questo verdetto (strategia A)", "OPERATIVA", "Testo costruito da formule a partire dai numeri del Buffett Score e controllato contro il calcolo del programma. Descrive i numeri: non considera concorrenza, tecnologia o notizie."),
         ("Promemoria dei rischi di settore", "OPERATIVA", "Testo generico modificabile in PARAMETRI; non è un'analisi del singolo titolo."),
         ("Descrizioni: cosa fa ogni società e come funziona il mercato del settore", "OPERATIVA (testi scritti a mano)", "Non provengono dalle fonti dati: sono descrizioni generali dell'attività redatte per questo strumento, da verificare e correggere se un'azienda cambia mestiere. Quelle di settore si modificano in PARAMETRI."),
@@ -189,6 +197,7 @@ def foglio_leggimi(lib: Libro, demo: bool):
             "PARAMETRI: tutte le soglie, i pesi e le ipotesi. Cambiando un numero giallo, punteggi e valori si ricalcolano.",
             "GIUDIZI: per banche e assicurazioni inserire a mano cost/income o combined ratio (Q3) e CET1 o Solvency II (F5), presi dai bilanci. Qui si mettono anche la correzione qualitativa (al massimo ±10 punti, sempre motivata) e la tesi personale.",
             "Indicatori principali: P/E (sugli ultimi 12 mesi e prospettico), rendimento da dividendo, EV/EBITDA, rendimento sul capitale, margine operativo, debito netto / EBITDA, crescita dei ricavi. Sono nello SCREENER (filtrabili), nella SCHEDA accanto alla mediana dei titoli confrontabili, e i due più usati (P/E prospettico e dividendo) nelle liste del CRUSCOTTO.",
+            "PREVEDIBILITA: per ogni azienda il giudizio di Claude sulla prevedibilità a 10 anni (Alta, Media, Bassa) con vantaggio competitivo, minaccia principale, fatti recenti, che cosa farebbe cambiare idea e fonti. Conta subito nel verdetto della strategia A; per cambiarlo scrivere Alta, Media o Bassa nella colonna gialla del foglio GIUDIZI.",
             "QUALITA_DATI: esito dei controlli su ogni titolo e note sulle scelte fatte sui dati della fonte. Un titolo 'DA VERIFICARE' va controllato prima di fidarsi dei suoi punteggi.",
         ]),
         ("Gli altri fogli", [

@@ -81,7 +81,7 @@ def test_zero_errori_e_coincidenza_con_python(ambiente):
     assert wb["SCHEDA"]["A3"].value.startswith("Cosa fa: ")
     sett = {wb["SETTORI"].cell(r, 1).value: wb["SETTORI"].cell(r, 3).value for r in range(3, 20) if wb["SETTORI"].cell(r, 1).value}
     assert len(sett) == len({t.settore for t in UNIVERSO_DEMO}) and all(len(v) > 100 for v in sett.values())
-    assert wb["CRUSCOTTO"]["M14"].value in sett and wb["CRUSCOTTO"]["N14"].value.startswith("Società inventata")                    # settore accanto al primo della lista di valore
+    assert wb["CRUSCOTTO"]["N14"].value in sett and wb["CRUSCOTTO"]["O14"].value.startswith("Società inventata")                    # settore accanto al primo della lista di valore
     assert isinstance(wb["SCHEDA"]["M4"].value, (int, float))        # serie del grafico
 
 
@@ -101,6 +101,9 @@ def test_coincidenza_con_parametri_e_giudizi_modificati(ambiente):
     metti("GIUDIZI|Q3|DEMO08", 0.5)
     metti("GIUDIZI|F5|DEMO08", 0.15)
     metti("GIUDIZI|correzione|DEMO02", -30)
+    metti("GIUDIZI|prevedibilita|DEMO01", "media")         # minuscolo: deve valere come "Media"
+    metti("GIUDIZI|prevedibilita|DEMO13", "Bassa")
+    metti("GIUDIZI|prevedibilita|DEMO09", "Media")
     wb.save(altro)
     r = verifica.verifica_file(altro, ambiente["ingressi"], ambiente["lib"])
     assert r["errori"] == [] and r["differenze"] == []
@@ -108,6 +111,11 @@ def test_coincidenza_con_parametri_e_giudizi_modificati(ambiente):
     tb = ambiente["lib"].tab["BUFFETT"].cols
     assert wbv["BUFFETT"][f"{tb['corr']}4"].value == -10            # correzione limitata a +-10
     assert isinstance(wbv["BUFFETT"][f"{tb['p_F5']}10"].value, (int, float))
+    righe = {wbv["BUFFETT"].cell(x, 1).value: x for x in range(3, 3 + len(UNIVERSO_DEMO))}
+    assert wbv["BUFFETT"][f"{tb['prev']}{righe['DEMO01']}"].value == "Media"
+    assert wbv["BUFFETT"][f"{tb['prev_fonte']}{righe['DEMO01']}"].value == "tuo giudizio"
+    v13 = wbv["BUFFETT"][f"{tb['verdetto']}{righe['DEMO13']}"].value
+    assert v13 in ("Non comprerei: troppo difficile da prevedere", "Non comprerei: qualità insufficiente", "Dati insufficienti")
 
 
 def test_conservazione_delle_celle_gialle(ambiente):

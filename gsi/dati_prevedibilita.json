@@ -1,0 +1,2208 @@
+{
+ "AAPL": {
+  "livello": "Media",
+  "fossato": "Ecosistema iPhone con marchio dominante e clienti vincolati da servizi, app e dispositivi collegati.",
+  "minaccia": "Regole antitrust su App Store e pagamenti (USA, UE, Giappone, Brasile) che erodono le commissioni dei servizi, ad alto margine",
+  "fatti_recenti": "Luglio 2026: servizi record a 30,7 mld $ ma crescita più lenta; Apple cita le nuove regole UE/Giappone/Brasile. In USA la sentenza sui link esterni vieta commissioni; appello alla Corte Suprema.",
+  "cambierebbe_idea": "Una vittoria di Apple alla Corte Suprema con commissioni stabili salirebbe verso Alta; un calo strutturale dei ricavi App Store la abbasserebbe.",
+  "fonti": [
+   {
+    "titolo": "Apple says App Store regulatory changes are beginning to affect services growth",
+    "url": "https://9to5mac.com/2026/07/30/apple-says-app-store-regulatory-changes-are-beginning-to-affect-services-growth/",
+    "data": "2026-07-30"
+   },
+   {
+    "titolo": "Apple Says Antitrust Issues Are Hurting Services Business",
+    "url": "https://www.pymnts.com/apple/2026/apple-says-antitrust-issues-are-hurting-services-business/",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "MSFT": {
+  "livello": "Media",
+  "fossato": "Software aziendale ricorrente (Windows, Office, Azure) con clienti fortemente vincolati e costi di cambio elevati.",
+  "minaccia": "Investimenti in AI enormi (capex 175 mld $ previsto per FY2027) con ritorni incerti e legame stretto con OpenAI",
+  "fatti_recenti": "Luglio 2026: esercizio FY2026 con ricavi 331,8 mld $ (+18%) e Azure oltre 100 mld $ annui (+41%); guida di capex FY2027 a circa 175 mld $.",
+  "cambierebbe_idea": "Margini stabili nonostante il capex AI farebbero salire ad Alta; un calo dei rendimenti sul capitale investito in data center la abbasserebbe.",
+  "fonti": [
+   {
+    "titolo": "Microsoft Azure Q4 revenue surges 41%, tops $100 billion in annual revenue",
+    "url": "https://www.constellationr.com/insights/news/microsoft-azure-q4-revenue-surges-41-tops-100-billion-annual-revenue",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Microsoft Azure 100 billion annual revenue",
+    "url": "https://fortune.com/2026/07/29/microsoft-azure-100-billion-annual-revenue-earnings-revenue-cloud-ai/?rand=8593",
+    "data": "2026-07-29"
+   }
+  ]
+ },
+ "NVDA": {
+  "livello": "Bassa",
+  "fossato": "Leadership nelle GPU per AI e piattaforma software CUDA, standard di fatto per sviluppatori.",
+  "minaccia": "Utili legati a un ciclo eccezionale di investimenti AI, chip su misura dei clienti e restrizioni all'export verso la Cina",
+  "fatti_recenti": "Febbraio 2026: ricavi FY2026 record di 215,9 mld $ (+65%), data center 62,3 mld $ nel trimestre; outlook senza ricavi data center dalla Cina.",
+  "cambierebbe_idea": "Margini e quote stabili anche dopo un rallentamento della spesa AI dei grandi cloud porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "NVIDIA Announces Financial Results for Fourth Quarter and Fiscal 2026",
+    "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026/default.aspx",
+    "data": "2026-02"
+   }
+  ]
+ },
+ "GOOGL": {
+  "livello": "Media",
+  "fossato": "Ricerca dominante con enorme base di utenti e dati, YouTube, Android e un cloud in forte crescita.",
+  "minaccia": "Assistenti AI che spostano le ricerche e la pubblicità fuori da Google, più rimedi antitrust sulla distribuzione",
+  "fatti_recenti": "Settembre 2025: il giudice Mehta vieta accordi esclusivi ma non impone la cessione di Chrome. Ottobre 2026: Cloud +103% a 30,7 mld $, ricerca +12% in rallentamento.",
+  "cambierebbe_idea": "Una perdita misurabile di quota nella ricerca verso chatbot rivali porterebbe a Bassa; ricavi di ricerca stabili con AI integrata verso Alta.",
+  "fonti": [
+   {
+    "titolo": "Alphabet Q3 2026 earnings",
+    "url": "https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/",
+    "data": "2026-10-28"
+   },
+   {
+    "titolo": "Google antitrust remedy ruling exclusive search distribution deals Chrome",
+    "url": "https://fortune.com/2025/09/02/google-antitrust-remedy-ruling-exclusive-search-distribution-deals-chrome/",
+    "data": "2025-09-02"
+   }
+  ]
+ },
+ "AMZN": {
+  "livello": "Media",
+  "fossato": "Scala logistica ineguagliata, abbonati Prime e leadership nel cloud con AWS.",
+  "minaccia": "Concorrenza nel cloud AI da Microsoft e Google e capex elevatissimo con ritorni incerti; vendite al dettaglio a margini sottili",
+  "fatti_recenti": "Aprile 2026: ricavi T1 181,5 mld $ (+17%), AWS +28% a 37,6 mld $ con utile operativo 14,2 mld $; chip propri oltre 20 mld $ di run rate.",
+  "cambierebbe_idea": "Un calo della quota AWS o del suo margine operativo cambierebbe in peggio; margini retail in crescita stabile in meglio.",
+  "fonti": [
+   {
+    "titolo": "Amazon.com Announces First Quarter Results",
+    "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx",
+    "data": "2026-04-29"
+   }
+  ]
+ },
+ "META": {
+  "livello": "Media",
+  "fossato": "Rete di oltre tre miliardi di utenti su Facebook, Instagram e WhatsApp con targeting pubblicitario basato sui dati.",
+  "minaccia": "Cause su danni ai minori, regole UE e capex AI molto alto; concorrenza per l'attenzione da TikTok e YouTube",
+  "fatti_recenti": "Novembre 2025: il giudice Boasberg respinge la causa FTC, nessuna cessione di Instagram/WhatsApp. Ottobre 2026: ricavi T3 +26% a 64,6 mld $, capex 2026 a 135-145 mld $.",
+  "cambierebbe_idea": "Condanne e risarcimenti multipli nelle cause sui minori o regole UE restrittive sui dati porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Judge sides with Meta in antitrust trial, will not spin off WhatsApp and Instagram",
+    "url": "https://www.npr.org/2025/11/18/nx-s1-5495626/meta-ftc-instagram-whatsapp-antitrust-ruling",
+    "data": "2025-11-18"
+   },
+   {
+    "titolo": "Meta Q3 earnings, Zuckerberg, capex",
+    "url": "https://fortune.com/2026/10/21/meta-q3-earnings-mark-zuckerberg-capex-muse/",
+    "data": "2026-10-21"
+   }
+  ]
+ },
+ "AVGO": {
+  "livello": "Media",
+  "fossato": "Chip su misura co-progettati con i grandi cloud, leadership nel networking e software VMware a ricavi ricorrenti.",
+  "minaccia": "Dipendenza da pochi clienti hyperscaler e dal ciclo di spesa AI; clienti VMware insoddisfatti dei rincari",
+  "fatti_recenti": "Marzo 2026: ricavi AI T1 8,4 mld $ (+106%); il management vede oltre 100 mld $ di ricavi da chip AI nel 2027. VMware +13% nel trimestre.",
+  "cambierebbe_idea": "La perdita di un grande cliente di chip su misura o un calo marcato della spesa AI porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Broadcom AI revenue surges in fiscal first quarter",
+    "url": "https://www.constellationr.com/insights/news/broadcom-ai-revenue-surges-fiscal-first-quarter",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "Broadcom Q2 FY 2026: VMware Stability Supports AI-Led Semiconductor Expansion",
+    "url": "https://futurumgroup.com/insights/broadcom-q2-fy-2026-vmware-stability-supports-ai-led-semiconductor-expansion/",
+    "data": "2026-06"
+   }
+  ]
+ },
+ "TSM": {
+  "livello": "Media",
+  "fossato": "Leadership tecnologica nei processi più avanzati e scala: circa 72% del mercato foundry, clienti vincolati.",
+  "minaccia": "Rischio geopolitico su Taiwan, dazi USA e ciclicità dei semiconduttori, con costi più alti delle fabbriche in Arizona",
+  "fatti_recenti": "Luglio 2026: ricavi T2 40,2 mld $, utile +77,4%; capex 2026 fino a 64 mld $ e altri 100 mld $ in Arizona. Gennaio 2026: dazi USA del 25% su alcuni chip avanzati.",
+  "cambierebbe_idea": "Un'escalation militare o un blocco attorno a Taiwan porterebbe a Bassa; un recupero tecnologico di Samsung o Intel ridurrebbe il fossato.",
+  "fonti": [
+   {
+    "titolo": "TSMC ups revenue guidance and capex buoyed by multiyear AI megatrend",
+    "url": "https://www.tomshardware.com/tech-industry/semiconductors/tsmc-ups-revenue-guidance-and-capex-buoyed-by-multiyear-ai-megatrend-warns-middle-east-conflict-may-impact-profitability-as-costs-increase",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "TSMC Ends 2025 With a Bang as AI Keeps Boosting Profits",
+    "url": "https://www.morningstar.com/news/dow-jones/20260115161/tsmc-ends-2025-with-a-bang-as-ai-keeps-boosting-profits",
+    "data": "2026-01-15"
+   }
+  ]
+ },
+ "ASML.AS": {
+  "livello": "Media",
+  "fossato": "Unico fornitore al mondo di macchine litografiche EUV, con base installata che genera ricavi di assistenza.",
+  "minaccia": "Forte ciclicità degli ordini dei produttori di chip e restrizioni all'export verso la Cina, che era il primo mercato",
+  "fatti_recenti": "Gennaio 2026: ordini record T4 2025 di 13,2 mld EUR, guida 2026 a 34-39 mld EUR, quota Cina in calo dal 33% e taglio di circa 1.700 posti.",
+  "cambierebbe_idea": "Un concorrente credibile nell'EUV (ad esempio in Cina) o un crollo prolungato degli investimenti in fabbriche abbasserebbe il livello.",
+  "fonti": [
+   {
+    "titolo": "ASML posts record orders on AI chip demand, hikes 2026 outlook, cuts jobs",
+    "url": "https://www.thestandard.com.hk/tech-and-startup/article/322937/ASML-posts-record-orders-on-AI-chip-demand-hikes-2026-outlook-cuts-jobs/",
+    "data": "2026-01-28"
+   },
+   {
+    "titolo": "ASML expects China revenue drop following backlog-fueled surge",
+    "url": "https://www.caixinglobal.com/2026-01-29/asml-expects-china-revenue-drop-following-backlog-fueled-surge-102409285.html",
+    "data": "2026-01-29"
+   }
+  ]
+ },
+ "SAP.DE": {
+  "livello": "Media",
+  "fossato": "Gestionale ERP radicato nei processi delle grandi aziende, con costi di migrazione altissimi e ricavi cloud ricorrenti.",
+  "minaccia": "Agenti AI che potrebbero ridurre la domanda di licenze per utente e il valore del software gestionale tradizionale",
+  "fatti_recenti": "Ottobre 2026: ricavi trimestrali oltre 10 mld EUR per la prima volta, cloud +26% a 6,67 mld EUR, backlog cloud 24,1 mld EUR (+28%).",
+  "cambierebbe_idea": "Un rallentamento marcato del backlog cloud o perdite di grandi clienti verso soluzioni AI porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "SAP posts strong Q3 on cloud growth",
+    "url": "https://www.constellationr.com/insights/news/sap-posts-strong-q3-cloud-growth",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "SAP quarterly statement Q3 2026",
+    "url": "https://finviz.com/news/405805/sap-quarterly-statement-q3-2026",
+    "data": "2026-10-21"
+   }
+  ]
+ },
+ "ORCL": {
+  "livello": "Bassa",
+  "fossato": "Database e software gestionale radicati nelle aziende, con clienti difficili da spostare.",
+  "minaccia": "Scommessa a debito sui data center AI con forte dipendenza da OpenAI come cliente; rischio di sovraccapacità e di rating",
+  "fatti_recenti": "FY2026: capex 55,7 mld $ e 43 mld $ di nuovo debito; contratto OpenAI da 300 mld $ dal 2027. Fine 2025: debito circa 108 mld $ e timori Moody's.",
+  "cambierebbe_idea": "Pagamenti regolari di OpenAI e debito in calo rispetto agli utili riporterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Oracle Q4 FY2026 capex $55 billion AI data center OpenAI",
+    "url": "https://thenextweb.com/news/oracle-q4-fy2026-capex-55-billion-ai-data-center-openai",
+    "data": "2026-06"
+   },
+   {
+    "titolo": "Oracle's debt balloons to $108 billion as AI spending soars",
+    "url": "https://www.nasdaq.com/articles/oracles-debt-balloons-108-billion-ai-spending-soars",
+    "data": "2025-12"
+   }
+  ]
+ },
+ "005930.KS": {
+  "livello": "Bassa",
+  "fossato": "Scala e posizione di costo nei chip di memoria, più marchio forte in telefoni ed elettronica.",
+  "minaccia": "Utili dominati dal ciclo dei prezzi della memoria, che oggi è a livelli eccezionali e storicamente crolla",
+  "fatti_recenti": "Ottobre 2026: utile operativo T3 record di 107,4 trilioni KRW (+782%), per il 99% dalla memoria, su prezzi DRAM e HBM in forte rialzo.",
+  "cambierebbe_idea": "Margini sostenuti per più anni anche con prezzi memoria in calo, grazie a contratti HBM pluriennali, porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Samsung sees 3Q26 operating profit soaring to record KRW 107.4 trillion",
+    "url": "https://trendforce.com/news/2026/10/08/news-samsung-sees-3q26-operating-profit-soaring-783-to-record-krw-107-4-trillion-on-hbm4-memory-price-gains",
+    "data": "2026-10-08"
+   },
+   {
+    "titolo": "Memory boom carries Samsung to another bumper quarter",
+    "url": "https://lightreading.com/finance/memory-boom-carries-samsung-to-another-bumper-quarter",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "JPM": {
+  "livello": "Media",
+  "fossato": "Prima banca USA per depositi e scala, franchise diversificato e solidamente capitalizzato.",
+  "minaccia": "Ciclo del credito e dei tassi, volatilità del trading e successione dell'amministratore delegato Dimon",
+  "fatti_recenti": "Ottobre 2026: utile T3 15,3 mld $, ricavi +8% a 50,2 mld $ ma utile per azione sotto le attese per il trading obbligazionario; buyback ridotti.",
+  "cambierebbe_idea": "Una successione ordinata con rendimenti sul capitale stabili lungo un ciclo del credito porterebbe ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Big banks post strong Q3 profits but warn higher rates and inflation could bite",
+    "url": "https://www.ksat.com/business/2026/10/13/big-banks-post-strong-q3-profits-but-warn-higher-rates-and-inflation-could-bite/",
+    "data": "2026-10-13"
+   },
+   {
+    "titolo": "JPMorgan Chase Q3 2026 results",
+    "url": "https://pulse2.com/jpmorgan-chase-q3-2026-results",
+    "data": "2026-10-13"
+   }
+  ]
+ },
+ "BRK-B": {
+  "livello": "Media",
+  "fossato": "Conglomerato diversificato con assicurazioni, ferrovia, energia regolata e capitale enorme da investire.",
+  "minaccia": "Nuova gestione dopo Buffett che deve allocare oltre 350 mld $ di liquidità, e Geico che perde terreno su Progressive",
+  "fatti_recenti": "Novembre 2026: utile operativo T3 -6% a 12,7 mld $, Geico -45%, buyback per 9,6 mld $; Abel CEO da gennaio 2026.",
+  "cambierebbe_idea": "Acquisizioni o buyback a buoni rendimenti sotto Abel e il recupero di Geico porterebbero ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Berkshire Hathaway buys back $9.6 billion of its own stock but its profits declined",
+    "url": "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/11/07/berkshire-hathaway-buys-back-96-billion-of-its-own-stock-but-its-profits-declined",
+    "data": "2026-11-07"
+   },
+   {
+    "titolo": "Berkshire Hathaway's Q3 operating earnings fall 5.8% as buybacks increase",
+    "url": "https://stockanalysis.com/news/berkshire-q3-operating-earnings-fall-buybacks/",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "V": {
+  "livello": "Media",
+  "fossato": "Rete di pagamento globale con effetto rete tra banche, esercenti e titolari di carta, senza rischio di credito.",
+  "minaccia": "Leggi sulle commissioni (Credit Card Competition Act), cause degli esercenti e pagamenti alternativi come stablecoin e conti istantanei",
+  "fatti_recenti": "Ottobre 2026: ricavi FY2026 record di circa 46 mld $ (+15%); accantonamenti per la causa sulle commissioni interbancarie e stablecoin a oltre 25 mld $ di run rate.",
+  "cambierebbe_idea": "L'approvazione del Credit Card Competition Act o un uso di massa di pagamenti fuori rete porterebbe a Bassa; la sua bocciatura definitiva ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Visa posts a robust final quarter to fiscal 2026",
+    "url": "https://www.digitaltransactions.net/visa-posts-a-robust-final-quarter-to-fiscal-2026/",
+    "data": "2026-10-28"
+   },
+   {
+    "titolo": "Visa's $700 Billion Payments Empire Faces New Disruption Risks",
+    "url": "https://247wallst.com/investing/2026/07/13/visas-700-billion-payments-empire-faces-new-disruption-risks/",
+    "data": "2026-07-13"
+   }
+  ]
+ },
+ "MA": {
+  "livello": "Media",
+  "fossato": "Seconda rete mondiale di pagamenti con carta, effetto rete e servizi a valore aggiunto in crescita.",
+  "minaccia": "Regolazione delle commissioni in USA, UE e Australia, cause degli esercenti e pagamenti istantanei o stablecoin che aggirano le carte",
+  "fatti_recenti": "Ottobre 2026: ricavi T3 9,8 mld $ (+14%), servizi a valore aggiunto +19%, nuovo onere di 74 mln $ per cause sulle commissioni.",
+  "cambierebbe_idea": "Un tetto legale alle commissioni negli USA o l'obbligo di reti alternative porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Mastercard revenue gains 14% to $9.8bn as services rise 19%",
+    "url": "https://ppc.land/mastercard-revenue-gains-14-to-9-8bn-as-services-rise-19/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Mastercard beats Q3 earnings on higher cross-border volumes, pricing",
+    "url": "https://www.zacks.com/stock/news/3018925/mastercard-beats-q3-earnings-on-higher-cross-border-volumes-pricing",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "BAC": {
+  "livello": "Media",
+  "fossato": "Grande base di depositi a basso costo negli USA e franchise retail e di gestione patrimoniale.",
+  "minaccia": "Sensibilità degli utili ai tassi e al ciclo del credito, oltre a oneri regolatori ricorrenti",
+  "fatti_recenti": "Ottobre 2026: margine d'interesse T3 +8% a 16,6 mld $; utile 6,9 mld $ con un onere regolatorio di 1,2 mld $; prevista crescita del margine 2027 di almeno 8%.",
+  "cambierebbe_idea": "Perdite sui crediti oltre le attese in recessione o nuovi oneri regolatori rilevanti abbasserebbero il livello.",
+  "fonti": [
+   {
+    "titolo": "Bank of America Reports Third Quarter 2026 Financial Results",
+    "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/10/bank-of-america-reports-third-quarter-2026-financial-results.html",
+    "data": "2026-10-14"
+   }
+  ]
+ },
+ "GS": {
+  "livello": "Media",
+  "fossato": "Marchio di riferimento nella consulenza su fusioni e nel trading, con relazioni con grandi clienti istituzionali.",
+  "minaccia": "Utili molto ciclici, legati ai volumi di fusioni, collocamenti e trading, che possono dimezzarsi nelle fasi negative",
+  "fatti_recenti": "Ottobre 2026: ricavi T3 18,68 mld $ (+23%), azioni +72%, commissioni di investment banking +21%, ROE 18,7%; backlog IB in calo rispetto al T2.",
+  "cambierebbe_idea": "Un forte calo degli utili in un mercato debole o perdite rilevanti nel trading porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Goldman Q3 earnings beat on strong equities, IB revenues",
+    "url": "https://www.zacks.com/stock/news/3006356/goldman-q3-earnings-beat-on-strong-equities-ib-revenues-shares-rise",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Goldman Sachs Q3 profit climbs 29% on equities boom",
+    "url": "https://www.privatebankerinternational.com/news/goldman-sachs-q3-profit-climbs-29-on-equities-boom",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "HSBA.L": {
+  "livello": "Media",
+  "fossato": "Rete internazionale per pagamenti e commercio tra Asia e Occidente e quota dominante a Hong Kong.",
+  "minaccia": "Tensioni geopolitiche USA-Cina, immobili commerciali in crisi a Hong Kong e sensibilità ai tassi",
+  "fatti_recenti": "Gennaio 2026: completato il ritiro da Borsa di Hang Seng Bank (13,7 mld $), impatto di 110 punti base sul capitale; prestiti immobiliari deteriorati a Hong Kong ancora in evidenza.",
+  "cambierebbe_idea": "Sanzioni o restrizioni che colpissero le attività tra Cina e Occidente, o perdite immobiliari molto maggiori, porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "HSBC proposal to privatise Hang Seng Bank",
+    "url": "https://www.hsbc.com/investors/hsbc-proposal-to-privatise-hang-seng-bank",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "HSBC Holdings plc Annual Results 2025",
+    "url": "https://hsbc.com/news-and-views/news/media-releases/2026/hsbc-holdings-plc-annual-results-2025",
+    "data": "2026-02-25"
+   }
+  ]
+ },
+ "HDFCBANK.NS": {
+  "livello": "Media",
+  "fossato": "Prima banca privata indiana con ampia raccolta e storico di credito di qualità in un mercato in forte crescita.",
+  "minaccia": "Margini sotto pressione dopo la fusione con HDFC Ltd e dubbi di governance dopo le dimissioni del presidente",
+  "fatti_recenti": "Marzo 2026: il presidente Chakraborty si dimette a metà mandato citando i suoi valori. Aprile 2026: utile T4 FY26 +9% a 19.221 crore, margine al 3,53%.",
+  "cambierebbe_idea": "Emergere di irregolarità dopo le dimissioni porterebbe a Bassa; margini in ripresa e governance chiarita verso Alta.",
+  "fonti": [
+   {
+    "titolo": "HDFC Bank posts 12% loan growth in Q4, deposits surge over 14% even as chairman resigns mid-term",
+    "url": "https://www.freepressjournal.in/business/hdfc-bank-posts-12-loan-growth-in-q4-deposits-surge-over-14-even-as-chairman-resigns-mid-term-raising-concerns",
+    "data": "2026-04"
+   },
+   {
+    "titolo": "HDFC Bank Q4 Results: profit meets estimates",
+    "url": "https://www.zeebiz.com/companies/news-hdfcbank-q4fy26-results-earnings-apr-18-profit-interest-income-vs-expectations-393845",
+    "data": "2026-04-18"
+   }
+  ]
+ },
+ "LLY": {
+  "livello": "Media",
+  "fossato": "Leadership nei farmaci per obesità e diabete (tirzepatide) con brevetti, capacità produttiva e una pipeline orale.",
+  "minaccia": "Calo dei prezzi per pressione politica e concorrenza sugli agonisti GLP-1, con dipendenza da una sola famiglia di prodotti",
+  "fatti_recenti": "Ott 2026: ricavi Q3 +39% a circa 24,4 mld $, Mounjaro 10,7 mld $; volumi +53% ma prezzi realizzati -15%; guida 2026 alzata a 91-92 mld $.",
+  "cambierebbe_idea": "Una nuova classe di farmaci per l'obesità che superi la tirzepatide o tagli di prezzo imposti che riducano molto i margini.",
+  "fonti": [
+   {
+    "titolo": "LLY stock jumps as Q3 earnings beat estimates, 2026 sales view raised",
+    "url": "https://www.zacks.com/stock/news/3018734/lly-stock-jumps-as-q3-earnings-beat-estimates-2026-sales-view-raised",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Eli Lilly Q3 2026: Tirzepatide Fuels a Massive Guidance Raise",
+    "url": "https://247wallst.com/cards/eli-lilly-q3-2026-earnings-lly-01m63nk1x2d2k0eyrf4m78fs52",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "JNJ": {
+  "livello": "Media",
+  "fossato": "Portafoglio molto diversificato tra farmaci e dispositivi medici, con scala globale e forte pipeline oncologica.",
+  "minaccia": "Scadenze di brevetti (Stelara) e il contenzioso sul talco, ancora irrisolto, che pesa sugli utili",
+  "fatti_recenti": "Ott 2026: Stelara -54% a 716 mln $ per i biosimilari; oneri legali di 5,5 mld $ nel trimestre legati alla proposta sul talco; guida 2026 alzata.",
+  "cambierebbe_idea": "Una chiusura definitiva del contenzioso sul talco a costi contenuti alzerebbe il livello; nuove perdite brevettuali non compensate lo abbasserebbero.",
+  "fonti": [
+   {
+    "titolo": "Johnson & Johnson reports Q3 2026 results, raises 2026 guidance",
+    "url": "https://finviz.com/news/401522/johnson-johnson-reports-q3-2026-results-raises-2026-guidance",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "JNJ Q3 Earnings: Oncology Growth Offsets STELARA Erosion Amid $5.5 Billion Legal Charge",
+    "url": "https://www.panabee.com/news/johnson-johnson-earnings-q3-2026-report",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "UNH": {
+  "livello": "Bassa",
+  "fossato": "Scala senza pari nell'assicurazione sanitaria USA, integrata con servizi medici, farmacie e dati (Optum).",
+  "minaccia": "Indagine penale e civile del DOJ su Medicare Advantage e possibili tagli o riforme dei rimborsi pubblici",
+  "fatti_recenti": "Lug 2025: indagine DOJ penale e civile su Medicare; mag 2025 torna CEO Hemsley. Ott 2026: utile operativo Q3 6,6 mld $, rapporto costi medici 88,4%, guida alzata.",
+  "cambierebbe_idea": "Chiusura dell'indagine DOJ senza sanzioni gravi e due anni di margini stabili alzerebbero il livello a Media.",
+  "fonti": [
+   {
+    "titolo": "UnitedHealth Q3 2026 profits soar, Medicare Advantage strategy",
+    "url": "https://www.healthcaredive.com/news/unitedhealth-q3-2026-profits-soar-medicare-advantage-strategy/832827/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "UnitedHealth says it is under a federal criminal and civil investigation regarding Medicare business",
+    "url": "https://abc7.com/post/unitedhealth-says-is-federal-criminal-civil-investigation-medicare-business-cooperating/17274011/",
+    "data": "2025-07"
+   }
+  ]
+ },
+ "ABBV": {
+  "livello": "Media",
+  "fossato": "Franchise forte nell'immunologia (Skyrizi, Rinvoq) protetta da brevetti, più l'estetica (Botox) con marchio forte.",
+  "minaccia": "Scadenze brevettuali di Skyrizi e Rinvoq nel prossimo decennio e pressione sui prezzi dei farmaci negli USA",
+  "fatti_recenti": "Ott 2026: ricavi Q3 17,4 mld $ (+10,3%), Skyrizi +22,7%, Rinvoq +23,9%, Humira -31,2% per i biosimilari; previsione immunologia 2026 alzata a 34,9 mld $.",
+  "cambierebbe_idea": "Un calo rapido di Skyrizi/Rinvoq per biosimilari o riforme di prezzo senza nuovi farmaci a sostituirli abbasserebbe il livello.",
+  "fonti": [
+   {
+    "titolo": "AbbVie Reports Third-Quarter 2026 Financial Results",
+    "url": "https://finviz.com/news/412500/abbvie-reports-third-quarter-2026-financial-results",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "What AbbVie (ABBV) Said on Its Q3 Earnings Call",
+    "url": "https://www.thecerbatgem.com/2026/10/30/what-abbvie-abbv-said-on-its-q3-earnings-call.html",
+    "data": "2026-10-30"
+   }
+  ]
+ },
+ "NVO": {
+  "livello": "Bassa",
+  "fossato": "Esperienza decennale e capacità produttiva nei farmaci GLP-1 (semaglutide), con la pillola Wegovy in crescita.",
+  "minaccia": "Perdita di quote verso Lilly, scadenza dei brevetti sulla semaglutide in vari paesi e forti tagli di prezzo negli USA",
+  "fatti_recenti": "Feb 2026: guida 2026 in calo (-5/-13%), titolo -17%. Nov 2026: utile operativo rettificato Q3 +27%, guida alzata a -2/+2%; taglio prezzo Wegovy USA del 50% dal 2027.",
+  "cambierebbe_idea": "Alcuni anni di crescita stabile di volumi e margini malgrado i tagli di prezzo, con successo di CagriSema, porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Novo Nordisk lifts 2026 outlook as Wegovy pill surges",
+    "url": "https://www.timeslive.co.za/news/world/2026-11-04-novo-nordisk-lifts-2026-outlook-as-wegovy-pill-surges/",
+    "data": "2026-11-04"
+   },
+   {
+    "titolo": "Novo Nordisk stock sinks by 17% after bleak 2026 forecast",
+    "url": "https://www.euronews.com/2026/02/04/novo-nordisk-stock-sinks-by-17-after-bleak-2026-forecast",
+    "data": "2026-02-04"
+   }
+  ]
+ },
+ "NOVN.SW": {
+  "livello": "Media",
+  "fossato": "Farmaci innovativi protetti da brevetti in aree diversificate, con margini core alti (circa 41%) e forte ricerca.",
+  "minaccia": "Concorrenza dei generici su prodotti di punta (Entresto) e rischio che la pipeline non compensi le scadenze",
+  "fatti_recenti": "Ott 2026: vendite Q3 +4% a circa 14,5 mld $; Entresto -38% per i generici, Kisqali +37%; svalutazione di circa 1,9 mld $; guida utile alzata.",
+  "cambierebbe_idea": "Fallimenti ripetuti dei nuovi farmaci o un calo delle vendite per più anni abbasserebbero il livello.",
+  "fonti": [
+   {
+    "titolo": "Novartis delivered sales growth and core margin expansion in Q3",
+    "url": "https://www.novartis.com/news/media-releases/novartis-delivered-sales-growth-and-core-margin-expansion-q3-raised-fy-core-operating-income-guidance.md",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Novartis Q3: new drugs step up as generics squeeze Entresto",
+    "url": "https://www.pharmaceutical-technology.com/news/novartis-q3-new-drugs-step-up-as-generics-squeeze-entresto/",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "ROP.SW": {
+  "livello": "Media",
+  "fossato": "Leader nei farmaci oncologici e numero uno mondiale nella diagnostica di laboratorio, con strumenti installati che generano ricavi ricorrenti.",
+  "minaccia": "Biosimilari sui farmaci maturi e riforme dei prezzi sanitari (es. Cina) sulla diagnostica",
+  "fatti_recenti": "Ott 2026: vendite 9 mesi 46,5 mld CHF (+6% a cambi costanti); diagnostica 10,3 mld CHF (+4%) frenata dalle riforme di prezzo in Cina; confermata la guida 2026.",
+  "cambierebbe_idea": "Successi o fallimenti ripetuti nella pipeline (es. obesità, neurologia) sposterebbero il livello.",
+  "fonti": [
+   {
+    "titolo": "Roche media release 22 October 2026",
+    "url": "https://www.roche.com/media/releases/med-cor-2026-10-22",
+    "data": "2026-10-22"
+   },
+   {
+    "titolo": "Roche: Group sales +6% (CER) YTD; Q3 +7%",
+    "url": "https://chemxplore.com/news/roche-third-quarter-sales-growth",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "AZN": {
+  "livello": "Media",
+  "fossato": "Pipeline oncologica tra le più ricche del settore e presenza forte in Cina e mercati emergenti.",
+  "minaccia": "Indagini in Cina su dirigenti e dipendenti, prezzi imposti negli USA e scadenze di brevetti (Farxiga, Brilinta)",
+  "fatti_recenti": "Ott 2026: ricavi Q3 16,2 mld $ (+7%), EPS core +17%, guida confermata. Le indagini cinesi su ex dirigenti, arrestato il presidente Cina, restano aperte.",
+  "cambierebbe_idea": "Un ampliamento delle indagini cinesi alla società o un rallentamento della pipeline abbasserebbe il livello.",
+  "fonti": [
+   {
+    "titolo": "AstraZeneca 9M and Q3 2026 results",
+    "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/9m-and-q3-2026-results.html",
+    "data": "2026-10-30"
+   },
+   {
+    "titolo": "AstraZeneca stock dives as China's criminal probe rattles its third quarter beat",
+    "url": "https://inkl.com/news/astrazeneca-stock-dives-as-china-s-criminal-probe-rattles-its-third-quarter-beat",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "XOM": {
+  "livello": "Bassa",
+  "fossato": "Scala, integrazione tra estrazione, raffinazione e chimica e asset a basso costo (Guyana, Permian).",
+  "minaccia": "Utili legati a prezzi di petrolio e margini di raffinazione, oggi gonfiati dalla guerra con l'Iran, e transizione energetica",
+  "fatti_recenti": "Ott 2026: utile Q3 15,4 mld $, quasi doppio sull'anno, per margini di raffinazione eccezionali; il conflitto con l'Iran ha bloccato gran parte dei transiti a Hormuz.",
+  "cambierebbe_idea": "Utili stabili anche con il petrolio a prezzi normali, grazie ai costi bassi di Guyana e Permian, porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "ExxonMobil Announces Third-Quarter 2026 Results",
+    "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1213/exxonmobil-announces-third-quarter-2026-results",
+    "data": "2026-10-30"
+   },
+   {
+    "titolo": "ExxonMobil third-quarter profit doubles as refining margins surge",
+    "url": "https://www.ogj.com/general-interest/companies/news/55415606/exxonmobil-third-quarter-profit-doubles-as-refining-margins-surge",
+    "data": "2026-10"
+   }
+  ],
+  "revisione": "Portata da Media a Bassa in revisione, per coerenza con Chevron, Shell, TotalEnergies, Eni ed Equinor, che hanno la stessa minaccia principale."
+ },
+ "CVX": {
+  "livello": "Bassa",
+  "fossato": "Grande operatore integrato con asset nel Permian, nel Golfo del Messico e, dopo Hess, in Guyana.",
+  "minaccia": "Dipendenza dai prezzi di petrolio e gas, rischi geopolitici (Medio Oriente, Venezuela) e transizione energetica",
+  "fatti_recenti": "Ott 2026: utile Q3 circa 9,9 mld $; produzione USA ridotta di 109.000 barili/giorno per effetti dei prezzi alti e del conflitto in Medio Oriente.",
+  "cambierebbe_idea": "Produzione in crescita stabile con costi di pareggio bassi anche a prezzi normali porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Chevron reports third quarter 2026 results",
+    "url": "https://finviz.com/news/412404/chevron-reports-third-quarter-2026-results",
+    "data": "2026-10-30"
+   },
+   {
+    "titolo": "Chevron tops Q3 earnings estimates with record production after Hess deal",
+    "url": "https://sweetcrudereports.com/chevron-tops-q3-earnings-estimates-with-record-production-after-hess-deal/",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "SHEL": {
+  "livello": "Bassa",
+  "fossato": "Uno dei maggiori operatori mondiali di gas liquefatto (GNL) e trading energetico, con scala globale.",
+  "minaccia": "Utili legati ai prezzi di petrolio, gas e margini di raffinazione, oggi eccezionali, e incertezza sulla transizione",
+  "fatti_recenti": "Ott 2026: utile rettificato Q3 10,8 mld $, quasi doppio sull'anno per margini di raffinazione record; buyback da 5 mld $; set 2026 via libera a LNG Canada fase 2.",
+  "cambierebbe_idea": "Utili stabili anche con prezzi e margini tornati normali, sostenuti dal GNL contrattualizzato, porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Shell's third-quarter earnings rise on record refining margins, stronger gas results",
+    "url": "https://www.ogj.com/general-interest/companies/news/55415305/shells-third-quarter-earnings-rise-on-record-refining-margins-stronger-gas-results",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Shell Q3 2026 results",
+    "url": "https://www.offshore-technology.com/news/shell-q3-2026-results/?.tsrc=rss",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "TTE.PA": {
+  "livello": "Bassa",
+  "fossato": "Modello integrato petrolio, GNL ed elettricità con debito basso e forte presenza nel trading.",
+  "minaccia": "Dipendenza dai prezzi degli idrocarburi e rendimenti incerti degli investimenti nelle rinnovabili (svalutazioni sull'eolico)",
+  "fatti_recenti": "Ott 2026: utile netto Q3 più che raddoppiato grazie a margini di raffinazione storici e prezzi alti; svalutazioni per 1,9 mld $ su eolico offshore e petrolchimica.",
+  "cambierebbe_idea": "Una divisione elettrica con utili regolati o contrattualizzati rilevanti e stabili porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "TotalEnergies SE third quarter 2026 results",
+    "url": "https://finviz.com/news/411109/totalenergies-se-third-quarter-2026-results",
+    "data": "2026-10-29"
+   },
+   {
+    "titolo": "TotalEnergies Profit Doubles as War Boosts Refining and Trading",
+    "url": "https://oilprice.com/Latest-Energy-News/World-News/TotalEnergies-Profit-Doubles-as-War-Boosts-Refining-and-Trading.html",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "RIO": {
+  "livello": "Bassa",
+  "fossato": "Miniere di ferro a basso costo nel Pilbara e asset di rame e alluminio di grande scala.",
+  "minaccia": "Prezzo del ferro legato all'acciaio cinese, nuova offerta da Simandou e rischi operativi e politici in Guinea e Mongolia",
+  "fatti_recenti": "Feb 2026: rame 2025 +11% a 883.000 t; Simandou ha spedito il primo minerale a fine 2025, guida 2026 di 5-10 Mt. CEO Simon Trott dall'agosto 2025.",
+  "cambierebbe_idea": "Un rame stabilmente oltre metà degli utili con prezzi solidi ridurrebbe la dipendenza dal ferro e porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Rio Tinto leans on copper as Pilbara steadies after earlier storms",
+    "url": "https://www.miningweekly.com/article/rio-tinto-leans-on-copper-as-pilbara-steadies-after-earlier-storms-2026-02-06",
+    "data": "2026-02-06"
+   },
+   {
+    "titolo": "Inside Trott's Rio",
+    "url": "https://australianminingreview.com.au/issue/2026/06/inside-trotts-rio/",
+    "data": "2026-06"
+   }
+  ]
+ },
+ "BHP": {
+  "livello": "Media",
+  "fossato": "Miniere di ferro e rame tra le meno costose al mondo, con il rame ormai oltre metà degli utili.",
+  "minaccia": "Prezzi di ferro e rame ciclici, domanda cinese, calo dei tenori di minerale e costi dei grandi progetti (Jansen)",
+  "fatti_recenti": "Ago 2026: per la prima volta il rame supera metà dell'EBITDA; ferro record. Lug 2026: Brandon Craig nuovo CEO; svalutazione di 2,3 mld $ su Jansen.",
+  "cambierebbe_idea": "Un crollo prolungato del ferro o ritardi e svalutazioni nei progetti del rame abbasserebbero il livello a Bassa.",
+  "fonti": [
+   {
+    "titolo": "BHP Results for the full year ended 30 June 2026",
+    "url": "https://www.bhp.com/news/media-centre/releases/2026/08/bhp-results-for-the-full-year-ended-30-june-2026",
+    "data": "2026-08"
+   },
+   {
+    "titolo": "BHP Names Americas Chief Brandon Craig as CEO",
+    "url": "https://www.morningstar.com/news/dow-jones/2026031813/bhp-names-americas-chief-brandon-craig-as-ceo-2nd-update",
+    "data": "2026-03"
+   }
+  ]
+ },
+ "PG": {
+  "livello": "Alta",
+  "fossato": "Marchi leader in categorie di uso quotidiano e stabili, con scala in pubblicità, distribuzione e ricerca.",
+  "minaccia": "Concorrenza delle marche del distributore e pressione dei costi delle materie prime sui margini",
+  "fatti_recenti": "Ott 2026: vendite Q1 FY27 23,3 mld $ (+4% organico, guidato dai volumi); margine lordo -160 pb per materie prime; acquisita Thorne a ottobre 2026.",
+  "cambierebbe_idea": "Più anni di volumi in calo e perdita di quote verso marche private abbasserebbero il livello a Media.",
+  "fonti": [
+   {
+    "titolo": "P&G Announces Fiscal Year 2027 First Quarter Results",
+    "url": "https://us.pg.com/newsroom/news-releases/PG-Announces-Fiscal-Year-2027-First-Quarter-Results/",
+    "data": "2026-10-22"
+   }
+  ]
+ },
+ "KO": {
+  "livello": "Alta",
+  "fossato": "Marchio dominante mondiale nelle bevande con modello a basso capitale: vende il concentrato agli imbottigliatori.",
+  "minaccia": "Cambio delle abitudini verso meno zucchero (anche per farmaci anti-obesità) e tasse sulle bevande zuccherate",
+  "fatti_recenti": "Ott 2026: ricavi Q3 +7% a 13,4 mld $, volumi globali +5%, EPS comparabile +11%; guida di crescita organica alzata ad almeno 5%. CEO Henrique Braun.",
+  "cambierebbe_idea": "Un calo strutturale dei volumi per più anni nei mercati principali abbasserebbe il livello a Media.",
+  "fonti": [
+   {
+    "titolo": "Coca-Cola reports third quarter 2026 results",
+    "url": "https://www.coca-colacompany.com/media-center/coca-cola-reports-third-quarter-2026-results",
+    "data": "2026-10-27"
+   },
+   {
+    "titolo": "Coca-Cola Co's growth strategy delivered in Q3, but can it last?",
+    "url": "https://www.foodnavigator.com/Article/2026/10/27/coca-cola-q3-growth-sets-high-bar-for-2027/",
+    "data": "2026-10-27"
+   }
+  ]
+ },
+ "PEP": {
+  "livello": "Media",
+  "fossato": "Marchi forti negli snack salati (Frito-Lay) con distribuzione diretta capillare, più le bevande Pepsi.",
+  "minaccia": "Calo della domanda di snack in Nord America (salute, farmaci anti-obesità) e perdita di terreno nelle bevande",
+  "fatti_recenti": "Ott 2026: ricavi Q3 +5,6% a 25,3 mld $, ma margini Nord America sotto pressione. Dic 2025: accordo con Elliott, tagli del 20% dei prodotti USA e del personale.",
+  "cambierebbe_idea": "Una ripresa stabile di volumi e margini in Nord America dopo la ristrutturazione alzerebbe il livello verso Alta.",
+  "fonti": [
+   {
+    "titolo": "PepsiCo Elliott restructuring SKU cuts",
+    "url": "https://www.foodingredientsfirst.com/news/pepsico-elliott-restructuring-sku-cuts",
+    "data": "2025-12"
+   },
+   {
+    "titolo": "PepsiCo (PEP) Q3 2026 Earnings Call Transcript",
+    "url": "https://fortune.com/company/pepsico/earnings/q3-2026/",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "WMT": {
+  "livello": "Alta",
+  "fossato": "Scala di acquisto e logistica senza pari, prezzi bassi e rete di negozi usata per consegne rapide e pubblicità.",
+  "minaccia": "Concorrenza di Amazon e di nuovi canali di acquisto basati sull'intelligenza artificiale",
+  "fatti_recenti": "Nov 2026: ricavi Q3 188,8 mld $ (+5,2%), e-commerce USA +23%, pubblicità USA +37%; guida FY27 alzata per la seconda volta. CEO John Furner.",
+  "cambierebbe_idea": "Perdita prolungata di quote nell'alimentare o margini in calo per la concorrenza online abbasserebbero il livello a Media.",
+  "fonti": [
+   {
+    "titolo": "Walmart U.S. comps rise 2.9% in Q3 as e-commerce grows 23%",
+    "url": "https://theshelbyreport.com/2026/11/19/walmart-u-s-comps-rise-2-9-in-q3-as-e-commerce-grows-23/",
+    "data": "2026-11-19"
+   },
+   {
+    "titolo": "Strong ecommerce and ad sales drive Walmart's Q3 revenue growth and guidance upgrade",
+    "url": "https://fashionunited.com/news/business/strong-ecommerce-and-ad-sales-drive-walmarts-q3-revenue-growth-and-guidance-upgrade/2026111975860",
+    "data": "2026-11-19"
+   }
+  ]
+ },
+ "COST": {
+  "livello": "Alta",
+  "fossato": "Ricavi ricorrenti dalle quote associative con rinnovi oltre il 90% in USA/Canada, e costi tra i più bassi del settore.",
+  "minaccia": "Saturazione dei mercati maturi e concorrenza di prezzo da Walmart (Sam's Club) e Amazon",
+  "fatti_recenti": "Set 2026: Q4 FY26 rinnovi USA/Canada 92,3%, quote associative +7,3% a 1,85 mld $, 150,4 mln di titolari di tessera; vendite annue 297,2 mld $.",
+  "cambierebbe_idea": "Un calo del tasso di rinnovo sotto il 90% in USA/Canada per più trimestri abbasserebbe il livello.",
+  "fonti": [
+   {
+    "titolo": "Costco Q4 comp sales up 9.4%, FY26 net sales hit $297.2B",
+    "url": "https://theshelbyreport.com/2026/10/04/costco-q4-comp-sales-up-9-4-fy26-net-sales-hit-297-2b/",
+    "data": "2026-10-04"
+   },
+   {
+    "titolo": "Costco's Best Numbers Came With an Asterisk",
+    "url": "https://www.nasdaq.com/articles/costcos-best-numbers-came-asterisk",
+    "data": "2026-09"
+   }
+  ]
+ },
+ "NESN.SW": {
+  "livello": "Media",
+  "fossato": "Portafoglio di marchi alimentari globali (Nescafé, Purina, Nespresso) con distribuzione mondiale.",
+  "minaccia": "Crescita debole dei volumi, concorrenza delle marche private e ristrutturazione in corso con nuovo CEO",
+  "fatti_recenti": "Ott 2026: crescita organica 9 mesi 3,7%, Q3 4,0% trainato dai volumi; guida 2026 3-4%. Ott 2025: annunciati 16.000 tagli di posti con il CEO Navratil.",
+  "cambierebbe_idea": "Volumi in crescita stabile per più anni dopo la ristrutturazione alzerebbero il livello; una ricaduta lo abbasserebbe.",
+  "fonti": [
+   {
+    "titolo": "Nestlé turnaround accelerates as volume growth gains pace",
+    "url": "https://www.foodmanufacture.co.uk/Article/2026/10/22/nestle-reports-strong-q3-as-volume-growth-accelerates/",
+    "data": "2026-10-22"
+   },
+   {
+    "titolo": "Nestlé plans 16,000 job cuts as new CEO Philipp Navratil sets out strategy",
+    "url": "https://www.just-drinks.com/newsletters/nestle-plans-16000-job-cuts-as-new-ceo-philipp-navratil-sets-out-strategy",
+    "data": "2025-10"
+   }
+  ]
+ },
+ "MC.PA": {
+  "livello": "Media",
+  "fossato": "Portafoglio di marchi storici (Louis Vuitton, Dior) con potere di prezzo e distribuzione diretta su scala globale.",
+  "minaccia": "Domanda di lusso ciclica e dipendente dalla Cina; rischio di saturazione e perdita di desiderabilità della pelletteria dopo anni di rincari",
+  "fatti_recenti": "Ottobre 2026: ricavi 9 mesi 57,1 mld euro, crescita organica +2%; nel terzo trimestre Moda e Pelletteria -5% organico, frenata dalla Cina.",
+  "cambierebbe_idea": "Tre anni di calo organico della Moda e Pelletteria con margini in discesa porterebbero a Bassa; ripresa stabile in Cina verso Alta.",
+  "fonti": [
+   {
+    "titolo": "LVMH Q3 organic revenue growth slows amid China downturn",
+    "url": "https://fashionunited.com/news/business/lvmh-q3-organic-revenue-growth-slows-amid-china-downturn/2026101375147",
+    "data": "2026-10-13"
+   },
+   {
+    "titolo": "Continued growth in the third quarter of 2026",
+    "url": "https://www.lvmh.com/en/publications/continued-growth-in-the-third-quarter-of-2026",
+    "data": "2026-10-12"
+   }
+  ]
+ },
+ "OR.PA": {
+  "livello": "Alta",
+  "fossato": "Leader mondiale della cosmetica con portafoglio di marchi in tutte le fasce, scala nel marketing e nella ricerca, consumi ripetitivi.",
+  "minaccia": "Concorrenza di marchi nativi digitali e locali (soprattutto in Cina) e cambi di canale verso social e-commerce",
+  "fatti_recenti": "Ottobre 2026: vendite del terzo trimestre 11,56 mld euro, +7,7% like-for-like rettificato, sopra le attese; ripresa in Nord Asia e travel retail.",
+  "cambierebbe_idea": "Perdita di quote per più anni in Cina e Nord America, o crescita sotto il mercato della bellezza, porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "L'Oréal sales at 30 September 2026",
+    "url": "https://www.loreal.com/it-it/italy/press-release/finance/sales-at-30-september-2026/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "L'Oréal sales reach €35.3bn as fragrance and haircare drive growth",
+    "url": "https://www.retailgazette.co.uk/blog/2026/10/loreal-35b-fragrance-haircare/",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "CAT": {
+  "livello": "Media",
+  "fossato": "Marchio e rete di concessionari mondiale con base installata che genera ricambi e assistenza; leader nei macchinari pesanti.",
+  "minaccia": "Utili molto ciclici legati a costruzioni, miniere ed energia; dazi e concorrenza cinese a basso costo",
+  "fatti_recenti": "Ottobre 2026: ricavi del terzo trimestre +17% a 20,7 mld dollari, margine operativo 20,4% e portafoglio ordini record.",
+  "cambierebbe_idea": "Margini stabili sopra il 15% anche in una recessione dimostrerebbero minore ciclicità (Alta); forte calo di quota verso costruttori cinesi porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Caterpillar Reports Third-Quarter 2026 Results",
+    "url": "https://www.caterpillar.com/en/news/corporate-press-releases/h/3q26-results-caterpillar-inc.html",
+    "data": "2026-10-29"
+   },
+   {
+    "titolo": "Caterpillar exceeds Q3 2026 expectations but stock drops",
+    "url": "https://stockstory.org/us/stocks/nyse/cat/news/earnings/caterpillar-nysecat-exceeds-q3-2026-expectations-but-stock-drops",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "GE": {
+  "livello": "Alta",
+  "fossato": "Enorme base installata di motori (anche via CFM) con decenni di ricavi ricorrenti da manutenzione e ricambi; settore a pochi concorrenti.",
+  "minaccia": "Shock al traffico aereo o problemi di affidabilità di un motore che impongano costi di garanzia; nuove architetture motore (RISE) da sviluppare",
+  "fatti_recenti": "Ottobre 2026: ordini del terzo trimestre +49% a 19 mld dollari, ricavi +16%, guidance 2026 alzata; acquisizione di Consolidated Precision Products.",
+  "cambierebbe_idea": "Un difetto grave e diffuso su LEAP o GE9X con richiami costosi, o un calo strutturale dei voli, porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "GE Aerospace announces third quarter 2026 results",
+    "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-third-quarter-2026-results",
+    "data": "2026-10-20"
+   }
+  ]
+ },
+ "SIE.DE": {
+  "livello": "Media",
+  "fossato": "Base installata di automazione industriale e software di progettazione con costi di cambio elevati; posizioni forti in reti e treni.",
+  "minaccia": "Ciclicità dell'automazione industriale e concorrenza cinese; integrazione delle grandi acquisizioni software e scorporo di Healthineers",
+  "fatti_recenti": "Novembre 2026: esercizio 2026 con ricavi comparabili +8% a 83,4 mld euro, ordini +25% e portafoglio 143 mld; previsto scorporo di Healthineers.",
+  "cambierebbe_idea": "Perdita di quote nell'automazione verso concorrenti cinesi o un forte calo dei margini Digital Industries porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Siemens fiscal 2026 results",
+    "url": "https://press.siemens.com/global/en/node/7494",
+    "data": "2026-11-12"
+   },
+   {
+    "titolo": "Siemens Mobility orders rise 56% as backlog reaches €65bn",
+    "url": "https://www.railjournal.com/financial/siemens-mobility-orders-rise-56-as-backlog-reaches-e65bn/",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "7203.T": {
+  "livello": "Media",
+  "fossato": "Primo costruttore mondiale con efficienza produttiva, reputazione di affidabilità e leadership negli ibridi.",
+  "minaccia": "Transizione all'auto elettrica e software in cui i concorrenti cinesi sono avanti; dazi USA e ciclicità della domanda auto",
+  "fatti_recenti": "Novembre 2026: utile netto del semestre +26,1%, previsione utile operativo alzata a 3.900 mld yen; esercizio a marzo 2026 penalizzato dai dazi USA.",
+  "cambierebbe_idea": "Perdita rapida di quote in Asia e Stati Uniti verso marchi elettrici cinesi porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Toyota's half-year net profit rises 26.1% as retail vehicle sales fall",
+    "url": "https://www.nationthailand.com/news/40073157",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Trump's tariffs hit Toyota profit, though its global sales grew",
+    "url": "https://wtop.com/news/2026/05/trumps-tariffs-hit-toyota-profit-though-its-global-sales-grew/",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "6758.T": {
+  "livello": "Media",
+  "fossato": "Ecosistema PlayStation con circa 127 milioni di utenti attivi, cataloghi musicali e leadership nei sensori d'immagine.",
+  "minaccia": "Passaggio dei giochi verso cloud, abbonamenti e mobile; dipendenza dal ciclo console e dai successi dei titoli; concorrenza nei sensori",
+  "fatti_recenti": "Novembre 2026: utile operativo Game & Network Services +83% nel trimestre, previsione ricavi PlayStation alzata; vendite PS5 -35%.",
+  "cambierebbe_idea": "Una PS6 fallimentare o l'erosione stabile degli utenti PlayStation porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "PlayStation player base and monthly active users reached record high in September",
+    "url": "https://automaton-media.com/en/news/playstation-player-base-and-monthly-active-users-reached-record-high-in-september-despite-declining-hardware-sales-sony-reports/",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Sony raises PlayStation outlook on software and services growth",
+    "url": "https://www.gaming.net/sony-raises-playstation-outlook-on-software-and-services-growth/",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "BA": {
+  "livello": "Bassa",
+  "fossato": "Duopolio con Airbus negli aerei commerciali, portafoglio ordini enorme e ruolo strategico nella difesa USA.",
+  "minaccia": "Problemi di qualità e produzione sotto controllo FAA, debito elevato e perdite nell'aviazione commerciale; esecuzione incerta su 777X e rialzo produttivo",
+  "fatti_recenti": "Ottobre 2026: ricavi del terzo trimestre 24,2 mld dollari, Commercial Airplanes ancora in perdita (margine -6,5%); 737-10 certificato a ottobre 2026.",
+  "cambierebbe_idea": "Produzione stabile a 47 737 al mese con margini commerciali positivi e consegne 777X nel 2027 porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Boeing jetliner production challenges weigh on third-quarter results",
+    "url": "https://www.ksl.com/article/51641528/boeing-jetliner-production-challenges-weigh-on-third-quarter-results",
+    "data": "2026-10-27"
+   },
+   {
+    "titolo": "Boeing pushes 777X jet deliveries to 2027 amid certification delays",
+    "url": "https://www.aol.com/articles/boeing-pushes-777x-jet-deliveries-191822995.html",
+    "data": "2026"
+   }
+  ]
+ },
+ "NEE": {
+  "livello": "Media",
+  "fossato": "Utility regolata in Florida (FPL) con crescita della base tariffaria e leader USA nelle rinnovabili con costi bassi.",
+  "minaccia": "Rinnovabili esposte a politiche federali e tassi; incertezza dalla fusione con Dominion e dai rapporti con i regolatori",
+  "fatti_recenti": "Ottobre 2026: EPS rettificato del terzo trimestre 1,24 dollari (+10%), backlog rinnovabili 36,7 GW; fusione con Dominion contestata da regolatori e politici.",
+  "cambierebbe_idea": "Approvazione della fusione con condizioni sfavorevoli o tagli agli incentivi che riducano la crescita del backlog porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "NextEra Energy Q3 2026 Form 8-K exhibit",
+    "url": "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm",
+    "data": "2026-10-21"
+   },
+   {
+    "titolo": "NextEra Energy Lifts Adjusted Earnings as Dominion Takeover Faces Mounting Opposition",
+    "url": "https://energynews.pro/en/nextera-energy-lifts-adjusted-earnings-as-dominion-takeover-faces-mounting-opposition",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "IBE.MC": {
+  "livello": "Media",
+  "fossato": "Reti elettriche regolate in Spagna, Regno Unito, USA e Brasile con rendimenti fissati dai regolatori, più rinnovabili a basso costo.",
+  "minaccia": "Revisioni tariffarie e politiche nei vari paesi; prezzi dell'energia e cambi incidono sulla generazione",
+  "fatti_recenti": "Ottobre 2026: utile netto 9 mesi 5,8 mld euro (+10%, con plusvalenza dalla vendita del Messico), investimenti record 10 mld, guidance 2026 alzata.",
+  "cambierebbe_idea": "Revisioni tariffarie punitive su reti UK o USA porterebbero a Bassa; reti oltre il 70% degli utili con rendimenti stabili verso Alta.",
+  "fonti": [
+   {
+    "titolo": "Iberdrola lifts 2026 outlook as 9M profit rises 10% to 5.8 billion",
+    "url": "https://www.securities.io/iberdrola-lifts-2026-outlook-as-9m-profit-rises-10-to-5-8-billion/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Iberdrola newsletter 23 Oct 2026",
+    "url": "https://www.iberdrola.com/documents/20125/5507066/261023-newsletter-EN.pdf",
+    "data": "2026-10-23"
+   }
+  ]
+ },
+ "ENEL.MI": {
+  "livello": "Media",
+  "fossato": "Reti di distribuzione regolate in Italia, Spagna e America Latina e ampia base di clienti nella vendita.",
+  "minaccia": "Interventi politici sulle bollette in Italia, rischi in America Latina e debito in aumento",
+  "fatti_recenti": "Novembre 2026: ricavi 9 mesi +8,9% a 65 mld euro, utile ordinario +6%; il Decreto Bollette di febbraio 2026 pesa circa 100 mln, debito a 66 mld.",
+  "cambierebbe_idea": "Nuovi prelievi o tagli tariffari ricorrenti in Italia o Spagna porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Enel, ricavi +8,9% a 65 miliardi ed Ebitda ordinario +4% nei nove mesi",
+    "url": "https://www.teleborsa.it/DettaglioNews/229_2026-11-12_TLB/Enel-ricavi-89-a-65-miliardi-ed-Ebitda-ordinario-4-nei-nove-mesi.html",
+    "data": "2026-11-12"
+   }
+  ]
+ },
+ "ENI.MI": {
+  "livello": "Bassa",
+  "fossato": "Successo nell'esplorazione e portafoglio gas a costi competitivi; modello satelliti (Plenitude, Enilive) per valorizzare attività.",
+  "minaccia": "Utili legati ai prezzi di petrolio e gas e alla transizione energetica; rischi geopolitici nei paesi di produzione",
+  "fatti_recenti": "Ottobre 2026: utile netto rettificato del terzo trimestre 2,8 mld euro (+125%), dividendo straordinario 0,46 euro e buyback 2026 a 3,8 mld.",
+  "cambierebbe_idea": "Utili stabili anche con petrolio basso grazie a gas a lungo termine e attività regolate porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Eni 2026 third quarter results",
+    "url": "https://www.eni.com/en-IT/media/press-release/2026/10/2026-third-quarter-results.html",
+    "data": "2026-10-23"
+   },
+   {
+    "titolo": "Eni, utile raddoppiato, dividendo extra",
+    "url": "https://forbes.it/2026/10/23/eni-utile-raddoppiato-dividendo-extra-titolo-vola-piazza-affari",
+    "data": "2026-10-23"
+   }
+  ]
+ },
+ "ISP.MI": {
+  "livello": "Media",
+  "fossato": "Prima banca italiana con grande raccolta stabile, risparmio gestito e assicurazioni che rendono gli utili meno dipendenti dai tassi.",
+  "minaccia": "Calo dei tassi, rischio sovrano italiano e prelievi fiscali sulle banche; esito dell'operazione su Mps",
+  "fatti_recenti": "Novembre 2026: utile 9 mesi 8,2 mld euro (+8,1%), ROE 21%, guidance 2026 oltre 10 mld nonostante quasi 1 mld di impatto fiscale.",
+  "cambierebbe_idea": "Una crisi del debito italiano o un'acquisizione grande e mal integrata porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Intesa Sanpaolo: risultati consolidati al 30 settembre 2026",
+    "url": "https://group.intesasanpaolo.com/it/investor-relations/comunicati-stampa-price-sensitive/2026/11/20261103-ris3q26-it",
+    "data": "2026-11-03"
+   }
+  ]
+ },
+ "UCG.MI": {
+  "livello": "Media",
+  "fossato": "Banca paneuropea ben capitalizzata con forte presenza in Italia, Germania ed Europa centrale e costi in calo.",
+  "minaccia": "Esecuzione dell'integrazione di Commerzbank e di altre acquisizioni; calo dei tassi e rischio sovrano",
+  "fatti_recenti": "Novembre 2026: utile netto del terzo trimestre circa 3,3 mld euro (+24%), CET1 15%; via libera BCE a salire oltre il 30% di Commerzbank.",
+  "cambierebbe_idea": "Un'integrazione di Commerzbank con perdite o aumento di capitale porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "UniCredit Q3 2026 profit",
+    "url": "https://theedgemalaysia.com/node/825038",
+    "data": "2026-11-10"
+   }
+  ]
+ },
+ "PRY.MI": {
+  "livello": "Media",
+  "fossato": "Primo produttore mondiale di cavi con capacità rara nei cavi sottomarini ad alta tensione e portafoglio ordini pluriennale.",
+  "minaccia": "Ciclo eccezionale di investimenti in reti che può rallentare; prezzi del rame e nuovi concorrenti nei cavi ad alta tensione",
+  "fatti_recenti": "Ottobre 2026: ricavi 9 mesi 17,7 mld euro, EBITDA rettificato 2,18 mld, guidance 2026 alzata; target 2028 raggiunti con due anni di anticipo.",
+  "cambierebbe_idea": "Forte calo degli ordini di trasmissione o eccesso di capacità nei cavi HV porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Prysmian to exceed 2028 financial targets two years early",
+    "url": "https://www.prysmian.com/en/media/press-releases/prysmian-to-exceed-2028-financial-targets-two-years-early-raises-2026-guidance-again-after-its-best-quarter-to-date",
+    "data": "2026-10-29"
+   }
+  ]
+ },
+ "LDO.MI": {
+  "livello": "Media",
+  "fossato": "Fornitore strategico della difesa italiana ed europea in elicotteri ed elettronica, con contratti lunghi e Stato azionista.",
+  "minaccia": "Utili legati ai bilanci della difesa e alle scelte politiche; integrazione delle acquisizioni (Iveco Defence) e rischio di esecuzione sui programmi",
+  "fatti_recenti": "Novembre 2026: portafoglio ordini 60,4 mld euro (+28%), ricavi 9 mesi +14% a 15,3 mld, utile rettificato +74%; guidance ordini 2026 alzata.",
+  "cambierebbe_idea": "Un taglio delle spese militari europee dopo una pace duratura, con calo degli ordini, porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Leonardo tops 60 billion in orders as defence, drones and space grow",
+    "url": "https://www.euronews.com/2026/11/05/leonardo-tops-60-billion-in-orders-as-defence-drones-and-space-grow",
+    "data": "2026-11-05"
+   }
+  ]
+ },
+ "PST.MI": {
+  "livello": "Media",
+  "fossato": "Rete capillare di uffici postali e fiducia del risparmio postale, con assicurazioni vita e pagamenti a clientela vincolata.",
+  "minaccia": "Integrazione di TIM, settore telecom a bassa crescita e molto concorrenziale; dipendenza da convenzioni con lo Stato e Cdp",
+  "fatti_recenti": "Novembre 2026: ricavi 9 mesi 10,2 mld euro (+5,4%), utile rettificato 1,84 mld; Poste ha circa l'87% di TIM e la consolida da ottobre 2026.",
+  "cambierebbe_idea": "Perdite o svalutazioni su TIM che riducano i dividendi porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Poste Italiane, 9 mesi da record e conferma della guidance",
+    "url": "https://www.teleborsa.it/DettaglioNews/1_2026-11-12_TLB/Poste-Italiane-9-mesi-da-record-e-conferma-della-guidance-Acconto-sul-dividendo-sale-a-043-euro.html",
+    "data": "2026-11-12"
+   },
+   {
+    "titolo": "Poste is growing. Now it's Tim's turn",
+    "url": "https://www.ilfoglio.it/en/foglio-ai/2026/11/12/news/poste-is-growing-now-its-tims-turn--413467",
+    "data": "2026-11-12"
+   }
+  ]
+ },
+ "G.MI": {
+  "livello": "Media",
+  "fossato": "Grande assicuratore europeo con rete distributiva capillare, forte nel vita e nei danni e ben capitalizzato.",
+  "minaccia": "Rischio sovrano italiano sugli investimenti, catastrofi naturali in aumento e cambi negli assetti azionari (Mps-Mediobanca)",
+  "fatti_recenti": "Novembre 2026: utile netto normalizzato 9 mesi circa 3,68 mld euro (+12%), premi +4,5%; sinistri catastrofali +1 mld rispetto al 2025.",
+  "cambierebbe_idea": "Perdite catastrofali ripetute o un conflitto sul controllo che cambi la strategia porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Generali, nei primi nove mesi utile a 3,6 miliardi",
+    "url": "https://www.teleborsa.it/News/2026/11/13/generali-nei-primi-nove-mesi-utile-a-3-6-miliardi-12percent-premi-4-5percent-1.html",
+    "data": "2026-11-13"
+   }
+  ]
+ },
+ "MONC.MI": {
+  "livello": "Media",
+  "fossato": "Marchio di lusso con alta riconoscibilità nei piumini, margini elevati e vendita diretta nei propri negozi.",
+  "minaccia": "Dipendenza da una categoria e dal marchio Moncler; mode che cambiano e domanda di lusso ciclica",
+  "fatti_recenti": "Ottobre 2026: ricavi del terzo trimestre 605,5 mln euro, stabili a cambi costanti; marchio Moncler -1%, Europa -8%, Stone Island +5%.",
+  "cambierebbe_idea": "Calo pluriennale delle vendite del marchio Moncler o forte calo dei margini porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Moncler Group revenues grow 6 percent in first 9 months of 2026",
+    "url": "https://fashionunited.com/news/business/moncler-group-revenues-grow-6-percent-in-first-9-months-of-2026/2026102175334",
+    "data": "2026-10-21"
+   }
+  ]
+ },
+ "TRN.MI": {
+  "livello": "Alta",
+  "fossato": "Monopolio della trasmissione elettrica in Italia con ricavi fissati dal regolatore e investimenti remunerati.",
+  "minaccia": "Revisione al ribasso dei rendimenti regolati da ARERA o interventi fiscali dello Stato; costi crescenti del piano investimenti",
+  "fatti_recenti": "Novembre 2026: ricavi 9 mesi 3,11 mld euro (+8,1%), utile 857 mln, investimenti record oltre 2,3 mld; tax rate salito al 31,4% col Decreto Bollette.",
+  "cambierebbe_idea": "Un taglio netto del rendimento regolato o prelievi straordinari ripetuti porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Terna 9 mesi in crescita con investimenti record a 2,35 miliardi",
+    "url": "https://www.teleborsa.it/DettaglioNews/125_2026-11-12_TLB/Terna-9-mesi-in-crescita-con-investimenti-record-a-235-miliardi-Acconto-su-dividendo-a-1192-centesimi.html",
+    "data": "2026-11-12"
+   }
+  ]
+ },
+ "SRG.MI": {
+  "livello": "Alta",
+  "fossato": "Monopolio regolato della rete gas italiana: ricavi legati al capitale investito (RAB) remunerato a tariffa fissata da ARERA.",
+  "minaccia": "Calo strutturale della domanda di gas con la transizione energetica e revisioni al ribasso del rendimento regolato riconosciuto",
+  "fatti_recenti": "Nel marzo 2026 piano 2026-2030 con 14 miliardi di investimenti; a luglio 2026 guidance confermata (RAB 28,8 mld) e a novembre 2026 i conti a nove mesi confermano gli obiettivi.",
+  "cambierebbe_idea": "Un taglio netto del WACC regolato o regole che lascino a carico di Snam il rischio di reti gas sottoutilizzate.",
+  "fonti": [
+   {
+    "titolo": "CS Snam risultati finanziari 2025 e piano strategico 2026-2030",
+    "url": "https://www.snam.it/content/dam/snam/news-assets/comunicati-stampa/it/2026/CS-Snam-risultati-finanziari-2025-e-piano-strategico-2026-2030.pdf",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "Snam, solida semestrale e conferma guidance 2026",
+    "url": "https://www.teleborsa.it/News/2026/07/29/snam-solida-semestrale-e-conferma-guidance-2026-migliora-target-sull-indebitamento-159.html",
+    "data": "2026-07-29"
+   }
+  ]
+ },
+ "NEXI.MI": {
+  "livello": "Bassa",
+  "fossato": "Rete di accordi con le banche italiane e scala nell'elaborazione dei pagamenti con carta e nei POS.",
+  "minaccia": "Concorrenza di Adyen, Stripe, Revolut e dei pagamenti istantanei/euro digitale che può erodere prezzi e quote",
+  "fatti_recenti": "A gennaio 2026 l'AD Bertoluzzo è sostituito da Bernardo Mingrone; a novembre 2026 ricavi a nove mesi +1,1% a 2,68 miliardi, guidance confermata.",
+  "cambierebbe_idea": "Ritorno stabile a una crescita dei ricavi del 4-5% con margini tenuti e quote difese nei pagamenti ai negozi.",
+  "fonti": [
+   {
+    "titolo": "Nexi earthquake at the top: Bernardo Mingrone new CEO",
+    "url": "https://www.firstonline.info/en/Nexi-earthquake-at-the-top-Bernardo-Mingrone-new-CEO-replacing-Paolo-Bertoluzzo-stock-price-down/",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Nexi +1.1% revenue of 2.68 billion over 9 months, 2026 targets confirmed",
+    "url": "https://en.ilsole24ore.com/art/nexi-11-per-cent-revenue-of-268-billion-over-9-months-2026-targets-confirmed-AJNyUV5B",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "FBK.MI": {
+  "livello": "Media",
+  "fossato": "Piattaforma tecnologica efficiente e rete di consulenti che attira raccolta continua a costi bassi.",
+  "minaccia": "Discesa dei tassi che comprime il margine d'interesse e concorrenza di neobanche e broker a basso costo",
+  "fatti_recenti": "Primo trimestre 2026 con raccolta netta +43,8% a 4,6 miliardi (maggio 2026); a luglio 2026 utile semestrale di 340 milioni e raccolta vicina a 9 miliardi.",
+  "cambierebbe_idea": "Un calo prolungato della raccolta netta o dei ricavi da commissioni quando i tassi scendono.",
+  "fonti": [
+   {
+    "titolo": "FinecoBank Results 1Q2026",
+    "url": "https://images.fineco.it/pub/pdf/chi-siamo/comunicati-ipo/2026-05-06-PRFINECOBANK_RESULTS1Q2026.pdf",
+    "data": "2026-05-06"
+   },
+   {
+    "titolo": "FinecoBank Results 1H26",
+    "url": "https://images.fineco.it/pub/pdf/chi-siamo/comunicati-ipo/2026-07-30-PR-Results1H26.pdf",
+    "data": "2026-07-30"
+   }
+  ]
+ },
+ "FCT.MI": {
+  "livello": "Media",
+  "fossato": "Leader mondiale nelle navi da crociera di lusso e cantiere militare strategico per l'Italia e la US Navy.",
+  "minaccia": "Margini sottili su commesse lunghe a prezzo fisso, ciclicità delle crociere e concorrenza asiatica",
+  "fatti_recenti": "A maggio 2026 carico di lavoro record di 74,2 miliardi (+17,4% da fine 2025), guidance 2026 alzata e primo contratto per la US Navy (LSM).",
+  "cambierebbe_idea": "Perdite su grandi commesse o cancellazioni di ordini crociere che riducano il portafoglio.",
+  "fonti": [
+   {
+    "titolo": "Fincantieri raises 2026 outlook as backlog hits record",
+    "url": "https://gcaptain.com/fincantieri-raises-2026-outlook-as-backlog-hits-record/",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "Fincantieri raises 2026 guidance after beating target for new contracts",
+    "url": "https://www.bairdmaritime.com/passenger/cruise/fincantieri-raises-2026-guidance-after-beating-target-for-new-contracts",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "BZU.MI": {
+  "livello": "Media",
+  "fossato": "Cementifici in mercati regionali concentrati, con trasporto costoso che limita la concorrenza; forte presenza in USA.",
+  "minaccia": "Ciclicità dell'edilizia e costi della decarbonizzazione (CO2 in UE) che possono comprimere i margini",
+  "fatti_recenti": "A marzo 2026 prevista lieve contrazione dei margini nel 2026; ad agosto 2026 EBITDA semestrale in calo dell'8% (483 milioni), guidance confermata.",
+  "cambierebbe_idea": "Un forte calo della domanda edilizia USA o costi CO2 non trasferibili sui prezzi.",
+  "fonti": [
+   {
+    "titolo": "Buzzi reports first half financial results for 2026",
+    "url": "https://globalcement.com/news/21083-buzzi-reports-first-half-financial-results-for-2026",
+    "data": "2026-08"
+   },
+   {
+    "titolo": "Buzzi prevede lieve contrazione del margine anche nel 2026",
+    "url": "https://www.teleborsa.it/News/2026/03/31/buzzi-prevede-lieve-contrazione-del-margine-anche-nel-2026-dividendo-invariato-a-0-70-euro-121.html",
+    "data": "2026-03-31"
+   }
+  ]
+ },
+ "AMP.MI": {
+  "livello": "Media",
+  "fossato": "Prima rete mondiale di negozi di apparecchi acustici, con domanda sostenuta dall'invecchiamento della popolazione.",
+  "minaccia": "Apparecchi da banco e canali online più economici, più il rischio di integrazione di GN Hearing",
+  "fatti_recenti": "Crescita organica del 4,7% nel secondo trimestre 2026 (luglio 2026); acquisizione di GN Hearing per circa 2,3 miliardi con chiusura attesa a fine 2026.",
+  "cambierebbe_idea": "Una perdita di quota a favore di canali a basso prezzo o problemi nell'integrazione di GN Hearing.",
+  "fonti": [
+   {
+    "titolo": "Amplifon Reports Strongest Organic Growth in Two Years",
+    "url": "https://hearinghealthmatters.org/hearing-news-watch/2026/amplifon-strong-growth-q2/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Amplifon Q1 2026 results",
+    "url": "https://corporate.amplifon.com/en/investors/press-releases/f-pr-Q1-2026-results",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "DIA.MI": {
+  "livello": "Media",
+  "fossato": "Base installata di strumenti diagnostici che genera vendite ricorrenti di reagenti e test specialistici.",
+  "minaccia": "Pressione sui prezzi (Cina), concorrenza dei grandi gruppi diagnostici e crescita debole dopo il Covid",
+  "fatti_recenti": "Ricavi del primo trimestre 2026 -8% con Cina -22% (maggio 2026); a luglio 2026 semestre a 602 milioni e guidance 2026 confermata.",
+  "cambierebbe_idea": "Un nuovo taglio della guidance o la perdita di quote nei test specialistici.",
+  "fonti": [
+   {
+    "titolo": "DiaSorin reaffirms full year guidance despite 8 percent Q1 revenue decline",
+    "url": "https://www.360dx.com/business-news/diasorin-reaffirms-full-year-guidance-despite-8-percent-q1-revenue-decline",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "DiaSorin conferma guidance con ritorno alla crescita dei ricavi nel 2 trimestre",
+    "url": "https://www.teleborsa.it/AMP/News/2026/07/31/diasorin-conferma-guidance-con-ritorno-alla-crescita-dei-ricavi-nel-2-trimestre-101.html",
+    "data": "2026-07-31"
+   }
+  ]
+ },
+ "A2A.MI": {
+  "livello": "Media",
+  "fossato": "Reti regolate, rifiuti e teleriscaldamento in Lombardia con radicamento locale e concessioni di lungo periodo.",
+  "minaccia": "Incertezza sul rinnovo delle concessioni idroelettriche e utili della generazione legati ai prezzi dell'energia",
+  "fatti_recenti": "A settembre 2026 l'AD chiede regole rapide sulle concessioni idro; a novembre 2026 utile a nove mesi -14% a 473 milioni, guidance 2026 confermata.",
+  "cambierebbe_idea": "Il rinnovo delle concessioni idroelettriche a condizioni chiare o, al contrario, la loro perdita in gara.",
+  "fonti": [
+   {
+    "titolo": "Idroelettrico, Mazzoncini (A2A): servono 15 miliardi",
+    "url": "https://www.teleborsa.it/DettaglioNews/139_2026-09-17_TLB/Idroelettrico-Mazzoncini-A2A-Servono-15-miliardi-e-bisogna-fare-presto-sulle-concessioni.html",
+    "data": "2026-09-17"
+   },
+   {
+    "titolo": "A2A, l'idroelettrico frena l'utile",
+    "url": "https://www.milanofinanza.it/news/a2a-l-idroelettrico-frena-l-utile-2723808",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "CPR.MI": {
+  "livello": "Media",
+  "fossato": "Marchi di aperitivi forti e difficili da replicare (Aperol, Campari) con distribuzione globale.",
+  "minaccia": "Calo strutturale del consumo di alcol tra i giovani e rallentamento del settore liquori",
+  "fatti_recenti": "Crescita organica del 2,9% nel primo trimestre 2026 (maggio 2026); nel semestre (luglio 2026) +2,7% organico, Aperol +3,3%, utili in calo ma margine 2026 rivisto al rialzo.",
+  "cambierebbe_idea": "Un calo prolungato dei volumi di Aperol o un ritorno a crescite organiche medie del 5%.",
+  "fonti": [
+   {
+    "titolo": "Campari Group kicks off 2026 with 2.9% growth",
+    "url": "https://www.thespiritsbusiness.com/2026/05/campari-group-kicks-off-2026-with-2-9-growth/",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "Campari profits fall despite stronger outlook for 2026",
+    "url": "https://www.thedrinksbusiness.com/2026/08/campari-profits-fall-despite-stronger-outlook-for-2026/",
+    "data": "2026-08"
+   }
+  ]
+ },
+ "SU.PA": {
+  "livello": "Media",
+  "fossato": "Base installata enorme di apparecchiature elettriche e software, marchio e rete di installatori globali.",
+  "minaccia": "Dipendenza crescente dal ciclo degli investimenti in data center per l'IA, che potrebbe raffreddarsi",
+  "fatti_recenti": "A febbraio 2026 ordini data center a tre cifre nel quarto trimestre 2025; a luglio 2026 semestre record e obiettivi 2026 alzati.",
+  "cambierebbe_idea": "Un calo marcato degli ordini data center o una perdita di margine per la concorrenza.",
+  "fonti": [
+   {
+    "titolo": "Schneider beats profit expectations as data center demand offsets weak dollar",
+    "url": "https://www.thestar.com.my/tech/tech-news/2026/02/26/schneider-beats-profit-expectations-as-data-center-demand-offsets-weak-dollar",
+    "data": "2026-02-26"
+   },
+   {
+    "titolo": "Schneider Electric HY results 2026",
+    "url": "https://www.se.com/ww/en/assets/pdf/release-hy-results-2026",
+    "data": "2026-07-30"
+   }
+  ]
+ },
+ "AIR.PA": {
+  "livello": "Media",
+  "fossato": "Duopolio mondiale con Boeing negli aerei di linea, con portafoglio ordini di molti anni.",
+  "minaccia": "Strozzature nella catena di fornitura (motori Pratt & Whitney) e, nel lungo periodo, l'ingresso di COMAC",
+  "fatti_recenti": "Primo trimestre 2026 debole (114 consegne) per carenza motori; a ottobre 2026 547 consegne in nove mesi e obiettivo di circa 870 confermato.",
+  "cambierebbe_idea": "Mancare di nuovo gli obiettivi di consegna o problemi industriali che rinviino l'aumento produttivo dell'A320.",
+  "fonti": [
+   {
+    "titolo": "Airbus reports Nine-Month (9M) 2026 results",
+    "url": "https://www.airbus.com/en/newsroom/press-releases/2026-10-airbus-reports-nine-month-9m-2026-results",
+    "data": "2026-10-28"
+   },
+   {
+    "titolo": "Airbus reports First Quarter (Q1) 2026 results",
+    "url": "https://www.airbus.com/en/newsroom/press-releases/2026-04-airbus-reports-first-quarter-q1-2026-results",
+    "data": "2026-04"
+   }
+  ]
+ },
+ "SAN.PA": {
+  "livello": "Media",
+  "fossato": "Farmaci protetti da brevetto (Dupixent) e posizione forte nei vaccini.",
+  "minaccia": "Forte dipendenza da Dupixent, la cui esclusiva USA scade da marzo 2031, con pipeline incerta",
+  "fatti_recenti": "A febbraio 2026 uscita dell'AD Hudson, Belén Garijo AD da fine aprile 2026; primo trimestre 2026 con Dupixent +31% a 4,2 miliardi.",
+  "cambierebbe_idea": "L'arrivo di nuovi farmaci di successo che riducano il peso di Dupixent, o biosimilari prima del previsto.",
+  "fonti": [
+   {
+    "titolo": "Garijo starts as Sanofi CEO with window to ease reliance on Dupixent",
+    "url": "https://www.biospace.com/business/garijo-starts-as-sanofi-ceo-with-window-to-ease-reliance-on-dupixent",
+    "data": "2026-04"
+   },
+   {
+    "titolo": "Sanofi Q1 2026 earnings: Dupixent, vaccines, immunology",
+    "url": "https://biopharmadive.com/news/sanofi-earnings-q1-2026-dupixent-vaccines-immunology/818283/",
+    "data": "2026-04"
+   }
+  ]
+ },
+ "BNP.PA": {
+  "livello": "Media",
+  "fossato": "Franchise bancario diversificato e ben capitalizzato in Francia, Belgio, Italia e banca d'affari globale.",
+  "minaccia": "Rischi legali negli USA (causa Sudan) e ciclo del credito/tassi in Europa",
+  "fatti_recenti": "A gennaio 2026 confermato il verdetto Sudan da 21 milioni, appello a febbraio 2026; terzo trimestre 2026 con utile +13,5% a 3,46 miliardi (ottobre 2026).",
+  "cambierebbe_idea": "Un esito sfavorevole del contenzioso Sudan con richieste di massa, o un forte aumento delle perdite su crediti.",
+  "fonti": [
+   {
+    "titolo": "BNP Paribas group results as of 30 September 2026",
+    "url": "https://group.bnpparibas/en/press-release/bnp-paribas-group-results-as-of-30-september-2026",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Sudan litigation: ruling clears the path for BNP Paribas appeal",
+    "url": "https://group.bnpparibas/en/press-release/sudan-litigation-ruling-clears-the-path-for-bnp-paribas-appeal",
+    "data": "2026-01"
+   }
+  ]
+ },
+ "AI.PA": {
+  "livello": "Alta",
+  "fossato": "Oligopolio globale dei gas industriali con impianti presso i clienti e contratti di 15-20 anni con prezzi indicizzati.",
+  "minaccia": "Rallentamento dell'industria chimica e siderurgica europea e incertezza sui progetti a idrogeno",
+  "fatti_recenti": "A luglio 2026 semestre con margine operativo al 20,9% (+100 pb) e obiettivo di altri +100 pb nel 2026 e nel 2027; backlog investimenti record di 6 miliardi.",
+  "cambierebbe_idea": "Un calo prolungato dei volumi presso i grandi clienti industriali o perdite rilevanti su progetti idrogeno.",
+  "fonti": [
+   {
+    "titolo": "H1 2026 results: acceleration in the second quarter, Air Liquide combines growth and continuous performance",
+    "url": "https://airliquide.com/group/press-releases-news/2026-07-28/h1-2026-results-acceleration-second-quarter-air-liquide-combines-growth-continuous-performance",
+    "data": "2026-07-28"
+   },
+   {
+    "titolo": "Air Liquide confirms margin outlook after in-line H1 results",
+    "url": "https://live.euronext.com/en/financial-news/air-liquide-confirms-margin-outlook-after-line-h1-results",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "SAN.MC": {
+  "livello": "Media",
+  "fossato": "Scala e diversificazione geografica in banca commerciale e credito al consumo, con costi bassi.",
+  "minaccia": "Esposizione a Paesi emergenti volatili (Brasile, Messico) e rischi di integrazione delle grandi acquisizioni",
+  "fatti_recenti": "Acquisizioni di TSB (aprile 2026) e Webster Financial (agosto 2026); terzo trimestre 2026 con utile sottostante +19% a 3,8 miliardi (ottobre 2026).",
+  "cambierebbe_idea": "Problemi nell'integrazione di Webster o una crisi del credito in Brasile.",
+  "fonti": [
+   {
+    "titolo": "Q3 2026 Santander bank results",
+    "url": "https://www.santander.com/en/press-room/press-releases/2026/10/q3-2026-santander-bank-results",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Q2 2026 Santander bank results",
+    "url": "https://www.santander.com/en/press-room/press-releases/2026/07/q2-2026-santander-bank-results",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "ITX.MC": {
+  "livello": "Media",
+  "fossato": "Catena di fornitura rapida e integrata, marchio Zara globale e forte capacità di cassa.",
+  "minaccia": "Gusti della moda mutevoli e concorrenza dell'ultra-fast fashion online a basso prezzo (Shein, Temu)",
+  "fatti_recenti": "A settembre 2026 vendite semestrali +7,6% a 19,76 miliardi e utile 2,98 miliardi; vendite agosto-settembre 2026 +9% a cambi costanti.",
+  "cambierebbe_idea": "Diversi trimestri con vendite comparabili in calo e margini in contrazione.",
+  "fonti": [
+   {
+    "titolo": "Inditex hits new high: reports profit of 2.98 billion euros",
+    "url": "https://fashionunited.com/news/business/inditex-hits-new-high-reports-profit-of-2-98-billion-euros-with-7-6-percent-growth-through-july/2026090974511",
+    "data": "2026-09"
+   },
+   {
+    "titolo": "Inditex reports best first quarter in its history",
+    "url": "https://fashionunited.com/news/business/inditex-reports-best-first-quarter-in-its-history-with-sales-of-8-75-billion-euros/2026060372738",
+    "data": "2026-06"
+   }
+  ]
+ },
+ "ALV.DE": {
+  "livello": "Media",
+  "fossato": "Primo assicuratore europeo, diversificato tra danni, vita e gestione del risparmio, molto capitalizzato.",
+  "minaccia": "Aumento dei sinistri catastrofali legati al clima e deflussi o commissioni in calo nella gestione del risparmio",
+  "fatti_recenti": "Obiettivo 2026 di utile operativo di 17,4 miliardi +/-1 (febbraio 2026); ad agosto 2026 secondo trimestre record e afflussi Pimco di 31,7 miliardi.",
+  "cambierebbe_idea": "Anni consecutivi di perdite catastrofali sopra il budget o deflussi forti da Pimco.",
+  "fonti": [
+   {
+    "titolo": "Allianz Earnings Release: 2Q and 6M 2026",
+    "url": "https://www.allianz.com/en/mediacenter/news/media-releases/financials/260807-2q-2026-earnings-release.html",
+    "data": "2026-08-07"
+   },
+   {
+    "titolo": "Allianz Earnings Release: 1Q 2026",
+    "url": "https://www.allianz.com/en/mediacenter/news/media-releases/financials/260513-1q-2026-earnings-release.html",
+    "data": "2026-05-13"
+   }
+  ]
+ },
+ "DTE.DE": {
+  "livello": "Alta",
+  "fossato": "Reti fisse e mobili con abbonamenti ricorrenti, leader in Germania e quota rilevante del mercato USA con T-Mobile.",
+  "minaccia": "Concorrenza sui prezzi nella telefonia mobile USA (cavo, AT&T, Verizon) e costi degli investimenti in rete",
+  "fatti_recenti": "Guidance 2026 alzata a maggio, agosto e novembre 2026 (EBITDA AL circa 47,6 miliardi); T-Mobile US vicino a 35 milioni di conti a novembre 2026.",
+  "cambierebbe_idea": "Una guerra dei prezzi nel mobile USA che porti T-Mobile a perdere clienti per più trimestri.",
+  "fonti": [
+   {
+    "titolo": "More growth, raised guidance, record dividend",
+    "url": "https://www.telekom.com/en/newsroom/latest-updates/media-information/2026/11/more-growth-raised-guidance-record-dividend",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Deutsche Telekom grows steadily in turbulent times and raises guidance for 2026",
+    "url": "https://www.telekom.com/en/newsroom/latest-updates/media-information/2026/05/deutsche-telekom-grows-steadily",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "ENR.DE": {
+  "livello": "Bassa",
+  "fossato": "Uno dei pochi produttori di grandi turbine a gas e apparecchiature di rete, con ampio portafoglio servizi.",
+  "minaccia": "Utili gonfiati da un ciclo eccezionale di domanda (data center, reti) e l'eolico Gamesa ancora a margine zero",
+  "fatti_recenti": "Nell'esercizio 2026 (novembre 2026) ordini record di 68,1 miliardi; Siemens Gamesa al pareggio con ordini in calo di circa il 31% e margine 0-2% previsto nel 2027.",
+  "cambierebbe_idea": "Diversi anni di margini stabili anche dopo il picco degli ordini di turbine e un'eolica stabilmente in utile.",
+  "fonti": [
+   {
+    "titolo": "Siemens Energy reports record fiscal 2026 results",
+    "url": "https://www.windtech-international.com/company-news/siemens-energy-reports-record-fiscal-2026-results",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Siemens Energy fulfills all commitments and increases mid-term outlook",
+    "url": "https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-fulfills-all-commitments---and-increases-mid-term.html",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "ADS.DE": {
+  "livello": "Media",
+  "fossato": "Marchio globale nello sport con sponsorizzazioni e forte presenza nel calcio.",
+  "minaccia": "Mode e cicli di prodotto volatili, concorrenza di Nike e nuovi marchi (On, Hoka) e dazi USA",
+  "fatti_recenti": "A marzo 2026 guidance con impatto di circa 400 milioni da dazi e cambi; a ottobre 2026 utile operativo 2026 alzato a circa 2,5 miliardi grazie anche a rimborsi dei dazi.",
+  "cambierebbe_idea": "Un calo prolungato delle vendite a prezzo pieno o perdite di quota rispetto ai nuovi marchi.",
+  "fonti": [
+   {
+    "titolo": "Adidas Q3: Tariff refund and full-price sales drive growth",
+    "url": "https://fashionunited.com/news/business/adidas-q3-tariff-refund-and-full-price-sales-drive-growth/2026102175290",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Adidas, brake on 2026 profits and sales rain",
+    "url": "https://en.ilsole24ore.com/art/adidas-brake-profits-2026-and-rain-sales-AIpOuPlB",
+    "data": "2026-03"
+   }
+  ]
+ },
+ "ABBN.SW": {
+  "livello": "Media",
+  "fossato": "Base installata enorme, marchi e reti di vendita globali in elettrificazione e automazione, con ricavi di servizio ricorrenti.",
+  "minaccia": "Ciclicità degli investimenti industriali e del boom dei data center, più la concorrenza di Schneider, Siemens e produttori cinesi",
+  "fatti_recenti": "Ordini Q1 2026 a 11,3 mld $ (+32%), elettrificazione +44% (aprile 2026); vendita della divisione robotica a SoftBank per 5,375 mld $ annunciata a ottobre 2025, chiusura attesa nel 2026.",
+  "cambierebbe_idea": "Un calo prolungato degli ordini da data center e reti elettriche con margini sotto il 15% porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "ABB Q1 2026 results",
+    "url": "https://new.abb.com/news/detail/135137/q1-2026-results",
+    "data": "2026-04"
+   },
+   {
+    "titolo": "ABB sells robotics division to SoftBank Group",
+    "url": "https://www.swissinfo.ch/eng/workplace/abb-sells-robotics-division-to-softbank-group/90131117",
+    "data": "2025-10"
+   }
+  ]
+ },
+ "ATCO-A.ST": {
+  "livello": "Media",
+  "fossato": "Leader mondiale in compressori e vuoto, con forte base installata che genera ricambi e assistenza ad alto margine.",
+  "minaccia": "Forte ciclicità della domanda di beni d'investimento, in particolare delle pompe per il vuoto legate ai semiconduttori",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): ordini +29% a 52,3 mld SEK, crescita organica 25%, utile operativo rettificato 10,2 mld SEK leggermente sotto attese.",
+  "cambierebbe_idea": "Margini stabili sopra il 20% anche in un calo ciclico profondo porterebbero ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Atlas Copco Q3 2026 orders, revenue, adj EBIT",
+    "url": "https://www.newsquawk.com/headlines/atlas-copco-atcoa-ss-q3-2026-sek-orders-523bln-exp-506bln-prev-4052bln-yy-revenue-479bln-exp-477bln-adj-ebit-102bln-exp-103bln",
+    "data": "2026-10-22"
+   },
+   {
+    "titolo": "Atlas Copco missar på resultatet – orderingången över förväntan",
+    "url": "https://placera.se/nyheter/atlas-copco-missar-pa-resultatet-orderingangen-over-forvantan-2026-10-22",
+    "data": "2026-10-22"
+   }
+  ]
+ },
+ "VOLV-B.ST": {
+  "livello": "Media",
+  "fossato": "Uno dei due-tre leader mondiali dei camion pesanti, con rete di concessionari e assistenza che dà ricavi ricorrenti.",
+  "minaccia": "Utili molto ciclici e transizione a camion elettrici/autonomi con possibile ingresso di concorrenti cinesi; dazi USA",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): vendite +8% a 119,5 mld SEK, margine rettificato 12,3%, ordini camion +26% ma Nord America ancora debole.",
+  "cambierebbe_idea": "Una perdita di quota rilevante nei camion elettrici in Europa a favore di nuovi entranti porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Volvo Group – the third quarter 2026",
+    "url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-group--the-third-quarter-2026.html",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Volvo Group (VOLV) Q3 2026 earnings summary",
+    "url": "https://quartr.com/events/volvo-volv-q3-2026_3saV1OHr",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "DSV.CO": {
+  "livello": "Media",
+  "fossato": "Scala globale da spedizioniere senza asset, con storico comprovato di integrazione di acquisizioni e costi bassi.",
+  "minaccia": "Rischio di esecuzione nell'integrazione di Schenker e ciclicità dei volumi e dei noli del commercio mondiale",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): EBIT prima delle partite speciali +19,5%, guidance 2026 a 24-25 mld DKK; problemi nel trasporto stradale europeo.",
+  "cambierebbe_idea": "Sinergie Schenker realizzate per intero con margini superiori ai concorrenti per più anni porterebbero ad Alta.",
+  "fonti": [
+   {
+    "titolo": "DSV 3Q profit rises 19.5% as Schenker integration lifts earnings",
+    "url": "https://www.freightwaves.com/news/dsv-3q-profit-rises-19-5-as-schenker-integration-lifts-earnings",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "DSV interim financial report Q3 2026",
+    "url": "https://www.dsv.com/en/about-dsv/press/news/interim-financial-report-q3-2026-2943480",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "8306.T": {
+  "livello": "Media",
+  "fossato": "Prima banca giapponese per dimensione, con base di depositi enorme e franchise internazionale diversificato.",
+  "minaccia": "Utili molto legati al percorso dei tassi della BoJ e ai mercati; rischi di credito all'estero",
+  "fatti_recenti": "Utile netto Q1 FY2026 +48% a 809 mld ¥ con margine d'interesse in crescita; obiettivo annuo confermato a 2.700 mld ¥ (agosto 2026).",
+  "cambierebbe_idea": "Un ritorno della BoJ a tassi zero che riduca stabilmente il margine d'interesse porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Mitsubishi UFJ's Quarterly Profit Tops Expectations",
+    "url": "https://www.morningstar.com/news/dow-jones/202608031421/mitsubishi-ufjs-quarterly-profit-tops-expectations-update",
+    "data": "2026-08"
+   },
+   {
+    "titolo": "Japan's megabanks expected to post record profits in coming years",
+    "url": "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/5/japan-s-megabanks-expected-to-post-record-profits-in-coming-years-101548777",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "8766.T": {
+  "livello": "Media",
+  "fossato": "Leader del ramo danni in un mercato giapponese oligopolistico e sottoscrizione internazionale specializzata di qualità.",
+  "minaccia": "Mercato domestico in calo demografico e crescente dipendenza da acquisizioni estere e da catastrofi naturali",
+  "fatti_recenti": "Utile sottostante FY2025 record a 711,6 mld ¥ (maggio 2026); alleanza di capitale con Berkshire Hathaway (marzo 2026); vendita accelerata delle partecipazioni strategiche.",
+  "cambierebbe_idea": "Una grande acquisizione estera pagata cara o perdite catastrofali ripetute porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Overseas earnings power Tokio Marine to record fiscal 2025",
+    "url": "https://www.insurancebusinessmag.com/asia/news/breaking-news/overseas-earnings-power-tokio-marine-to-record-fiscal-2025-576082.aspx",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "Tokio Marine enters next phase of growth with Berkshire Hathaway partnership",
+    "url": "https://www.reinsurancene.ws/tokio-marine-enters-next-phase-of-growth-with-berkshire-hathaway-partnership/",
+    "data": "2026-03"
+   }
+  ]
+ },
+ "6861.T": {
+  "livello": "Media",
+  "fossato": "Vendita diretta con consulenza tecnica, prodotti ad alto valore e margini operativi oltre il 50% da decenni.",
+  "minaccia": "Ciclicità degli investimenti in automazione e concorrenza crescente di produttori cinesi di sensori a basso costo",
+  "fatti_recenti": "Utile operativo trimestre aprile-giugno 2026 a 187,1 mld ¥ (+44,7%), margine 54% (luglio 2026).",
+  "cambierebbe_idea": "Margini stabili sopra il 50% anche nel prossimo calo ciclico porterebbero ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Keyence Financial Results July 2026",
+    "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_en.pdf",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Keyence Q1 Net Income Rises",
+    "url": "https://www.nasdaq.com/articles/keyence-q1-net-income-rises",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "8035.T": {
+  "livello": "Bassa",
+  "fossato": "Posizione di oligopolio in diverse fasi della lavorazione dei wafer (deposizione, incisione, coater/developer).",
+  "minaccia": "Ciclo eccezionale legato all'IA, controlli all'export verso la Cina e sostituzione con macchinari cinesi",
+  "fatti_recenti": "Quota delle vendite in Cina scesa verso il 30% per i controlli all'export (giugno-luglio 2026); previsione di utile operativo alzata dell'8% (luglio 2026).",
+  "cambierebbe_idea": "Quota di mercato stabile per più anni nonostante la perdita della Cina e un calo del ciclo porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Japan's chip equipment giants are losing China and betting on AI to fill the gap",
+    "url": "https://startupfortune.com/japans-chip-equipment-giants-are-losing-china-and-betting-on-ai-to-fill-the-gap/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Tokyo Electron migliora la previsione di ricavi",
+    "url": "https://3dnews.ru/1109177/visokiy-spros-na-oborudovanie-dlya-vipuska-chipov-v-kitae-pomog-tokyo-electron-uluchshit-prognoz-po-viruchke",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "9432.T": {
+  "livello": "Media",
+  "fossato": "Rete fissa e mobile dominante in Giappone, clienti vincolati e ricavi ricorrenti di tipo quasi regolato.",
+  "minaccia": "Guerra dei prezzi nel mobile (Rakuten, MVNO) e investimenti elevati per recuperare la qualità della rete Docomo",
+  "fatti_recenti": "Guidance tagliata a maggio 2026 per la concorrenza nel mobile (utile Docomo -83 mld ¥); ricavi Q1 FY2026 a 3.617,7 mld ¥ con utile in ripresa (agosto 2026).",
+  "cambierebbe_idea": "Un ARPU di Docomo stabilmente in crescita e quota di mercato stabile porterebbero ad Alta.",
+  "fonti": [
+   {
+    "titolo": "NTT (9432) Q4 2026 earnings summary",
+    "url": "https://quartr.com/events/ntt-inc-9432-q4-2026_o0wQNhp6",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "ドコモが念願の増収増益に好転",
+    "url": "https://www.itmedia.co.jp/mobile/spv/2608/06/news087.html",
+    "data": "2026-08"
+   }
+  ]
+ },
+ "RY.TO": {
+  "livello": "Alta",
+  "fossato": "Prima banca di un oligopolio canadese protetto dalla regolazione, con depositi stabili e grande gestione patrimoniale.",
+  "minaccia": "Una crisi del mercato immobiliare canadese o dell'indebitamento delle famiglie",
+  "fatti_recenti": "Q3 2026 (agosto 2026): utile netto record di 6,0 mld C$, EPS +13%, CET1 13,5%, ROE rettificato 18,1%.",
+  "cambierebbe_idea": "Un forte aumento delle perdite su mutui canadesi o un'apertura regolatoria a nuovi concorrenti porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Royal Bank of Canada reports third quarter 2026 results",
+    "url": "https://www.newswire.ca/news-releases/royal-bank-of-canada-reports-third-quarter-2026-results-873288683.html",
+    "data": "2026-08-27"
+   },
+   {
+    "titolo": "Royal Bank of Canada reports first quarter 2026 results",
+    "url": "https://www.newswire.ca/news-releases/royal-bank-of-canada-reports-first-quarter-2026-results-810501076.html",
+    "data": "2026-02-26"
+   }
+  ]
+ },
+ "CNR.TO": {
+  "livello": "Alta",
+  "fossato": "Rete ferroviaria insostituibile su tre coste, in duopolio con CPKC, con barriere all'ingresso quasi assolute.",
+  "minaccia": "Dazi e revisione USMCA che riducono i flussi commerciali, e fusioni ferroviarie negli USA che cambiano la concorrenza",
+  "fatti_recenti": "Q2 2026 (luglio 2026): ricavi 4,75 mld C$, EPS rettificato +11%, guidance 2026 alzata; dazi hanno pesato oltre 350 mln C$ sui ricavi 2025 (gennaio 2026).",
+  "cambierebbe_idea": "Un calo strutturale dei volumi transfrontalieri per dazi o una fusione USA che tagli fuori CN porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "CN Railway beats second-quarter expectations and lifts 2026 outlook",
+    "url": "https://finviz.com/news/372424/cn-railway-beats-second-quarter-expectations-and-lifts-2026-outlook",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "CN reports Q4 profit and revenue up from year ago",
+    "url": "https://www.marketscreener.com/news/cn-reports-q4-profit-and-revenue-up-from-year-ago-raises-quarterly-dividend-ce7e5bdcdd8ff225",
+    "data": "2026-01"
+   }
+  ]
+ },
+ "CSL.AX": {
+  "livello": "Bassa",
+  "fossato": "Scala nella raccolta di plasma e nel frazionamento, in un mercato oligopolistico con alte barriere regolatorie.",
+  "minaccia": "Margini del plasma compressi, terapie alternative (es. FcRn) e ristrutturazione con vertice ancora provvisorio",
+  "fatti_recenti": "FY2026 (agosto 2026): perdita netta di 2,58 mld $ per svalutazioni di 7,1 mld $, NPATA -4%; guidance tagliata due volte; CEO ad interim da febbraio 2026.",
+  "cambierebbe_idea": "Nuovo CEO stabile e margine lordo di Behring risalito verso il 57% porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "CSL Annual Report 2026",
+    "url": "https://investors.csl.com/annualreport/2026/",
+    "data": "2026-08"
+   },
+   {
+    "titolo": "CSL ASX announcement full year results",
+    "url": "https://announcements.asx.com.au/asxpdf/20260818/pdf/072vppn8s55bwq.pdf",
+    "data": "2026-08-18"
+   }
+  ]
+ },
+ "D05.SI": {
+  "livello": "Media",
+  "fossato": "Banca dominante a Singapore con depositi a basso costo, ottima qualità del credito e forte gestione patrimoniale.",
+  "minaccia": "Calo dei tassi che comprime il margine d'interesse e rischi macro/geopolitici nella regione asiatica",
+  "fatti_recenti": "Q3 2026 (novembre 2026): utile netto 2,81 mld SGD (-5%), margine d'interesse stabile all'1,87%, NPL 0,9%.",
+  "cambierebbe_idea": "Crescita degli utili da commissioni che compensi stabilmente il calo dei tassi porterebbe ad Alta.",
+  "fonti": [
+   {
+    "titolo": "DBS third-quarter net profit at SGD 2.81 billion",
+    "url": "https://www.dbs.com/newsroom/DBS_third_quarter_net_profit_at_SGD_2_81_billion",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Singapore's largest bank DBS reports 5pc drop in third-quarter net profit",
+    "url": "https://www.malaymail.com/news/singapore/2026/11/05/singapores-largest-bank-dbs-reports-5pc-drop-in-third-quarter-net-profit/242118",
+    "data": "2026-11-05"
+   }
+  ]
+ },
+ "0700.HK": {
+  "livello": "Media",
+  "fossato": "Effetto rete di WeChat su oltre un miliardo di utenti e leadership nei videogiochi in Cina.",
+  "minaccia": "Intervento regolatorio cinese imprevedibile, tensioni USA-Cina e spese elevate per l'IA che riducono i margini",
+  "fatti_recenti": "Q3 2026 (novembre 2026): ricavi 207,3 mld RMB (+8%, sotto attese), utile rettificato in calo per spese in infrastrutture IA aumentate di oltre sei volte.",
+  "cambierebbe_idea": "Nuove restrizioni su giochi o pagamenti, o sanzioni USA, porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Tencent profit dips as sixfold increase in AI infrastructure spending sacrifices margin",
+    "url": "https://www.scmp.com/tech/big-tech/article/3374902/tencent-profit-dips-sixfold-increase-ai-infrastructure-spending-sacrifices-margin",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Tencent announces 2026 third quarter results",
+    "url": "https://www.plataformamedia.com/en/2026/11/18/tencent-announces-2026-third-quarter-results/",
+    "data": "2026-11-18"
+   }
+  ]
+ },
+ "VALE": {
+  "livello": "Bassa",
+  "fossato": "Giacimenti di ferro ad alto tenore a basso costo in Brasile, tra i maggiori al mondo.",
+  "minaccia": "Utili legati al prezzo del ferro e alla domanda di acciaio cinese, nuova offerta (Simandou) e rischi legali da dighe",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): utile netto -53% a circa 1,27 mld $, prezzo realizzato del ferro 85,1 $/t (-10%), produzione -6%.",
+  "cambierebbe_idea": "Una stabilizzazione del ferro sopra i 100 $/t con costi in calo per più anni potrebbe portare a Media.",
+  "fonti": [
+   {
+    "titolo": "Vale's Q3 2026 net profit falls 53 percent as iron ore fines prices drop",
+    "url": "https://www.steelorbis.com/steel-news/latest-news/vales-q3-2026-net-profit-falls-53-percent-as-iron-ore-fines-prices-drop-1487435.htm",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Vale third-quarter profit tumbles, iron ore output misses forecasts",
+    "url": "https://www.kitco.com/news/off-the-wire/2026-10-30/vale-third-quarter-profit-tumbles-iron-ore-output-misses-forecasts",
+    "data": "2026-10-30"
+   }
+  ]
+ },
+ "INFY": {
+  "livello": "Bassa",
+  "fossato": "Relazioni pluriennali con grandi clienti e vantaggio di costo dell'erogazione dall'India.",
+  "minaccia": "L'IA generativa riduce il lavoro tradizionale di sviluppo e manutenzione, comprimendo volumi e prezzi",
+  "fatti_recenti": "Guidance FY27 tagliata a +1,5-3,0% (luglio 2026) per volumi e prezzi deboli; l'azienda ammette che l'IA cannibalizza i servizi tradizionali; servizi IA all'8,2% dei ricavi.",
+  "cambierebbe_idea": "Crescita stabile sopra il 6% con margini al 20-22% grazie ai servizi IA porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Infosys Q1 earnings: IT major cuts FY27 revenue forecast",
+    "url": "https://www.businesstoday.in/amp/markets/stocks/story/infosys-q1-earnings-it-major-cuts-fy27-revenue-forecast-amid-muted-demand-expectations-544832-2026-07-23",
+    "data": "2026-07-23"
+   },
+   {
+    "titolo": "Muted guidance overshadows Infosys $20 billion revenue milestone",
+    "url": "https://analyticsindiamag.com/it-services/muted-guidance-overshadows-infosys-20-billion-revenue-milestone",
+    "data": "2026-04"
+   }
+  ]
+ },
+ "CS.PA": {
+  "livello": "Media",
+  "fossato": "Marchio globale, scala e diversificazione tra danni, vita e salute, con buona disciplina di sottoscrizione.",
+  "minaccia": "Catastrofi naturali più frequenti, volatilità dei tassi e degli spread sovrani europei sulla solvibilità",
+  "fatti_recenti": "Primi nove mesi 2026: premi +5% a 93 mld €, Solvency II scesa al 213%, obiettivo di utile operativo 8,6 mld € confermato (ottobre 2026).",
+  "cambierebbe_idea": "Perdite catastrofali ricorrenti che portino la solvibilità sotto il 180% porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "AXA: chiffre d'affaires en hausse de 5% sur 9 mois, objectifs 2026 confirmés",
+    "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-10-30-axa-chiffre-daffaires-en-hausse-de-5-sur-9-mois-objectifs-2026-confirmes.html",
+    "data": "2026-10-30"
+   },
+   {
+    "titolo": "AXA subit un recul de son ratio de solvabilité mais confirme ses prévisions",
+    "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-10-29-axa-subit-un-recul-de-son-ratio-de-solvabilite-mais-confirme-ses-previsions.html",
+    "data": "2026-10-29"
+   }
+  ]
+ },
+ "MUV2.DE": {
+  "livello": "Media",
+  "fossato": "Leader mondiale della riassicurazione con capitale, dati e relazioni che pochi concorrenti possono eguagliare.",
+  "minaccia": "Ciclo dei prezzi in fase di ammorbidimento e catastrofi climatiche più gravi e meno prevedibili",
+  "fatti_recenti": "Obiettivo di utile 2026 alzato a 6,6 mld € (ottobre 2026); utile netto nove mesi 5,67 mld €, combined ratio P&C riassicurazione Q3 all'80%.",
+  "cambierebbe_idea": "Prezzi di rinnovo in calo per più anni con combined ratio stabilmente sopra il 90% porterebbe a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Munich Re expands its business and raises its profit target to €6.6bn",
+    "url": "https://www.munichre.com/en/company/media-relations/media-information-and-corporate-news/media-information/2026/quarterly-statement-3-2026.html",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Munich Re raises profit target as L&H growth offsets P&C softening",
+    "url": "https://www.insurancebusinessmag.com/reinsurance/news/breaking-news/munich-re-raises-profit-target-as-landh-growth-offsets-pandc-softening-597150.aspx",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "CB": {
+  "livello": "Media",
+  "fossato": "Sottoscrizione specialistica disciplinata, distribuzione globale e scala nei rischi commerciali complessi.",
+  "minaccia": "Ammorbidimento dei prezzi nei rami commerciali e catastrofi naturali in aumento",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): combined ratio P&C 84,1% (da 81,8%), perdite catastrofali 705 mln $, utile netto 2,84 mld $ (+1,5%).",
+  "cambierebbe_idea": "Combined ratio sotto il 90% mantenuto anche in un mercato debole per più anni porterebbe ad Alta.",
+  "fonti": [
+   {
+    "titolo": "Chubb Q3 2026 results",
+    "url": "https://www.insurancejournal.com/news/national/2026/10/21/889758.htm",
+    "data": "2026-10-21"
+   },
+   {
+    "titolo": "Chubb Ltd Form 10-Q Q3 2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/0000896159/000089615926000021/cb-20260930.htm",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "VZ": {
+  "livello": "Media",
+  "fossato": "Una delle tre reti mobili nazionali USA, con spettro, torri e fibra difficili da replicare.",
+  "minaccia": "Concorrenza di prezzo con T-Mobile, AT&T e operatori via cavo, più debito elevato dopo Frontier",
+  "fatti_recenti": "Q3 2026 (ottobre 2026): +406.000 abbonati postpagati telefonia, guidance alzata; acquisizione Frontier a inizio 2026 e tagli di personale sotto il CEO Schulman.",
+  "cambierebbe_idea": "Nuove perdite nette di abbonati postpagati o una guerra dei prezzi riaperta porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Verizon 3Q 2026 results",
+    "url": "https://www.benton.org/headlines/verizon-3q-2026-results",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "AT&T and Verizon normalize layoffs as 8,000 jobs go in a quarter",
+    "url": "https://lightreading.com/ai-machine-learning/at-t-and-verizon-normalize-layoffs-as-8-000-jobs-go-in-a-quarter",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "ORA.PA": {
+  "livello": "Media",
+  "fossato": "Rete fissa e mobile di primo operatore in Francia, fibra estesa, presenza in Spagna e Africa con ricavi ricorrenti da abbonamenti.",
+  "minaccia": "Concorrenza sui prezzi e investimenti di rete elevati; l'esito e i rimedi antitrust della spartizione di SFR possono cambiare l'economia del settore",
+  "fatti_recenti": "Giu 2026: firmato con Bouygues e Iliad un accordo per rilevare SFR (valore 20,35 mld). Lug 2026: ricavi del primo semestre 20,9 mld (+3,5%), EBITDAaL +5%.",
+  "cambierebbe_idea": "Il via libera antitrust a SFR con rimedi leggeri e prezzi in rialzo in Francia la porterebbe verso Alta; un blocco o una nuova guerra dei prezzi verso Bassa.",
+  "fonti": [
+   {
+    "titolo": "Orange achieved record first half growth",
+    "url": "https://www.telecomtv.com/content/access-evolution/orange-achieved-record-first-half-growth-both-in-revenue-3-5-and-ebitdaal-5-0-55967/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Signing MOU joint acquisition SFR",
+    "url": "https://www.orange.com/en/signing-mou-joint-acquisition-sfr",
+    "data": "2026-06"
+   }
+  ]
+ },
+ "TIT.MI": {
+  "livello": "Bassa",
+  "fossato": "Base clienti ampia in Italia e TIM Brasil, ma il fossato si è indebolito dopo la cessione della rete fissa.",
+  "minaccia": "Mercato italiano molto competitivo e prezzi bassi; il passaggio sotto il controllo di Poste Italiane rende incerti strategia e perimetro futuri",
+  "fatti_recenti": "Mag 2026: confermata la guida 2026 con ricavi trimestrali fino a 3,3 mld (+1,4%). Opa di Poste chiusa a set 2026; TIM consolidata da Poste dal 1 ottobre 2026.",
+  "cambierebbe_idea": "Un piano industriale congiunto Poste-TIM credibile (atteso nel 2027) e un consolidamento del mercato mobile italiano potrebbero portarla a Media.",
+  "fonti": [
+   {
+    "titolo": "TIM: Board approved results as of March 31, 2026",
+    "url": "https://www.gruppotim.it/en/press-archive/corporate/2026/PR-BoD-6-May-2026.html",
+    "data": "2026-05-06"
+   },
+   {
+    "titolo": "Poste is growing. Now it's Tim's turn",
+    "url": "https://www.ilfoglio.it/en/foglio-ai/2026/11/12/news/poste-is-growing-now-its-tims-turn--413467",
+    "data": "2026-11-12"
+   }
+  ]
+ },
+ "BA.L": {
+  "livello": "Media",
+  "fossato": "Fornitore quasi unico di sistemi strategici per Regno Unito e alleati (sottomarini, Typhoon, GCAP), con contratti pluridecennali.",
+  "minaccia": "Gli utili dipendono dai bilanci della difesa: un calo delle tensioni o vincoli di finanza pubblica potrebbe ridurre ordini e crescita",
+  "fatti_recenti": "Feb 2026: ordini 2025 per 36,8 mld di sterline e portafoglio 83,6 mld. Lug 2026: portafoglio record di 84,0 mld e guida annuale alzata.",
+  "cambierebbe_idea": "Tagli espliciti ai bilanci della difesa nel Regno Unito o negli USA, o forti perdite su grandi programmi, la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "BAE Systems 2026 half year results",
+    "url": "https://www.baesystems.com/en/article/2026-half-year-results",
+    "data": "2026-07-30"
+   },
+   {
+    "titolo": "Preliminary results announcement 2025",
+    "url": "https://www.lse.co.uk/rns/preliminary-results-announcement-2025-693o696jow7h4og.html",
+    "data": "2026-02-18"
+   }
+  ]
+ },
+ "RHM.DE": {
+  "livello": "Bassa",
+  "fossato": "Leader europeo di munizioni e veicoli corazzati, con capacità produttiva difficile da replicare in tempi brevi.",
+  "minaccia": "Crescita legata a un ciclo eccezionale di riarmo europeo; ritardi nei programmi e una possibile normalizzazione della spesa rendono incerti gli utili a 10 anni",
+  "fatti_recenti": "Ago 2026: guida ricavi ridotta a 13,7-14,2 mld dopo la decisione sulla fregata F126. Nov 2026: guida tagliata a circa 13,2 mld per ritardi; portafoglio 78 mld.",
+  "cambierebbe_idea": "Contratti pluriennali vincolanti oltre il 2030 con margini stabili, anche dopo un eventuale cessate il fuoco in Ucraina, la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Rheinmetall quarterly statement Q3 2026",
+    "url": "https://www.rheinmetall.com/en/media/news-watch/news/2026/11/2026-11-05-rheinmetall-news-quarterly-statement-q3",
+    "data": "2026-11-05"
+   },
+   {
+    "titolo": "Rheinmetall half-yearly financial report H1 2026",
+    "url": "https://www.rheinmetall.com/en/media/news-watch/news/2026/08/2026-08-06-rheinmetall-news-half-yearly-financial-report-h1",
+    "data": "2026-08-06"
+   }
+  ]
+ },
+ "LMT": {
+  "livello": "Media",
+  "fossato": "Programmi di punta come F-35 e missili con il governo USA come cliente, ricavi di manutenzione per decenni.",
+  "minaccia": "Forte dipendenza da un solo cliente e da pochi programmi; perdite su contratti a prezzo fisso e la transizione verso nuovi caccia possono comprimere i margini",
+  "fatti_recenti": "Lug 2025: oneri per 1,6 mld su programmi classificati ed elicotteri. Q2 2026: ricavi 20,1 mld e utile netto 1,8 mld, con più vendite F-35.",
+  "cambierebbe_idea": "Nuove perdite rilevanti su contratti a prezzo fisso o una riduzione degli ordini F-35 da parte del Pentagono la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Lockheed Flags $1.6 Billion in Charges as New CFO Digs Deep",
+    "url": "https://www.bloomberg.com/news/articles/2025-07-22/lockheed-cuts-earnings-outlook-after-booking-program-charges",
+    "data": "2025-07-22"
+   },
+   {
+    "titolo": "Lockheed Martin Reports First Quarter 2026 Financial Results",
+    "url": "https://news.lockheedmartin.com/2026-04-23-Lockheed-Martin-Reports-First-Quarter-2026-Financial-Results?asPDF=1",
+    "data": "2026-04-23"
+   }
+  ]
+ },
+ "RMS.PA": {
+  "livello": "Alta",
+  "fossato": "Marchio di lusso tra i più forti al mondo, offerta volutamente scarsa, prezzi alti e produzione artigianale controllata.",
+  "minaccia": "Rallentamento della domanda in Cina e rischio di diluire l'esclusività del marchio crescendo troppo",
+  "fatti_recenti": "Ott 2026: ricavi del terzo trimestre circa 4,1 mld, +4,3% a cambi costanti, pelletteria +10,8%, crescita nulla in Asia esclusa Giappone.",
+  "cambierebbe_idea": "Un calo prolungato della pelletteria o segni di perdita di esclusività (sconti, liste d'attesa sparite) la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Hermès posts 5.5 percent Q3 sales growth driven by Europe and Americas",
+    "url": "https://fashionunited.com/news/business/hermes-posts-5-5-percent-q3-sales-growth-driven-by-europe-and-americas/2026102275330",
+    "data": "2026-10-22"
+   },
+   {
+    "titolo": "Hermès growth slowed to 4.3% in third quarter",
+    "url": "https://www.ideal-investisseur.fr/en/stock-news/hermes-growth-slowed-to-4-3-in-third-quarter-leather-goods-advance-by-10-8/27708.html",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "CFR.SW": {
+  "livello": "Media",
+  "fossato": "Marchi di gioielleria secolari (Cartier, Van Cleef & Arpels) con forte potere di prezzo; la gioielleria vale il 74% delle vendite.",
+  "minaccia": "Costo dell'oro, dazi USA e ciclicità degli orologi di lusso possono comprimere i margini; dipendenza dalla domanda asiatica",
+  "fatti_recenti": "Mag 2026: vendite dell'esercizio 22,4 mld (+11% a cambi costanti), gioielleria +14%, ma margine lordo in calo di 250 punti base al 64,4% per oro e dazi.",
+  "cambierebbe_idea": "Margini lordi stabili anche con oro alto e dazi, e orologi in ripresa, la porterebbero ad Alta; un calo prolungato della gioielleria a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Richemont delivers strong sales growth and solid results for the year ended 31 March 2026",
+    "url": "https://www.richemont.com/news-media/press-releases-news/richemont-delivers-strong-sales-growth-and-solid-results-for-the-year-ended-31-march-2026/",
+    "data": "2026-05-22"
+   }
+  ]
+ },
+ "RACE.MI": {
+  "livello": "Alta",
+  "fossato": "Marchio iconico, produzione limitata sotto la domanda, ordini fino a fine 2027 e forte personalizzazione ad alto margine.",
+  "minaccia": "La transizione verso motori elettrici e ibridi potrebbe indebolire l'attrattiva del prodotto; dazi sulle auto esportate negli USA",
+  "fatti_recenti": "Mag 2026: ricavi primo trimestre +3% a 1,85 mld e debutto dell'elettrica Luce. Luglio 2026: guida ricavi alzata a circa 7,6 mld.",
+  "cambierebbe_idea": "Un calo del portafoglio ordini o dei prezzi medi, ad esempio per un'accoglienza debole dei modelli elettrici, la porterebbe a Media.",
+  "fonti": [
+   {
+    "titolo": "Ferrari Q1 2026 earnings beat, reaffirms full-year guidance",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/ferrari-q1-2026-earnings-beat-132427256.html",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "Ferrari revises its 2026 forecast upwards",
+    "url": "https://en.ilsole24ore.com/art/ferrari-revises-its-2026-forecast-upwards-AJIiYTa",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "EL.PA": {
+  "livello": "Media",
+  "fossato": "Leader mondiale di lenti e montature integrato con marchi forti (Ray-Ban, Varilux) e catene di negozi propri.",
+  "minaccia": "Gli occhiali intelligenti con l'IA possono spostare il valore verso i colossi tecnologici; dipendenza dalla partnership con Meta",
+  "fatti_recenti": "Ott 2026: ricavi del terzo trimestre 7,486 mld (+9%), trainati dagli occhiali Meta. Nel 2025 venduti oltre 7 milioni di occhiali intelligenti.",
+  "cambierebbe_idea": "Una rottura dell'accordo con Meta o occhiali IA concorrenti di grandi gruppi tecnologici con quote rilevanti la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "EssilorLuxottica Beats Expectations in Third Quarter on Asia and Meta Eyewear",
+    "url": "https://www.firstonline.info/en/EssilorLuxottica-Beats-Expectations-in-Third-Quarter-on-Asia-and-Meta-Eyewear/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "AI Smart Glasses and Myopia Management Portfolio Drive Q2 and First Half Revenue Growth",
+    "url": "https://www.visionmonday.com/latest-news/article/ai-smart-glasses-and-myopia-management-portfolio-drive-q2-and-first-half-revenue-growth-for-essilorluxottica-1/",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "TXN": {
+  "livello": "Media",
+  "fossato": "Ampissimo catalogo di chip analogici con cicli di vita lunghi, fabbriche proprie a 300mm e costi bassi.",
+  "minaccia": "Utili molto ciclici e concorrenza crescente di produttori cinesi di chip analogici; forti investimenti in fabbriche pesano sul flusso di cassa",
+  "fatti_recenti": "Apr 2026: ricavi primo trimestre 4,83 mld (+18,6%). Lug 2026: ricavi secondo trimestre circa 5,46 mld (+23%), analogico +26%, aumenti di prezzo annunciati.",
+  "cambierebbe_idea": "Una perdita di quota visibile in Cina o margini in calo anche a ciclo favorevole la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Texas Instruments Q2 FY 2026 Earnings Climb on Broad-based Analog Growth",
+    "url": "https://futurumgroup.com/insights/texas-instruments-q2-fy-2026-earnings-climb-on-broad-based-analog-growth/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "TXN Q1 Deep Dive: Industrial and Data Center Drive Growth",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/txn-q1-deep-dive-industrial-124523764.html",
+    "data": "2026-04"
+   }
+  ]
+ },
+ "ADBE": {
+  "livello": "Bassa",
+  "fossato": "Standard di fatto per i professionisti creativi (Photoshop, Acrobat) con ricavi in abbonamento e alti costi di cambio.",
+  "minaccia": "L'IA generativa abbassa le barriere alla creazione di contenuti e favorisce concorrenti come Canva e Figma; il modello a pagamento per utente è a rischio",
+  "fatti_recenti": "Mar 2026: annunciata l'uscita del CEO Narayen; nominato Anil Chakravarthy dal 1 dic 2026. Set 2026: ricavi record ma guida del quarto trimestre debole.",
+  "cambierebbe_idea": "Alcuni anni di crescita dei ricavi e dei margini con l'IA e senza perdita di utenti a favore dei concorrenti la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Adobe Reports Record Q3 Results",
+    "url": "https://www.morningstar.com/news/business-wire/20260910832552/adobe-reports-record-q3-results",
+    "data": "2026-09-10"
+   },
+   {
+    "titolo": "Adobe Q1 FY26: CEO exit, DOJ settlement and agentic web growth",
+    "url": "https://www.cmswire.com/digital-experience/adobe-q1-fy26-ceo-exit-doj-settlement-and-13x-agentic-web-growth",
+    "data": "2026-03"
+   }
+  ]
+ },
+ "STMMI.MI": {
+  "livello": "Bassa",
+  "fossato": "Posizioni forti in microcontrollori e carburo di silicio per auto e industria, con clienti vincolati da lunghi cicli di qualifica.",
+  "minaccia": "Settore fortemente ciclico, concorrenza cinese sul carburo di silicio e ristrutturazione industriale in corso rendono incerti i margini",
+  "fatti_recenti": "Ott 2026: ricavi del terzo trimestre 3,76 mld, margine lordo 37,3%, 55 mln di oneri di ristrutturazione; obiettivo di margine lordo 44-46% nel medio termine.",
+  "cambierebbe_idea": "Il ritorno a margini lordi sopra il 44% a fine ristrutturazione e una ripresa stabile dell'auto la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "STMicroelectronics Q3 2026 earnings press release (Form 6-K)",
+    "url": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000086/c3419c-q326earningspressre.htm",
+    "data": "2026-10-29"
+   }
+  ]
+ },
+ "ULVR.L": {
+  "livello": "Media",
+  "fossato": "Portafoglio di marchi globali di largo consumo (Dove, Rexona) e distribuzione capillare, forte nei mercati emergenti.",
+  "minaccia": "Concorrenza dei marchi del distributore e di marchi digitali, più l'esecuzione di una profonda trasformazione del perimetro",
+  "fatti_recenti": "Dic 2025: scorporo dei gelati (Magnum Ice Cream Company). Feb 2026: ricavi 2025 a 50,5 mld (-3,8%). Mar 2026: accordo per unire gli Alimenti con McCormick.",
+  "cambierebbe_idea": "Una crescita dei volumi stabile sopra il 2% dopo il riassetto la porterebbe ad Alta; una perdita di quote nella cura persona a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Sharper focus and disciplined execution driving competitive performance",
+    "url": "https://www.unilever.com/news/press-and-media/press-releases/2026/sharper-focus-and-disciplined-execution-driving-competitive-performance/",
+    "data": "2026-02-12"
+   },
+   {
+    "titolo": "Strong volume growth, full year outlook reconfirmed",
+    "url": "https://unilever.com/news/press-and-media/press-releases/2026/strong-volume-growth-full-year-outlook-reconfirmed/",
+    "data": "2026-04"
+   }
+  ]
+ },
+ "AD.AS": {
+  "livello": "Media",
+  "fossato": "Reti di supermercati con forti quote locali in Benelux e costa est USA, domanda alimentare stabile e marchi del distributore.",
+  "minaccia": "Margini sottili esposti alla concorrenza dei discount, di Amazon e Walmart negli USA; rischi operativi come gli attacchi informatici",
+  "fatti_recenti": "Ott 2026: attacco informatico che toglierà 200-250 mln di vendite nel quarto trimestre. Nov 2026: vendite trimestrali 23,1 mld (+1,9%) e acquisto di Tesco in Cechia e Slovacchia.",
+  "cambierebbe_idea": "Margini operativi stabilmente sotto il 3,5% per perdita di quote negli USA la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Ahold Delhaize Posts Resilient Q3, Cuts 2026 Outlook After Cyber Incident",
+    "url": "https://www.esmmagazine.com/retail/ahold-delhaize-posts-resilient-q3-cuts-2026-outlook-after-cyber-incident-325297",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "Ahold Delhaize reports EUR23.1 billion in Q3 sales, lowers 2026 outlook",
+    "url": "https://www.freshplaza.com/europe/article/9889224/ahold-delhaize-reports-eur23-1-billion-in-q3-sales-lowers-2026-outlook/",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "EQNR.OL": {
+  "livello": "Bassa",
+  "fossato": "Giacimenti del Mare del Nord a basso costo e basse emissioni, gasdotti verso l'Europa e Stato norvegese come azionista stabile.",
+  "minaccia": "Gli utili dipendono dai prezzi di petrolio e gas, oggi gonfiati da shock geopolitici; transizione energetica e declino dei giacimenti a lungo termine",
+  "fatti_recenti": "Ott 2026: utile operativo rettificato del terzo trimestre 12,35 mld di dollari, quasi doppio sul 2025, con gas europeo a 20 dollari/MMBtu per la crisi di Hormuz.",
+  "cambierebbe_idea": "Contratti di fornitura gas di lungo periodo a prezzi fissati che stabilizzino gli utili potrebbero portarla a Media.",
+  "fonti": [
+   {
+    "titolo": "Equinor third quarter 2026 results",
+    "url": "https://www.equinor.com/news/equinor-third-quarter-2026-results",
+    "data": "2026-10-28"
+   },
+   {
+    "titolo": "Equinor nearly doubles third-quarter earnings on higher commodity prices",
+    "url": "https://www.ogj.com/general-interest/companies/news/55415015/equinor-nearly-doubles-third-quarter-earnings-on-higher-commodity-prices-production-gains",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "NG.L": {
+  "livello": "Alta",
+  "fossato": "Monopolio regolato delle reti di trasmissione nel Regno Unito e nel nord-est USA, con rendimenti fissati dal regolatore sul capitale investito.",
+  "minaccia": "Revisioni tariffarie meno generose o costi in eccesso sul piano di investimenti potrebbero ridurre i rendimenti; forte fabbisogno di capitale",
+  "fatti_recenti": "Apr 2026: avvio del periodo regolatorio RIIO-T3 fino al 2031 (fino a 31 mld di sterline). Nov 2026: investimenti semestrali record di 6,7 mld, utile per azione +22%.",
+  "cambierebbe_idea": "Un taglio dei rendimenti consentiti da Ofgem o dai regolatori USA, o forti sforamenti di costo non riconosciuti, la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "National Grid plc Half-Year Results 2026/27",
+    "url": "https://www.londonstockexchange.com/en/news/article/NG./national-grid-plc-half-year-results-2026-27/ef07-40-f8-a6-47-402281",
+    "data": "2026-11-05"
+   },
+   {
+    "titolo": "FY2026 full year results statement",
+    "url": "https://www.lse.co.uk/rns/fy2026-full-year-results-statement-zod3laevrtm9k6f.html",
+    "data": "2026-05-14"
+   }
+  ]
+ },
+ "DG.PA": {
+  "livello": "Media",
+  "fossato": "Concessioni autostradali e aeroportuali a lunga durata con traffico stabile, più un ramo costruzioni ed energia diversificato.",
+  "minaccia": "Le concessioni autostradali francesi scadono tra il 2031 e il 2036 e lo Stato aumenta il prelievo fiscale; costruzioni a margini bassi",
+  "fatti_recenti": "Feb 2026: ricavi 2025 di VINCI Autoroutes 6,7 mld ma utile operativo in calo a 1,76 mld; contributo fiscale straordinario prorogato al 2026. Lug 2026: prospettive più prudenti sulle concessioni.",
+  "cambierebbe_idea": "Il rinnovo o la sostituzione delle concessioni in scadenza con contratti di rendimento simile la porterebbe ad Alta; nuove tasse mirate a Bassa.",
+  "fonti": [
+   {
+    "titolo": "VINCI 2025 full year results",
+    "url": "https://www.vinci.com/sites/default/files/medias/communiques/file/2026-02/press-release-vinci-full-year-2025.pdf",
+    "data": "2026-02-05"
+   },
+   {
+    "titolo": "Vinci (DG) H1 2026 earnings summary",
+    "url": "https://quartr.com/events/vinci-sa-dg-h1-2026_oCvMLr00",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "PLD": {
+  "livello": "Media",
+  "fossato": "Il maggiore proprietario mondiale di magazzini logistici, in posizioni urbane scarse, con contratti d'affitto pluriennali.",
+  "minaccia": "Ciclo immobiliare e tassi d'interesse, eccesso di nuova offerta di magazzini e rischi esecutivi nell'espansione nei data center",
+  "fatti_recenti": "Ott 2026: occupazione media 95,1%, Core FFO per azione 1,60 dollari (da 1,49) e offerta in corso su SEGRO nel Regno Unito.",
+  "cambierebbe_idea": "Un calo dell'occupazione sotto il 93% per eccesso di offerta, o forti perdite sui data center, la porterebbero a Bassa.",
+  "fonti": [
+   {
+    "titolo": "Prologis Reports Third Quarter 2026 Results",
+    "url": "https://www.morningstar.com/news/pr-newswire/20261015sf72669/prologis-reports-third-quarter-2026-results",
+    "data": "2026-10-15"
+   },
+   {
+    "titolo": "Prologis tops Q3 estimates, raises development starts forecast again",
+    "url": "https://www.freightwaves.com/news/prologis-tops-q3-estimates-raises-development-starts-forecast-again",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "NEM": {
+  "livello": "Bassa",
+  "fossato": "Il maggiore produttore d'oro, con riserve ampie e miniere di lunga vita in paesi diversi.",
+  "minaccia": "Gli utili dipendono dal prezzo dell'oro, oggi a livelli record, e da costi e incidenti in singole miniere",
+  "fatti_recenti": "Ott 2026: utile rettificato 2,20 dollari per azione, produzione trimestrale 1,3 mln di once, prezzo medio dell'oro circa 4.200 dollari; flusso di cassa del quarto trimestre ridotto da costi a Yanacocha.",
+  "cambierebbe_idea": "Costi totali per oncia stabilmente bassi e redditività anche con l'oro sotto i 2.500 dollari la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "Newmont beats third-quarter earnings expectations",
+    "url": "https://www.kitco.com/news/article/2026-10-22/newmont-beats-third-quarter-earnings-expectations-higher-gold-sales-boost",
+    "data": "2026-10-22"
+   },
+   {
+    "titolo": "Newmont beats quarterly profit estimates, warns of lower cash flow ahead",
+    "url": "https://www.mining.com/web/newmont-beats-quarterly-profit-estimates-as-record-gold-prices-offset-output-drop/",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "SPGI": {
+  "livello": "Alta",
+  "fossato": "Duopolio di fatto nei rating con Moody's, indici S&P di riferimento mondiale e dati finanziari con clienti vincolati.",
+  "minaccia": "Una regolazione più severa sui rating o un calo prolungato delle emissioni di debito; concorrenza nei dati e impatto dell'IA sui prodotti informativi",
+  "fatti_recenti": "Lug 2026: completato lo scorporo di Mobility. Nel 2025 il ramo Ratings ha avuto margine operativo del 64% con emissioni fatturate +11% a 4.300 mld.",
+  "cambierebbe_idea": "Una riforma che apra il mercato dei rating o una perdita di quote negli indici a favore di fornitori a basso costo la porterebbero a Media.",
+  "fonti": [
+   {
+    "titolo": "S&P Global Inc. completes separation of Mobility Global Inc.",
+    "url": "https://press.spglobal.com/2026-07-01-S-P-GLOBAL-INC-COMPLETES-SEPARATION-OF-MOBILITY-GLOBAL-INC",
+    "data": "2026-07-01"
+   },
+   {
+    "titolo": "S&P Global Provides Pro Forma and Recast Financial Results",
+    "url": "https://press.spglobal.com/2026-07-06-S-P-Global-Provides-Pro-Forma-and-Recast-Financial-Results-and-Updated-Segment-Information",
+    "data": "2026-07-06"
+   }
+  ]
+ }
+}

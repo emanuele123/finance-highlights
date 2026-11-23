@@ -393,3 +393,34 @@ def test_motivazione():
     assert "Correzione qualitativa: -4 punti (concorrenza)." in c["testo"]
     r = _ing(F1=5.0)
     assert mz.motivazione(r, pt.buffett(r, P), P)["testo"].endswith("Segnali di rischio: Leva finanziaria alta.")
+
+
+# ------------------------------------------------------------------ prevedibilita' a 10 anni
+def test_prevedibilita():
+    from gsi import motivazioni as mz
+    from gsi.prevedibilita import PREVEDIBILITA, livello_usato, normalizza
+    assert len(PREVEDIBILITA) == 120 and all(v["livello"] in ("Alta", "Media", "Bassa") and v["fonti"] for v in PREVEDIBILITA.values())
+    assert normalizza(" media ") == "Media" and normalizza("forse") is None and normalizza(None) is None
+    assert livello_usato("ADBE", {"prevedibilita": "alta"}) == ("Alta", "tuo giudizio")
+    assert livello_usato("ADBE", {}) == (PREVEDIBILITA["ADBE"]["livello"], "giudizio di Claude")
+    assert livello_usato("NON_ESISTE", {}) == (None, "nessun giudizio")
+    base = pt.buffett(_ing(prezzo=10.0), P)
+    assert base["prevedibilita"] is None and base["verdetto"] == "Comprerei"
+    m = pt.buffett(_ing(prezzo=10.0), P, {"prevedibilita": "Media"})
+    g1a, g1m = base["scenari"]["Base"]["g1"], m["scenari"]["Base"]["g1"]
+    assert g1m == ap(g1a * 0.5) and m["valore_base"] < base["valore_base"]
+    assert m["richiesto"] == ap(0.25 + 0.15) and m["prezzo_acquisto"] == ap(m["valore_base"] * 0.60)
+    b = pt.buffett(_ing(prezzo=10.0), P, {"prevedibilita": "Bassa"})
+    assert b["verdetto"] == "Non comprerei: troppo difficile da prevedere" and b["prezzo_acquisto"] is None
+    assert b["scenari"]["Base"]["g1"] == 0 and b["punteggio"] is not None
+    # crescita negativa: la prevedibilita' non la riduce
+    n = pt.buffett(_ing(cagr_ricavi=-0.05), P, {"prevedibilita": "Media"})
+    assert n["scenari"]["Base"]["g1"] == ap(-0.02 * 1.4)
+    # banche: crescita del patrimonio dimezzata
+    i = _ing(modello="BAN", valuta_bil="EUR", tbv_ps=50.0, roe_norm=0.12, F4=0.5)
+    assert pt.valore_intrinseco(i, P, "Base", "Media")["g_patrimonio"] == ap(0.03)
+    t = mz.motivazione(_ing(prezzo=10.0), b, P, {"prevedibilita": "Bassa"})["testo"]
+    assert "Prevedibilità a 10 anni: Bassa (tuo giudizio)." in t and "non compra a nessun prezzo" in t
+    t = mz.motivazione(_ing(), m, P)["testo"]
+    assert "richiesto per la classe A con prevedibilità media" in t
+    assert "Prevedibilità a 10 anni: nessun giudizio." in mz.motivazione(_ing(), base, P)["testo"]

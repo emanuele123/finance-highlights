@@ -86,23 +86,33 @@ def motivazione(ing: dict, a: dict, P: dict, giudizio: dict | None = None) -> di
     q = (f"Qualità: classe {a['classe']} ({t(qc, 1)}/100)." if qc is not None else "Qualità: non valutabile (dati insufficienti).")
     q += " Punti di forza: " + ("; ".join(forti) or "nessuno in particolare") + "."
     q += " Punti deboli: " + ("; ".join(deboli) or "nessuno in particolare") + "."
+    from .prevedibilita import PREVEDIBILITA
+    liv, fonte = a.get("prevedibilita"), a.get("fonte_prev")
+    minaccia = (PREVEDIBILITA.get(ing.get("ticker", "")) or {}).get("minaccia")
+    pv = (f"Prevedibilità a 10 anni: {liv} ({fonte})." if liv else "Prevedibilità a 10 anni: nessun giudizio.")
+    if liv and minaccia:
+        pv += f" Minaccia principale: {minaccia}."
     ver, prezzo, base = a["verdetto"], ing.get("prezzo"), a["valore_base"]
     if ver in ("Comprerei", "Aspetterei"):
         vp, vo = a["scenari"]["Prudente"]["valore"], a["scenari"]["Ottimistico"]["valore"]
         v = (f"Valutazione: prezzo {t(prezzo, 2)} contro un valore stimato di {t(base, 2)} (scenario base; prudente "
              f"{t(vp, 2)}, ottimistico {t(vo, 2)}). Margine di sicurezza {_pct(a['margine_sicurezza'])}, ")
-        req = P["margine_a"] if a["classe"] == "A" else P["margine_b"]
+        req = a["richiesto"]
+        chi = f"richiesto per la classe {a['classe']}" + (" con prevedibilità media" if liv == "Media" else "")
         if ver == "Comprerei":
-            v += (f"sopra il {_pct(req)} richiesto per la classe {a['classe']}: il prezzo è sotto il prezzo d'acquisto di "
+            v += (f"sopra il {_pct(req)} {chi}: il prezzo è sotto il prezzo d'acquisto di "
                   f"{t(a['prezzo_acquisto'], 2)}, quindi per questa strategia è un acquisto.")
         else:
-            v += (f"sotto il {_pct(req)} richiesto per la classe {a['classe']}: per comprare il prezzo dovrebbe scendere a "
+            v += (f"sotto il {_pct(req)} {chi}: per comprare il prezzo dovrebbe scendere a "
                   f"{t(a['prezzo_acquisto'], 2)} ({t((a['prezzo_acquisto'] / prezzo - 1) * 100, 0)}% da oggi).")
         if vp < prezzo:
             v += f" Attenzione: nello scenario prudente il valore ({t(vp, 2)}) è sotto il prezzo attuale."
     elif ver == "Non comprerei: qualità insufficiente":
         v = (f"Valutazione: non rilevante. La qualità composita ({t(qc, 1)}) è sotto la soglia di {t(P['classe_b'], 1)} "
              "della classe B: per questa strategia l'azienda non è abbastanza buona a nessun prezzo.")
+    elif ver == "Non comprerei: troppo difficile da prevedere":
+        v = (f"Valutazione: non eseguita come acquisto, perché la prevedibilità a 10 anni è bassa ({fonte}): per questa strategia "
+             "è troppo difficile stimare quanto guadagnerà l'azienda, quindi non compra a nessun prezzo.")
     elif ver == "Non comprerei: valore non stimabile":
         v = ("Valutazione: il flusso di cassa normalizzato è negativo, quindi il valore intrinseco non è stimabile "
              "e la strategia non compra.")
@@ -112,7 +122,7 @@ def motivazione(ing: dict, a: dict, P: dict, giudizio: dict | None = None) -> di
         manca = [NOMI_PILASTRI_A[L] for L in "QFGV" if a["pilastri"][L] is None]
         v = ("Valutazione: non eseguita, perché mancano troppi dati nei pilastri: " + ", ".join(manca) + "."
              if manca else "Valutazione: non eseguita, perché manca il valore intrinseco.")
-    righe = [q, v]
+    righe = [q, pv, v]
     if a["correzione"]:
         mot = (giudizio or {}).get("motivazione") or "senza motivazione"
         righe.append(f"Correzione qualitativa: {'+' if a['correzione'] > 0 else ''}{t(a['correzione'], 1)} punti ({mot}).")
@@ -172,9 +182,10 @@ def formula_valutazione() -> str:
     prima = ('"Valutazione: prezzo "&ROUND({prezzo},2)&" contro un valore stimato di "&ROUND({valore_base},2)'
              '&" (scenario base; prudente "&ROUND({V:valore_p},2)&", ottimistico "&ROUND({V:valore_o},2)'
              '&"). Margine di sicurezza "&ROUND({margine}*100,0)&"%, "')
-    compra = ('"sopra il "&ROUND({richiesto}*100,0)&"% richiesto per la classe "&{classe}&": il prezzo è sotto il prezzo '
+    chi = '"% richiesto per la classe "&{classe}&IF({prev}="Media"," con prevedibilità media","")'
+    compra = ('"sopra il "&ROUND({richiesto}*100,0)&' + chi + '&": il prezzo è sotto il prezzo '
               'd\'acquisto di "&ROUND({prezzo_acq},2)&", quindi per questa strategia è un acquisto."')
-    aspetta = ('"sotto il "&ROUND({richiesto}*100,0)&"% richiesto per la classe "&{classe}&": per comprare il prezzo dovrebbe '
+    aspetta = ('"sotto il "&ROUND({richiesto}*100,0)&' + chi + '&": per comprare il prezzo dovrebbe '
                'scendere a "&ROUND({prezzo_acq},2)&" ("&ROUND(({prezzo_acq}/{prezzo}-1)*100,0)&"% da oggi)."')
     prud = ('IF({V:valore_p}<{prezzo}," Attenzione: nello scenario prudente il valore ("&ROUND({V:valore_p},2)'
             '&") è sotto il prezzo attuale.","")')
@@ -184,14 +195,22 @@ def formula_valutazione() -> str:
     return ('=IF(OR({verdetto}="Comprerei",{verdetto}="Aspetterei"),' + prima + '&IF({verdetto}="Comprerei",' + compra + ','
             + aspetta + ')&' + prud + ',IF({verdetto}="Non comprerei: qualità insufficiente","Valutazione: non rilevante. '
             'La qualità composita ("&ROUND({qc},1)&") è sotto la soglia di "&ROUND({P:classe_b},1)&" della classe B: per questa '
-            'strategia l\'azienda non è abbastanza buona a nessun prezzo.",IF({verdetto}="Non comprerei: valore non stimabile",'
+            'strategia l\'azienda non è abbastanza buona a nessun prezzo.",IF({verdetto}="Non comprerei: troppo difficile da prevedere",'
+            '"Valutazione: non eseguita come acquisto, perché la prevedibilità a 10 anni è bassa ("&{prev_fonte}&"): per questa '
+            'strategia è troppo difficile stimare quanto guadagnerà l\'azienda, quindi non compra a nessun prezzo.",'
+            'IF({verdetto}="Non comprerei: valore non stimabile",'
             '"Valutazione: il flusso di cassa normalizzato è negativo, quindi il valore intrinseco non è stimabile e la strategia '
             'non compra.",IF({vecchio}=1,"Valutazione: non eseguita, perché il prezzo o l\'ultimo bilancio sono troppo vecchi.",'
             'IF(LEN(' + manca + ')>0,"Valutazione: non eseguita, perché mancano troppi dati nei pilastri: "&LEFT(' + manca
-            + ',LEN(' + manca + ')-2)&".","Valutazione: non eseguita, perché manca il valore intrinseco.")))))')
+            + ',LEN(' + manca + ')-2)&".","Valutazione: non eseguita, perché manca il valore intrinseco."))))))')
+
+
+def formula_prevedibilita() -> str:
+    return ('=IF({prev}="n.d.","Prevedibilità a 10 anni: nessun giudizio.","Prevedibilità a 10 anni: "&{prev}&" ("&{prev_fonte}&")."'
+            '&IF(OR({minaccia}="n.d.",{minaccia}=""),""," Minaccia principale: "&{minaccia}&"."))')
 
 
 def formula_testo() -> str:
-    return ('={mot_q}&CHAR(10)&{mot_v}&IF({corr}<>0,CHAR(10)&"Correzione qualitativa: "&IF({corr}>0,"+","")&ROUND({corr},1)'
+    return ('={mot_q}&CHAR(10)&{mot_p}&CHAR(10)&{mot_v}&IF({corr}<>0,CHAR(10)&"Correzione qualitativa: "&IF({corr}>0,"+","")&ROUND({corr},1)'
             '&" punti ("&IF({G:motivazione}="","senza motivazione",{G:motivazione})&").","")'
             '&IF({n_rischi}>0,CHAR(10)&"Segnali di rischio: "&{rischi}&".","")')

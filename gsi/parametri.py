@@ -73,6 +73,8 @@ PREDEFINITI = {
     "rischio_calo_margine": 0.02, "rischio_payout": 1.0,
     # testo "perche' questo verdetto": metriche citate come punti di forza / deboli
     "motivo_forte": 80.0, "motivo_debole": 30.0,
+    # prevedibilita' a 10 anni (giudizio di Claude con ricerca, sovrascrivibile in GIUDIZI)
+    "prev_margine_media": 0.15, "prev_crescita_media": 0.5, "prev_crescita_bassa": 0.0,
     # strategia B
     "pesi_b": dict(zip(PILASTRI_B, (25, 25, 15, 10, 10, 10, 5))), "copertura_b": 0.70,
     "trend_punti": (30, 25, 20, 15, 10), "trend_rialzista": 70, "trend_ribassista": 40,

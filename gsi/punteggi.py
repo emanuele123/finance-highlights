@@ -45,7 +45,12 @@ def crescita_storica(ing: dict, P: dict):
     return max(P["crescita_minima"], min(P["tetto_crescita"][ing["modello"]], c))
 
 
-def valore_intrinseco(ing: dict, P: dict, scenario: str = "Base") -> dict:
+def fattore_prevedibilita(livello, P: dict) -> float:
+    """Quota della crescita futura riconosciuta secondo la prevedibilita' a 10 anni."""
+    return {"Media": P["prev_crescita_media"], "Bassa": P["prev_crescita_bassa"]}.get(livello, 1.0)
+
+
+def valore_intrinseco(ing: dict, P: dict, scenario: str = "Base", livello=None) -> dict:
     """Ogni passaggio e' una voce del risultato (= una colonna del foglio VALUTAZIONE).
     'valore' e' un numero, oppure 'n.s.' (flusso di partenza negativo), oppure None (dati mancanti)."""
     mod = ing["modello"]
@@ -61,6 +66,8 @@ def valore_intrinseco(ing: dict, P: dict, scenario: str = "Base") -> dict:
         pay = ing.get("F4")
         pay = P["payout_predefinito"] if pay is None else max(0.0, min(1.0, pay))
         gB = min(P["tetto_crescita"][mod], roe * (1 - pay))
+        if gB > 0:
+            gB *= fattore_prevedibilita(livello, P)
         q = (1 + gB) / (1 + r)
         somma = 2 * n if abs(q - 1) < 1e-12 else (1 - q ** (2 * n)) / (1 - q)
         extra = (roe - r) * b0 / (1 + r) * somma
@@ -71,7 +78,7 @@ def valore_intrinseco(ing: dict, P: dict, scenario: str = "Base") -> dict:
     f = ing.get("flusso_ps")
     if c is None or f is None:
         return o
-    g1 = c * quota if c > 0 else c * (2 - quota)
+    g1 = c * quota * fattore_prevedibilita(livello, P) if c > 0 else c * (2 - quota)
     g2 = (g1 + gT) / 2
     f0 = f * P["quota_flusso"][mod] * fattore
     o.update(crescita_storica=c, g1=g1, g2=g2, flusso_partenza=f0)
@@ -159,17 +166,20 @@ def segnali_rischio(ing: dict, val: dict, P: dict) -> list[str]:
 
 def buffett(ing: dict, P: dict, giudizi: dict | None = None) -> dict:
     """Buffett Score (metodologia ispirata ai principi del value investing; nessun giudizio attribuito a Buffett)."""
+    from .prevedibilita import livello_usato
     g = giudizi or {}
     mod = ing["modello"]
     sog = P["metriche"][mod]
-    scen = {s: valore_intrinseco(ing, P, s) for s in P["scenari"]}
+    livello, fonte = livello_usato(ing.get("ticker", ""), g, ing.get("prev_claude"))
+    scen = {s: valore_intrinseco(ing, P, s, livello) for s in P["scenari"]}
     base = scen["Base"]["valore"]
     val = {m: ing.get(m) for m in METRICHE_A}
     if mod in FINANZIARI:
         val["Q3"] = g.get("Q3")
     val["F5"] = g.get("F5")
     val.update(metriche_valutazione(ing, P, base))
-    o = {"modello": mod, "valori": val, "scenari": scen, "valore_base": base, "punti": {}, "copertura": {}}
+    o = {"modello": mod, "valori": val, "scenari": scen, "valore_base": base, "punti": {}, "copertura": {},
+         "prevedibilita": livello, "fonte_prev": fonte}
     pil = {}
     for L in "QFGV":
         pil[L], o["copertura"][L], det = pilastro(val, sog, L, P["copertura_minima"])
@@ -193,18 +203,22 @@ def buffett(ing: dict, P: dict, giudizi: dict | None = None) -> dict:
         o["punteggio"] = arrotonda(max(0.0, min(100.0, grezzo)), 1)
     prezzo = ing.get("prezzo")
     o["margine_sicurezza"] = val["V1"]
+    o["richiesto"] = None
     o["prezzo_acquisto"] = None
     if vecchio or qc is None:
         o["verdetto"] = INSUFF
     elif o["classe"] == "C":
         o["verdetto"] = "Non comprerei: qualità insufficiente"
+    elif livello == "Bassa":
+        o["verdetto"] = "Non comprerei: troppo difficile da prevedere"
     elif base == "n.s.":
         o["verdetto"] = "Non comprerei: valore non stimabile"
     elif not isinstance(base, (int, float)) or not prezzo:
         o["verdetto"] = INSUFF
     else:
-        richiesto = P["margine_a"] if o["classe"] == "A" else P["margine_b"]
+        richiesto = (P["margine_a"] if o["classe"] == "A" else P["margine_b"]) + (P["prev_margine_media"] if livello == "Media" else 0.0)
         o["prezzo_acquisto"] = base * (1 - richiesto)
+        o["richiesto"] = richiesto
         o["verdetto"] = "Comprerei" if prezzo < o["prezzo_acquisto"] else "Aspetterei"
     o["rischi"] = segnali_rischio(ing, val, P)
     return o
