@@ -9,7 +9,11 @@
     "titoli": [
      "ASML.AS",
      "8035.T"
-    ]
+    ],
+    "protagonisti": "ASML, Applied Materials, Lam Research, Tokyo Electron, KLA",
+    "forza": "Alta",
+    "perche": "ASML è l'unico fornitore di litografia EUV e i primi cinque dominano il mercato; le fabbriche non possono sostituirli.",
+    "fatti": "TechInsights: mercato apparecchiature 2025 a 136,2 mld $ (+13%), ASML prima con 27,5 mld $; secondo Yole i primi cinque avevano quasi il 70% nel 2024."
    },
    {
     "id": "fabbricazione",
@@ -18,7 +22,11 @@
     "titoli": [
      "TSM",
      "005930.KS"
-    ]
+    ],
+    "protagonisti": "TSMC, Samsung, SK hynix, Micron, SMIC",
+    "forza": "Alta",
+    "perche": "TSMC è quasi monopolista nei nodi avanzati e nel packaging; le memorie HBM sono scarse e vendute in anticipo.",
+    "fatti": "TrendForce: TSMC 70,2% dei ricavi fonderia nel 2° trim. 2025, Samsung 7,3%. Counterpoint: HBM 3° trim. 2025 SK hynix 57%, Samsung 22%, Micron 21%."
    },
    {
     "id": "progettazione",
@@ -27,7 +35,11 @@
     "titoli": [
      "NVDA",
      "AVGO"
-    ]
+    ],
+    "protagonisti": "Nvidia, Broadcom, AMD, Marvell, Alphabet (TPU)",
+    "forza": "Alta",
+    "perche": "Nvidia unisce chip, reti e software CUDA; i clienti dipendono da lei, anche se i chip su misura di Broadcom crescono.",
+    "fatti": "SemiAnalysis: Nvidia ~88% degli acceleratori IA nel 1° trim. 2025, AMD ~4%. Broadcom: ricavi IA 10,8 mld $ nel 2° trim. fiscale 2026 (+143%)."
    },
    {
     "id": "cloud",
@@ -36,13 +48,46 @@
     "titoli": [
      "AMZN",
      "ORCL"
-    ]
+    ],
+    "protagonisti": "Amazon (AWS), Microsoft Azure, Google Cloud, Oracle, CoreWeave",
+    "forza": "Media",
+    "perche": "Hanno grande scala e clienti fedeli, ma pagano caro chip e memorie e sostengono investimenti enormi con ritorni incerti.",
+    "fatti": "Synergy: 3° trim. 2025 AWS 29%, Azure 20%, Google 13% del cloud; Oracle circa 3%. Capex 2026 dei grandi cloud stimato 630-700 mld $."
    },
    {
     "id": "clienti",
     "nome": "Aziende e servizi che usano l'intelligenza artificiale",
     "cosa": "Imprese, sviluppatori di modelli e applicazioni che pagano la capacità di calcolo.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "OpenAI, Anthropic, Meta, banche e grandi imprese, sviluppatori di app",
+    "forza": "Bassa",
+    "perche": "La capacità di calcolo è scarsa e i prezzi li fissano i fornitori; solo i grandi laboratori negoziano contratti pluriennali.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nella progettazione (Nvidia, margini lordi stimati intorno al 75%) e nella fabbricazione avanzata (TSMC, ~70% delle fonderie): entrambi sono colli di bottiglia senza alternative pronte.",
+  "tendenza": "Nel 2026 la scarsità di memorie (HBM e DRAM) e la crescita dei chip su misura (Broadcom, TPU di Google) spostano margini verso memorie e ASIC, mentre i cloud spendono 630-700 mld $ in investimenti.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "2Q25 Foundry Revenue Surges 14.6% to Record High, TSMC's Market Share Hits 70%",
+    "url": "https://www.techpowerup.com/340526/2q25-foundry-revenue-surges-14-6-to-record-high-tsmcs-market-share-hits-70",
+    "data": "2025-09-01"
+   },
+   {
+    "titolo": "AWS under pressure as big three battle to eat the cloud market",
+    "url": "https://www.theregister.com/2025/11/20/aws_loses_market_share_azure_google/",
+    "data": "2025-11-20"
+   },
+   {
+    "titolo": "Did Nvidia just say checkmate to AMD",
+    "url": "https://www.fool.com/investing/2025/06/27/did-nvidia-just-say-checkmate-to-amd",
+    "data": "2025-06-27"
+   },
+   {
+    "titolo": "Predict AI inference era new winner AVGO",
+    "url": "https://www.fool.com/investing/2026/02/24/predict-ai-inference-era-new-winner-avgo",
+    "data": "2026-02-24"
    }
   ]
  },
@@ -276,13 +321,21 @@
     "id": "componenti",
     "nome": "Componenti",
     "cosa": "Chip, schermi, sensori e batterie.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Samsung, SK hynix, Micron, TSMC, Sony (sensori), BOE",
+    "forza": "Media",
+    "perche": "Forte per chi ha tecnologie scarse (memorie, chip avanzati); più debole per schermi e batterie, molto competitivi.",
+    "fatti": "Counterpoint: prezzi delle memorie +80-90% nel 1° trim. 2026 sul trimestre precedente; costo di produzione degli smartphone +10-25%."
    },
    {
     "id": "assemblaggio",
     "nome": "Assemblaggio per conto terzi",
     "cosa": "Fabbriche che montano gli apparecchi (Foxconn e altri).",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Foxconn (Hon Hai), Luxshare, Pegatron, Tata Electronics, Wistron",
+    "forza": "Bassa",
+    "perche": "Lavoro intercambiabile e dipendente da pochi grandi clienti; i margini restano sottili.",
+    "fatti": "Foxconn 2025: margine lordo 6,15%, operativo 3,20%. Apple ha assemblato in India circa 55 mln di iPhone nel 2025, circa un quarto del totale."
    },
    {
     "id": "marchi",
@@ -291,13 +344,46 @@
     "titoli": [
      "AAPL",
      "6758.T"
-    ]
+    ],
+    "protagonisti": "Apple, Samsung, Xiaomi, Sony, Nintendo, Microsoft",
+    "forza": "Alta",
+    "perche": "Marchio, sistema operativo e negozio digitale legano i clienti e permettono commissioni sui contenuti venduti da altri.",
+    "fatti": "Counterpoint: smartphone 2025 Apple 20%, Samsung 19%, Xiaomi 13%. Sony: 8 mln PS5 nel trim. a fine set. 2025 contro 7,01 mln Switch 2."
    },
    {
     "id": "consumatori",
     "nome": "Consumatori",
     "cosa": "Chi compra apparecchi, app, giochi e abbonamenti.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Famiglie, giocatori, aziende che comprano PC e telefoni",
+    "forza": "Bassa",
+    "perche": "Singolarmente non negoziano e sono legati agli ecosistemi, ma possono rinviare gli acquisti quando i prezzi salgono.",
+    "fatti": "Counterpoint: consegne smartphone +2% nel 2025, mercato atteso in calo nel 2026 per i costi delle memorie."
+   }
+  ],
+  "chi_cattura": "I profitti stanno nei marchi con un ecosistema (Apple con iPhone e App Store, Sony con PlayStation) che controllano piattaforma e servizi; gli assemblatori lavorano con margini di pochi punti.",
+  "tendenza": "Nel 2026 il rincaro delle memorie, assorbite dai centri dati IA, alza i costi di telefoni, PC e console, mentre dazi USA e regole UE (DMA, ago. 2026) toccano produzione in Cina e commissioni App Store.",
+  "nota_struttura": "Sony (6758.T) è anche un grande produttore di sensori d'immagine, quindi presente pure nell'anello componenti.",
+  "fonti": [
+   {
+    "titolo": "Apple Tops 2025 Smartphone Market With 20% Share, 10% Growth",
+    "url": "https://www.macrumors.com/2026/01/12/apple-tops-2025-smartphone-market/",
+    "data": "2026-01-12"
+   },
+   {
+    "titolo": "Foxconn Reports Record FY2025 Revenue, Strong AI Growth and Historic Dividend",
+    "url": "https://iconnect007.com/article/149221/foxconn-reports-record-fy2025-revenue-strong-ai-growth-and-historic-dividend/149218/pcb",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "How the AI boom is making your phone, PC and game console more expensive",
+    "url": "https://www.axios.com/2025/12/16/phone-pc-xbox-prices-ai-ram-shortage",
+    "data": "2025-12-16"
+   },
+   {
+    "titolo": "EU Welcomes Apple's App Store Changes, Epic Slams 'Junk Fees'",
+    "url": "https://macrumors.com/2026/08/19/ec-epic-apple-app-store-changes",
+    "data": "2026-08-19"
    }
   ]
  },
@@ -540,7 +626,11 @@
     "id": "distribuzione",
     "nome": "Agenti, broker e sportelli",
     "cosa": "Vendono le polizze ai clienti, a volte attraverso banche e uffici postali.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Marsh McLennan, Aon, Gallagher, WTW, Intesa Sanpaolo, Poste Italiane",
+    "forza": "Alta",
+    "perche": "Controllano il rapporto con il cliente: i broker globali sono concentrati e in Italia gli sportelli bancari e postali dominano il ramo vita.",
+    "fatti": "AM Best: Marsh primo broker con ricavi 2025 di quasi 27 mld $. In Italia circa metà dei premi vita è scritta da tre compagnie che vendono tramite banche."
    },
    {
     "id": "compagnie",
@@ -554,7 +644,11 @@
      "8766.T",
      "PST.MI",
      "BRK-B"
-    ]
+    ],
+    "protagonisti": "Allianz, Generali, AXA, Chubb, Tokio Marine, Poste Vita",
+    "forza": "Media",
+    "perche": "Grandi marchi e capitale, ma i prodotti sono simili e la vendita dipende spesso da broker e banche.",
+    "fatti": "Italia vita 2024 (Axco): Poste Vita 17,05% dei premi, Intesa Sanpaolo Vita 13,04%, Generali Italia 9,79%."
    },
    {
     "id": "riassicuratori",
@@ -562,13 +656,51 @@
     "cosa": "Assicurano le compagnie contro i grandi sinistri e le catastrofi.",
     "titoli": [
      "MUV2.DE"
-    ]
+    ],
+    "protagonisti": "Munich Re, Swiss Re, Hannover Re, Lloyd's, Berkshire Hathaway, SCOR",
+    "forza": "Media",
+    "perche": "Pochi grandi gruppi con capitale enorme, ma il capitale in eccesso e i fondi catastrofali stanno abbassando i prezzi.",
+    "fatti": "Guy Carpenter: tassi catastrofi globali -12% al 1/1/2026 e -16% da inizio 2026 dopo i rinnovi di luglio. AM Best (ago. 2026): Munich Re primo tra chi usa IFRS 17."
    },
    {
     "id": "mercati",
     "nome": "Mercati finanziari",
     "cosa": "Dove le compagnie investono i premi in obbligazioni e azioni.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Stati sovrani emittenti, BlackRock, PIMCO, Apollo, Blackstone",
+    "forza": "Media",
+    "perche": "Le compagnie dipendono dai rendimenti di obbligazioni e credito privato; tassi più alti negli ultimi anni hanno aiutato il margine finanziario.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti più stabili vanno ai grandi broker (commissioni senza rischio) e alle compagnie con reti proprie o sportelli; i riassicuratori hanno guadagnato molto nel 2023-25 ma ora i prezzi scendono.",
+  "tendenza": "Dal gennaio 2026 i prezzi della riassicurazione catastrofi calano (-12% ai rinnovi di gennaio, -16% dopo luglio) per eccesso di capitale, e anche i prezzi delle polizze aziendali scendono.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "January reinsurance renewal: Accelerated softening drives double-digit declines: Guy Carpenter",
+    "url": "https://www.artemis.bm/news/january-reinsurance-renewal-accelerated-softening-drives-double-digit-declines-guy-carpenter",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Global and US property cat rates down 16%, APAC 19% after July renewals in 2026: Guy Carpenter",
+    "url": "https://www.artemis.bm/news/global-and-us-property-cat-rates-down-16-apac-19-after-july-renewals-in-2026-guy-carpenter/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Marsh remains world's largest insurance broker with 2025 revenues of almost $27bn",
+    "url": "https://www.reinsurancene.ws/marsh-remains-worlds-largest-insurance-broker-with-2025-revenues-of-almost-27bn/",
+    "data": "2026"
+   },
+   {
+    "titolo": "Munich Re, Lloyd's Top List of 50 Largest Global Reinsurers: AM Best",
+    "url": "https://www.insurancejournal.com/magazines/mag-features/2026/09/07/883948.htm",
+    "data": "2026-09-07"
+   },
+   {
+    "titolo": "Italy Insurance Market Highlights",
+    "url": "https://www.axcoinfo.com/countries/europe/italy/",
+    "data": "2025"
    }
   ]
  },
@@ -834,25 +966,71 @@
      "BHP",
      "VALE",
      "NEM"
-    ]
+    ],
+    "protagonisti": "BHP, Rio Tinto, Vale, Fortescue, Newmont, Freeport-McMoRan",
+    "forza": "Alta",
+    "perche": "Giacimenti di qualità rari e concentrati; per il rame il concentrato è così scarso che le fonderie lavorano gratis.",
+    "fatti": "Rame: compenso di lavorazione 2026 fissato a zero (Antofagasta, dic. 2025) contro 21,25 $/t nel 2025. Oro: margine AISC record 3.076 $/oncia nel 1° trim. 2026 (WGC)."
    },
    {
     "id": "trasporto",
     "nome": "Trasporto via nave",
     "cosa": "Spedire il minerale ai porti dei clienti.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "COSCO Shipping, Star Bulk, Golden Ocean, CMB.Tech, Oldendorff",
+    "forza": "Bassa",
+    "perche": "Servizio poco differenziato e molto ciclico; le noli seguono domanda cinese e nuove rotte più lunghe dalla Guinea.",
+    "fatti": "Argus: nolo Capesize Guinea-Cina medio 42,92 $/t a settembre 2026, poi minimo di 29,80 $/t il 15 ottobre 2026."
    },
    {
     "id": "trasformazione",
     "nome": "Acciaierie e fonderie",
     "cosa": "Trasformare il minerale in acciaio e metalli.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "China Baowu, ArcelorMittal, Nippon Steel, Ansteel, POSCO, Jiangxi Copper",
+    "forza": "Bassa",
+    "perche": "Sovraccapacità, soprattutto in Cina, e prodotto standard: le acciaierie subiscono i prezzi del minerale e della domanda.",
+    "fatti": "worldsteel: produzione mondiale di acciaio 2025 1.849 Mt (-2%), Cina 960,8 Mt (-4,4%); China Baowu primo gruppo con 124,76 Mt."
    },
    {
     "id": "utilizzatori",
     "nome": "Industria e costruzioni",
     "cosa": "Chi usa acciaio e metalli; per l'oro anche banche centrali e investitori.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Costruttori edili cinesi, case auto, produttori di macchinari, banche centrali, ETF sull'oro",
+    "forza": "Media",
+    "perche": "L'edilizia cinese in crisi frena la domanda di acciaio; per l'oro gli acquisti delle banche centrali sostengono i prezzi.",
+    "fatti": "World Gold Council: banche centrali hanno comprato 863 t di oro nel 2025, meno delle oltre 1.000 t dei tre anni prima."
+   }
+  ],
+  "chi_cattura": "I profitti stanno nelle miniere a basso costo (ferro australiano, rame, oro), perché il minerale è scarso o concentrato; acciaierie e fonderie, soprattutto cinesi, soffrono sovraccapacità e margini sottili.",
+  "tendenza": "Dal dic. 2025 il ferro di Simandou (Guinea) e gli acquisti centralizzati della Cina (CMRG, scontro con BHP da set. 2025) riducono il potere dei minatori di ferro; nel rame i minatori dominano sulle fonderie.",
+  "nota_struttura": "Oro e metalli industriali hanno catene diverse: l'oro (NEM) non passa da acciaierie e ha clienti diversi (banche centrali, investitori).",
+  "fonti": [
+   {
+    "titolo": "Antofagasta agrees zero copper processing charges for 2026 with Chinese smelter",
+    "url": "https://www.kitco.com/news/off-the-wire/2025-12-19/antofagasta-agrees-zero-copper-processing-charges-2026-chinese-smelter",
+    "data": "2025-12-19"
+   },
+   {
+    "titolo": "Simandou's first shipment with 200,000 mt high-grade iron ore arrives in China",
+    "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/011926-simandous-first-shipment-with-200000-mt-high-grade-iron-ore-arrives-in-china",
+    "data": "2026-01-19"
+   },
+   {
+    "titolo": "BHP-China iron ore standoff may drag into 2026 as talks stall",
+    "url": "https://www.mining.com/web/bhp-china-iron-ore-standoff-may-drag-into-2026-as-talks-stall/",
+    "data": "2025-11"
+   },
+   {
+    "titolo": "Gold Miners Remain Resilient Despite Tighter Margins in Q2'26",
+    "url": "https://www.gold.org/goldhub/gold-focus/2026/11/gold-miners-remain-resilient-despite-tighter-margins-q226",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "December 2025 crude steel production and 2025 global crude steel production",
+    "url": "https://worldsteel.org/media/press-releases/2026/december-2025-crude-steel-production-2025-global-crude-steel-production/",
+    "data": "2026-01-23"
    }
   ]
  },
@@ -1094,7 +1272,11 @@
     "id": "componenti",
     "nome": "Componenti, batterie e software",
     "cosa": "Fornitori di motori, batterie, chip e sistemi.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "CATL, BYD, LG Energy Solution, Bosch, Denso, ZF",
+    "forza": "Media",
+    "perche": "Forti i grandi produttori di batterie, quasi tutti cinesi; deboli i fornitori tradizionali di parti, schiacciati dai costruttori.",
+    "fatti": "SNE Research 2025: batterie per auto elettriche CATL 39,2%, BYD 16,4%, LG Energy Solution 9,2%; produttori cinesi 70,4% in totale."
    },
    {
     "id": "costruttori",
@@ -1103,19 +1285,61 @@
     "titoli": [
      "7203.T",
      "VOLV-B.ST"
-    ]
+    ],
+    "protagonisti": "Toyota, Volkswagen, Hyundai-Kia, BYD, General Motors, Volvo, Daimler Truck",
+    "forza": "Media",
+    "perche": "Grandi volumi e marchi, ma forte concorrenza, costi della transizione elettrica e dazi riducono i margini.",
+    "fatti": "Toyota: vendite record 2025 di 11,3 mln (+4,6%). Volvo: 19,0% dei camion pesanti in Europa nel 2025; margine rettificato del gruppo da 12,5% a 10,7% (ICCT)."
    },
    {
     "id": "vendita",
     "nome": "Concessionari, finanziamento e assistenza",
     "cosa": "Vendita, prestiti, leasing, ricambi e riparazioni.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "AutoNation, Lithia, Penske Automotive, Toyota Financial Services, Stellantis Financial Services",
+    "forza": "Media",
+    "perche": "Ricambi, riparazioni e prestiti danno margini alti e stabili, ma i concessionari dipendono dai marchi che li riforniscono.",
+    "fatti": "USA: ricambi e assistenza circa il 40% del margine lordo dei concessionari nel 1° trim. 2025, con solo il 12-13% dei ricavi; Lithia 42,2% nel 2° trim. 2025."
    },
    {
     "id": "clienti",
     "nome": "Famiglie e aziende di trasporto",
     "cosa": "Chi compra o noleggia i veicoli.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Famiglie, flotte aziendali, società di noleggio, aziende di trasporto e logistica",
+    "forza": "Media",
+    "perche": "Le famiglie pesano poco singolarmente, ma la concorrenza cinese dà più scelta; le grandi flotte negoziano sconti.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "Profitti stabili nel post-vendita e nel finanziamento; tra i costruttori guadagnano bene solo i più efficienti (Toyota, camion), mentre nelle batterie dominano CATL e BYD.",
+  "tendenza": "Dal 2025 i dazi USA e la concorrenza dei costruttori cinesi comprimono i margini (Toyota prevede -30% di utile operativo nell'esercizio a marzo 2026), e i margini dei camion europei sono scesi nel 2025.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "SNE Research: CATL continues to dominate global battery market",
+    "url": "https://www.electrive.com/2026/02/04/sne-research-catl-continues-to-dominate-global-battery-market",
+    "data": "2026-02-04"
+   },
+   {
+    "titolo": "Toyota Keeps Title as Top Carmaker With Record Sales in 2025",
+    "url": "https://www.ttnews.com/articles/toyota-top-carmaker-2025",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Volvo leads the heavy truck market in Europe",
+    "url": "https://www.volvogroup.com/en/news-and-media/news/2026/jan/volvo-leads-the-heavy-truck-market-in-europe.html",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Tariffs, Chinese rivals deliver blows to Toyota and other foreign automakers",
+    "url": "https://www.axios.com/2026/02/12/trump-tariffs-toyota-honda-nissan",
+    "data": "2026-02-12"
+   },
+   {
+    "titolo": "Fixed ops momentum: older cars, higher margins and growing volume",
+    "url": "https://www.wardsauto.com/fixed-operations/fixed-ops-momentum-older-cars-higher-margins-and-growing-volume",
+    "data": "2025"
    }
   ]
  },
@@ -1359,7 +1583,11 @@
     "id": "materie",
     "nome": "Materie prime e imballaggi",
     "cosa": "Prodotti agricoli, chimica, carta e plastica.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Cargill, ADM, ofi (Olam), Barry Callebaut, Amcor, Smurfit Westrock",
+    "forza": "Bassa",
+    "perche": "Prodotti standard con prezzi decisi dai mercati delle materie prime; i margini seguono raccolti ed energia.",
+    "fatti": "Banca Mondiale: indice prezzi bevande (caffè, cacao) nel 2° trim. 2026 circa un terzo sotto l'anno prima; cacao giù di quasi il 70% nell'anno a feb. 2026 (PBS)."
    },
    {
     "id": "marche",
@@ -1373,7 +1601,11 @@
      "ULVR.L",
      "OR.PA",
      "CPR.MI"
-    ]
+    ],
+    "protagonisti": "Nestlé, Procter & Gamble, Unilever, PepsiCo, Coca-Cola, L'Oréal",
+    "forza": "Media",
+    "perche": "Marchi noti e pubblicità danno potere di prezzo, ma dopo anni di rincari i volumi sono deboli e la marca privata avanza.",
+    "fatti": "Unilever: volumi +2,9% nel 3° trim. 2026. PepsiCo: alimentari Nord America -2% nel 2° trim. 2026; GLP-1 usati dal 21% delle famiglie USA a maggio 2026 (PwC)."
    },
    {
     "id": "distributori",
@@ -1383,13 +1615,51 @@
      "WMT",
      "COST",
      "AD.AS"
-    ]
+    ],
+    "protagonisti": "Walmart, Costco, Amazon, Schwarz (Lidl), Aldi, Ahold Delhaize",
+    "forza": "Alta",
+    "perche": "Controllano l'accesso ai consumatori e i dati, con marche proprie e pubblicità in negozio e online.",
+    "fatti": "Numerator: Walmart 21% delle vendite alimentari USA (12 mesi a marzo 2025). PLMA/NIQ: marca privata 38,8% delle vendite in Europa nel 2025, record."
    },
    {
     "id": "consumatori",
     "nome": "Consumatori",
     "cosa": "Chi compra ogni giorno.",
-    "titoli": []
+    "titoli": [],
+    "protagonisti": "Famiglie",
+    "forza": "Media",
+    "perche": "Molto attenti al prezzo: passano alla marca privata e ai discount, ma restano fedeli ai marchi più forti.",
+    "fatti": "PLMA/NIQ 2025: vendite di marca privata in Europa +4,1% in valore contro +2,7% dei marchi industriali."
+   }
+  ],
+  "chi_cattura": "I margini più alti restano ai produttori di marca forti (bevande, cura della persona), ma il potere si sposta verso le grandi catene, che controllano lo scaffale e spingono la marca privata.",
+  "tendenza": "Nel 2025-26 la crescita trainata dai prezzi finisce: marca privata ai massimi in Europa, farmaci GLP-1 che riducono snack e dolci in USA e rincari di energia e trasporti nel 2026.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "A mosaic of markets: Private label strengthens its position across Europe",
+    "url": "https://www.plmainternational.com/article/mosaic-markets-private-label-strengthens-its-position-across-europe",
+    "data": "2026"
+   },
+   {
+    "titolo": "PepsiCo's quiet scramble to fight off the GLP-1 threat",
+    "url": "https://www.businessday.co.za/world/international-companies/2026-10-07-pepsicos-quiet-scramble-to-fight-off-the-glp-1-threat/",
+    "data": "2026-10-07"
+   },
+   {
+    "titolo": "Walmart grocery sales United States",
+    "url": "https://www.grocerydive.com/news/walmart-grocery-sales-united-states/746531/",
+    "data": "2025-05"
+   },
+   {
+    "titolo": "Nestle CEO says lower coffee, cocoa costs will boost margins",
+    "url": "https://www.swissinfo.ch/eng/nestl%c3%a9-ceo-says-lower-coffee%2c-cocoa-costs-will-boost-margins/91516138",
+    "data": "2026"
+   },
+   {
+    "titolo": "Price vs volume: How are brands fighting consumer fatigue to drive growth?",
+    "url": "https://www.marketingweek.com/big-brands-growth-fatigued-consumer/",
+    "data": "2026"
    }
   ]
  },

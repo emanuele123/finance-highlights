@@ -278,8 +278,8 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
     c = ws.cell(r, 1, "=" + look("B", "motivazione"))
     c.font = car(VERDE)
     c.alignment = Alignment(wrap_text=True, vertical="top")
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
-    ws.row_dimensions[r].height = 190
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=9)
+    ws.row_dimensions[r].height = 120
     r += 1
     c = ws.cell(r, 1, "Il testo descrive solo i numeri (bilanci passati e prezzo di oggi): non vede concorrenza, tecnologia o "
                       "notizie. Il proprio giudizio va nel foglio GIUDIZI (correzione qualitativa motivata e tesi).")
@@ -297,11 +297,12 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
     for et, f, h in righe_pv:
         r += 1
         ws.cell(r, 1, et).font = car()
+        ws.cell(r, 1).alignment = Alignment(vertical="top", wrap_text=True)
         c = ws.cell(r, 2, "=" + f)
         c.font = car(VERDE)
         c.alignment = Alignment(wrap_text=True, vertical="top")
-        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=4)
-        ws.row_dimensions[r].height = h
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=9)
+        ws.row_dimensions[r].height = min(h, 30) if h < 60 else 44
     r += 1
     c = ws.cell(r, 1, "Il giudizio è un'opinione redatta da Claude dopo una ricerca su internet (data e fonti nel foglio PREVEDIBILITA). "
                       "Conta nel verdetto: 'Media' chiede 15 punti di margine in più, 'Bassa' porta a 'troppo difficile da prevedere'. "
@@ -312,21 +313,22 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
     ws.row_dimensions[r].height = 38
     r += 2
     sezione(r, 1, "Catena del valore del suo mercato (descrizione, non entra nei punteggi)")
-    for et, k, h, fmt in (("Mercato", "catena", 16, None), ("La catena (anello dell'azienda tra parentesi quadre)", "testo", 44, None),
-                          ("Che cosa succede nel suo anello", "cosa", 30, None), ("Forza contrattuale dell'anello", "forza", 30, None),
-                          ("Da chi dipende (a monte)", "a_monte", 30, None), ("Chi dipende da lei (a valle)", "a_valle", 30, None),
-                          ("Chi cattura il valore nella catena", "chi_cattura", 44, None), ("Che cosa sta cambiando", "tendenza", 30, None),
-                          ("Altri titoli dell'universo nella catena", "altri", 30, None),
+    for et, k, h, fmt in (("Mercato", "catena", 16, None), ("La catena (anello dell'azienda tra parentesi quadre)", "testo", 28, None),
+                          ("Che cosa succede nel suo anello", "cosa", 28, None), ("Forza contrattuale dell'anello", "forza", 30, None),
+                          ("Da chi dipende (a monte)", "a_monte", 28, None), ("Chi dipende da lei (a valle)", "a_valle", 28, None),
+                          ("Chi cattura il valore nella catena", "chi_cattura", 40, None), ("Che cosa sta cambiando", "tendenza", 40, None),
+                          ("Altri titoli dell'universo nella catena", "altri", 40, None),
                           ("Margine operativo mediano dell'anello", "med_marg", 16, "0.0%"),
                           ("Rendimento sul capitale mediano dell'anello", "med_rend", 16, "0.0%")):
         r += 1
         ws.cell(r, 1, et).font = car()
+        ws.cell(r, 1).alignment = Alignment(vertical="top", wrap_text=True)
         c = ws.cell(r, 2, "=" + look("CA", k))
         c.font = car(VERDE)
         c.alignment = Alignment(wrap_text=True, vertical="top", horizontal="left")
         if fmt:
             c.number_format = fmt
-        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=4)
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=9)
         ws.row_dimensions[r].height = h
     r += 1
     c = ws.cell(r, 1, "Catene e fonti complete nel foglio MERCATI. I margini dell'anello sono le mediane dei titoli dell'universo "
