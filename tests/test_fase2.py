@@ -424,3 +424,19 @@ def test_prevedibilita():
     t = mz.motivazione(_ing(), m, P)["testo"]
     assert "richiesto per la classe A con prevedibilità media" in t
     assert "Prevedibilità a 10 anni: nessun giudizio." in mz.motivazione(_ing(), base, P)["testo"]
+
+
+# ------------------------------------------------------------------ catene del valore
+def test_catene():
+    from gsi import catene as cat
+    from gsi.universo import UNIVERSO
+    assert len(cat.CATENE) >= 20
+    pos = {t.ticker: cat.posizione(t.ticker) for t in UNIVERSO}
+    assert all(c is not None for c, _ in pos.values())                      # ogni titolo sta in una catena
+    titoli = [tk for c in cat.CATENE.values() for a in c["anelli"] for tk in a["titoli"]]
+    assert len(titoli) == len(set(titoli)) == 120                           # e in una sola
+    p = cat.profilo("NVDA")
+    assert p["catena_id"] == "chip_ai" and "[PROGETTAZIONE DI CHIP PER CENTRI DATI]" in p["testo"]
+    assert p["a_monte"].startswith("Fabbricazione di chip e memorie") and p["a_valle"].startswith("Centri dati e cloud")
+    assert "TSM" in p["altri"] and "NVDA" not in p["altri"]
+    assert cat.profilo("ASML.AS")["a_monte"].startswith("Nessuno") and cat.profilo("NON_ESISTE") == {}

@@ -60,6 +60,8 @@ def foglio_screener(lib: Libro, tickers: list[str]):
     t.col("classe", "Classe di qualità", "={B:classe}", None, "link", 8)
     t.col("verdetto", "Verdetto", "={B:verdetto}", None, "link", 30)
     t.col("prev", "Prevedibilità a 10 anni", "={B:prev}", None, "link", 11)
+    t.col("catena", "Catena del valore", "={CA:catena}", None, "link", 22)
+    t.col("anello", "Anello nella catena", "={CA:anello}", None, "link", 22)
     t.col("forti", "Punti di forza (strategia A)", "={B:forti}", None, "link", 45)
     t.col("deboli", "Punti deboli (strategia A)", "={B:deboli}", None, "link", 45)
     t.col("margine", "Margine di sicurezza", "={B:margine}", F_PCT, "link")
@@ -308,6 +310,29 @@ def foglio_scheda(lib: Libro, tickers: list[str], n_sett: int, scelto: str):
     c.alignment = Alignment(wrap_text=True, vertical="top")
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
     ws.row_dimensions[r].height = 38
+    r += 2
+    sezione(r, 1, "Catena del valore del suo mercato (descrizione, non entra nei punteggi)")
+    for et, k, h, fmt in (("Mercato", "catena", 16, None), ("La catena (anello dell'azienda tra parentesi quadre)", "testo", 44, None),
+                          ("Che cosa succede nel suo anello", "cosa", 30, None), ("Forza contrattuale dell'anello", "forza", 30, None),
+                          ("Da chi dipende (a monte)", "a_monte", 30, None), ("Chi dipende da lei (a valle)", "a_valle", 30, None),
+                          ("Chi cattura il valore nella catena", "chi_cattura", 44, None), ("Che cosa sta cambiando", "tendenza", 30, None),
+                          ("Altri titoli dell'universo nella catena", "altri", 30, None),
+                          ("Margine operativo mediano dell'anello", "med_marg", 16, "0.0%"),
+                          ("Rendimento sul capitale mediano dell'anello", "med_rend", 16, "0.0%")):
+        r += 1
+        ws.cell(r, 1, et).font = car()
+        c = ws.cell(r, 2, "=" + look("CA", k))
+        c.font = car(VERDE)
+        c.alignment = Alignment(wrap_text=True, vertical="top", horizontal="left")
+        if fmt:
+            c.number_format = fmt
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=4)
+        ws.row_dimensions[r].height = h
+    r += 1
+    c = ws.cell(r, 1, "Catene e fonti complete nel foglio MERCATI. I margini dell'anello sono le mediane dei titoli dell'universo "
+                      "in quell'anello, non dell'intero mercato.")
+    c.font = car("595959", corsivo=True, dim=9)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
     r += 2
     sezione(r, 1, "Valore intrinseco per azione (ipotesi dichiarate)")
     for et, f, fmt in (("Scenario prudente", look("V", "valore_p"), F_NUM), ("Scenario base", look("V", "valore_b"), F_NUM),

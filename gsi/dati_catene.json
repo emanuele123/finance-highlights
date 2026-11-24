@@ -1,0 +1,1560 @@
+{
+ "chip_ai": {
+  "nome": "Chip e centri dati per l'intelligenza artificiale",
+  "anelli": [
+   {
+    "id": "macchinari",
+    "nome": "Macchinari per fabbricare i chip",
+    "cosa": "Costruzione delle macchine per litografia, deposizione, incisione e controllo usate nelle fabbriche di chip.",
+    "titoli": [
+     "ASML.AS",
+     "8035.T"
+    ]
+   },
+   {
+    "id": "fabbricazione",
+    "nome": "Fabbricazione di chip e memorie",
+    "cosa": "Produzione dei chip per conto dei progettisti e produzione di memorie (DRAM, HBM, NAND).",
+    "titoli": [
+     "TSM",
+     "005930.KS"
+    ]
+   },
+   {
+    "id": "progettazione",
+    "nome": "Progettazione di chip per centri dati",
+    "cosa": "Progettazione dei processori grafici e dei chip su misura per l'intelligenza artificiale e le reti, senza fabbriche proprie.",
+    "titoli": [
+     "NVDA",
+     "AVGO"
+    ]
+   },
+   {
+    "id": "cloud",
+    "nome": "Centri dati e cloud",
+    "cosa": "Costruzione e gestione dei centri dati che affittano capacità di calcolo a imprese e sviluppatori.",
+    "titoli": [
+     "AMZN",
+     "ORCL"
+    ]
+   },
+   {
+    "id": "clienti",
+    "nome": "Aziende e servizi che usano l'intelligenza artificiale",
+    "cosa": "Imprese, sviluppatori di modelli e applicazioni che pagano la capacità di calcolo.",
+    "titoli": []
+   }
+  ]
+ },
+ "chip_ind": {
+  "nome": "Chip per auto, industria ed elettronica",
+  "anelli": [
+   {
+    "id": "materiali",
+    "nome": "Materiali e macchinari",
+    "cosa": "Silicio, carburo di silicio, gas e macchine per produrre i chip.",
+    "titoli": [],
+    "protagonisti": "Wolfspeed, SICC, TanKeBlue, Applied Materials, Shin-Etsu, Air Liquide",
+    "forza": "Media",
+    "perche": "Le macchine sono un oligopolio forte, ma i substrati in carburo di silicio sono diventati una merce con prezzi in calo per la concorrenza cinese.",
+    "fatti": "Wafer SiC da 6 pollici scesi da circa 1.500 a 500 dollari o meno per offerte cinesi (2025). Wolfspeed 33,7% dei substrati SiC nel 2024, SICC 17,1%."
+   },
+   {
+    "id": "integrati",
+    "nome": "Produttori integrati di chip analogici e di potenza",
+    "cosa": "Aziende che progettano e producono in fabbriche proprie chip per gestire energia, sensori e motori.",
+    "titoli": [
+     "TXN",
+     "STMMI.MI"
+    ],
+    "protagonisti": "Texas Instruments, Infineon, STMicroelectronics, NXP, Analog Devices, Renesas",
+    "forza": "Alta",
+    "perche": "Prodotti piccoli nel costo finale ma critici e certificati: il cliente difficilmente cambia, e chi ha fabbriche proprie controlla offerta e prezzi.",
+    "fatti": "TI prima nell'analogico con oltre il 17,8% nel 2025 (GMI). Chip auto 2024: Infineon 13%, NXP 10%, ST 9%, TI 8% (TechInsights)."
+   },
+   {
+    "id": "componenti",
+    "nome": "Fornitori di componenti e centraline",
+    "cosa": "Grandi fornitori di sistemi elettronici per auto e macchinari.",
+    "titoli": [],
+    "protagonisti": "Bosch, Continental, Denso, ZF, Aptiv, Siemens",
+    "forza": "Media",
+    "perche": "Integrano i chip in sistemi complessi ma sono schiacciati tra fornitori di chip concentrati e case auto che spingono sui prezzi.",
+    "fatti": ""
+   },
+   {
+    "id": "costruttori",
+    "nome": "Costruttori di auto, macchinari ed elettronica",
+    "cosa": "Chi monta i chip nei prodotti finali.",
+    "titoli": [],
+    "protagonisti": "Toyota, Volkswagen, BYD, Tesla, Siemens, Apple",
+    "forza": "Media",
+    "perche": "Grandi volumi danno potere sui prezzi, ma la crisi dei chip 2021-22 ha mostrato la dipendenza da pochi fornitori; i cinesi integrano i chip in casa.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nei produttori integrati di chip analogici e di potenza: catalogo di migliaia di prodotti, fabbriche proprie e clienti che cambiano fornitore di rado.",
+  "tendenza": "Nel 2026 la domanda analogica è ripartita con aumenti di prezzo (TI, 3o trim. 2026), mentre nel carburo di silicio la concorrenza cinese ha fatto crollare i prezzi e fallire Wolfspeed (giugno 2025).",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Analysis: Automotive Power Semiconductor Market Share",
+    "url": "https://www.techinsights.com/blog/analysis-automotive-power-semiconductor-market-share",
+    "data": "2025"
+   },
+   {
+    "titolo": "Analog Semiconductors Market (GMI Insights)",
+    "url": "https://www.gminsights.com/industry-analysis/analog-semiconductors-market",
+    "data": "2026"
+   },
+   {
+    "titolo": "Wolfspeed remains operational during bankruptcy (TrendForce)",
+    "url": "https://www.trendforce.com/news/2025/07/01/news-wolfspeed-remains-operational-during-bankruptcy-targets-q3-2025-exit-next-moves-and-challenges-ahead/",
+    "data": "2025-07-01"
+   },
+   {
+    "titolo": "Texas Instruments beats on a 64% gross margin and guides Q4 flat",
+    "url": "https://finviz.com/news/406084/texas-instruments-beats-on-a-64-gross-margin-and-guides-q4-flat-against-seasonal-decline-but-supply-limits-and-peak-margin-doubts-have-cooled-sentiment",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "software": {
+  "nome": "Software e servizi informatici per le aziende",
+  "anelli": [
+   {
+    "id": "infrastruttura",
+    "nome": "Infrastruttura cloud",
+    "cosa": "Server, archiviazione e piattaforme affittati via internet.",
+    "titoli": [],
+    "protagonisti": "Amazon (AWS), Microsoft (Azure), Google Cloud, Oracle, CoreWeave",
+    "forza": "Alta",
+    "perche": "Tre operatori controllano circa due terzi del mercato e l'IA fa crescere la domanda più dell'offerta.",
+    "fatti": "Q3 2026 (Synergy): AWS 26%, Microsoft 19%, Google 16%; mercato globale 168 mld $ nel trimestre."
+   },
+   {
+    "id": "software",
+    "nome": "Software e piattaforme",
+    "cosa": "Programmi per gestire l'azienda, lavorare in ufficio, creare contenuti e documenti, venduti in abbonamento.",
+    "titoli": [
+     "MSFT",
+     "SAP.DE",
+     "ADBE"
+    ],
+    "protagonisti": "Microsoft, SAP, Adobe, Oracle, Salesforce",
+    "forza": "Alta",
+    "perche": "Software critici e costosi da sostituire danno potere sui prezzi, ma l'IA minaccia il modello 'a utente' e la parte più semplice dei prodotti (es. Adobe).",
+    "fatti": "Feb 2026: forte vendita sui titoli software per timori sull'IA; SAP introduce unità di prezzo a consumo per l'IA (Joule)."
+   },
+   {
+    "id": "servizi",
+    "nome": "Servizi informatici e consulenza",
+    "cosa": "Installazione, personalizzazione, sviluppo e manutenzione dei sistemi informatici dei clienti.",
+    "titoli": [
+     "INFY"
+    ],
+    "protagonisti": "Accenture, TCS, Infosys, HCLTech, Wipro, Capgemini",
+    "forza": "Media",
+    "perche": "Lavoro poco differenziato e clienti che chiedono di condividere i risparmi dell'IA: i prezzi scendono, anche se i contratti lunghi danno stabilità.",
+    "fatti": "Ott 2026: Infosys taglia la crescita FY27 a 1-2% a cambi costanti, margine operativo confermato al 20-22%."
+   },
+   {
+    "id": "utenti",
+    "nome": "Aziende e professionisti utenti",
+    "cosa": "Chi usa il software per lavorare.",
+    "titoli": [],
+    "protagonisti": "Grandi aziende, PMI, pubbliche amministrazioni, professionisti",
+    "forza": "Media",
+    "perche": "I grandi clienti negoziano sconti e usano l'IA per ridurre licenze e consulenze, ma restano legati ai sistemi già installati.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nel cloud e nelle grandi piattaforme software con clienti vincolati (Microsoft, SAP), che hanno costi di cambio altissimi; i servizi IT hanno margini più bassi e sotto pressione.",
+  "tendenza": "Da inizio 2026 l'IA mette in crisi il prezzo 'a utente' del software e comprime i ricavi dei servizi IT, mentre il valore si sposta verso cloud e infrastruttura IA.",
+  "nota_struttura": "MSFT è anche il secondo fornitore cloud mondiale (Azure) ma compare solo nell'anello software: l'anello infrastruttura resta senza titoli.",
+  "fonti": [
+   {
+    "titolo": "Cloud Market Growth Rate Rises Again in Q3; Biggest Ever Sequential Increase",
+    "url": "https://www.srgresearch.com/articles/cloud-market-growth-rate-rises-again-in-q3-biggest-ever-sequential-increase",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "The end of 'pay-per-seat': How AI is deconstructing the SaaS business model",
+    "url": "https://www.computing.co.uk/feature/2026/ai-deconstructing-saas-licencing-model",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "SaaS disruption risk (Saxo)",
+    "url": "https://www.home.saxo/content/articles/equities/saasdisruptionrisk-11022026",
+    "data": "2026-02-11"
+   },
+   {
+    "titolo": "Infosys AI revenue rises in Q2 FY27, growth guidance cut",
+    "url": "https://analyticsindiamag.com/ai-news/infosys-ai-revenue-rises-29-in-q2-fy27-growth-guidance-cut",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "internet": {
+  "nome": "Internet, pubblicità e contenuti digitali",
+  "anelli": [
+   {
+    "id": "contenuti",
+    "nome": "Creatori di contenuti ed editori",
+    "cosa": "Chi produce video, notizie, giochi e contenuti.",
+    "titoli": [],
+    "protagonisti": "News Corp, New York Times, Axel Springer, Electronic Arts, creatori YouTube e TikTok",
+    "forza": "Bassa",
+    "perche": "Dipendono dalle piattaforme per traffico e ricavi pubblicitari, e l'IA nella ricerca riduce i clic verso i loro siti.",
+    "fatti": "Chartbeat: traffico da Google Search verso siti di news -40,2% tra luglio 2025 e luglio 2026."
+   },
+   {
+    "id": "piattaforme",
+    "nome": "Piattaforme digitali",
+    "cosa": "Motori di ricerca, social network, video, messaggistica e giochi che raccolgono l'attenzione degli utenti.",
+    "titoli": [
+     "GOOGL",
+     "META",
+     "0700.HK"
+    ],
+    "protagonisti": "Alphabet (Google, YouTube), Meta, Amazon, Tencent, ByteDance (TikTok), Microsoft",
+    "forza": "Alta",
+    "perche": "Effetti di rete e dati enormi; Google e Meta insieme raccolgono più di metà della pubblicità digitale mondiale.",
+    "fatti": "eMarketer (apr 2026): nel 2026 Meta 26,8% e Google 26,4% della spesa pubblicitaria digitale mondiale; con Amazon 62,3%. Tencent Q3 2025: pubblicità +21%."
+   },
+   {
+    "id": "inserzionisti",
+    "nome": "Inserzionisti",
+    "cosa": "Aziende che pagano per mostrare pubblicità agli utenti.",
+    "titoli": [],
+    "protagonisti": "Procter & Gamble, Unilever, L'Oréal, Amazon, Temu, piccole imprese",
+    "forza": "Media",
+    "perche": "I grandi marchi hanno peso negoziale, ma milioni di piccoli inserzionisti accettano le aste e i prezzi fissati dalle piattaforme.",
+    "fatti": ""
+   },
+   {
+    "id": "utenti",
+    "nome": "Utenti",
+    "cosa": "Persone che usano i servizi, spesso gratis.",
+    "titoli": [],
+    "protagonisti": "Miliardi di utenti individuali",
+    "forza": "Bassa",
+    "perche": "Usano i servizi gratis pagando con attenzione e dati; il singolo utente non negozia, conta solo l'insieme.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nelle piattaforme: controllano l'attenzione degli utenti e i dati per mirare gli annunci, mentre editori e inserzionisti hanno poche alternative.",
+  "tendenza": "Le risposte generate dall'IA nei motori di ricerca riducono il traffico verso gli editori, mentre le piattaforme aumentano molto gli investimenti in IA (capex alzati ad aprile 2026).",
+  "nota_struttura": "Mercato a due lati: utenti e inserzionisti sono entrambi controparti delle piattaforme, quindi l'ordine lineare a catena è una semplificazione.",
+  "fonti": [
+   {
+    "titolo": "Meta to surpass Google in digital ad revenues for first time ever",
+    "url": "https://emarketer.com/press-releases/meta-to-surpass-google-in-digital-ad-revenues-for-first-time-ever",
+    "data": "2026-04"
+   },
+   {
+    "titolo": "Google search publisher traffic declines 40 percent",
+    "url": "https://androidheadlines.com/2026/10/google-search-publisher-traffic-declines-40-percent.html",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "Microsoft, Meta, Google AI capex spending billions",
+    "url": "https://fortune.com/2026/04/29/microsoft-meta-google-ai-capex-spending-billions/",
+    "data": "2026-04-29"
+   },
+   {
+    "titolo": "Tencent reports 15% revenue growth, beats estimates on gaming strength",
+    "url": "https://ng.investing.com/news/earnings/tencent-reports-15-revenue-growth-beats-estimates-on-gaming-strength-93CH-2206246",
+    "data": "2025-11"
+   }
+  ]
+ },
+ "elettronica": {
+  "nome": "Elettronica di consumo e videogiochi",
+  "anelli": [
+   {
+    "id": "componenti",
+    "nome": "Componenti",
+    "cosa": "Chip, schermi, sensori e batterie.",
+    "titoli": []
+   },
+   {
+    "id": "assemblaggio",
+    "nome": "Assemblaggio per conto terzi",
+    "cosa": "Fabbriche che montano gli apparecchi (Foxconn e altri).",
+    "titoli": []
+   },
+   {
+    "id": "marchi",
+    "nome": "Marchi di apparecchi e piattaforme",
+    "cosa": "Progettazione dei prodotti, sistemi operativi, negozi di app e servizi in abbonamento.",
+    "titoli": [
+     "AAPL",
+     "6758.T"
+    ]
+   },
+   {
+    "id": "consumatori",
+    "nome": "Consumatori",
+    "cosa": "Chi compra apparecchi, app, giochi e abbonamenti.",
+    "titoli": []
+   }
+  ]
+ },
+ "pagamenti": {
+  "nome": "Pagamenti elettronici",
+  "anelli": [
+   {
+    "id": "emittenti",
+    "nome": "Banche che emettono le carte",
+    "cosa": "Danno le carte ai clienti e si prendono il rischio di credito.",
+    "titoli": [],
+    "protagonisti": "JPMorgan Chase, Capital One, Citigroup, Bank of America, American Express, Intesa Sanpaolo",
+    "forza": "Media",
+    "perche": "Incassano la commissione interbancaria e gli interessi ma competono fra loro per i clienti con premi e cashback costosi.",
+    "fatti": ""
+   },
+   {
+    "id": "circuiti",
+    "nome": "Circuiti di pagamento",
+    "cosa": "Reti che collegano banche dei clienti e banche dei negozi e fissano le regole, incassando una piccola commissione per transazione.",
+    "titoli": [
+     "V",
+     "MA"
+    ],
+    "protagonisti": "Visa, Mastercard, American Express, UnionPay, Discover",
+    "forza": "Alta",
+    "perche": "Effetto rete: senza Visa o Mastercard né banche né negozi possono operare, e le regole le scrivono i circuiti.",
+    "fatti": "Nel 2025 Visa ha il 70,38% del volume di acquisti USA fra Visa e Mastercard (Nilson Report). Volume combinato USA 2025: 9.986 miliardi di dollari."
+   },
+   {
+    "id": "acquirer",
+    "nome": "Servizi di incasso per i negozi",
+    "cosa": "Terminali, conti di incasso e pagamenti online per esercenti.",
+    "titoli": [
+     "NEXI.MI"
+    ],
+    "protagonisti": "Nexi, Worldline, Adyen, Fiserv, Stripe, Worldpay",
+    "forza": "Bassa",
+    "perche": "Servizio poco differenziato, molti concorrenti e clienti bancari che si fondono e possono cambiare partner.",
+    "fatti": "Nexi 1o sem. 2026: ricavi Merchant Solutions -0,8% a 976 milioni di euro nonostante transazioni +5,6% (luglio 2026)."
+   },
+   {
+    "id": "esercenti",
+    "nome": "Negozi ed esercenti",
+    "cosa": "Chi accetta il pagamento e paga le commissioni.",
+    "titoli": [],
+    "protagonisti": "Walmart, Amazon, Carrefour, Esselunga, piccoli negozi",
+    "forza": "Bassa",
+    "perche": "Non possono rifiutare le carte più diffuse e pagano commissioni stabilite da altri; solo i giganti negoziano sconti o fanno causa.",
+    "fatti": "Accordo novembre 2025: commissione interbancaria media USA sul credito -10 punti base per cinque anni (Bloomberg Law)."
+   }
+  ],
+  "chi_cattura": "I circuiti Visa e Mastercard catturano la quota maggiore di profitto: duopolio di rete, costi marginali quasi nulli e commissioni su ogni transazione.",
+  "tendenza": "L'accordo con gli esercenti USA (novembre 2025) taglia le commissioni interbancarie e allenta la regola 'honor all cards'; in Europa gli acquirer come Nexi soffrono concorrenza e consolidamento bancario.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Mastercard and Visa Cards in the U.S. 2025",
+    "url": "https://nilsonreport.com/articles/mastercard-and-visa-cards-in-the-us-2025/",
+    "data": "2026"
+   },
+   {
+    "titolo": "Visa, Mastercard Offer $200 Billion Reprieve to Retailers",
+    "url": "https://news.bloomberglaw.com/banking-law/visa-mastercard-reach-settlement-in-20-year-merchant-legal-feud",
+    "data": "2025-11"
+   },
+   {
+    "titolo": "Nexi Merchant Transactions Rise 5.6% as Segment Revenue Falls",
+    "url": "https://www.financemagnates.com/fintech/payments/nexi-merchant-transactions-rise-56-as-segment-revenue-falls/",
+    "data": "2026-07-29"
+   },
+   {
+    "titolo": "Merchants Protest Visa-Mastercard Swipe Fee Settlement, Again",
+    "url": "https://www.retailtouchpoints.com/topics/market-news/merchants-protest-visa-mastercard-swipe-fee-settlement-again",
+    "data": "2026"
+   }
+  ]
+ },
+ "mercati_capitali": {
+  "nome": "Mercati dei capitali e informazioni finanziarie",
+  "anelli": [
+   {
+    "id": "emittenti",
+    "nome": "Imprese e Stati che raccolgono capitali",
+    "cosa": "Emettono obbligazioni e azioni.",
+    "titoli": [],
+    "protagonisti": "Tesoro USA, Stati europei, grandi imprese, società di private equity",
+    "forza": "Bassa",
+    "perche": "Per collocare debito hanno bisogno di rating e banche: pagano commissioni senza vere alternative.",
+    "fatti": ""
+   },
+   {
+    "id": "rating_dati",
+    "nome": "Rating, indici e dati",
+    "cosa": "Giudizi sul debito, indici di borsa e dati usati da tutto il mercato.",
+    "titoli": [
+     "SPGI"
+    ],
+    "protagonisti": "S&P Global, Moody's, Fitch, MSCI, LSEG, Bloomberg",
+    "forza": "Alta",
+    "perche": "Rating e indici sono richiesti da regole e mandati d'investimento: oligopolio di fatto con margini altissimi.",
+    "fatti": "2025: margine operativo rating S&P 64%, indici 69%. Ricavi rating UE 2025 (ESMA): S&P 50,4%, Moody's 29,6%, Fitch 11,8%."
+   },
+   {
+    "id": "intermediari",
+    "nome": "Banche d'affari e intermediari",
+    "cosa": "Collocano titoli, consigliano fusioni, negoziano per i clienti.",
+    "titoli": [
+     "GS"
+    ],
+    "protagonisti": "Goldman Sachs, JPMorgan, Morgan Stanley, BofA, Citi",
+    "forza": "Media",
+    "perche": "Reputazione e rapporti danno potere nelle grandi operazioni, ma i ricavi dipendono dal ciclo e la concorrenza tra banche è forte.",
+    "fatti": "H1 2026: Goldman oltre 1.000 mld $ di fusioni consigliate (Dealogic); commissioni IB Q1 2026 di 2,84 mld $ (+48%)."
+   },
+   {
+    "id": "investitori",
+    "nome": "Gestori e investitori",
+    "cosa": "Fondi, assicurazioni, risparmiatori che comprano i titoli.",
+    "titoli": [],
+    "protagonisti": "BlackRock, Vanguard, State Street, assicurazioni, fondi pensione",
+    "forza": "Media",
+    "perche": "Hanno capitali enormi, ma tra i gestori la concorrenza sulle commissioni è dura: i fondi passivi spingono i prezzi verso il basso.",
+    "fatti": "Morningstar: costo medio fondi passivi circa 10 punti base, attivi sotto 60; Vanguard taglia ancora le commissioni a inizio 2026."
+   }
+  ],
+  "chi_cattura": "I margini più alti stanno in rating e indici: oligopolio protetto da regole e abitudini del mercato, con margini operativi oltre il 60%. Le banche d'affari guadagnano molto ma in modo ciclico.",
+  "tendenza": "Nel 2026 la ripresa delle fusioni spinge le commissioni delle banche d'affari, mentre S&P Global si concentra sui dati ad alto margine scorporando Mobility (luglio 2026).",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "S&P Global Inc. completes separation of Mobility Global Inc.",
+    "url": "https://press.spglobal.com/2026-07-01-S-P-GLOBAL-INC-COMPLETES-SEPARATION-OF-MOBILITY-GLOBAL-INC",
+    "data": "2026-07-01"
+   },
+   {
+    "titolo": "S&P Global Plots 2026 Mobility Spin-Off as Ratings Margins Hit 64%",
+    "url": "https://www.panabee.com/news/s-p-earnings-2025-annual",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "Goldman Sachs shatters dealmaking records with $1t in first-half M&A volume",
+    "url": "https://www.dealstreetasia.com/stories/goldman-sachs-ma-volume-485768",
+    "data": "2026-06"
+   },
+   {
+    "titolo": "Asset management industry trends",
+    "url": "https://www.morningstar.com/en-us/business/insights/blog/asset-management-industry-trends",
+    "data": "2026"
+   }
+  ]
+ },
+ "banche": {
+  "nome": "Credito e risparmio",
+  "anelli": [
+   {
+    "id": "risparmiatori",
+    "nome": "Risparmiatori e depositanti",
+    "cosa": "Famiglie e imprese che lasciano denaro in banca o lo investono.",
+    "titoli": [],
+    "protagonisti": "Famiglie, imprese, fondi pensione",
+    "forza": "Bassa",
+    "perche": "I depositi sono frammentati e poco mobili; con tassi in calo le banche riducono subito la remunerazione.",
+    "fatti": ""
+   },
+   {
+    "id": "banche",
+    "nome": "Banche commerciali",
+    "cosa": "Raccolgono depositi, prestano, gestiscono pagamenti e risparmio, guadagnando sulla differenza dei tassi e sulle commissioni.",
+    "titoli": [
+     "JPM",
+     "BAC",
+     "HSBA.L",
+     "HDFCBANK.NS",
+     "ISP.MI",
+     "UCG.MI",
+     "BNP.PA",
+     "SAN.MC",
+     "8306.T",
+     "RY.TO",
+     "D05.SI",
+     "FBK.MI"
+    ],
+    "protagonisti": "JPMorgan Chase, Bank of America, HSBC, BNP Paribas, Intesa Sanpaolo, UniCredit",
+    "forza": "Alta",
+    "perche": "Scala, depositi stabili e regolazione che ostacola i nuovi entranti; le più grandi hanno rendimenti sul capitale ai massimi da anni.",
+    "fatti": "JPMorgan 2025: utile 57 mld $ e ROTCE 20%. Banche europee (indice SX7E): ROE 12,3% nel 2025, simile al 2024."
+   },
+   {
+    "id": "debitori",
+    "nome": "Famiglie e imprese che prendono a prestito",
+    "cosa": "Mutui, prestiti, finanziamenti alle imprese.",
+    "titoli": [],
+    "protagonisti": "Famiglie con mutuo, PMI, grandi imprese",
+    "forza": "Media",
+    "perche": "Le grandi imprese possono finanziarsi sul mercato obbligazionario; famiglie e piccole imprese dipendono quasi solo dalle banche.",
+    "fatti": ""
+   },
+   {
+    "id": "regolatori",
+    "nome": "Banche centrali e autorità",
+    "cosa": "Fissano i tassi di riferimento e i requisiti di capitale.",
+    "titoli": [],
+    "protagonisti": "Federal Reserve, BCE, Banca d'Inghilterra, Banca del Giappone, Comitato di Basilea",
+    "forza": "Alta",
+    "perche": "Fissano i tassi che determinano il margine e i requisiti di capitale che limitano dividendi e crescita.",
+    "fatti": "Ad aprile 2026 JPMorgan stimava +4% di capitale richiesto con le nuove regole di Basilea; altre grandi banche circa -5%."
+   }
+  ],
+  "chi_cattura": "Le grandi banche trattengono gran parte del valore grazie al margine tra tassi su prestiti e depositi e alle commissioni; la scala dà loro costi più bassi e depositi poco costosi.",
+  "tendenza": "Con il calo dei tassi il margine d'interesse smette di crescere e contano commissioni e volumi; in Europa il consolidamento si scontra con i governi (UniCredit ritira l'offerta su Banco BPM, luglio 2025).",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "JPMorgan Chase posts $57b profit in 2025, plans $105b spend as rate tailwinds fade",
+    "url": "https://www.theasianbanker.com/updates-and-articles/jpmorgan-chase-posts-57b-profit-in-2025-plans-105b-spend-as-rate-tailwinds-fade",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "US bank profitability reaches highest level in more than a decade in Q3'25",
+    "url": "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2025/11/us-bank-profitability-reaches-highest-level-in-more-than-a-decade-in-q3-25-95016163",
+    "data": "2025-11-18"
+   },
+   {
+    "titolo": "Big banks see record lending haul as low-yield assets roll off",
+    "url": "https://www.bloomberg.com/news/articles/2026-01-14/big-banks-see-record-lending-haul-as-low-yield-assets-roll-off",
+    "data": "2026-01-14"
+   },
+   {
+    "titolo": "JPMorgan traders blow past expectations with record haul",
+    "url": "https://www.advisorperspectives.com/articles/2026/04/14/jpmorgan-traders-blow-past-expectations-with-record-haul",
+    "data": "2026-04-14"
+   }
+  ]
+ },
+ "assicurazioni": {
+  "nome": "Assicurazione e riassicurazione",
+  "anelli": [
+   {
+    "id": "distribuzione",
+    "nome": "Agenti, broker e sportelli",
+    "cosa": "Vendono le polizze ai clienti, a volte attraverso banche e uffici postali.",
+    "titoli": []
+   },
+   {
+    "id": "compagnie",
+    "nome": "Compagnie di assicurazione",
+    "cosa": "Incassano i premi, pagano i sinistri e investono il denaro raccolto.",
+    "titoli": [
+     "G.MI",
+     "ALV.DE",
+     "CS.PA",
+     "CB",
+     "8766.T",
+     "PST.MI",
+     "BRK-B"
+    ]
+   },
+   {
+    "id": "riassicuratori",
+    "nome": "Riassicuratori",
+    "cosa": "Assicurano le compagnie contro i grandi sinistri e le catastrofi.",
+    "titoli": [
+     "MUV2.DE"
+    ]
+   },
+   {
+    "id": "mercati",
+    "nome": "Mercati finanziari",
+    "cosa": "Dove le compagnie investono i premi in obbligazioni e azioni.",
+    "titoli": []
+   }
+  ]
+ },
+ "farmaci": {
+  "nome": "Farmaci e cura della salute",
+  "anelli": [
+   {
+    "id": "ricerca",
+    "nome": "Ricerca e piccole biotecnologie",
+    "cosa": "Università e società biotecnologiche che scoprono nuove molecole.",
+    "titoli": [],
+    "protagonisti": "Università, Vertex, Regeneron, Argenx, BioNTech, biotech cinesi",
+    "forza": "Media",
+    "perche": "Le molecole valide sono rare e contese, ma servono capitali e reti commerciali che solo le grandi case hanno.",
+    "fatti": ""
+   },
+   {
+    "id": "farmaceutiche",
+    "nome": "Case farmaceutiche",
+    "cosa": "Sviluppano, fanno approvare, producono e vendono farmaci protetti da brevetto.",
+    "titoli": [
+     "LLY",
+     "JNJ",
+     "ABBV",
+     "NVO",
+     "NOVN.SW",
+     "ROP.SW",
+     "AZN",
+     "SAN.PA",
+     "CSL.AX"
+    ],
+    "protagonisti": "Eli Lilly, Novo Nordisk, Johnson & Johnson, AbbVie, Roche, AstraZeneca",
+    "forza": "Alta",
+    "perche": "Il brevetto dà un monopolio temporaneo; il potere però dipende dal portafoglio e cala alla scadenza dei brevetti.",
+    "fatti": "Quarto trim. 2025: Lilly 60,5% del mercato USA dei farmaci per obesità e diabete, Novo 39,1%. Novo prevede vendite 2026 da -5% a -13%."
+   },
+   {
+    "id": "distribuzione",
+    "nome": "Distributori, farmacie e gestori dei farmaci",
+    "cosa": "Portano i farmaci a farmacie e ospedali e negoziano i prezzi per conto di chi paga.",
+    "titoli": [],
+    "protagonisti": "McKesson, Cencora, Cardinal Health, CVS Caremark, Express Scripts, Optum Rx",
+    "forza": "Alta",
+    "perche": "Tre distributori e tre PBM controllano quasi tutto il mercato USA, con margini percentuali bassi ma volumi enormi.",
+    "fatti": "PBM 2025: Express Scripts 31%, CVS Caremark 26%, Optum Rx 23% delle prescrizioni (Drug Channels). I tre distributori oltre il 90% dei ricavi all'ingrosso."
+   },
+   {
+    "id": "pagatori",
+    "nome": "Assicurazioni sanitarie e sistemi pubblici",
+    "cosa": "Pagano cure e farmaci per i pazienti.",
+    "titoli": [
+     "UNH"
+    ],
+    "protagonisti": "UnitedHealth, Elevance, Cigna, CVS Aetna, Humana, sistemi sanitari pubblici",
+    "forza": "Media",
+    "perche": "Decidono quali farmaci rimborsare, ma i costi medici in crescita e la regolazione pubblica comprimono i margini.",
+    "fatti": ""
+   },
+   {
+    "id": "pazienti",
+    "nome": "Pazienti e medici",
+    "cosa": "Chi prescrive e chi usa i farmaci.",
+    "titoli": [],
+    "protagonisti": "Medici, pazienti, ospedali",
+    "forza": "Bassa",
+    "perche": "Scelgono la cura ma raramente pagano il prezzo pieno e non lo negoziano; solo il canale a pagamento diretto dà loro più voce.",
+    "fatti": "Su TrumpRx Wegovy e Zepbound a circa 350 dollari al mese dal 2026, con discesa prevista verso 245 in due anni."
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nelle case farmaceutiche con brevetti su farmaci di successo (oggi obesità e diabete); negli USA anche i gestori dei benefici farmaceutici (PBM) trattengono molto valore.",
+  "tendenza": "Negli USA gli accordi 'nazione più favorita' (tutti i 17 grandi gruppi firmati entro il 2026) e TrumpRx riducono i prezzi in cambio di esenzione dai dazi; la riforma dei PBM aumenta la trasparenza.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Top PBMs by 2025 market share",
+    "url": "https://www.beckershospitalreview.com/pharmacy/top-pbms-by-2025-market-share/",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "6 ways the federal government is going after drug prices",
+    "url": "https://www.beckershospitalreview.com/pharmacy/6-ways-the-federal-government-is-going-after-drug-prices/",
+    "data": "2026"
+   },
+   {
+    "titolo": "Pharmaceutical policy motion continued (Mintz)",
+    "url": "https://www.mintz.com/insights-center/viewpoints/2146/2026-09-23-pharmaceutical-policy-motion-continued-trump",
+    "data": "2026-09-23"
+   },
+   {
+    "titolo": "Novo Nordisk stumbles as Eli Lilly pulls further ahead in weight loss drugs",
+    "url": "https://www.emarketer.com/content/novo-nordisk-stumbles-eli-lilly-pulls-further-ahead-weight-loss-drugs",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "Drug distribution industry trends (Morningstar)",
+    "url": "https://www.morningstar.com/business/insights/blog/drug-distribution-industry-trends",
+    "data": "2026"
+   }
+  ]
+ },
+ "dispositivi": {
+  "nome": "Diagnostica, dispositivi medici e ottica",
+  "anelli": [
+   {
+    "id": "componenti",
+    "nome": "Componenti e tecnologie",
+    "cosa": "Materiali, elettronica, reagenti.",
+    "titoli": [],
+    "protagonisti": "Thermo Fisher, Merck KGaA, Danaher, STMicroelectronics, Corning",
+    "forza": "Media",
+    "perche": "Componenti spesso specialistici e certificati, ma i grandi produttori comprano volumi alti e possono qualificare fornitori alternativi.",
+    "fatti": ""
+   },
+   {
+    "id": "produttori",
+    "nome": "Produttori di dispositivi e test",
+    "cosa": "Test diagnostici, strumenti di laboratorio, lenti e montature.",
+    "titoli": [
+     "DIA.MI",
+     "EL.PA"
+    ],
+    "protagonisti": "EssilorLuxottica, Roche, Abbott, DiaSorin, Sonova, Demant",
+    "forza": "Alta",
+    "perche": "Marchi, brevetti e macchine installate che usano solo i propri reagenti creano clienti fedeli; più deboli dove decide il prezzo pubblico, come in Cina.",
+    "fatti": "2025: EssilorLuxottica vende oltre 7 mln di occhiali Meta. Q1 2026: DiaSorin -22% in Cina per gare a volume (VBP); guidance 2026 +5-6% confermata."
+   },
+   {
+    "id": "reti",
+    "nome": "Reti di vendita e cura",
+    "cosa": "Negozi di ottica, centri acustici, laboratori e ospedali.",
+    "titoli": [
+     "AMP.MI"
+    ],
+    "protagonisti": "Amplifon, Demant (rete), Specsavers, GrandVision (EssilorLuxottica), Synlab",
+    "forza": "Media",
+    "perche": "Le grandi catene controllano il rapporto col cliente, ma comprano da pochi produttori e affrontano concorrenza online e da prodotti da banco.",
+    "fatti": "Q3 2026: Amplifon crescita organica 3,6%, ricavi 575 mln €; Demant stima il mercato apparecchi acustici a +2-4% nel 2026."
+   },
+   {
+    "id": "pazienti",
+    "nome": "Pazienti e sistemi sanitari",
+    "cosa": "Chi usa e chi paga i dispositivi.",
+    "titoli": [],
+    "protagonisti": "Servizio sanitario nazionale, assicurazioni, ospedali, pazienti privati",
+    "forza": "Bassa",
+    "perche": "I privati pagano molto di tasca propria e scelgono poco; i sistemi sanitari pesano solo dove fanno gare centralizzate.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "Guadagnano di più i produttori con marchi e tecnologia protetta (lenti, reagenti, apparecchi acustici), soprattutto se controllano anche la vendita al pubblico, come EssilorLuxottica.",
+  "tendenza": "Integrazione verticale tra produttori e reti (Amplifon compra GN Hearing, chiusura attesa a fine 2026) e nuovi prodotti come gli occhiali IA con Meta; in diagnostica pesano gare cinesi a prezzo minimo e dazi.",
+  "nota_struttura": "EL.PA è sia produttore sia rete di negozi (LensCrafters, Sunglass Hut) e con GN Hearing Amplifon diventerà anche produttore: i confini tra anelli si sovrappongono.",
+  "fonti": [
+   {
+    "titolo": "Amplifon Reports 3.6% Organic Growth, Higher Profits in Q3 2026",
+    "url": "https://www.hearingtracker.com/news/amplifon-reports-3-6-organic-growth-higher-q3-profits-in-q3-2026",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "DiaSorin reaffirms full year guidance despite 8 percent Q1 revenue decline",
+    "url": "https://www.360dx.com/business-news/diasorin-reaffirms-full-year-guidance-despite-8-percent-q1-revenue-decline",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "AI Smart Glasses and Myopia Management Portfolio Drive Q2 and First Half Revenue Growth for EssilorLuxottica",
+    "url": "https://www.visionmonday.com/latest-news/article/ai-smart-glasses-and-myopia-management-portfolio-drive-q2-and-first-half-revenue-growth-for-essilorluxottica-1/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "Smart glasses power EssilorLuxottica's forecast-beating Q4 growth",
+    "url": "https://jingdaily.com/intels/2026-02/13/smart-glasses-power-essilorluxottica-s-forecast-beating-q4-growth",
+    "data": "2026-02-13"
+   }
+  ]
+ },
+ "petrolio": {
+  "nome": "Petrolio e gas",
+  "anelli": [
+   {
+    "id": "esplorazione",
+    "nome": "Esplorazione e produzione",
+    "cosa": "Trovare ed estrarre petrolio e gas.",
+    "titoli": [
+     "EQNR.OL"
+    ],
+    "protagonisti": "Saudi Aramco, Equinor, ConocoPhillips, Petrobras, ADNOC",
+    "forza": "Alta",
+    "perche": "Prezzo fissato dal mercato mondiale e dall'OPEC+; chi ha costi bassi incassa molto quando i prezzi salgono, ma subisce i cali.",
+    "fatti": "Q3 2026: Brent oscillato tra 68 e 132 $/barile."
+   },
+   {
+    "id": "integrate",
+    "nome": "Compagnie integrate",
+    "cosa": "Dalla produzione alla raffinazione, alla chimica e alla vendita di carburanti e gas.",
+    "titoli": [
+     "XOM",
+     "CVX",
+     "SHEL",
+     "TTE.PA",
+     "ENI.MI"
+    ],
+    "protagonisti": "ExxonMobil, Chevron, Shell, TotalEnergies, BP, Eni",
+    "forza": "Alta",
+    "perche": "Presenti in tutti gli anelli, compensano prezzi bassi del greggio con raffinazione e trading; generano molta cassa.",
+    "fatti": "Q3 2026: utile rettificato combinato di Exxon, Chevron, BP, Shell e TotalEnergies circa 56 mld $; Shell utile netto 10,8 mld $."
+   },
+   {
+    "id": "raffinazione",
+    "nome": "Raffinazione, chimica e gas liquefatto",
+    "cosa": "Trasformare il greggio in carburanti e prodotti chimici, liquefare e trasportare il gas.",
+    "titoli": [],
+    "protagonisti": "Marathon Petroleum, Valero, Phillips 66, Reliance, Sinopec, QatarEnergy (GNL)",
+    "forza": "Media",
+    "perche": "Margini ciclici: alti nel 2026 per la scarsità di prodotti e le chiusure di impianti in Europa, ma dipendenti da greggio e domanda.",
+    "fatti": "Exxon: raffinazione con utile record di 9,05 mld $ nel Q3 2026. Rystad: 83 raffinerie chiuse e 59 aperte tra 2015 e 2026."
+   },
+   {
+    "id": "vendita",
+    "nome": "Distribuzione e consumatori",
+    "cosa": "Distributori di carburante, industrie, centrali elettriche.",
+    "titoli": [],
+    "protagonisti": "Compagnie aeree, utility elettriche, industria chimica, reti di distributori (Couche-Tard)",
+    "forza": "Bassa",
+    "perche": "Clienti frammentati che subiscono i prezzi; possono solo trasferire i rincari o ridurre i consumi.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti vanno a chi controlla barili a basso costo e, nel 2026, anche alla raffinazione: la chiusura di Hormuz ha fatto esplodere prezzi e margini sui carburanti.",
+  "tendenza": "La guerra USA-Iran e la chiusura dello Stretto di Hormuz (marzo 2026) hanno trasformato l'atteso eccesso di offerta in carenza, rinviando anche l'ondata di GNL.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Big Oil scores $56 billion windfall on spiking fuel prices",
+    "url": "https://www.energyconnects.com/news/oil/2026/october/big-oil-scores-56-billion-windfall-on-spiking-fuel-prices/",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "ExxonMobil and Chevron top Q3 estimates on higher prices and strong output",
+    "url": "https://www.clickondetroit.com/business/2026/10/30/exxonmobil-and-chevron-top-q3-estimates-on-higher-prices-and-strong-output/",
+    "data": "2026-10-30"
+   },
+   {
+    "titolo": "Big Oil quarterly profits surge as Iran war redraws winners and losers",
+    "url": "https://www.thenationalnews.com/business/2026/08/04/big-oil-quarterly-profits-surge-as-iran-war-redraws-winners-and-losers",
+    "data": "2026-08-04"
+   },
+   {
+    "titolo": "Gas Market Report Q3 2026 - Executive summary",
+    "url": "https://www.iea.org/reports/gas-market-report-q3-2026/executive-summary",
+    "data": "2026-07"
+   }
+  ]
+ },
+ "minerali": {
+  "nome": "Minerali e metalli",
+  "anelli": [
+   {
+    "id": "miniere",
+    "nome": "Miniere",
+    "cosa": "Estrarre ferro, rame, nichel, oro e altri minerali.",
+    "titoli": [
+     "RIO",
+     "BHP",
+     "VALE",
+     "NEM"
+    ]
+   },
+   {
+    "id": "trasporto",
+    "nome": "Trasporto via nave",
+    "cosa": "Spedire il minerale ai porti dei clienti.",
+    "titoli": []
+   },
+   {
+    "id": "trasformazione",
+    "nome": "Acciaierie e fonderie",
+    "cosa": "Trasformare il minerale in acciaio e metalli.",
+    "titoli": []
+   },
+   {
+    "id": "utilizzatori",
+    "nome": "Industria e costruzioni",
+    "cosa": "Chi usa acciaio e metalli; per l'oro anche banche centrali e investitori.",
+    "titoli": []
+   }
+  ]
+ },
+ "costruzioni": {
+  "nome": "Costruzioni e infrastrutture",
+  "anelli": [
+   {
+    "id": "materiali",
+    "nome": "Materiali da costruzione",
+    "cosa": "Cemento, calcestruzzo, acciaio per l'edilizia.",
+    "titoli": [
+     "BZU.MI"
+    ],
+    "protagonisti": "Holcim, Heidelberg Materials, Buzzi, Cemex, CRH, Amrize",
+    "forza": "Media",
+    "perche": "Mercati locali per il costo del trasporto, dove pochi produttori fanno i prezzi, ma energia e CO2 pesano sui costi.",
+    "fatti": "Buzzi 2025: volumi di cemento +21,2% a 31,9 milioni di tonnellate, soprattutto per acquisizioni; prevista lieve contrazione dei margini nel 2026."
+   },
+   {
+    "id": "macchine",
+    "nome": "Macchine per costruzioni e miniere",
+    "cosa": "Escavatori, pale, camion da cava e la loro assistenza.",
+    "titoli": [
+     "CAT"
+    ],
+    "protagonisti": "Caterpillar, Komatsu, Volvo CE, XCMG, Sany, Deere",
+    "forza": "Alta",
+    "perche": "Marchio, rete di concessionari e ricambi danno ricavi ricorrenti; i rivali cinesi crescono sui prezzi.",
+    "fatti": "Caterpillar stimava 1,6-1,75 miliardi di dollari di dazi netti nel 2025; Komatsu 580 milioni (gennaio 2026)."
+   },
+   {
+    "id": "costruttori",
+    "nome": "Costruttori e concessionari",
+    "cosa": "Realizzano opere e gestiscono autostrade e aeroporti in concessione.",
+    "titoli": [
+     "DG.PA"
+    ],
+    "protagonisti": "Vinci, Bouygues, Ferrovial, ACS, Webuild, Eiffage",
+    "forza": "Media",
+    "perche": "Le concessioni sono monopoli molto redditizi; i cantieri invece sono una gara al ribasso con margini bassi.",
+    "fatti": "Vinci 2025: margine Ebitda delle concessioni 66,9% su 12,2 miliardi di euro di ricavi; ricavi di gruppo 74,6 miliardi."
+   },
+   {
+    "id": "committenti",
+    "nome": "Committenti pubblici e privati",
+    "cosa": "Stati, enti locali, imprese e famiglie che pagano le opere.",
+    "titoli": [],
+    "protagonisti": "Stati e enti locali, Unione Europea (PNRR), utility, imprese, famiglie",
+    "forza": "Media",
+    "perche": "Scelgono con gare e fissano le tariffe delle concessioni, ma dipendono dai bilanci pubblici e dai tassi.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti maggiori stanno nelle concessioni (autostrade, aeroporti), monopoli locali con margini altissimi, e nelle macchine con forte assistenza post-vendita; la costruzione pura ha margini sottili.",
+  "tendenza": "Dazi USA 2025 aumentano i costi dei costruttori di macchine; in Europa il meccanismo CBAM e la riduzione delle quote ETS gratuite (dal 2026) cambiano i costi del cemento e proteggono dall'import.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "VINCI 2025 annual results",
+    "url": "https://www.vinci.com/en/newsroom/press-releases/2025-annual-results",
+    "data": "2026-02-05"
+   },
+   {
+    "titolo": "Buzzi reports 21% rise in cement volumes during 2025",
+    "url": "https://www.cemnet.com/News/story/181084/buzzi-reports-21-rise-in-cement-volumes-during-2025.html",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "European cement producers in 2025",
+    "url": "https://globalcement.com/news/analysis/20501-european-cement-producers-in-2025",
+    "data": "2026"
+   },
+   {
+    "titolo": "Here's What Tariffs Cost Major Construction Equipment Manufacturers in 2025",
+    "url": "https://equipmentworld.com/market-pulse/article/15819355/how-us-tariffs-impacted-construction-equipment-oems-in-2025",
+    "data": "2026"
+   }
+  ]
+ },
+ "elettricita": {
+  "nome": "Elettricità e gas: dalla produzione alla bolletta",
+  "anelli": [
+   {
+    "id": "apparecchiature",
+    "nome": "Apparecchiature, turbine e cavi",
+    "cosa": "Turbine, trasformatori, quadri elettrici, cavi e sistemi per reti e centri dati.",
+    "titoli": [
+     "ENR.DE",
+     "SU.PA",
+     "ABBN.SW",
+     "PRY.MI"
+    ],
+    "protagonisti": "Siemens Energy, GE Vernova, Mitsubishi Heavy, Schneider Electric, ABB, Prysmian",
+    "forza": "Alta",
+    "perche": "Pochi costruttori, fabbriche sature e consegne a 3-5 anni: possono alzare i prezzi e chiedere anticipi.",
+    "fatti": "Q2 2026: GE Vernova 116 GW di turbine in portafoglio. Q3 2026: margine trasmissione Prysmian 20,0% (17,8% un anno prima)."
+   },
+   {
+    "id": "integrati",
+    "nome": "Gruppi elettrici integrati",
+    "cosa": "Producono elettricità (rinnovabili, gas, idroelettrico), gestiscono reti locali e vendono ai clienti.",
+    "titoli": [
+     "NEE",
+     "IBE.MC",
+     "ENEL.MI",
+     "A2A.MI"
+    ],
+    "protagonisti": "NextEra, Iberdrola, Enel, A2A, Engie",
+    "forza": "Media",
+    "perche": "Grandi e con reti regolate, ma comprano apparecchiature scarse e vendono in mercati competitivi o a tariffe controllate.",
+    "fatti": "NextEra (ott 2026): accordi definitivi per circa 16,5 GW di capacità destinata a centri dati."
+   },
+   {
+    "id": "trasmissione",
+    "nome": "Reti di trasmissione e trasporto del gas",
+    "cosa": "Reti ad alta tensione e gasdotti nazionali, con ricavi fissati dal regolatore.",
+    "titoli": [
+     "TRN.MI",
+     "NG.L",
+     "SRG.MI"
+    ],
+    "protagonisti": "Terna, National Grid, Snam, RTE, TenneT",
+    "forza": "Media",
+    "perche": "Monopoli naturali senza concorrenza, ma il rendimento (WACC) lo decide il regolatore e non l'azienda.",
+    "fatti": "ARERA (nov 2026): WACC 2026 non aggiornato, restano i valori 2025; avviata la verifica per il 2027."
+   },
+   {
+    "id": "clienti",
+    "nome": "Famiglie e imprese",
+    "cosa": "Chi consuma energia e paga la bolletta.",
+    "titoli": [],
+    "protagonisti": "Famiglie, PMI, industrie energivore, grandi centri dati",
+    "forza": "Bassa",
+    "perche": "Le famiglie accettano prezzi e oneri in bolletta; solo i grandi consumatori come i colossi tech negoziano contratti diretti.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "Oggi i profitti crescono soprattutto nei fornitori di apparecchiature (turbine, trasformatori, cavi), con ordini esauriti per anni; le reti regolate hanno rendimenti stabili ma fissati dal regolatore.",
+  "tendenza": "La domanda dei centri dati per l'IA (2025-2026) ha creato carenza di turbine a gas, trasformatori e cavi, spostando potere verso i costruttori di apparecchiature.",
+  "nota_struttura": "La trasmissione è posta dopo i gruppi integrati, ma fisicamente sta tra produzione e distribuzione locale, che i gruppi integrati gestiscono: l'ordine è approssimativo.",
+  "fonti": [
+   {
+    "titolo": "GE Vernova gas turbine backlog climbs to 116 GW",
+    "url": "https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/",
+    "data": "2026-07"
+   },
+   {
+    "titolo": "US power transformer buyers scramble for imports, factory slots",
+    "url": "https://www.kitco.com/news/off-the-wire/2026-05-11/us-power-transformer-buyers-scramble-imports-factory-slots",
+    "data": "2026-05-11"
+   },
+   {
+    "titolo": "Prysmian to exceed 2028 financial targets two years early, raises 2026 guidance again",
+    "url": "https://www.prysmian.com/en/media/press-releases/prysmian-to-exceed-2028-financial-targets-two-years-early-raises-2026-guidance-again-after-its-best-quarter-to-date",
+    "data": "2026-11"
+   },
+   {
+    "titolo": "ARERA delibera 425/2026/R/com",
+    "url": "https://www.arera.it/atti-e-provvedimenti/dettaglio/26/425-26",
+    "data": "2026-11-18"
+   },
+   {
+    "titolo": "NextEra eyes strong backlog, data center hub strategy",
+    "url": "https://www.industrialinfo.com/news/article/nextera-eyes-strong-backlog-data-center-hub-strategy--364064",
+    "data": "2026-10"
+   }
+  ]
+ },
+ "automazione": {
+  "nome": "Automazione e macchinari per l'industria",
+  "anelli": [
+   {
+    "id": "forniture",
+    "nome": "Forniture per le fabbriche",
+    "cosa": "Gas industriali, sensori, componenti.",
+    "titoli": [
+     "AI.PA",
+     "6861.T"
+    ],
+    "protagonisti": "Linde, Air Liquide, Air Products, Keyence, Messer, Nippon Sanso",
+    "forza": "Alta",
+    "perche": "Gas industriali: tre gruppi con circa il 70% del mercato e contratti pluriennali; sensori Keyence ad altissimo margine.",
+    "fatti": "Linde, Air Liquide e Air Products circa 70% del mercato dei gas industriali (fonti 2025). Air Liquide: margine operativo oltre 20% nel 2025."
+   },
+   {
+    "id": "macchinari",
+    "nome": "Macchinari e automazione",
+    "cosa": "Compressori, robot, sistemi di controllo e software per le fabbriche.",
+    "titoli": [
+     "SIE.DE",
+     "ATCO-A.ST"
+    ],
+    "protagonisti": "Siemens, Rockwell Automation, ABB, Schneider Electric, Atlas Copco, Fanuc",
+    "forza": "Alta",
+    "perche": "Sistemi di controllo e software creano dipendenza (costi di cambio alti); concorrenza cinese più forte su robot e componenti standard.",
+    "fatti": "Atlas Copco: margine operativo 20,3% nel 2025 (21,6% nel 2024). Siemens DI: margine 18,5% nel Q2 fiscale 2026."
+   },
+   {
+    "id": "fabbriche",
+    "nome": "Industrie clienti",
+    "cosa": "Chimica, auto, elettronica, alimentare, chip.",
+    "titoli": [],
+    "protagonisti": "Volkswagen, TSMC, BASF, Nestlé, Samsung, BYD",
+    "forza": "Media",
+    "perche": "Grandi clienti negoziano prezzi, ma una volta installati impianti e software cambiare fornitore è costoso.",
+    "fatti": "Morgan Stanley: quota dei produttori cinesi di robot industriali in Cina dal 47% al 58% nel 2024."
+   }
+  ],
+  "chi_cattura": "I margini più alti stanno nei fornitori di gas industriali e sensori (oligopoli con contratti lunghi) e nei leader di software e automazione, grazie a prodotti critici e costosi da sostituire.",
+  "tendenza": "Gli ordini di automazione ripartono nel 2026 (Siemens Digital Industries +9-13% a trimestre), mentre i produttori cinesi di robot guadagnano quote e la Cina blocca la vendita di ABB Robotics a SoftBank (2026).",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Industrial gases market: Linde, Air Liquide and Air Products control 70%",
+    "url": "https://www.hydrogenfuelnews.com/industrial-gases-market-linde-air-liquide-and-air-products-control-70/8573749",
+    "data": "2025-11"
+   },
+   {
+    "titolo": "Strong start to fiscal 2026, outlook raised (Siemens)",
+    "url": "https://press.siemens.com/global/en/pressrelease/strong-start-fiscal-2026-outlook-raised",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "Atlas Copco - latest annual report highlights",
+    "url": "https://www.atlascopcogroup.com/en/investors/reports-and-presentations/latest-annual-report-highlights",
+    "data": "2026-03"
+   },
+   {
+    "titolo": "China blocks SoftBank's US$5.37bn bid for ABB Robotics",
+    "url": "https://supplychaindigital.com/news/china-blocks-softbanks-us-5-37bn-bid-for-abb-robotics",
+    "data": "2026-11"
+   }
+  ]
+ },
+ "veicoli": {
+  "nome": "Auto e veicoli commerciali",
+  "anelli": [
+   {
+    "id": "componenti",
+    "nome": "Componenti, batterie e software",
+    "cosa": "Fornitori di motori, batterie, chip e sistemi.",
+    "titoli": []
+   },
+   {
+    "id": "costruttori",
+    "nome": "Costruttori di veicoli",
+    "cosa": "Progettano, assemblano e vendono auto, camion e autobus.",
+    "titoli": [
+     "7203.T",
+     "VOLV-B.ST"
+    ]
+   },
+   {
+    "id": "vendita",
+    "nome": "Concessionari, finanziamento e assistenza",
+    "cosa": "Vendita, prestiti, leasing, ricambi e riparazioni.",
+    "titoli": []
+   },
+   {
+    "id": "clienti",
+    "nome": "Famiglie e aziende di trasporto",
+    "cosa": "Chi compra o noleggia i veicoli.",
+    "titoli": []
+   }
+  ]
+ },
+ "aerei": {
+  "nome": "Aerei civili",
+  "anelli": [
+   {
+    "id": "componenti",
+    "nome": "Componenti e materiali",
+    "cosa": "Strutture, sistemi elettronici, sedili, materiali compositi.",
+    "titoli": [],
+    "protagonisti": "Safran, RTX (Collins), Spirit AeroSystems, Honeywell, Hexcel, Leonardo",
+    "forza": "Media",
+    "perche": "Molti pezzi hanno un solo fornitore certificato, ma i fornitori di strutture sono schiacciati dai prezzi dei costruttori.",
+    "fatti": "Secondo IATA i colli di bottiglia della filiera costano alle compagnie oltre 11 miliardi di dollari nel 2025."
+   },
+   {
+    "id": "motori",
+    "nome": "Motori",
+    "cosa": "Progettazione e produzione dei motori, e soprattutto la loro manutenzione per decenni.",
+    "titoli": [
+     "GE"
+    ],
+    "protagonisti": "GE Aerospace, Safran (CFM), Pratt & Whitney, Rolls-Royce",
+    "forza": "Alta",
+    "perche": "Pochissimi produttori, motori unici per certi aerei (LEAP sul 737 MAX) e decenni di manutenzione ad alto margine.",
+    "fatti": "GE Aerospace 2025: ricavi da servizi motori commerciali +26%, margine operativo 21,4%; oltre 1.800 motori LEAP consegnati."
+   },
+   {
+    "id": "costruttori",
+    "nome": "Costruttori di aerei",
+    "cosa": "Assemblano e vendono gli aerei: un mercato quasi diviso in due.",
+    "titoli": [
+     "AIR.PA",
+     "BA"
+    ],
+    "protagonisti": "Airbus, Boeing, Embraer, COMAC",
+    "forza": "Alta",
+    "perche": "Duopolio con arretrati di anni, ma dipendono da fornitori unici di motori e componenti che limitano la produzione.",
+    "fatti": "Nel 2025 Airbus ha consegnato 793 aerei; Boeing 493 a fine ottobre 2025."
+   },
+   {
+    "id": "compagnie",
+    "nome": "Compagnie aeree e società di leasing",
+    "cosa": "Comprano o noleggiano gli aerei e trasportano i passeggeri.",
+    "titoli": [],
+    "protagonisti": "Ryanair, Delta, IAG, Lufthansa, AerCap, SMBC Aviation Capital",
+    "forza": "Bassa",
+    "perche": "Molte compagnie in concorrenza fra loro, dipendenti da due soli costruttori e da carburante; i grandi lessor hanno più potere.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano sui motori, soprattutto nella manutenzione per decenni della flotta installata, e sui componenti critici a fornitore unico; i costruttori hanno margini più bassi.",
+  "tendenza": "Carenza di motori e componenti limita le consegne; Boeing ha avuto dalla FAA via libera a 47 737 al mese (maggio 2026) mentre Airbus resta in testa nelle consegne.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "How Airbus Met 793 Deliveries Amid Supply Chain Strain",
+    "url": "https://supplychaindigital.com/news/as-airbus-beats-2025-planes-target-what-hurdles-are-ahead",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Boeing Trails Airbus as Jet Deliveries Hit 493 in 2025",
+    "url": "https://mexicobusiness.news/aerospace/news/boeing-trails-airbus-jet-deliveries-hit-493-2025",
+    "data": "2025-11"
+   },
+   {
+    "titolo": "GE Aerospace announces fourth quarter 2025 results",
+    "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-fourth-quarter-2025-results",
+    "data": "2026-01-22"
+   },
+   {
+    "titolo": "737 off and rolling toward higher production rate, CEO says",
+    "url": "https://www.boeing.com/features/2026/05/737-off-and-rolling-toward-higher-production-rate-ceo-says",
+    "data": "2026-05"
+   },
+   {
+    "titolo": "IATA supply chain study highlights",
+    "url": "https://www.iata.org/en/iata-repository/pressroom/presentations/supply-chain-study-highlights",
+    "data": "2025"
+   }
+  ]
+ },
+ "difesa": {
+  "nome": "Difesa e cantieri navali",
+  "anelli": [
+   {
+    "id": "componenti",
+    "nome": "Componenti ed elettronica",
+    "cosa": "Sensori, motori, esplosivi, elettronica.",
+    "titoli": [],
+    "protagonisti": "L3Harris, Northrop Grumman (motori a razzo), BAE Systems (esplosivi), Nammo, Safran, Hensoldt",
+    "forza": "Alta",
+    "perche": "In molti componenti critici esistono uno o due produttori: chi controlla esplosivi e propellenti detta i tempi a tutta la filiera.",
+    "fatti": "Maggio 2026: negli USA resta un solo produttore di perclorato d'ammonio (AMPAC) per i motori dei missili."
+   },
+   {
+    "id": "appaltatori",
+    "nome": "Grandi appaltatori della difesa",
+    "cosa": "Aerei da combattimento, mezzi corazzati, munizioni, sistemi di difesa.",
+    "titoli": [
+     "LMT",
+     "BA.L",
+     "LDO.MI",
+     "RHM.DE"
+    ],
+    "protagonisti": "Lockheed Martin, BAE Systems, Rheinmetall, Leonardo, RTX, Thales",
+    "forza": "Media",
+    "perche": "Pochi e indispensabili, ma con un solo grande cliente pubblico e contratti a prezzo fisso che scaricano su di loro i costi in eccesso.",
+    "fatti": "Q1 2026: utile Lockheed in calo per costi sui contratti a prezzo fisso e ritardi dei fornitori. Rheinmetall: portafoglio 2025 di 63,8 mld € (fonte unica)."
+   },
+   {
+    "id": "cantieri",
+    "nome": "Cantieri navali",
+    "cosa": "Navi militari e navi da crociera.",
+    "titoli": [
+     "FCT.MI"
+    ],
+    "protagonisti": "Fincantieri, Meyer Werft, Chantiers de l'Atlantique, HII, TKMS",
+    "forza": "Media",
+    "perche": "Ordini garantiti per oltre un decennio, ma margini sottili per contratti fissi e prezzi negoziati da clienti molto grandi.",
+    "fatti": "Q1 2026: Fincantieri portafoglio totale record di 74,2 mld €, margine EBITDA 7,4%."
+   },
+   {
+    "id": "governi",
+    "nome": "Governi e compagnie di crociera",
+    "cosa": "Acquistano con contratti pluriennali.",
+    "titoli": [],
+    "protagonisti": "Ministeri della difesa NATO, Carnival, Royal Caribbean, MSC Crociere, Viking",
+    "forza": "Alta",
+    "perche": "Clienti grandi e concentrati che fissano specifiche e prezzi; i governi hanno anche poteri regolatori sulle aziende.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I grandi appaltatori hanno portafogli ordini record, ma i margini sono limitati da contratti a prezzo fisso; il vero collo di bottiglia sono pochi fornitori di esplosivi e motori a razzo.",
+  "tendenza": "L'obiettivo NATO del 5% del PIL entro il 2035 (giugno 2025) gonfia gli ordini in Europa, ma la capacità produttiva e i fornitori di secondo livello non tengono il passo.",
+  "nota_struttura": "L'ultimo anello unisce governi e compagnie da crociera, clienti con logiche diverse; BA.L costruisce anche navi militari e Fincantieri vende anche alla difesa.",
+  "fonti": [
+   {
+    "titolo": "European defense one year on: Money is not the problem, capacity (and delivery) are",
+    "url": "https://www.allianz-trade.com/en_global/news-insights/economic-insights/european-defense-one-year-on.html",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "With the boom for solid rocket motors for missiles, a perilous crunch in the supply chain",
+    "url": "https://breakingdefense.com/2026/01/with-the-boom-for-solid-rocket-motors-for-missiles-a-perilous-crunch-in-the-supply-chain/",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Lockheed Martin Reports First Quarter 2026 Financial Results",
+    "url": "https://news.lockheedmartin.com/2026-04-23-Lockheed-Martin-Reports-First-Quarter-2026-Financial-Results?asPDF=1",
+    "data": "2026-04-23"
+   },
+   {
+    "titolo": "Fincantieri raises 2026 outlook as backlog hits record",
+    "url": "https://gcaptain.com/fincantieri-raises-2026-outlook-as-backlog-hits-record/",
+    "data": "2026-05"
+   }
+  ]
+ },
+ "telecom": {
+  "nome": "Telecomunicazioni",
+  "anelli": [
+   {
+    "id": "apparecchiature",
+    "nome": "Apparecchiature di rete",
+    "cosa": "Antenne, apparati e software per le reti (Ericsson, Nokia, Huawei).",
+    "titoli": [],
+    "protagonisti": "Huawei, Ericsson, Nokia, ZTE, Samsung",
+    "forza": "Media",
+    "perche": "Mercato molto concentrato, ma la spesa per reti radio è ferma e gli operatori mettono i fornitori in concorrenza.",
+    "fatti": "Dell'Oro: Huawei ed Ericsson quasi due terzi del mercato RAN; top 5 al 96% nei primi 9 mesi 2025; crescita attesa 1% annuo 2025-2030."
+   },
+   {
+    "id": "infrastrutture",
+    "nome": "Torri e reti all'ingrosso",
+    "cosa": "Società che possiedono torri o reti in fibra e le affittano agli operatori.",
+    "titoli": [],
+    "protagonisti": "American Tower, Cellnex, Vantage Towers, China Tower, Indus Towers, INWIT",
+    "forza": "Alta",
+    "perche": "Siti difficili da replicare e contratti pluriennali con aumenti automatici; il rischio è la concentrazione dei clienti e i rinnovi.",
+    "fatti": "Cellnex: 114.542 siti nel Q1 2026. American Tower: ricavi Q2 2026 +4,7% a 2,749 mld $."
+   },
+   {
+    "id": "operatori",
+    "nome": "Operatori telefonici",
+    "cosa": "Vendono telefonia mobile, fissa e internet ai clienti.",
+    "titoli": [
+     "DTE.DE",
+     "VZ",
+     "ORA.PA",
+     "TIT.MI",
+     "9432.T"
+    ],
+    "protagonisti": "Deutsche Telekom, Verizon, AT&T, Orange, Telecom Italia, NTT",
+    "forza": "Media",
+    "perche": "Grandi e con clienti fedeli, ma concorrenza sui prezzi in Europa e investimenti in fibra e 5G elevati; il consolidamento può migliorare i margini.",
+    "fatti": "Verizon-Frontier (circa 20 mld $) chiusa il 20 gen 2026. SFR venduta a Bouygues, Iliad, Orange per 20,35 mld EUR (accordo giugno 2026)."
+   },
+   {
+    "id": "clienti",
+    "nome": "Famiglie e imprese",
+    "cosa": "Chi paga l'abbonamento.",
+    "titoli": [],
+    "protagonisti": "Famiglie, imprese, pubbliche amministrazioni",
+    "forza": "Media",
+    "perche": "Possono cambiare operatore facilmente nei mercati con quattro operatori; con il passaggio a tre il loro potere cala.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I profitti più stabili stanno nelle torri e nelle reti all'ingrosso (contratti lunghi indicizzati); gli operatori hanno ricavi grandi ma crescita lenta e investimenti pesanti.",
+  "tendenza": "Ritorno al consolidamento: in Francia Bouygues, Orange e Iliad si spartiscono SFR (accordo giugno 2026, da 4 a 3 operatori) e Verizon chiude l'acquisto di Frontier (gennaio 2026).",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "RAN market stabilized in 2025 (Dell'Oro)",
+    "url": "https://www.delloro.com/news/ran-market-stabilized-in-2025/",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "Altice France sells SFR in US$23bil deal",
+    "url": "https://www.thestar.com.my/business/business-news/2026/06/08/altice-france-sells-sfr-in-us23bil-deal",
+    "data": "2026-06-08"
+   },
+   {
+    "titolo": "Verizon and Frontier receive all required regulatory approvals to complete transaction",
+    "url": "https://www.verizon.com/about/news/feed/verizon-and-frontier-regulatory-approval",
+    "data": "2026-01"
+   },
+   {
+    "titolo": "Analysis: Cell tower companies (towercos) & market forecast",
+    "url": "https://techblog.comsoc.org/2026/08/03/analysis-cell-tower-companies-towercos-market-forecast-with-small-cells-in-the-lead/",
+    "data": "2026-08-03"
+   }
+  ]
+ },
+ "consumo": {
+  "nome": "Beni di largo consumo e distribuzione",
+  "anelli": [
+   {
+    "id": "materie",
+    "nome": "Materie prime e imballaggi",
+    "cosa": "Prodotti agricoli, chimica, carta e plastica.",
+    "titoli": []
+   },
+   {
+    "id": "marche",
+    "nome": "Produttori di marca",
+    "cosa": "Alimentari, bevande, prodotti per la casa e la persona venduti con marchi noti.",
+    "titoli": [
+     "PG",
+     "KO",
+     "PEP",
+     "NESN.SW",
+     "ULVR.L",
+     "OR.PA",
+     "CPR.MI"
+    ]
+   },
+   {
+    "id": "distributori",
+    "nome": "Supermercati e commercio elettronico",
+    "cosa": "Vendono ai consumatori, nei negozi e in rete (anche Amazon, assegnata alla catena del cloud da cui viene la maggior parte dei suoi utili).",
+    "titoli": [
+     "WMT",
+     "COST",
+     "AD.AS"
+    ]
+   },
+   {
+    "id": "consumatori",
+    "nome": "Consumatori",
+    "cosa": "Chi compra ogni giorno.",
+    "titoli": []
+   }
+  ]
+ },
+ "moda": {
+  "nome": "Abbigliamento, moda e lusso",
+  "anelli": [
+   {
+    "id": "laboratori",
+    "nome": "Materie prime e laboratori",
+    "cosa": "Pelli, tessuti, metalli preziosi, laboratori artigiani e fabbriche.",
+    "titoli": [],
+    "protagonisti": "Concerie e laboratori italiani e francesi, fornitori in Cina, Vietnam e Bangladesh",
+    "forza": "Bassa",
+    "perche": "Molti piccoli fornitori dipendenti da pochi marchi, che spesso li acquistano per controllare la filiera.",
+    "fatti": ""
+   },
+   {
+    "id": "marchi",
+    "nome": "Marchi",
+    "cosa": "Disegnano, fanno produrre e promuovono i prodotti; nel lusso controllano anche la produzione.",
+    "titoli": [
+     "MC.PA",
+     "RMS.PA",
+     "CFR.SW",
+     "MONC.MI",
+     "RACE.MI",
+     "ITX.MC",
+     "ADS.DE"
+    ],
+    "protagonisti": "LVMH, Hermès, Richemont, Chanel, Inditex, Nike",
+    "forza": "Alta",
+    "perche": "Il marchio permette prezzi molto sopra i costi; ma gli aumenti di prezzo eccessivi hanno allontanato i clienti aspirazionali.",
+    "fatti": "Hermès 2025: margine operativo 41,1%, ricavi circa 16 miliardi di euro. LVMH 2025: ricavi -5% a 80,8 miliardi."
+   },
+   {
+    "id": "negozi",
+    "nome": "Negozi propri, grandi magazzini e vendita online",
+    "cosa": "Dove si vende al cliente finale.",
+    "titoli": [],
+    "protagonisti": "Boutique dei marchi, Sephora, Galeries Lafayette, Mytheresa, Zalando",
+    "forza": "Media",
+    "perche": "I marchi del lusso vendono sempre più nei propri negozi; grandi magazzini e siti multimarca hanno margini sotto pressione.",
+    "fatti": "LVMH 3o trim. 2026: distribuzione selettiva (Sephora) +8% organico, moda e pelletteria -5%."
+   },
+   {
+    "id": "clienti",
+    "nome": "Clienti",
+    "cosa": "Dal cliente di massa al grande patrimonio.",
+    "titoli": [],
+    "protagonisti": "Grandi patrimoni, classe media aspirazionale, consumatori cinesi, americani ed europei",
+    "forza": "Media",
+    "perche": "I clienti ricchi sono fedeli, ma la classe media riduce gli acquisti e si sposta sull'usato.",
+    "fatti": "Bain: mercato beni personali di lusso 2025 circa 358 miliardi di euro (-2%), 20 milioni di clienti in meno."
+   }
+  ],
+  "chi_cattura": "I profitti si concentrano nei marchi più forti, che controllano prezzo, distribuzione e spesso produzione; il mercato è polarizzato fra pochi vincitori (Hermès) e molti in difficoltà.",
+  "tendenza": "Dopo il calo 2025, nel 2026 la ripresa è disomogenea: la moda e pelletteria LVMH cala ancora nel 3o trimestre 2026 per la Cina, mentre gioielli e cosmetica crescono.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Luxury confronts slowdown amid economic headwinds (Bain press release)",
+    "url": "https://www.bain.com/ja/about-bain/media-center/press-releases/20252/luxury-confronts-slowdown-amid-economic-headwinds-and-market-disruptions-while-industry-resilience-and-strong-fundamentals-underpin-future-prospects/",
+    "data": "2025-11"
+   },
+   {
+    "titolo": "Hermès 2025 Revenue Grew 9% as Operating Margin Rose to 41%",
+    "url": "https://www.fashionbi.com/insights/hermes-2025-revenue-grew-9-as-operating-margin-rose-to-41",
+    "data": "2026-02"
+   },
+   {
+    "titolo": "LVMH sales expose luxury retail's uneven recovery",
+    "url": "https://www.retail-insight-network.com/newsletters/lvmh-sales-expose-luxury-retails-uneven-recovery",
+    "data": "2026-10"
+   },
+   {
+    "titolo": "LVMH sales edge higher despite fashion slide",
+    "url": "https://tribune.net.ph/2026/10/13/lvmh-sales-edge-higher-despite-fashion-slide",
+    "data": "2026-10-13"
+   }
+  ]
+ },
+ "logistica": {
+  "nome": "Trasporto merci e logistica",
+  "anelli": [
+   {
+    "id": "mittenti",
+    "nome": "Produttori e mittenti",
+    "cosa": "Chi deve spedire merci.",
+    "titoli": [],
+    "protagonisti": "Walmart, Amazon, Home Depot, grandi industriali, esportatori asiatici",
+    "forza": "Media",
+    "perche": "I grandi mittenti negoziano tariffe e spostano volumi tra fornitori; i piccoli accettano i prezzi.",
+    "fatti": ""
+   },
+   {
+    "id": "organizzatori",
+    "nome": "Organizzatori di spedizioni",
+    "cosa": "Comprano spazio su navi, aerei e camion e organizzano il trasporto per i clienti.",
+    "titoli": [
+     "DSV.CO"
+    ],
+    "protagonisti": "DSV, Kuehne+Nagel, DHL Global Forwarding, Sinotrans, Nippon Express",
+    "forza": "Media",
+    "perche": "Non possiedono mezzi e la concorrenza è ampia, ma la scala dà potere d'acquisto verso i vettori.",
+    "fatti": "2025 (Armstrong): ricavi DSV 37,4 mld $, DHL 35,5, Kuehne+Nagel 33,8; mercato spedizioni circa 240 mld $ (Ti)."
+   },
+   {
+    "id": "vettori",
+    "nome": "Ferrovie e vettori",
+    "cosa": "Chi possiede e gestisce i mezzi di trasporto.",
+    "titoli": [
+     "CNR.TO"
+    ],
+    "protagonisti": "Canadian National, Union Pacific, CPKC, BNSF, Maersk, MSC",
+    "forza": "Alta",
+    "perche": "Le ferrovie hanno reti non replicabili e clienti spesso serviti da una sola linea; le navi soffrono invece di sovraccapacità ciclica.",
+    "fatti": "2025: CN rapporto operativo 61,7%. Maersk prevede per il 2026 sovraccapacità del 4-8% nel trasporto container."
+   },
+   {
+    "id": "magazzini",
+    "nome": "Magazzini e centri logistici",
+    "cosa": "Immobili dove si stoccano e smistano le merci.",
+    "titoli": [
+     "PLD"
+    ],
+    "protagonisti": "Prologis, SEGRO, GLP, Goodman, Blackstone",
+    "forza": "Alta",
+    "perche": "Terreni vicini alle città scarseggiano e i contratti vecchi si rinnovano a canoni molto più alti.",
+    "fatti": "Q3 2026: occupazione Prologis 95,6%, aumento dei canoni al rinnovo del 38%; sfitto USA sceso al 7,1%."
+   },
+   {
+    "id": "destinatari",
+    "nome": "Negozi, fabbriche e consumatori",
+    "cosa": "Chi riceve le merci.",
+    "titoli": [],
+    "protagonisti": "Dettaglianti, fabbriche, consumatori online",
+    "forza": "Bassa",
+    "perche": "Ricevono il costo del trasporto incluso nel prezzo e scelgono poco il fornitore logistico.",
+    "fatti": ""
+   }
+  ],
+  "chi_cattura": "I margini più stabili stanno negli asset difficili da replicare: ferrovie nordamericane (quasi monopoli locali) e magazzini ben posizionati; gli spedizionieri guadagnano su scala e tecnologia con margini più sottili.",
+  "tendenza": "Consolidamento (DSV ha comprato DB Schenker nel 2025, Union Pacific-Norfolk Southern in esame) mentre i dazi USA 2025-2026 rendono instabili volumi e noli marittimi.",
+  "nota_struttura": "",
+  "fonti": [
+   {
+    "titolo": "Top 25 Freight Forwarders: Navigating a new era",
+    "url": "https://www.supplychain247.com/article/top_25_freight_forwarders_navigating_a_new_era",
+    "data": "2026-06"
+   },
+   {
+    "titolo": "Prologis Reports Third Quarter 2026 Results",
+    "url": "https://www.morningstar.com/news/pr-newswire/20261015sf72669/prologis-reports-third-quarter-2026-results",
+    "data": "2026-10-15"
+   },
+   {
+    "titolo": "CNI Q2 2026 Earnings Call Transcript",
+    "url": "https://www.mitrade.com/insights/news/live-news/article-8-1933831-20260725",
+    "data": "2026-07-25"
+   },
+   {
+    "titolo": "Maersk faces a tougher 2026 as container overcapacity pressures freight rates",
+    "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/03/maersk-faces-a-tougher-2026-as-container-overcapacity-pressures-freight-rates",
+    "data": "2026-03"
+   }
+  ]
+ }
+}

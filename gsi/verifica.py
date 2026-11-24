@@ -172,6 +172,19 @@ def confronta(ingressi: dict, lib, percorso_ricalcolato, P: dict, giudizi: dict)
                 v = [py[tk][k] for tk, i in ingressi.items() if i["settore"] == sett and py[tk][k] is not None
                      and (lim is None or py[tk][k] < lim)]
                 chk(sett, f"mediana {k}", statistics.median(v) if v else "n.d.", ws.cell(r, COL_MEDIANE + j).value)
+    # --- catene del valore: numero di titoli e mediane di ogni anello
+    if "CATENE" in lib.tab:
+        from . import catene as cat
+        xc = leggi_foglio(wb, None, "CATENE", lib.tab["CATENE"].cols)
+        aid = {tk: cat.profilo(tk).get("anello_id") for tk in ingressi}
+        for tk in ingressi:
+            if not aid[tk]:
+                continue
+            pari = [x for x in ingressi if aid[x] == aid[tk]]
+            chk(tk, "titoli nell'anello", len(pari), xc[tk]["n_anello"])
+            for k, campo in (("med_marg", "Q3"), ("med_rend", "Q1")):
+                v = [ingressi[x][campo] for x in pari if ingressi[x].get(campo) is not None]
+                chk(tk, f"mediana dell'anello {campo}", statistics.median(v) if v else "n.d.", xc[tk][k])
     return n, diff
 
 

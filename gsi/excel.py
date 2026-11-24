@@ -93,7 +93,7 @@ class Tab:
       {R:chiave}     intervallo assoluto dell'intera colonna in questo foglio
     """
     SIGLE = {"D": "DATI", "V": "VALUTAZIONE", "B": "BUFFETT", "T": "TRADING", "G": "GIUDIZI", "S": "SCREENER",
-             "PV": "PREVEDIBILITA"}
+             "PV": "PREVEDIBILITA", "CA": "CATENE"}
 
     def __init__(self, libro: Libro, nome: str, titolo: str, sotto: str = ""):
         self.libro, self.nome = libro, nome
@@ -994,7 +994,7 @@ def giudizi_da_gialle(gialle: dict) -> dict:
 
 
 # ============================================================================ assemblaggio
-ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "PREVEDIBILITA", "TRADING", "MOVIMENTI", "NOTIZIE",
+ORDINE_FOGLI = ["CRUSCOTTO", "SCREENER", "SCHEDA", "SETTORI", "BUFFETT", "VALUTAZIONE", "PREVEDIBILITA", "MERCATI", "CATENE", "TRADING", "MOVIMENTI", "NOTIZIE",
                 "PORTAFOGLIO", "SIMULATORE", "BACKTEST", "PERFORMANCE", "GIUDIZI", "PARAMETRI", "UNIVERSO", "DATI",
                 "QUALITA_DATI", "METODOLOGIA", "FONTI", "STATO", "LEGGIMI", "PREZZI_5A", "CORRELAZIONI", "ETF_MENSILI",
                 "_MAPPA"]
@@ -1012,9 +1012,13 @@ def costruisci(ingressi: dict, P: dict, giudizi: dict, oggi: date, serie5a: dict
     tickers = list(ingressi)
     foglio_parametri(lib, P, oggi)
     foglio_dati(lib, ingressi, {t.ticker: t for t in universo})
+    from .excel_catene import foglio_catene, foglio_mercati
+    tc = foglio_catene(lib, tickers, scrivi=False)
     tp = foglio_prevedibilita(lib, tickers, scrivi=False)     # GIUDIZI e PREVEDIBILITA si richiamano a vicenda
     foglio_giudizi(lib, ingressi, giudizi)
     tp.scrivi(tickers)
+    tc.scrivi(tickers)
+    foglio_mercati(lib)
     foglio_universo(lib, universo, demo)
     foglio_valutazione(lib, tickers)
     foglio_buffett(lib, tickers)

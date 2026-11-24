@@ -77,7 +77,8 @@ con Yahoo sugli esercizi in comune.
 - **Ogni trimestre**: dati manuali di banche e assicurazioni in GIUDIZI; `python avvia.py backtest`;
   `pip install -U yfinance` (Yahoo cambia spesso e la libreria si adegua).
 - **Ogni anno** (o dopo fatti rilevanti): rendimenti richiesti per valuta in PARAMETRI; descrizioni di società e settori;
-  giudizi di prevedibilità a 10 anni (file `gsi/dati_prevedibilita.json`, redatti il 23/11/2026 con ricerca su internet).
+  giudizi di prevedibilità a 10 anni (file `gsi/dati_prevedibilita.json`, redatti il 23/11/2026 con ricerca su internet);
+  catene del valore (file `gsi/dati_catene.json`, ricerca del 24/11/2026).
 
 | Sintomo | Causa probabile | Cosa fare |
 |---|---|---|
